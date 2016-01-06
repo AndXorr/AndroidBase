@@ -10,12 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by clickapps on 24/7/15.
- * <p/>
+ * <p>
  * All the date time util methods are available for the app
  */
 public class DateTimeUtils {
@@ -26,7 +27,7 @@ public class DateTimeUtils {
     public final static String TIME_FORMAT = "HH:mm:ss";
     public final static String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public final static String DATE_TIME_FORMAT_DHM_DATE_MO = "E HH:mm  dd MMM";
-    public final static String DATE="yyyy-MM-dd";
+    public final static String DATE = "yyyy-MM-dd";
     private final static long ONE_SECOND = 1000;
     private final static long HALF_SECONDS = ONE_SECOND * 15;
 
@@ -49,7 +50,30 @@ public class DateTimeUtils {
         if (TextUtils.isEmpty(dateFormat)) {
             dateFormat = "yyyy-MM-dd hh:mm:ss";
         }
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
+
+        return sdf.format(new Date());
+    }
+
+    public static SimpleDateFormat getDateFormat(String format) {
+        if (TextUtils.isEmpty(format)) {
+            format = "yyyy-MM-dd hh:mm:ss";
+        }
+        return new SimpleDateFormat(format, Locale.ENGLISH);
+    }
+
+    public static SimpleDateFormat getDateFormatLocale(String format) {
+        if (TextUtils.isEmpty(format)) {
+            format = "yyyy-MM-dd hh:mm:ss";
+        }
+        return new SimpleDateFormat(format, Locale.getDefault());
+    }
+
+    public static String getCurrentDateTimeLocale(String dateFormat) {
+        if (TextUtils.isEmpty(dateFormat)) {
+            dateFormat = "yyyy-MM-dd hh:mm:ss";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
 
         return sdf.format(new Date());
     }
@@ -527,7 +551,7 @@ public class DateTimeUtils {
     }
 
     public static String getTimeAgo(Context context, String createdDate) {
-        Date date ;
+        Date date;
         if (createdDate.contains("T")) {
             String value = DateTimeUtils.convertUtcToLocal(createdDate, DateTimeUtils.DATETIME_FORMAT, DateTimeUtils.FORMAT);
             date = DateTimeUtils.convertStringToDate(value, DateTimeUtils.DATETIME_FORMAT);
@@ -544,9 +568,9 @@ public class DateTimeUtils {
     }
 
     public static String getTimeAgo(Context context, String createdDate, String currentFormat) {
-        Date date ;
-            String value = DateTimeUtils.convertUtcToLocal(createdDate, DateTimeUtils.DATETIME_FORMAT, currentFormat);
-            date = DateTimeUtils.convertStringToDate(value, DateTimeUtils.DATETIME_FORMAT);
+        Date date;
+        String value = DateTimeUtils.convertUtcToLocal(createdDate, DateTimeUtils.DATETIME_FORMAT, currentFormat);
+        date = DateTimeUtils.convertStringToDate(value, DateTimeUtils.DATETIME_FORMAT);
         Date currentDate = DateTimeUtils.getCalendar(System.currentTimeMillis()).getTime();
         long diff = currentDate.getTime() - date.getTime();
         String time = DateTimeUtils.millisToLongDHMS(context, diff);

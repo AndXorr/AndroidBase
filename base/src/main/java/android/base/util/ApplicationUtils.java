@@ -90,7 +90,7 @@ public final class ApplicationUtils {
         Intent intent = new Intent(
                 android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         if (imagePath == null)
-            imagePath = FileUtils.getStaticFile(context, "");
+            imagePath = FileUtil.getStaticFile(context, "");
         Uri mUri = Uri.fromFile(imagePath);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
         intent.putExtra("return-data", true);

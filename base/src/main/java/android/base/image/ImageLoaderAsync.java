@@ -1,7 +1,7 @@
 package android.base.image;
 
 import android.base.log.Log;
-import android.base.util.FileUtils;
+import android.base.util.FileUtil;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
@@ -57,7 +57,7 @@ public class ImageLoaderAsync {
     public static synchronized ImageLoaderAsync getInstance(Context context) {
         if (instance == null) {
             instance = new ImageLoaderAsync();
-            File cacheDir = FileUtils.getDirectoryAppImages(context);
+            File cacheDir = FileUtil.getDirectoryAppImages(context);
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int width = displayMetrics.widthPixels;
             int height = displayMetrics.heightPixels;

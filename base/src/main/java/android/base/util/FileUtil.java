@@ -15,6 +15,8 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -25,7 +27,7 @@ import static android.os.Environment.MEDIA_MOUNTED;
 /**
  * Created by clickapps on 24/7/15.
  */
-public class FileUtils {
+public class FileUtil {
 
     private final static String FILE_NAME = "Sparta_";
     private final static String FILE_NAME_IMAGE = "IMG_";
@@ -33,7 +35,7 @@ public class FileUtils {
     private final static String FILE_NAME_CAMERA_IMAGE = "IMG_CAMERA_";
 
 
-    private final static String TAG = FileUtils.class.getSimpleName();
+    private final static String TAG = FileUtil.class.getSimpleName();
 
     /**
      * Functionality to get directory name file
@@ -44,7 +46,7 @@ public class FileUtils {
 
     public static File getDirectoryApp(Context context) {
         String cacheFilePath = Environment.getExternalStorageDirectory()
-                .getPath() + "/" + getApplicationName(context);
+                .getPath() + "/Android/" + context.getPackageName();
         File appCacheDir = null;
         if (MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 && hasExternalStoragePermission(context)) {
@@ -124,7 +126,9 @@ public class FileUtils {
         } else if (!name.endsWith(".jpeg")) {
             name = name + ".jpeg";
         }
-        File filePath = new File(getDirectoryApp(context), name);
+        File dir = new File(getDirectoryApp(context),
+                "/cache");
+        File filePath = new File(dir, name);
         return filePath;
 
     }
@@ -135,13 +139,15 @@ public class FileUtils {
         } else if (!name.endsWith(".mp4")) {
             name = name + ".mp4";
         }
-        File filePath = new File(getDirectoryApp(context), name);
+        File dir = new File(getDirectoryApp(context),
+                "/cache");
+        File filePath = new File(dir, name);
         return filePath;
     }
 
     public static void writeStringToFile(File file, String data) {
         try {
-            org.apache.commons.io.FileUtils.writeStringToFile(file, data);
+            FileUtils.writeStringToFile(file, data);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,7 +155,7 @@ public class FileUtils {
 
     public static void writeStringToFile(File file, String data, boolean append) {
         try {
-            org.apache.commons.io.FileUtils.writeStringToFile(file, data, append);
+            FileUtils.writeStringToFile(file, data, append);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -157,7 +163,7 @@ public class FileUtils {
 
     public static void copyFile(File src, File dst) {
         try {
-            org.apache.commons.io.FileUtils.copyFile(src, dst);
+            FileUtils.copyFile(src, dst);
         } catch (IOException e) {
             e.printStackTrace();
         }
