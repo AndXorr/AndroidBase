@@ -5,11 +5,12 @@ import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
+import android.widget.ProgressBar;
 
 /**
  * Created by clickapps on 3/7/15.
  */
-public class BaseProgressBar extends android.widget.ProgressBar {
+public class BaseProgressBar extends ProgressBar {
     public BaseProgressBar(Context context) {
         super(context);
     }
