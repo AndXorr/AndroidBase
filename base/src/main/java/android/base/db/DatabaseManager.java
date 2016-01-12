@@ -1,5 +1,7 @@
 package android.base.db;
 
+import android.base.activity.ActivityManager;
+import android.base.activity.ActivityManagerUtil;
 import android.base.log.Log;
 import android.content.ContentValues;
 import android.content.Context;
@@ -24,6 +26,7 @@ public final class DatabaseManager {
         }
 
         public Builder(@NonNull Context context, @NonNull SQLiteOpenHelper sqLiteOpenHelper) {
+            param = new DatabaseParam();
             param.context = context;
             param.sqLiteOpenHelper = sqLiteOpenHelper;
             param.dRead = param.sqLiteOpenHelper.getReadableDatabase();
@@ -105,10 +108,11 @@ public final class DatabaseManager {
             return this;
         }
 
-        public Builder update(String table, String where, Map<String, String> map) {
+        public Builder update(String table, String where, String[] whereArgs, Map<String, String> map) {
             param.table = table;
             param.where = where;
             param.map = map;
+            param.whereArgs = whereArgs;
             param.crud = DatabaseParam.CRUD.UPDATE;
             return this;
         }
@@ -142,7 +146,7 @@ public final class DatabaseManager {
                 default:
                     Log.d(getClass().getSimpleName(), "Nothing Selected");
                     object = null;
-                break;
+                    break;
             }
             return object;
         }

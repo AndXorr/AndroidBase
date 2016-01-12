@@ -2,10 +2,12 @@ package android.base.activity;
 
 import android.app.Activity;
 import android.base.R;
+import android.base.util.ApplicationUtils;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.TransitionRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
@@ -56,6 +58,10 @@ public class ActivityManager {
             return this;
         }
 
+        /**
+         * if application OS is greater than Lollipop then its @TransitionRes
+         * otherwise its @AnimRes
+         */
         public Builder setStartAnimation(int enter, int exit) {
             activityParam.enter = enter;
             activityParam.exit = exit;
@@ -74,18 +80,21 @@ public class ActivityManager {
         }
 
         private Builder defaultAnim() {
-            activityParam.enter = R.anim.slide_in_left;
-            activityParam.exit = R.anim.slide_out_left;
+            if (ApplicationUtils.isLollipop()) {
+                activityParam.enter = activityParam.exit = R.transition.activity_slide;
+            } else {
+                activityParam.enter = R.anim.slide_in_left;
+                activityParam.exit = R.anim.slide_out_left;
+            }
             return this;
         }
 
         public void build() {
             if (activityParam.context == null) {
                 Log.e(getClass().getSimpleName(), "Context is null");
-//                return activityParam;
+                return;
             }
             ActivityManagerUtil.performTask(activityParam);
-//            return activityParam;
         }
     }
 }
