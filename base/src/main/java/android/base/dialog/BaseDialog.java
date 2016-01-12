@@ -38,12 +38,6 @@ public class BaseDialog extends Dialog implements View.OnClickListener {
      */
     private void hideTitle() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(getContext(), R.color.app_theme_base));
-            window.setNavigationBarColor(ContextCompat.getColor(getContext(), R.color.app_theme_base));
-        }
     }
 
 }
