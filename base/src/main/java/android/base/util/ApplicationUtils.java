@@ -7,9 +7,15 @@ import android.base.constant.Constant;
 import android.base.log.Log;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.inputmethod.InputMethodManager;
 
 import java.io.File;
@@ -23,6 +29,14 @@ public final class ApplicationUtils {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isLollipop() {
         if (Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_LOLLIPOP) {
+            return true;
+        }
+        return false;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean isLollipopOrBelow() {
+        if (Build.VERSION.SDK_INT <= Constant.BUILD_VERSION_LOLLIPOP) {
             return true;
         }
         return false;
@@ -96,5 +110,16 @@ public final class ApplicationUtils {
         intent.putExtra("return-data", true);
         context.startActivityForResult(intent, requestCode);
 
+    }
+
+    public static final String getCurrentMethodName() {
+        return Thread.currentThread().getStackTrace()[3].getMethodName();
+    }
+
+    public static Drawable getTintDrawable(@NonNull Context context, @DrawableRes int drawable, int resId) {
+        Drawable d = ContextCompat.getDrawable(context, drawable);
+        DrawableCompat.wrap(d);
+        DrawableCompat.setTintList(d, ContextCompat.getColorStateList(context, resId));
+        return d;
     }
 }

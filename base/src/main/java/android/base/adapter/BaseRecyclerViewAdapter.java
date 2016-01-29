@@ -16,11 +16,11 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {
 
     public interface OnItemClickListener {
-        <T> void onItemClick(BaseRecyclerView recyclerView, View view, int position, T model);
+        <T, VH> void onItemClick(BaseRecyclerView recyclerView, VH viewHolder, int position, T model);
     }
 
     public interface OnItemLongClickListener {
-        <T> boolean onItemLongClick(BaseRecyclerView recyclerView, View view, int position, T model);
+        <T, VH> boolean onItemLongClick(BaseRecyclerView recyclerView, VH viewHolder, int position, T model);
     }
 
     private List<T> list = new ArrayList<>();

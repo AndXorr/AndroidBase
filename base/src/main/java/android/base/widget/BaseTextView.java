@@ -6,6 +6,8 @@ import android.base.util.LetterSpacingUtils;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -14,7 +16,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as Widget instead of TextView.This class has also a custom
  * attribute which is used in xml file.
- * <p/>
+ * <p>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on TextView text.
  * </P>
@@ -40,6 +42,10 @@ public class BaseTextView extends AppCompatTextView {
                     R.styleable.BaseTextView);
             String typeface = ApplicationUtils.getFontName(getContext(), ta
                     .getInt(R.styleable.BaseTextView_typefaces, -1));
+            int resId = ta.getResourceId(R.styleable.BaseTextView_tint, -1);
+            if (resId != -1 && ApplicationUtils.isLollipopOrBelow()) {
+                setBackgroundDrawableTint(resId);
+            }
             ta.recycle();
             if (!TextUtils.isEmpty(typeface)) {
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(),
@@ -47,6 +53,10 @@ public class BaseTextView extends AppCompatTextView {
                 setTypeface(tf);
             }
         }
+    }
+
+    public void setBackgroundDrawableTint(@ColorRes int resId) {
+        setSupportBackgroundTintList(ContextCompat.getColorStateList(getContext(), resId));
     }
 
     /**

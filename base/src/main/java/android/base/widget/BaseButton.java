@@ -6,16 +6,20 @@ import android.base.util.LetterSpacingUtils;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
 
-
 /**
  * This class is used as widget. This is used instead of using Button. This
  * class has also a custom attribute which is used in xml file.
- * <p/>
+ * <p>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on button text.
  * </P>
@@ -38,7 +42,10 @@ public class BaseButton extends AppCompatButton {
                     R.styleable.BaseTextView, 0, 0);
             String typeface = ApplicationUtils.getFontName(getContext(), a
                     .getInt(R.styleable.BaseTextView_typefaces, -1));
-
+            int resId = a.getResourceId(R.styleable.BaseTextView_tint, -1);
+            if (resId != -1 && ApplicationUtils.isLollipopOrBelow()) {
+                setBackgroundDrawableTint(resId);
+            }
             if (!TextUtils.isEmpty(typeface))
                 setTypeface(Typeface.createFromAsset(context.getAssets(),
                         typeface));
@@ -46,6 +53,17 @@ public class BaseButton extends AppCompatButton {
 
             a.recycle();
         }
+    }
+
+    public void setBackgroundDrawableTint(@ColorRes int resId) {
+        setSupportBackgroundTintList(ContextCompat.getColorStateList(getContext(), resId));
+    }
+
+    public Drawable getTintDrawable(@DrawableRes int drawable, int resId) {
+        Drawable d = ContextCompat.getDrawable(getContext(), drawable);
+        DrawableCompat.wrap(d);
+        DrawableCompat.setTintList(d, ContextCompat.getColorStateList(getContext(), resId));
+        return d;
     }
 
     /**

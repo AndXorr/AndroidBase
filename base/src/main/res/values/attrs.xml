@@ -6,6 +6,7 @@
             <enum name="none" value="0" />
             <enum name="one" value="1" />
         </attr>
+        <attr name="tint" format="color" />
         <attr name="android:maxLines" />
     </declare-styleable>
 
