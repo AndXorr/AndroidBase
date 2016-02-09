@@ -13,7 +13,6 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.inputmethod.InputMethodManager;
@@ -28,26 +27,17 @@ public final class ApplicationUtils {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isLollipop() {
-        if (Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_LOLLIPOP) {
-            return true;
-        }
-        return false;
+        return Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_LOLLIPOP;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static boolean isLollipopOrBelow() {
-        if (Build.VERSION.SDK_INT <= Constant.BUILD_VERSION_LOLLIPOP) {
-            return true;
-        }
-        return false;
+        return Build.VERSION.SDK_INT <= Constant.BUILD_VERSION_LOLLIPOP;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isJellyBean() {
-        if (Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_JELLY_BEAN_MR1) {
-            return true;
-        }
-        return false;
+        return Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_JELLY_BEAN_MR1;
     }
 
     public static void logEnable(boolean value) {
@@ -100,7 +90,7 @@ public final class ApplicationUtils {
     /**
      * This method is used to call inbuild camera of device
      */
-    public static final void camera(Activity context, int requestCode, File imagePath) {
+    public static void camera(Activity context, int requestCode, File imagePath) {
         Intent intent = new Intent(
                 android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         if (imagePath == null)
@@ -112,7 +102,7 @@ public final class ApplicationUtils {
 
     }
 
-    public static final String getCurrentMethodName() {
+    public static String getCurrentMethodName() {
         return Thread.currentThread().getStackTrace()[3].getMethodName();
     }
 

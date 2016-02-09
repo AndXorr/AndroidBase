@@ -9,14 +9,12 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import java.io.File;
 import java.util.Map;
 
 /**
  * Created by Sahni on 17-11-2015.
  */
 public class ImageUtil {
-    private static String TAG = "ImageUtil";
 
     public static class Builder {
         private ImageParam imageParam;
@@ -135,7 +133,7 @@ public class ImageUtil {
                 }
                 imageLoaderAsync.setImage(imageParam);
             } else {
-                Log.e(TAG, "Url is missing");
+                Log.e(getClass().getSimpleName(), "Url is missing");
             }
         }
     }

@@ -30,7 +30,7 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
     }
 
     public interface OnRefreshListener {
-        public void onRefresh();
+        void onRefresh();
     }
 
     public BaseSwipeRefreshLayout(Context context) {

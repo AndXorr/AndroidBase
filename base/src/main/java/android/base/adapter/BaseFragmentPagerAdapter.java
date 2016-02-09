@@ -1,7 +1,5 @@
 package android.base.adapter;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.base.fragment.BaseFragment;
 import android.content.Context;
@@ -15,7 +13,7 @@ import java.util.List;
  * Created by clickapps on 9/2/16.
  */
 public abstract class BaseFragmentPagerAdapter<T extends BaseFragment> extends FragmentPagerAdapter {
-    public List<T> list = new ArrayList<T>();
+    public List<T> list = new ArrayList<>();
     private Context context;
     private int count;
 
@@ -29,7 +27,7 @@ public abstract class BaseFragmentPagerAdapter<T extends BaseFragment> extends F
      * @param items
      */
     public void setList(List<T> items) {
-        list = new ArrayList<T>(items);
+        list = new ArrayList<>(items);
         count = list.size();
         this.notifyDataSetChanged();
     }

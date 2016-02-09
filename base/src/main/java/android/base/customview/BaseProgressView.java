@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
  * Created by Sahni on 08-01-2016.
  */
 public class BaseProgressView extends ProgressBar {
-    private BaseProgressDialog dialog;
 
     public BaseProgressView(Context context) {
         super(context);
@@ -26,7 +25,7 @@ public class BaseProgressView extends ProgressBar {
     }
 
     public BaseProgressDialog getDialog() {
-        dialog = new BaseProgressDialog(getContext(), R.style.Widget_ProgressDialog);
+        BaseProgressDialog dialog = new BaseProgressDialog(getContext(), R.style.Widget_ProgressDialog);
         if (getIndeterminateDrawable() == null) {
             dialog.setIndeterminateDrawable(ContextCompat.getDrawable(getContext(), R.drawable.dialog_progress_indeterminate));
         } else {

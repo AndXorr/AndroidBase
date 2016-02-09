@@ -128,8 +128,7 @@ public class FileUtil {
         }
         File dir = new File(getDirectoryApp(context),
                 "/cache");
-        File filePath = new File(dir, name);
-        return filePath;
+        return new File(dir, name);
 
     }
 
@@ -141,8 +140,7 @@ public class FileUtil {
         }
         File dir = new File(getDirectoryApp(context),
                 "/cache");
-        File filePath = new File(dir, name);
-        return filePath;
+        return new File(dir, name);
     }
 
     public static void writeStringToFile(File file, String data) {
@@ -190,8 +188,8 @@ public class FileUtil {
      * @permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
      */
     public static ArrayList<String> findFilesMain(String fileName) {
-        ArrayList<String> folderNameList = new ArrayList<String>();
-        ArrayList<String> fileList = new ArrayList<String>();
+        ArrayList<String> folderNameList = new ArrayList<>();
+        ArrayList<String> fileList = new ArrayList<>();
         File file = new File("/");
         File folderList[] = file.listFiles();
         if (folderList != null && folderList.length > 0) {

@@ -4,7 +4,6 @@ package android.base.alert;
 import android.app.Activity;
 import android.base.R;
 import android.base.dialog.OnDialogProcess;
-import android.base.log.Log;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;

@@ -2,9 +2,6 @@ package android.base.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -29,7 +26,7 @@ import java.util.List;
  * <P>
  * {@link #getList()} method is used to getList from this adapter.
  * </p>
- * <p>
+ * <p/>
  * </ul>
  *
  * @param <T> <P>
@@ -42,7 +39,7 @@ import java.util.List;
 public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     private Context context;
     private Activity activityContext;
-    protected List<T> mList = new ArrayList<T>();
+    protected List<T> mList = new ArrayList<>();
     protected String TAG = BaseAdapter.class.getSimpleName();
 
     public BaseAdapter(Context context) {
@@ -62,7 +59,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
      */
     public void setList(List<T> items) {
         if (items != null) {
-            mList = new ArrayList<T>(items);
+            mList = new ArrayList<>(items);
             notifyDataSetChanged();
         }
     }

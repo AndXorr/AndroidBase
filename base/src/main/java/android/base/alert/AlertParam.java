@@ -34,7 +34,7 @@ public class AlertParam {
     public String[] list;
 
     public enum DialogType {
-        SINGLE_OPTION, DOUBLE_OPTION, DIALOG_LIST;
+        SINGLE_OPTION, DOUBLE_OPTION, DIALOG_LIST
     }
 
     //    SnackBar class
@@ -48,6 +48,6 @@ public class AlertParam {
     public OnSnackBarActionListener onSnackBarActionListener;
 
     public interface OnSnackBarActionListener {
-        public void onSnackBarActionClicked(int uniqueId, View view);
+        void onSnackBarActionClicked(int uniqueId, View view);
     }
 }

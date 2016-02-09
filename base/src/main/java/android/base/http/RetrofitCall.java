@@ -1,7 +1,5 @@
 package android.base.http;
 
-import android.base.log.Log;
-
 /**
  * Created by clickapps on 10/12/15.
  */

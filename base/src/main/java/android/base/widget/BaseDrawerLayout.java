@@ -1,6 +1,7 @@
 package android.base.widget;
 
 import android.content.Context;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -50,7 +51,7 @@ public class BaseDrawerLayout extends DrawerLayout {
     }
 
     public void toggle() {
-        if (isDrawerOpen(Gravity.LEFT)) {
+        if (isDrawerOpen(GravityCompat.START)) {
             closeDrawer();
         } else {
             openDrawer();
@@ -66,11 +67,11 @@ public class BaseDrawerLayout extends DrawerLayout {
     }
 
     public void openDrawer() {
-        openDrawer(Gravity.LEFT);
+        openDrawer(GravityCompat.START);
     }
 
     public void closeDrawer() {
-        openDrawer(Gravity.LEFT);
+        openDrawer(GravityCompat.START);
     }
 
 }

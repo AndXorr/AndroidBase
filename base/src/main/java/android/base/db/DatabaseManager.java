@@ -1,11 +1,7 @@
 package android.base.db;
 
-import android.base.activity.ActivityManager;
-import android.base.activity.ActivityManagerUtil;
 import android.base.log.Log;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 

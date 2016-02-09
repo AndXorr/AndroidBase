@@ -3,7 +3,6 @@ package android.base.application;
 import android.app.Activity;
 import android.app.Application;
 import android.base.activity.ActivityManagerUtil;
-import android.base.log.Log;
 import android.os.Bundle;
 
 /**

@@ -3,9 +3,6 @@ package android.base.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
@@ -40,7 +37,7 @@ import java.util.List;
  */
 @SuppressWarnings("rawtypes")
 public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
-    public List<T> mList = new ArrayList<T>();
+    public List<T> mList = new ArrayList<>();
     private Activity context;
 
     public BaseArrayAdapter(Context context) {
@@ -60,7 +57,7 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
      * @param items
      */
     public void setList(List<T> items) {
-        mList = new ArrayList<T>(items);
+        mList = new ArrayList<>(items);
         this.notifyDataSetChanged();
     }
 

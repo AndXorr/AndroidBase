@@ -1,7 +1,5 @@
 package android.base.constant;
 
-import android.os.Build;
-
 /**
  * Created by clickapps on 15/7/15.
  */

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import java.util.Set;
-
 
 /**
  * <p>
@@ -18,14 +16,13 @@ import java.util.Set;
 public class SharedPreferenceApp {
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private final String PREF_NAME = getClass().getSimpleName();
 
 
     /**
      * Parameterized Constructor is called
      */
     public SharedPreferenceApp(@NonNull Context context) {
-        pref = context.getSharedPreferences(PREF_NAME, 0);
+        pref = context.getSharedPreferences(getClass().getSimpleName(), 0);
         editor = pref.edit();
     }
 

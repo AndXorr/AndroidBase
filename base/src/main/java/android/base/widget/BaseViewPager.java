@@ -60,10 +60,7 @@ public class BaseViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (isPagingEnabled) {
-            return super.onTouchEvent(event);
-        }
-        return false;
+        return isPagingEnabled && super.onTouchEvent(event);
     }
 
     public void setPagingEnabled(boolean pagingEnabled) {

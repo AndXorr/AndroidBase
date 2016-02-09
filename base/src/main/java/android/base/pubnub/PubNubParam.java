@@ -16,14 +16,14 @@ public class PubNubParam {
     public OnPushMessageListener listener;
 
     public enum Event {
-        SUB, UNSUB, UNSUBALL;
+        SUB, UNSUB, UNSUBALL
     }
 
     public interface OnPushMessageListener {
-        public void onSuccess(String channel, Object data);
+        void onSuccess(String channel, Object data);
 
         // If there is an error, don't just keep trying to register.
-        public void onFailure(String channel, String exception);
+        void onFailure(String channel, String exception);
     }
 
 }

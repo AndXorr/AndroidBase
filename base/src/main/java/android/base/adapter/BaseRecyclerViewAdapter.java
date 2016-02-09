@@ -3,9 +3,7 @@ package android.base.adapter;
 import android.base.widget.BaseRecyclerView;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;

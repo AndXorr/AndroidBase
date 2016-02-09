@@ -21,6 +21,6 @@ public final class DatabaseParam {
     public CRUD crud;
 
     public enum CRUD {
-        FETCH, FETCH_RAW, INSERT, DELETE, UPDATE;
+        FETCH, FETCH_RAW, INSERT, DELETE, UPDATE
     }
 }

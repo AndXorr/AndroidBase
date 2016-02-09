@@ -1,9 +1,7 @@
 package android.base.widget;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.LightingColorFilter;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 

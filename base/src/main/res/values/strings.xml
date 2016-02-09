@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Sparta1.0</string>
 
-    <string name="loading">Loading...</string>
-    <string name="loading_capital">LOADING...</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="loading_capital">LOADING&#8230;</string>
 
     <!--fonts-->
     <string name="typeface_default_base">proximanova-regular-webfont.ttf</string>

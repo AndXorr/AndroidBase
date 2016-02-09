@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.TransitionRes;
 import android.support.v4.app.ActivityCompat;
-import android.transition.Scene;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -116,8 +115,7 @@ public class ActivityManagerUtil {
 
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static Transition getTransition(Context context, @TransitionRes int resId) {
-        Transition transition = TransitionInflater.from(context).inflateTransition(resId);
-        return transition;
+        return TransitionInflater.from(context).inflateTransition(resId);
     }
 
     @TargetApi(Constant.BUILD_VERSION_KITKAT)

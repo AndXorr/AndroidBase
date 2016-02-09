@@ -2,7 +2,6 @@ package android.base.http;
 
 
 import android.base.log.Log;
-import android.os.Environment;
 
 import com.google.common.base.Optional;
 import com.google.gson.Gson;
@@ -33,7 +32,6 @@ public class OKHTTPConnect {
             = MediaType.parse("application/json; charset=utf-8");
     private static final MediaType MEDIA_TYPE_IMAGE = MediaType.parse("image/*");
     private OkHttpClient client = new OkHttpClient();
-    private Cache cache;
 
     public OKHTTPConnect(WebParam param) {
         OkHttpClient.Builder builder = client.newBuilder();
@@ -41,7 +39,7 @@ public class OKHTTPConnect {
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS);
         if (param.cacheResponse) {
-            cache = new Cache(param.cacheDir, param.cacheSize);
+            Cache cache = new Cache(param.cacheDir, param.cacheSize);
             builder.cache(cache);
         }
         client = builder.build();

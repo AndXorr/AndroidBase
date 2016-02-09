@@ -34,7 +34,7 @@ public class ImageParam {
     }
 
     public interface onCallback {
-        public void onBitmapReceived(Bitmap bitmap, File file, int taskId);
+        void onBitmapReceived(Bitmap bitmap, File file, int taskId);
     }
 
     public abstract class Callback implements onCallback {

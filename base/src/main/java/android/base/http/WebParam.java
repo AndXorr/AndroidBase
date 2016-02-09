@@ -1,7 +1,6 @@
 package android.base.http;
 
 import android.app.Activity;
-import android.base.dialog.BaseDialog;
 import android.base.dialog.BaseProgressDialog;
 import android.content.Context;
 import android.os.Environment;
@@ -36,9 +35,9 @@ public class WebParam {
 
 
     public interface OnWebCallback {
-        public <T> void onSuccess(@Nullable T object, String response, int taskId, int statusCode);
+        <T> void onSuccess(@Nullable T object, String response, int taskId, int statusCode);
 
-        public <T> void onError(@Nullable T object, String error, int taskId, int statusCode);
+        <T> void onError(@Nullable T object, String error, int taskId, int statusCode);
     }
 
     public abstract class WebCallback implements OnWebCallback {

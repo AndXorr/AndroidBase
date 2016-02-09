@@ -3,12 +3,8 @@ package android.base.activity;
 import android.app.Activity;
 import android.base.R;
 import android.base.util.ApplicationUtils;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.TransitionRes;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 

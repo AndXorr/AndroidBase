@@ -155,8 +155,6 @@ public class DateTimeUtils {
                             .getTime() + ro /* + dst */);
                 }
 
-            } catch (ParseException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -224,8 +222,7 @@ public class DateTimeUtils {
     public long getTimeDifferenceInMilliseconds(Date firstDateTime,
                                                 Date secondDateTime) throws ParseException {
         long diffInMs = secondDateTime.getTime() - firstDateTime.getTime();
-        long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
-        return diffInSec;
+        return TimeUnit.MILLISECONDS.toSeconds(diffInMs);
     }
 
     /**
@@ -316,8 +313,7 @@ public class DateTimeUtils {
                 format = "MM/dd/yyyy kk:mm:ss";
             }
             SimpleDateFormat simpledateformat = new SimpleDateFormat(format);
-            Date stringDate = simpledateformat.parse(dateTimeString);
-            return stringDate;
+            return simpledateformat.parse(dateTimeString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -344,9 +340,8 @@ public class DateTimeUtils {
             SimpleDateFormat simpledateformat = new SimpleDateFormat(currentFormat);
             SimpleDateFormat currentFormatter = new SimpleDateFormat(format);
             Date stringDate = simpledateformat.parse(dateTimeString);
-            String date = currentFormatter.format(stringDate);
 
-            return date;
+            return currentFormatter.format(stringDate);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -511,7 +506,7 @@ public class DateTimeUtils {
      * "<w> days, <x> hours, <y> minutes and (z) seconds"
      */
     public static String millisToLongDHMS(Context context, long duration) {
-        StringBuffer res = new StringBuffer();
+        StringBuilder res = new StringBuilder();
 
         long temp = 0;
         if (duration >= HALF_SECONDS) {

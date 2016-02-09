@@ -17,7 +17,7 @@ public class FragUtil {
      *
      * @Waring This methods runs on UI Thread
      */
-    public static final void popFragment(FragmentActivity activity, int replaceId) {
+    public static void popFragment(FragmentActivity activity, int replaceId) {
         if (activity == null)
             return;
         if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
@@ -35,7 +35,7 @@ public class FragUtil {
      *
      * @Waring This methods runs on UI Thread
      */
-    public static final void popFragment(FragmentActivity activity, String tag) {
+    public static void popFragment(FragmentActivity activity, String tag) {
         if (activity == null)
             return;
         if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
@@ -51,7 +51,7 @@ public class FragUtil {
     /**
      * This method is used to clear all the fragments from stack
      */
-    public static final void clearBackStack(FragmentActivity activity) {
+    public static void clearBackStack(FragmentActivity activity) {
         try {
             if (activity == null)
                 return;
@@ -74,7 +74,7 @@ public class FragUtil {
     /**
      * This method is used to remove all the stack in async
      */
-    public static final void clearAllStack(FragmentActivity activity) {
+    public static void clearAllStack(FragmentActivity activity) {
         if (activity == null)
             return;
         FragmentManager fm = activity.getFragmentManager();
@@ -86,7 +86,7 @@ public class FragUtil {
      *
      * @Waring This methods runs on UI Thread
      */
-    public static final void clearAllStackImmediate(FragmentActivity activity) {
+    public static void clearAllStackImmediate(FragmentActivity activity) {
         if (activity == null)
             return;
         FragmentManager fm = activity.getFragmentManager();
@@ -98,7 +98,7 @@ public class FragUtil {
      *
      * @return {@link Fragment}
      */
-    public static final Fragment getTopFragment(FragmentActivity activity) {
+    public static Fragment getTopFragment(FragmentActivity activity) {
         if (activity == null)
             return null;
         FragmentManager fm = activity.getFragmentManager();
@@ -115,10 +115,10 @@ public class FragUtil {
      *
      * @return {@link List}
      */
-    public static final List<String> getStackList(FragmentActivity activity) {
+    public static List<String> getStackList(FragmentActivity activity) {
         if (activity == null)
             return null;
-        List<String> stackList = new ArrayList<String>();
+        List<String> stackList = new ArrayList<>();
         stackList.clear();
         FragmentManager fm = activity.getFragmentManager();
         for (int entry = 0; entry < fm.getBackStackEntryCount(); entry++) {
