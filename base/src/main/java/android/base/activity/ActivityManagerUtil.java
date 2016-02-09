@@ -1,11 +1,13 @@
 package android.base.activity;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.base.R;
 import android.base.constant.Constant;
 import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.TransitionRes;
 import android.support.v4.app.ActivityCompat;
 import android.transition.Scene;
@@ -19,6 +21,7 @@ import android.transition.TransitionSet;
  * Created by clickapps on 24/11/15.
  */
 public class ActivityManagerUtil {
+    private static Activity currentActivity;
 
     protected static void performTask(ActivityParam activityParam) {
         ActivityParam.ActivityType activityType = activityParam.activityType;
@@ -126,4 +129,17 @@ public class ActivityManagerUtil {
         return transitionSet;
     }
 
+    public static Activity getTopActivity() {
+        return currentActivity;
+    }
+
+    /**
+     * Only set from BaseApplication
+     *
+     * @param currentActivity
+     */
+    @TargetApi(Constant.BUILD_VERSION_ICE_CREAM_SANDWICH)
+    public static void setTopActivity(@NonNull Activity currentActivity) {
+        ActivityManagerUtil.currentActivity = currentActivity;
+    }
 }
