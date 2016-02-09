@@ -1,6 +1,9 @@
 package android.base.util;
 
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import com.google.common.base.Optional;
 
 /**
  * Created by clickapps on 2/7/15.
@@ -71,4 +74,5 @@ public class Validator {
     public static boolean isMatches(String str1, String str2) {
         return TextUtils.equals(str1, str2);
     }
+
 }

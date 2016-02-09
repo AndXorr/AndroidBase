@@ -1,7 +1,7 @@
 package android.base.fragment;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.text.TextUtils;
 
 /**
@@ -10,7 +10,7 @@ import android.text.TextUtils;
 public class FragmentManagerUtil {
 
     public static void performTask(FragParam fragParam) {
-        FragmentTransaction ft = fragParam.context.getSupportFragmentManager()
+        FragmentTransaction ft = fragParam.context.getFragmentManager()
                 .beginTransaction();
         if (fragParam.enableAnimation) {
             ft.setCustomAnimations(fragParam.enter, fragParam.exit, fragParam.popEnter, fragParam.popExit);
@@ -32,10 +32,10 @@ public class FragmentManagerUtil {
             case POP_TAG:
                 if (fragParam.context.getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     if (fragType == FragParam.FragType.POP) {
-                        ft.remove(fragParam.context.getSupportFragmentManager()
+                        ft.remove(fragParam.context.getFragmentManager()
                                 .findFragmentById(fragParam.replaceId));
                     } else if (fragType == FragParam.FragType.POP_TAG) {
-                        ft.remove(fragParam.context.getSupportFragmentManager()
+                        ft.remove(fragParam.context.getFragmentManager()
                                 .findFragmentByTag(fragParam.tag));
                     }
                     ft.commit();

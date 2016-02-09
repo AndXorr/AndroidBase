@@ -1,8 +1,8 @@
 package android.base.fragment;
 
+import android.app.Fragment;
 import android.base.R;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;

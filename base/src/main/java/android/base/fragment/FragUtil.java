@@ -1,8 +1,8 @@
 package android.base.fragment;
 
-import android.support.v4.app.Fragment;
+import android.app.*;
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class FragUtil {
             return;
         if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
             FragmentTransaction fragTrans = activity
-                    .getSupportFragmentManager().beginTransaction();
-            fragTrans.remove(activity.getSupportFragmentManager()
+                    .getFragmentManager().beginTransaction();
+            fragTrans.remove(activity.getFragmentManager()
                     .findFragmentById(replaceId));
             fragTrans.commit();
             activity.getSupportFragmentManager().popBackStackImmediate();
@@ -40,8 +40,8 @@ public class FragUtil {
             return;
         if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
             FragmentTransaction fragTrans = activity
-                    .getSupportFragmentManager().beginTransaction();
-            fragTrans.remove(activity.getSupportFragmentManager()
+                    .getFragmentManager().beginTransaction();
+            fragTrans.remove(activity.getFragmentManager()
                     .findFragmentByTag(tag));
             fragTrans.commit();
             activity.getSupportFragmentManager().popBackStackImmediate();
@@ -55,12 +55,12 @@ public class FragUtil {
         try {
             if (activity == null)
                 return;
-            android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+            FragmentManager fm = activity.getFragmentManager();
             for (int i = 0; i < fm.getBackStackEntryCount(); i++) {
                 String fragTag = fm.getBackStackEntryAt(i).getName();
                 Fragment fragment = fm.findFragmentByTag(fragTag);
                 FragmentTransaction fragTrans = activity
-                        .getSupportFragmentManager().beginTransaction();
+                        .getFragmentManager().beginTransaction();
                 fragTrans.remove(fragment);
                 fragTrans.commit();
                 fm.popBackStack();
@@ -77,8 +77,8 @@ public class FragUtil {
     public static final void clearAllStack(FragmentActivity activity) {
         if (activity == null)
             return;
-        android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
-        fm.popBackStack(null, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        FragmentManager fm = activity.getFragmentManager();
+        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     /**
@@ -89,8 +89,8 @@ public class FragUtil {
     public static final void clearAllStackImmediate(FragmentActivity activity) {
         if (activity == null)
             return;
-        android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
-        fm.popBackStackImmediate(null, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        FragmentManager fm = activity.getFragmentManager();
+        fm.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     /**
@@ -101,7 +101,7 @@ public class FragUtil {
     public static final Fragment getTopFragment(FragmentActivity activity) {
         if (activity == null)
             return null;
-        android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentManager fm = activity.getFragmentManager();
         Fragment fragment = null;
         for (int entry = 0; entry < fm.getBackStackEntryCount(); entry++) {
             fragment = fm.findFragmentByTag(fm.getBackStackEntryAt(entry)
@@ -120,7 +120,7 @@ public class FragUtil {
             return null;
         List<String> stackList = new ArrayList<String>();
         stackList.clear();
-        android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentManager fm = activity.getFragmentManager();
         for (int entry = 0; entry < fm.getBackStackEntryCount(); entry++) {
             stackList.add(fm.getBackStackEntryAt(entry).getName());
         }
@@ -136,7 +136,7 @@ public class FragUtil {
     public static Fragment getFragment(FragmentActivity activity, int id) {
         if (activity == null)
             return null;
-        return activity.getSupportFragmentManager().findFragmentById(id);
+        return activity.getFragmentManager().findFragmentById(id);
     }
 
     /**
@@ -148,7 +148,7 @@ public class FragUtil {
     public static Fragment getFragment(FragmentActivity activity, String tag) {
         if (activity == null)
             return null;
-        return activity.getSupportFragmentManager().findFragmentByTag(tag);
+        return activity.getFragmentManager().findFragmentByTag(tag);
     }
 
     /**
@@ -161,7 +161,7 @@ public class FragUtil {
         try {
             Fragment fragment = getFragment(activity, fragmentId);
             if (fragment != null) {
-                FragmentTransaction fragTransaction = activity.getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragTransaction = activity.getFragmentManager().beginTransaction();
                 fragTransaction.detach(fragment);
                 fragTransaction.attach(fragment);
                 fragTransaction.commit();

@@ -1,8 +1,10 @@
 package android.base.http;
 
 
+import android.base.log.Log;
 import android.os.Environment;
 
+import com.google.common.base.Optional;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -20,6 +23,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by Amit Sahni on 25-06-2015.
@@ -213,7 +217,10 @@ public class OKHTTPConnect {
                 request = requestBuilder.build();
                 break;
         }
-        if (request == null) return;
+        if (request == null) {
+            Log.e(getClass().getName(), "Request is null");
+            return;
+        }
         client.newCall(request).enqueue(new Callback(webParam));
     }
 
@@ -228,18 +235,28 @@ public class OKHTTPConnect {
         }
 
         @Override
-        public void onFailure(Request request, IOException e) {
-            if (request != null
-                    && request.body() != null
-                    && webParam.callback != null) {
-                webParam.callback.onError(null, request.body().toString(), webParam.taskId, -1);
-            } else if (e != null && webParam.callback != null) {
-                webParam.callback.onError(null, e.getMessage(), webParam.taskId, -1);
+        public void onFailure(Call call, IOException e) {
+            try {
+                if (call != null
+                        && call.execute() != null
+                        && webParam.callback != null) {
+                    Response response = call.execute();
+                    Optional<Response> optional = Optional.fromNullable(response);
+                    if (optional.isPresent()) {
+                        Optional<ResponseBody> opt = Optional.fromNullable(optional.get().body());
+                        if (opt.isPresent())
+                            webParam.callback.onError(null, opt.get().toString(), webParam.taskId, response.code());
+                    }
+                } else if (e != null && webParam.callback != null) {
+                    webParam.callback.onError(null, e.getMessage(), webParam.taskId, -1);
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
         }
 
         @Override
-        public void onResponse(Response response) throws IOException {
+        public void onResponse(Call call, Response response) throws IOException {
             if (response.body() != null) {
                 String res = response.body().string();
                 Object object;
