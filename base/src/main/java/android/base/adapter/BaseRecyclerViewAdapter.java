@@ -1,9 +1,12 @@
 package android.base.adapter;
 
 import android.base.widget.BaseRecyclerView;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.google.common.base.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,8 @@ import java.util.List;
  * Created by clickapps on 2/12/15.
  */
 public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {
+    private OnItemClickListener itemClickListener;
+    private OnItemLongClickListener itemLongClickListener;
 
     public interface OnItemClickListener {
         <T, VH> void onItemClick(BaseRecyclerView recyclerView, VH viewHolder, int position, T model);
@@ -28,6 +33,26 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
             this.list = new ArrayList<>(list);
             notifyDataSetChanged();
         }
+    }
+
+    public void setOnItemClickListener(@NonNull OnItemClickListener l) {
+        itemClickListener = l;
+    }
+
+    public void setOnItemLongClickListener(@NonNull OnItemLongClickListener l) {
+        itemLongClickListener = l;
+    }
+
+    public Optional<OnItemClickListener> getItemClickListener() {
+        Optional<OnItemClickListener> onItemClick = Optional.absent();
+        onItemClick = Optional.fromNullable(itemClickListener).or(onItemClick);
+        return onItemClick;
+    }
+
+    public Optional<OnItemLongClickListener> getItemLongClickListener() {
+        Optional<OnItemLongClickListener> onItemLongClick = Optional.absent();
+        onItemLongClick = Optional.fromNullable(itemLongClickListener).or(onItemLongClick);
+        return onItemLongClick;
     }
 
     @Override
