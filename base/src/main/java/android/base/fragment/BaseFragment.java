@@ -26,11 +26,16 @@ public abstract class BaseFragment extends Fragment implements
 
 
     protected View view;
+    private boolean enableBackHandle = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return initUI(inflater, container);
+    }
+
+    public void setEnableBackHandle(boolean enableBackHandle) {
+        this.enableBackHandle = enableBackHandle;
     }
 
     @Override
@@ -39,7 +44,8 @@ public abstract class BaseFragment extends Fragment implements
          * Handle BackPress on Fragment.
          */
         if (getActivity() instanceof BaseActivityAppCompat) {
-            ((BaseActivityAppCompat) getActivity()).backHandler = this;
+            if (enableBackHandle)
+                ((BaseActivityAppCompat) getActivity()).backHandler = this;
         }
         super.onResume();
     }

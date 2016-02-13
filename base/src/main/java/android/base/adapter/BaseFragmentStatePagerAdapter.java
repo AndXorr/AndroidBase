@@ -50,11 +50,6 @@ public abstract class BaseFragmentStatePagerAdapter<T extends BaseFragment> exte
 
     @Override
     public int getCount() {
-        return list.size();
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
+        return count;
     }
 }

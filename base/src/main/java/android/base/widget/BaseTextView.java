@@ -6,9 +6,8 @@ import android.base.util.LetterSpacingUtils;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.support.annotation.ColorRes;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
@@ -42,9 +41,8 @@ public class BaseTextView extends AppCompatTextView {
                     R.styleable.BaseTextView);
             String typeface = ApplicationUtils.getFontName(getContext(), ta
                     .getInt(R.styleable.BaseTextView_typefaces, -1));
-            int resId = ta.getResourceId(R.styleable.BaseTextView_tint, -1);
-            if (resId != -1 && ApplicationUtils.isLollipopOrBelow()) {
-                setBackgroundDrawableTint(resId);
+            if (ta.getBoolean(R.styleable.BaseTextView_enableHtml, false)) {
+                setText(Html.fromHtml(getText().toString()));
             }
             ta.recycle();
             if (!TextUtils.isEmpty(typeface)) {
@@ -53,10 +51,6 @@ public class BaseTextView extends AppCompatTextView {
                 setTypeface(tf);
             }
         }
-    }
-
-    public void setBackgroundDrawableTint(@ColorRes int resId) {
-        setSupportBackgroundTintList(ContextCompat.getColorStateList(getContext(), resId));
     }
 
     /**

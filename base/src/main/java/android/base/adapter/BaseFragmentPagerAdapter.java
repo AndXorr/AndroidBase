@@ -52,9 +52,4 @@ public abstract class BaseFragmentPagerAdapter<T extends BaseFragment> extends F
     public int getCount() {
         return count;
     }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
-    }
 }
