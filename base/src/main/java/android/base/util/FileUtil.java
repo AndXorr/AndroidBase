@@ -35,7 +35,7 @@ public class FileUtil {
     private final static String FILE_NAME_CAMERA_IMAGE = "IMG_CAMERA_";
 
 
-    private final static String TAG = FileUtil.class.getSimpleName();
+    private final static String TAG = FileUtils.class.getSimpleName();
 
     /**
      * Functionality to get directory name file
@@ -45,8 +45,7 @@ public class FileUtil {
      */
 
     public static File getDirectoryApp(Context context) {
-        String cacheFilePath = Environment.getExternalStorageDirectory()
-                .getPath() + "/Android/" + context.getPackageName();
+        String cacheFilePath = Environment.getExternalStorageDirectory() + "/Android/data/" + context.getPackageName();
         File appCacheDir = null;
         if (MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 && hasExternalStoragePermission(context)) {
@@ -123,12 +122,17 @@ public class FileUtil {
     public static File getStaticFile(Context context, String name) {
         if (TextUtils.isEmpty(name)) {
             name = FILE_NAME_IMAGE + "temp.jpeg";
-        } else if (!name.endsWith(".jpeg")) {
-            name = name + ".jpeg";
         }
-        File dir = new File(getDirectoryApp(context),
-                "/cache");
-        return new File(dir, name);
+        File dir = new File(getDirectoryApp(context), "temp");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File filePath = new File(dir, name);
+        if (filePath.exists()) {
+            filePath.delete();
+            filePath = new File(dir, name);
+        }
+        return filePath;
 
     }
 
@@ -138,14 +142,13 @@ public class FileUtil {
         } else if (!name.endsWith(".mp4")) {
             name = name + ".mp4";
         }
-        File dir = new File(getDirectoryApp(context),
-                "/cache");
-        return new File(dir, name);
+        File filePath = new File(getDirectoryApp(context), name);
+        return filePath;
     }
 
     public static void writeStringToFile(File file, String data) {
         try {
-            FileUtils.writeStringToFile(file, data);
+            org.apache.commons.io.FileUtils.writeStringToFile(file, data);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,7 +156,7 @@ public class FileUtil {
 
     public static void writeStringToFile(File file, String data, boolean append) {
         try {
-            FileUtils.writeStringToFile(file, data, append);
+            org.apache.commons.io.FileUtils.writeStringToFile(file, data, append);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +164,7 @@ public class FileUtil {
 
     public static void copyFile(File src, File dst) {
         try {
-            FileUtils.copyFile(src, dst);
+            org.apache.commons.io.FileUtils.copyFile(src, dst);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -188,8 +191,8 @@ public class FileUtil {
      * @permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
      */
     public static ArrayList<String> findFilesMain(String fileName) {
-        ArrayList<String> folderNameList = new ArrayList<>();
-        ArrayList<String> fileList = new ArrayList<>();
+        ArrayList<String> folderNameList = new ArrayList<String>();
+        ArrayList<String> fileList = new ArrayList<String>();
         File file = new File("/");
         File folderList[] = file.listFiles();
         if (folderList != null && folderList.length > 0) {
