@@ -41,7 +41,6 @@ public class RetrofitUtil {
             .setEndpoint(BASE_URL);
 
     public RetrofitUtil(WebParam webParam) {
-        OnRetrofitAPI onRetrofitAPI = createService(OnRetrofitAPI.class, webParam);
         if (!TextUtils.isEmpty(webParam.url)) {
             if (webParam.showDialog) {
                 webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
@@ -49,14 +48,13 @@ public class RetrofitUtil {
             } else {
                 webParam.progressDialog = null;
             }
-            new RetrofitCall(webParam, onRetrofitAPI);
         } else {
             Log.e(getClass().getSimpleName(), "Enter Valid url");
         }
     }
 
     // Retrofit Adapter
-    public <T> T createService(Class<T> serviceClass, final WebParam webParam) {
+    public <T> T getService(Class<T> cls, final WebParam webParam) {
         if (webParam.headerParam != null && webParam.headerParam.size() > 0) {
             builder.setRequestInterceptor(new RequestInterceptor() {
                 @Override
@@ -68,7 +66,7 @@ public class RetrofitUtil {
             });
         }
         RestAdapter restAdapter = builder.build();
-        return restAdapter.create(serviceClass);
+        return restAdapter.create(cls);
     }
 
     public class StringConverter implements Converter {

@@ -98,6 +98,10 @@ public class WebConnect {
             return this;
         }
 
+        public <T> T callRetrofit(Class<T> cls) {
+            return new RetrofitUtil(webParam).getService(cls, webParam);
+        }
+
         public void connect() {
             new OKHTTPConnect(webParam);
         }
