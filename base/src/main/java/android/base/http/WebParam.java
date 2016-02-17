@@ -27,7 +27,6 @@ public class WebParam {
     public boolean showDialog = true, isJson = false, isMultipart = false, cacheResponse = false;
     public int cacheSize = 10 * 1024 * 1024; // 10 MiB
     public File cacheDir = Environment.getDownloadCacheDirectory();
-    public WebApi webApi;
 
     public enum HttpType {
         GET, POST, PUT, DELETE

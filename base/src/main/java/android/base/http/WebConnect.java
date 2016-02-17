@@ -30,11 +30,6 @@ public class WebConnect {
             webParam.url = url;
         }
 
-        public Builder webApi(@NonNull WebApi webApi) {
-            webParam.webApi = webApi;
-            return this;
-        }
-
         public Builder httpType(@NonNull WebParam.HttpType httpType) {
             webParam.httpType = httpType;
             return this;
@@ -50,9 +45,9 @@ public class WebConnect {
             return this;
         }
 
-        public Builder callback(@NonNull WebParam.OnWebCallback callback, @NonNull Class<?> model) {
+        public Builder callback(@NonNull WebParam.OnWebCallback callback, @NonNull Class<?> cls) {
             webParam.callback = callback;
-            webParam.model = model;
+            webParam.model = cls;
             return this;
         }
 
