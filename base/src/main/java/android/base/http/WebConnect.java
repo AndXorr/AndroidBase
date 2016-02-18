@@ -30,6 +30,12 @@ public class WebConnect {
             webParam.url = url;
         }
 
+
+        public Builder webApi(@NonNull WebApi webApi) {
+            webParam.webApi = webApi;
+            return this;
+        }
+
         public Builder httpType(@NonNull WebParam.HttpType httpType) {
             webParam.httpType = httpType;
             return this;
@@ -45,9 +51,9 @@ public class WebConnect {
             return this;
         }
 
-        public Builder callback(@NonNull WebParam.OnWebCallback callback, @NonNull Class<?> cls) {
+        public Builder callback(@NonNull WebParam.OnWebCallback callback, @NonNull Class<?> model) {
             webParam.callback = callback;
-            webParam.model = cls;
+            webParam.model = model;
             return this;
         }
 
@@ -93,12 +99,12 @@ public class WebConnect {
             return this;
         }
 
-        public <T> T callRetrofit(Class<T> cls) {
-            return new RetrofitUtil(webParam).getService(cls, webParam);
-        }
-
         public void connect() {
             new OKHTTPConnect(webParam);
+        }
+
+        public <T> void retrofitConnect(Class<T> cls) {
+            new RetrofitUtil(webParam).createService(cls, webParam);
         }
 
     }
