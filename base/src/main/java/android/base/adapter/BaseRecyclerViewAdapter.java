@@ -28,6 +28,10 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
 
     private List<T> list = new ArrayList<>();
 
+    public List<T> getList() {
+        return list;
+    }
+
     public void setList(@Nullable List<T> list) {
         if (list != null) {
             this.list = new ArrayList<>(list);

@@ -1,8 +1,17 @@
 package android.base.util;
 
 import android.base.R;
+import android.base.constant.Constant;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 
 import java.util.Locale;
 
@@ -37,4 +46,23 @@ public class LocaleUtils {
         return countryCodeValue;
     }
 
+    public static void updateLocale(@Nullable Context context, @NonNull String languageCode) {
+        updateLocale(context, languageCode, false);
+    }
+
+    public static void updateLocale(@Nullable Context context,
+                                    @NonNull String languageCode, boolean enableBroadCast) {
+        if (context != null
+                && Validator.isEmptyOrNull(languageCode)) {
+            Locale locale = new Locale(languageCode);
+            Resources res = context.getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            res.updateConfiguration(config, dm);
+            if (enableBroadCast)
+                LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(Constant.ACTION_BROADCAST_LANGUAGE_CHANGED));
+        }
+    }
 }
