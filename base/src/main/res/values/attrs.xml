@@ -10,7 +10,7 @@
             <enum name="roboticMedium" value="4" />
         </attr>
         <attr name="android:maxLines" />
-        <attr name="tint" format="color" />
+        <attr name="android:tint" />
         <attr name="enableHtml" format="boolean" />
     </declare-styleable>
 

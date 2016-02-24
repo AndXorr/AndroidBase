@@ -42,7 +42,7 @@ public class BaseButton extends AppCompatButton {
                     R.styleable.BaseTextView, 0, 0);
             String typeface = ApplicationUtils.getFontName(getContext(), a
                     .getInt(R.styleable.BaseTextView_typefaces, -1));
-            int resId = a.getResourceId(R.styleable.BaseTextView_tint, -1);
+            int resId = a.getResourceId(R.styleable.BaseTextView_android_tint, -1);
             if (resId != -1 && ApplicationUtils.isLollipopOrBelow()) {
                 setBackgroundDrawableTint(resId);
             }

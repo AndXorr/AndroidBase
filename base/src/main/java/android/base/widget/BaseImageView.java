@@ -1,7 +1,14 @@
 package android.base.widget;
 
+import android.base.R;
+import android.base.util.ApplicationUtils;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 
 /**
@@ -19,6 +26,7 @@ public class BaseImageView extends AppCompatImageView {
     public BaseImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
+        init(attrs);
     }
 
     public BaseImageView(Context context) {
@@ -28,7 +36,23 @@ public class BaseImageView extends AppCompatImageView {
 
     public BaseImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(attrs);
     }
 
+    private void init(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray a = getContext().obtainStyledAttributes(attrs,
+                    R.styleable.BaseTextView, 0, 0);
+            int resId = a.getResourceId(R.styleable.BaseTextView_android_tint, -1);
+            if (resId != -1) {
+                setImageTint(resId);
+            }
+            a.recycle();
+        }
+    }
+
+    private void setImageTint(@ColorRes int resId) {
+        super.setColorFilter(ContextCompat.getColorStateList(getContext(), resId).getColorForState(getDrawableState(), 0));
+    }
 
 }
