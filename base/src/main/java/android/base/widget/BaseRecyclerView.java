@@ -1,5 +1,6 @@
 package android.base.widget;
 
+import android.base.adapter.BaseHeaderFooterRecyclerViewAdapter;
 import android.base.interfaces.OnLoadMoreListener;
 import android.base.log.Log;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.view.View;
  */
 public class BaseRecyclerView extends RecyclerView {
     private View emptyView;
+    private OnLoadMoreListener loadMoreListener;
 
     public BaseRecyclerView(Context context) {
         super(context);
@@ -46,7 +48,12 @@ public class BaseRecyclerView extends RecyclerView {
 
     private void checkIfEmpty() {
         if (emptyView != null && getAdapter() != null) {
-            final boolean emptyViewVisible = getAdapter().getItemCount() == 0;
+            final boolean emptyViewVisible;
+            if (getAdapter() instanceof BaseHeaderFooterRecyclerViewAdapter) {
+                emptyViewVisible = ((BaseHeaderFooterRecyclerViewAdapter) getAdapter()).getBasicItemCount() == 0;
+            } else {
+                emptyViewVisible = getAdapter().getItemCount() == 0;
+            }
             emptyView.setVisibility(emptyViewVisible ? VISIBLE : GONE);
             setVisibility(emptyViewVisible ? GONE : VISIBLE);
         }
@@ -74,31 +81,8 @@ public class BaseRecyclerView extends RecyclerView {
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     public void setOnLoadMoreListener(@NonNull final OnLoadMoreListener onLoadMoreListener) {
-        this.addOnScrollListener(new OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && getLayoutManager() instanceof LinearLayoutManager && onLoadMoreListener != null) //check for scroll down
-                {
-                    visibleItemCount = getLayoutManager().getChildCount();
-                    totalItemCount = getLayoutManager().getItemCount();
-                    pastVisiblesItems = ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                            loading = true;
-                            Log.v("...", "Last Item Wow !");
-                            onLoadMoreListener.onLoadMore();
-                        }
-                    }
-                }
-            }
-        });
+        loadMoreListener = onLoadMoreListener;
+        this.addOnScrollListener(scrollListener);
     }
 
     /**
@@ -107,4 +91,28 @@ public class BaseRecyclerView extends RecyclerView {
     public void onLoadMoreComplete() {
         loading = false;
     }
+
+    private OnScrollListener scrollListener = new OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            if (dy > 0 && getLayoutManager() instanceof LinearLayoutManager && loadMoreListener != null) //check for scroll down
+            {
+                visibleItemCount = getLayoutManager().getChildCount();
+                totalItemCount = getLayoutManager().getItemCount();
+                pastVisiblesItems = ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
+                if (!loading) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        loading = true;
+                        loadMoreListener.onLoadMore();
+                    }
+                }
+            }
+        }
+    };
 }

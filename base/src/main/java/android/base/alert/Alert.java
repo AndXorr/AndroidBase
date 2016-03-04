@@ -78,6 +78,12 @@ public final class Alert {
             alertParam.context = context;
         }
 
+        public Dialog(Context context, AlertParam.DialogType dailogType) {
+            alertParam = new AlertParam();
+            alertParam.context = context;
+            alertParam.dialogType = dailogType;
+        }
+
         /*Set Message for AlertDialog*/
         public Dialog setMessage(String message) {
             alertParam.message = message;

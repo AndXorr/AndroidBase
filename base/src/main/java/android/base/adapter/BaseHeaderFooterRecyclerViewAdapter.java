@@ -1,7 +1,16 @@
 package android.base.adapter;
 
+import android.base.adapter.BaseRecyclerViewAdapter.OnItemLongClickListener;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.google.common.base.Optional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * https://gist.github.com/sebnapi/fde648c17616d9d3bcde
@@ -23,11 +32,44 @@ import android.view.ViewGroup;
  * <p/>
  * TOTALLY UNTESTED - USE WITH CARE - HAVE FUN :)
  */
-public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {
+public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends BaseRecyclerViewAdapter<VH, T> {
     private static final int TYPE_HEADER = Integer.MIN_VALUE;
     private static final int TYPE_FOOTER = Integer.MIN_VALUE + 1;
     private static final int TYPE_ADAPTEE_OFFSET = 2;
+    private List<T> list = new ArrayList<>();
+    private Context context;
+    private BaseRecyclerViewAdapter.OnItemClickListener itemClickListener;
+    private OnItemLongClickListener itemLongClickListener;
+    private boolean hideFooter = false;
 
+    public void setList(@Nullable List<T> list) {
+        if (list != null) {
+            this.list = new ArrayList<>(list);
+            hideFooter = false;
+            notifyDataSetChanged();
+        }
+    }
+
+    public void setHideFooter() {
+        hideFooter = true;
+        notifyDataSetChanged();
+    }
+
+    public boolean isHideFooter() {
+        return hideFooter;
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public T getItem(int pos) {
+        return this.list.get(pos);
+    }
+
+    public BaseHeaderFooterRecyclerViewAdapter(Context context) {
+        super(context);
+    }
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,7 +82,7 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public final void onBindViewHolder(VH holder, int position) {
         if (position == 0 && holder.getItemViewType() == TYPE_HEADER) {
             onBindHeaderView(holder, position);
         } else if (position == getBasicItemCount() && holder.getItemViewType() == TYPE_FOOTER) {
@@ -82,17 +124,17 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
 
     public abstract VH onCreateHeaderViewHolder(ViewGroup parent, int viewType);
 
-    public abstract void onBindHeaderView(RecyclerView.ViewHolder holder, int position);
+    public abstract void onBindHeaderView(VH holder, int position);
 
     public abstract boolean useFooter();
 
     public abstract VH onCreateFooterViewHolder(ViewGroup parent, int viewType);
 
-    public abstract void onBindFooterView(RecyclerView.ViewHolder holder, int position);
+    public abstract void onBindFooterView(VH holder, int position);
 
     public abstract VH onCreateBasicItemViewHolder(ViewGroup parent, int viewType);
 
-    public abstract void onBindBasicItemView(RecyclerView.ViewHolder holder, int position);
+    public abstract void onBindBasicItemView(VH holder, int position);
 
     public abstract int getBasicItemCount();
 

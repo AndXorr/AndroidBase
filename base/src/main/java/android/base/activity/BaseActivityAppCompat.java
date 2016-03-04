@@ -60,6 +60,12 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
     }
 
     @Override
+    public void recreate() {
+        startActivity(getIntent());
+        finish();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (fragment != null) {
             fragment.onActivityResult(requestCode, resultCode, data);
