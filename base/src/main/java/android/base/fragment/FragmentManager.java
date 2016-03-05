@@ -2,6 +2,7 @@ package android.base.fragment;
 
 import android.app.Fragment;
 import android.base.R;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -14,7 +15,7 @@ public class FragmentManager {
     public static class Builder {
         private FragParam fragParam;
 
-        public Builder(@NonNull FragmentActivity context, int replaceId) {
+        public Builder(@NonNull FragmentActivity context, @IdRes int replaceId) {
             fragParam = new FragParam();
             fragParam.context = context;
             fragParam.replaceId = replaceId;

@@ -20,4 +20,11 @@
         <attr name="src" format="reference" />
         <attr name="indeterminateDrawable" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="ProgressViewApplication">
+        <attr name="indeterminateDrawable" />
+        <attr name="android:text" />
+        <attr name="android:textColor" />
+        <attr name="android:tint" />
+    </declare-styleable>
 </resources>

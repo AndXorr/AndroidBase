@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -28,10 +30,22 @@ public final class Alert {
         private AlertParam alertParam;
         private android.widget.Toast toast;
 
-        /*Set Context */
-        public Toast(Context context) {
+        /**
+         * @param context context
+         */
+        public Toast(@NonNull Context context) {
             alertParam = new AlertParam();
             alertParam.context = context;
+        }
+
+        /**
+         * @param context context
+         * @param resId
+         */
+        public Toast(@NonNull Context context, @StringRes int resId) {
+            alertParam = new AlertParam();
+            alertParam.context = context;
+            alertParam.messageResId = resId;
         }
 
         /*Set Message for Toast*/
@@ -286,6 +300,12 @@ public final class Alert {
             alertParam.activityContext = context;
         }
 
+        public SnackBar(Activity context, @StringRes int resId) {
+            alertParam = new AlertParam();
+            alertParam.activityContext = context;
+            alertParam.messageResId = resId;
+        }
+
         /*Set Message for SnackBar*/
         public SnackBar setMessage(String message) {
             alertParam.message = message;
@@ -359,7 +379,7 @@ public final class Alert {
 
             }
             snackbar = Snackbar.make(alertParam.snackBarView, "", alertParam.snackBarDuration);
-//            Checked for Message
+            // Checked for Message
             if (alertParam.messageResId != 0) {
                 snackbar.setText(alertParam.messageResId);
             } else if (!TextUtils.isEmpty(alertParam.message)) {
@@ -367,7 +387,7 @@ public final class Alert {
             } else {
                 snackbar.setText("");
             }
-//            checked for ActionMessage
+            // checked for ActionMessage
             if (alertParam.actionMessageResId != 0) {
                 snackbar.setAction(alertParam.actionMessageResId, new View.OnClickListener() {
                     @Override
@@ -387,7 +407,7 @@ public final class Alert {
             } else {
                 snackbar.setAction("", null);
             }
-//            checked for actionMessagecolor
+            // checked for actionMessagecolor
             if (alertParam.actionColorResId != 0) {
                 snackbar.setActionTextColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionColorResId));
             }

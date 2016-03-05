@@ -6,8 +6,9 @@
     <android.base.widget.BaseProgressBar
         android:id="@id/dialog_progress_baseProgressBar"
         style="@style/WrapWidth.WrapHeight"
+        android:layout_centerHorizontal="true"
         android:indeterminate="true"
-        android:layout_centerHorizontal="true" />
+        android:indeterminateDrawable="@drawable/dialog_progress_indeterminate" />
 
     <android.base.widget.BaseTextView
         android:id="@id/dialog_progress_baseTextView"

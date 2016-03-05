@@ -28,7 +28,6 @@ public class AnimManager {
         public Builder(@NonNull Activity context, @NonNull View view) {
             animParam = new AnimParam();
             animParam.view = view;
-            animParam.view = view;
             animParam.context = context;
             animParam.activityContext = context;
         }

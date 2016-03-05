@@ -39,7 +39,7 @@ public class AlertParam {
 
     //    SnackBar class
     public Activity activityContext;
-    public String actionMessage = "Ok";
+    public String actionMessage = "";
     public int actionMessageResId;
     public View snackBarView;
     public int actionColorResId = R.color.colorPrimary_base, textColor = R.color.colorPrimary_base;
