@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as Widget instead of TextView.This class has also a custom
  * attribute which is used in xml file.
- * <p>
+ * <p/>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on TextView text.
  * </P>
@@ -40,7 +40,7 @@ public class BaseTextView extends AppCompatTextView {
             TypedArray ta = getContext().obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView);
             String typeface = ApplicationUtils.getFontName(getContext(), ta
-                    .getInt(R.styleable.BaseTextView_typefaces, -1));
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), ta.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             if (ta.getBoolean(R.styleable.BaseTextView_enableHtml, false)) {
                 setText(Html.fromHtml(getText().toString()));
             }
@@ -49,6 +49,8 @@ public class BaseTextView extends AppCompatTextView {
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(),
                         typeface);
                 setTypeface(tf);
+            } else {
+                // Nothing
             }
         }
     }

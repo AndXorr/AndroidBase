@@ -47,8 +47,7 @@
         <!--
             set the default text font for all the text in the application
         -->
-        <item name="typefaces">none</item>
-
+        <item name="typefaces">proximanova</item>
         <!--
            set the default text color for all the text in the application
        -->

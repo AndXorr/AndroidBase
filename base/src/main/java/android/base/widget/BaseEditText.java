@@ -46,7 +46,7 @@ public class BaseEditText extends AppCompatEditText {
             TypedArray a = context.obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView, 0, 0);
             String typeface = ApplicationUtils.getFontName(getContext(), a
-                    .getInt(R.styleable.BaseTextView_typefaces, -1));
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), a.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             if (!TextUtils.isEmpty(typeface))
                 setTypeface(Typeface.createFromAsset(context.getAssets(),
                         typeface));

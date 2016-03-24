@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 
 
-
 public class BaseRadioButton extends AppCompatRadioButton {
 
     public BaseRadioButton(Context context, AttributeSet attrs) {
@@ -21,8 +20,7 @@ public class BaseRadioButton extends AppCompatRadioButton {
             TypedArray a = context.obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView, 0, 0);
             String typeface = ApplicationUtils.getFontName(getContext(), a
-                    .getInt(R.styleable.BaseTextView_typefaces, -1));
-
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), a.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             if (!TextUtils.isEmpty(typeface))
                 setTypeface(Typeface.createFromAsset(context.getAssets(),
                         typeface));

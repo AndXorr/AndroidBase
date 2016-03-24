@@ -33,7 +33,7 @@ public class BaseCheckBox extends AppCompatCheckBox {
             TypedArray ta = getContext().obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView);
             String typeface = ApplicationUtils.getFontName(getContext(), ta
-                    .getInt(R.styleable.BaseTextView_typefaces, -1));
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), ta.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             ta.recycle();
             if (!TextUtils.isEmpty(typeface)) {
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(),

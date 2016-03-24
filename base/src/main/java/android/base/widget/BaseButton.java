@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as widget. This is used instead of using Button. This
  * class has also a custom attribute which is used in xml file.
- * <p>
+ * <p/>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on button text.
  * </P>
@@ -41,7 +41,7 @@ public class BaseButton extends AppCompatButton {
             TypedArray a = context.obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView, 0, 0);
             String typeface = ApplicationUtils.getFontName(getContext(), a
-                    .getInt(R.styleable.BaseTextView_typefaces, -1));
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), a.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             int resId = a.getResourceId(R.styleable.BaseTextView_android_tint, -1);
             if (resId != -1 && ApplicationUtils.isLollipopOrBelow()) {
                 setBackgroundDrawableTint(resId);

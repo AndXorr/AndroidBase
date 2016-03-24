@@ -5,8 +5,10 @@
     <string name="loading_capital">LOADING&#8230;</string>
 
     <!--fonts-->
-    <string name="typeface_default_base">proximanova-regular-webfont.ttf</string>
-
+    <string name="typeface_proximanova_regular">proximanova-regular-webfont.ttf</string>
+    <string name="typeface_roboto_light">roboto_light.ttf</string>
+    <string name="typeface_roboto_regular">roboto_regular.ttf</string>
+    <string name="typeface_roboto_thin">roboto_thin.ttf</string>
     <!--Erorr messages-->
     <string name="error_field_required">This field is required</string>
     <string name="error_no_records_found">No records found!</string>

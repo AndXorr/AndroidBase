@@ -13,6 +13,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.inputmethod.InputMethodManager;
@@ -23,7 +24,10 @@ import java.io.File;
  * Created by clickapps on 24/11/15.
  */
 public final class ApplicationUtils {
-    private static final int NONE = 0;
+    private static final int PROXIMANOVA = 0;
+    private static final int ROBOTIC_REGULAR = 1;
+    private static final int ROBOTIC_LIGHT = 2;
+    private static final int ROBOTIC_THIN = 3;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isLollipop() {
@@ -44,14 +48,31 @@ public final class ApplicationUtils {
         Log.setLogEnabled(value);
     }
 
-    public static String getFontName(Context context, int resId) {
+    public static String getFontName(Context context, int resId, @StringRes int stringRes) {
+        String fontName;
         switch (resId) {
-            case NONE:
-                context.getString(R.string.typeface_default_base);
+            case PROXIMANOVA:
+                fontName = getFont(context, R.string.typeface_proximanova_regular);
+                break;
+            case ROBOTIC_REGULAR:
+                fontName = getFont(context, R.string.typeface_roboto_regular);
+                break;
+            case ROBOTIC_LIGHT:
+                fontName = getFont(context, R.string.typeface_roboto_light);
+                break;
+            case ROBOTIC_THIN:
+                fontName = getFont(context, R.string.typeface_roboto_thin);
                 break;
             default:
+                fontName = getFont(context, stringRes);
                 break;
         }
+        return fontName;
+    }
+
+    public static String getFont(Context context, @StringRes int resId) {
+        if (resId != -1)
+            return context.getString(resId);
         return "";
     }
 
