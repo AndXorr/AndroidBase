@@ -22,12 +22,12 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
     private OnItemLongClickListener itemLongClickListener;
     private Context context;
 
-    public interface OnItemClickListener<VH, T> {
-        void onItemClick(BaseRecyclerView recyclerView, VH viewHolder, int position, T model);
+    public interface OnItemClickListener<T> {
+        void onItemClick(BaseRecyclerView recyclerView, View view, int position, T model);
     }
 
-    public interface OnItemLongClickListener<VH, T> {
-        boolean onItemLongClick(BaseRecyclerView recyclerView, VH viewHolder, int position, T model);
+    public interface OnItemLongClickListener<T> {
+        boolean onItemLongClick(BaseRecyclerView recyclerView, View view, int position, T model);
     }
 
     private List<T> list = new ArrayList<>();
