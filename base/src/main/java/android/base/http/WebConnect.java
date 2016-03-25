@@ -2,6 +2,7 @@ package android.base.http;
 
 import android.app.Activity;
 import android.base.dialog.BaseProgressDialog;
+import android.base.interfaces.WebHandler;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,10 +31,19 @@ public class WebConnect {
             webParam.url = url;
         }
 
-
-        public Builder webApi(@NonNull WebApi webApi) {
+        public Builder(@NonNull Activity context, @NonNull String url, @NonNull WebApi webApi) {
+            webParam = new WebParam();
+            webParam.activityContext = context;
+            webParam.context = context;
+            webParam.url = url;
             webParam.webApi = webApi;
-            return this;
+        }
+
+        public Builder(@NonNull Context context, @NonNull String url, @NonNull WebApi webApi) {
+            webParam = new WebParam();
+            webParam.context = context;
+            webParam.url = url;
+            webParam.webApi = webApi;
         }
 
         public Builder httpType(@NonNull WebParam.HttpType httpType) {
@@ -51,7 +61,7 @@ public class WebConnect {
             return this;
         }
 
-        public Builder callback(@NonNull WebParam.OnWebCallback callback, @NonNull Class<?> model) {
+        public Builder callback(@NonNull WebHandler.OnWebCallback callback, @NonNull Class<?> model) {
             webParam.callback = callback;
             webParam.model = model;
             return this;

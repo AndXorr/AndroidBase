@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.base.activity.BaseActivityAppCompat;
 import android.base.http.WebParam;
 import android.base.interfaces.OnBackHandler;
+import android.base.interfaces.WebHandler;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ public abstract class BaseFragment extends Fragment implements
         // Back press handle on Fragment
         OnBackHandler,
         // Web service response handler
-        WebParam.OnWebCallback {
+        WebHandler.OnWebCallback {
 
 
     protected View view;

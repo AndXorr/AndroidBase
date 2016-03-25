@@ -3,6 +3,7 @@ package android.base.activity;
 import android.base.fragment.BaseFragment;
 import android.base.http.WebParam;
 import android.base.interfaces.OnBackHandler;
+import android.base.interfaces.WebHandler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +19,7 @@ import android.view.View;
  */
 public abstract class BaseActivityAppCompat extends AppCompatActivity implements
         //to identify child tasks and perform on activity itself
-        View.OnClickListener, WebParam.OnWebCallback {
+        View.OnClickListener, WebHandler.OnWebCallback {
 
 
     /**
