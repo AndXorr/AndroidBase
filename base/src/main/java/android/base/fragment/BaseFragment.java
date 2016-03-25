@@ -21,8 +21,12 @@ import android.view.ViewGroup;
  * @implements onClick listener for click event with in the class components
  */
 public abstract class BaseFragment extends Fragment implements
-        //clickk event listener
-        View.OnClickListener, OnBackHandler, WebParam.OnWebCallback {
+        //click event listener
+        View.OnClickListener,
+        // Back press handle on Fragment
+        OnBackHandler,
+        // Web service response handler
+        WebParam.OnWebCallback {
 
 
     protected View view;

@@ -29,15 +29,17 @@ public class FragmentManagerUtil {
                 ft.commit();
                 break;
             case POP:
+                if (fragParam.context.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    ft.remove(fragParam.context.getFragmentManager()
+                            .findFragmentById(fragParam.replaceId));
+                    ft.commit();
+                    fragParam.context.getSupportFragmentManager().popBackStackImmediate();
+                }
+                break;
             case POP_TAG:
                 if (fragParam.context.getSupportFragmentManager().getBackStackEntryCount() > 0) {
-                    if (fragType == FragParam.FragType.POP) {
-                        ft.remove(fragParam.context.getFragmentManager()
-                                .findFragmentById(fragParam.replaceId));
-                    } else if (fragType == FragParam.FragType.POP_TAG) {
-                        ft.remove(fragParam.context.getFragmentManager()
-                                .findFragmentByTag(fragParam.tag));
-                    }
+                    ft.remove(fragParam.context.getFragmentManager()
+                            .findFragmentByTag(fragParam.tag));
                     ft.commit();
                     fragParam.context.getSupportFragmentManager().popBackStackImmediate();
                 }

@@ -92,10 +92,10 @@ public final class Alert {
             alertParam.context = context;
         }
 
-        public Dialog(Context context, AlertParam.DialogType dailogType) {
+        public Dialog(Context context, AlertParam.DialogType dialogType) {
             alertParam = new AlertParam();
             alertParam.context = context;
-            alertParam.dialogType = dailogType;
+            alertParam.dialogType = dialogType;
         }
 
         /*Set Message for AlertDialog*/
@@ -123,8 +123,8 @@ public final class Alert {
         }
 
         /*Set DialogType for AlertDialog*/
-        public Dialog setDailogType(AlertParam.DialogType dailogType) {
-            alertParam.dialogType = dailogType;
+        public Dialog setDialogType(AlertParam.DialogType dialogType) {
+            alertParam.dialogType = dialogType;
             return this;
         }
 
@@ -370,6 +370,11 @@ public final class Alert {
             return this;
         }
 
+        public SnackBar setActionMessageMaxLines(int maxLines) {
+            alertParam.actionMessageMaxLine = maxLines;
+            return this;
+        }
+
         public void show() {
             if (snackbar != null)
                 snackbar.dismiss();
@@ -412,7 +417,8 @@ public final class Alert {
                 snackbar.setActionTextColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionColorResId));
             }
             TextView tv = (TextView) snackbar.getView().findViewById(R.id.snackbar_text);
-            tv.setMaxLines(5);
+            if (alertParam.actionMessageMaxLine != -1)
+                tv.setMaxLines(alertParam.actionMessageMaxLine);
             if (alertParam.textColor != 0) {
                 tv.setTextColor(ContextCompat.getColorStateList(alertParam.activityContext, alertParam.textColor));
             }

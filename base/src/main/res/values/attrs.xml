@@ -17,7 +17,7 @@
 
     <declare-styleable name="BaseImageViewLoading">
         <attr name="gradientImage" format="reference" />
-        <attr name="src" format="reference" />
+        <attr name="android:src" />
         <attr name="indeterminateDrawable" format="reference" />
     </declare-styleable>
 

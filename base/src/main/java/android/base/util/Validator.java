@@ -2,11 +2,13 @@ package android.base.util;
 
 import android.text.TextUtils;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by clickapps on 2/7/15.
  * This class is mainly used for validations for the application
  */
-public class Validator {
+public class Validator extends StringUtils{
 
 
     // alphanumeric parttern for password

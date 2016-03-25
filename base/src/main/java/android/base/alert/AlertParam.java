@@ -40,7 +40,7 @@ public class AlertParam {
     //    SnackBar class
     public Activity activityContext;
     public String actionMessage = "";
-    public int actionMessageResId;
+    public int actionMessageResId, actionMessageMaxLine = -1;
     public View snackBarView;
     public int actionColorResId = R.color.colorPrimary_base, textColor = R.color.colorPrimary_base;
     public int actionBackgroundResId = R.color.colorPrimaryDark_base;

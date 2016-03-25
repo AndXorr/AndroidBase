@@ -42,8 +42,8 @@ public class BaseImageViewLoading extends FrameLayout {
             }
             TypedArray ta = context.obtainStyledAttributes(attrs,
                     R.styleable.BaseImageViewLoading, 0, 0);
-            if (ta.getResourceId(R.styleable.BaseImageViewLoading_src, -1) != -1)
-                mImageView.setImageResource(ta.getResourceId(R.styleable.BaseImageViewLoading_src, -1));
+            if (ta.getResourceId(R.styleable.BaseImageViewLoading_android_src, -1) != -1)
+                mImageView.setImageResource(ta.getResourceId(R.styleable.BaseImageViewLoading_android_src, -1));
             mGradientImageView.setImageResource(ta.getResourceId(R.styleable.BaseImageViewLoading_gradientImage, R.drawable.shape_gradient_base));
             if (ta.getDrawable(R.styleable.BaseImageViewLoading_indeterminateDrawable) != null)
                 mProgressBar.setIndeterminateDrawable(ta.getDrawable(R.styleable.BaseImageViewLoading_indeterminateDrawable));

@@ -35,9 +35,8 @@ public class BaseProgressBar extends ProgressBar {
     }
 
     public void setIndeterminateTint(int resId) {
-        if (getIndeterminateDrawable() != null && resId != -1) {
-            Drawable d = getIndeterminateDrawable();
-            DrawableCompat.wrap(d);
+        Drawable d = getIndeterminateDrawable();
+        if (d != null && resId != -1) {
             DrawableCompat.setTintList(d, ContextCompat.getColorStateList(getContext(), resId));
         }
     }
