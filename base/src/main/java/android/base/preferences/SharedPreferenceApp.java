@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import java.util.Map;
+
 
 /**
  * <p>
@@ -190,4 +192,12 @@ public class SharedPreferenceApp {
 //    public void commit() {
 //        editor.commit();
 //    }
+
+    public Map<String, ?> getAll() {
+        return pref.getAll();
+    }
+
+    public boolean hasPreference(String key) {
+        return pref.contains(key);
+    }
 }

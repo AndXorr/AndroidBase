@@ -21,7 +21,7 @@ import android.widget.TextView;
 /**
  * Created by Sahni on 28-07-2015.
  */
-public final class Alert {
+public class Alert {
     /**
      * *******************************************************************************************************************
      */

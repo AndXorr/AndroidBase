@@ -3,7 +3,9 @@ package android.base.util;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.base.R;
+import android.base.alert.Alert;
 import android.base.constant.Constant;
+import android.base.image.ImageUtil;
 import android.base.log.Log;
 import android.content.Context;
 import android.content.Intent;
@@ -120,7 +122,6 @@ public final class ApplicationUtils {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
         intent.putExtra("return-data", true);
         context.startActivityForResult(intent, requestCode);
-
     }
 
     public static String getCurrentMethodName() {
@@ -132,5 +133,60 @@ public final class ApplicationUtils {
         DrawableCompat.wrap(d);
         DrawableCompat.setTintList(d, ContextCompat.getColorStateList(context, resId));
         return d;
+    }
+
+    // Link with other classes
+    public static class animation extends android.base.util.categories.animation {
+    }
+
+    public static class color extends android.base.util.categories.color {
+    }
+
+    public static class date extends android.base.util.categories.date {
+    }
+
+    public static class image extends android.base.util.categories.image {
+    }
+
+    public static class location extends android.base.util.categories.location {
+    }
+
+    public static class log extends android.base.util.categories.log {
+    }
+
+    public static class math extends android.base.util.categories.math {
+    }
+
+    public static class pref extends android.base.util.categories.prefs {
+
+        protected pref(Context context) {
+            super(context);
+        }
+    }
+
+    public static class sdcard extends android.base.util.categories.sdcard {
+
+    }
+
+    public static class security extends android.base.util.categories.security {
+
+    }
+
+    public static class validator extends android.base.util.categories.validator {
+    }
+
+    public static class voice extends android.base.util.categories.voice {
+    }
+
+    public static class toast extends Alert {
+    }
+
+    public static class dialog extends Alert {
+    }
+
+    public static class snakebar extends Alert {
+    }
+
+    public static class imageUtil extends ImageUtil {
     }
 }
