@@ -3,6 +3,7 @@ package android.base.http;
 import android.app.Activity;
 import android.base.dialog.BaseProgressDialog;
 import android.base.interfaces.WebHandler;
+import android.base.log.Log;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -44,6 +45,11 @@ public class WebConnect {
             webParam.context = context;
             webParam.url = url;
             webParam.webApi = webApi;
+        }
+
+        public Builder baseUrl(@NonNull String url) {
+            webParam.baseUrl = url;
+            return this;
         }
 
         public Builder httpType(@NonNull WebParam.HttpType httpType) {
@@ -110,11 +116,34 @@ public class WebConnect {
         }
 
         public void connect() {
-            new OKHTTPConnect(webParam);
+            if (webParam.webApi != null) {
+                new RetrofitUtil(webParam);
+            } else {
+                Log.e(getClass().getCanonicalName(), "can't find WebApi");
+            }
         }
 
-        public <T> void retrofitConnect(Class<T> cls) {
-            new RetrofitUtil(webParam).createService(cls, webParam);
+        public ApiClient getApiClient() {
+            return new ApiClient(webParam);
+        }
+
+        public static final class ApiClient {
+            private WebParam webParam;
+
+            private ApiClient() {
+            }
+
+            private ApiClient(WebParam webParam) {
+                this.webParam = webParam;
+            }
+
+            public WebParam getWebParam() {
+                return webParam;
+            }
+
+            public <T> T connect(Class<T> cls) {
+                return new RetrofitUtil().createService(cls, webParam);
+            }
         }
 
     }

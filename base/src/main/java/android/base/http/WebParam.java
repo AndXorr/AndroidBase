@@ -17,7 +17,7 @@ import java.util.Map;
 public class WebParam {
     public Activity activityContext;
     public Context context;
-    public String url, progressDialogMessage;
+    public String url, baseUrl, progressDialogMessage;
     public HttpType httpType = HttpType.GET;
     public Map<String, ?> requestParam = new LinkedHashMap<>();
     public Map<String, String> headerParam = new LinkedHashMap<>();

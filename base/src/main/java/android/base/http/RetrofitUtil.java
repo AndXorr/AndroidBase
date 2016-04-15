@@ -1,158 +1,145 @@
 package android.base.http;
 
-import android.base.R;
-import android.text.TextUtils;
-import android.util.Log;
+import android.base.log.Log;
+import android.base.util.Validator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.apache.commons.io.IOUtils;
-
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import retrofit.Callback;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.converter.ConversionException;
-import retrofit.converter.Converter;
-import retrofit.converter.GsonConverter;
-import retrofit.mime.TypedInput;
-import retrofit.mime.TypedOutput;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Converter;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by clickapps on 18/11/15.
  */
 public class RetrofitUtil {
-    private final String BASE_URL = WebConstant.BASE_URL;
+    public static String BASE_URL = "";
     private final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
-    private Gson gson = new GsonBuilder()
+    private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
             .create();
-    private RestAdapter.Builder builder = new RestAdapter.Builder()
-            .setConverter(new GsonConverter(gson))
-            .setConverter(new StringConverter())
-            .setLogLevel(RestAdapter.LogLevel.FULL)
-            .setEndpoint(BASE_URL);
+    private OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+    private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    private Retrofit.Builder builder = new Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(StringConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson));
 
     public RetrofitUtil(WebParam webParam) {
         OnRetrofitAPI onRetrofitAPI = createService(OnRetrofitAPI.class, webParam);
-        if (!TextUtils.isEmpty(webParam.url)) {
-            if (webParam.showDialog) {
-                webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
-                webParam.progressDialog.show();
-            } else {
-                webParam.progressDialog = null;
-            }
-            //noinspection unchecked
-            new RetrofitCall(webParam, onRetrofitAPI);
-        } else {
-            Log.e(getClass().getSimpleName(), "Enter Valid url");
-        }
+        new RetrofitCall<>(webParam, onRetrofitAPI);
     }
 
+    public RetrofitUtil() {
 
-    // Retrofit Adapter
-    public <T> T createService(Class<T> serviceClass, final WebParam webParam) {
-        if (webParam.headerParam != null && webParam.headerParam.size() > 0) {
-            builder.setRequestInterceptor(new RequestInterceptor() {
-                @Override
-                public void intercept(RequestFacade request) {
+    }
+
+    public <T> T createService(Class<T> interfaceFile, final WebParam webParam) {
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okHttpClientBuilder.connectTimeout(CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        okHttpClientBuilder.readTimeout(READ_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        okHttpClientBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Response response = chain.proceed(chain.request());
+                if (webParam.headerParam != null && webParam.headerParam.size() > 0) {
                     for (Map.Entry<String, String> entry : webParam.headerParam.entrySet()) {
-                        request.addHeader(entry.getKey(), entry.getValue());
+                        response.newBuilder().addHeader(entry.getKey(), entry.getValue());
                     }
                 }
-            });
-        }
-        RestAdapter restAdapter = builder.build();
-        return restAdapter.create(serviceClass);
-    }
-
-
-    public class StringConverter implements Converter {
-
-        public Object fromBody(TypedInput typedInput, Type type)
-                throws ConversionException {
-
-            String text = "";
-            try {
-                text = fromStream(typedInput.in());
-            } catch (Exception e) {
-                e.printStackTrace();
+                return response;
             }
-            return text;
+        });
+        okHttpClientBuilder.addInterceptor(interceptor);
+        builder.client(okHttpClientBuilder.build());
+        if (!Validator.isEmpty(webParam.baseUrl)) {
+            builder.baseUrl(webParam.baseUrl);
         }
-
-        @Override
-        public TypedOutput toBody(Object o) {
-            return null;
+        Retrofit retrofit = builder.build();
+        if (webParam.showDialog) {
+            webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
+            webParam.progressDialog.show();
+        } else {
+            webParam.progressDialog = null;
         }
-
-        // Custom method to convert stream from request to string
-        public String fromStream(InputStream in) throws IOException {
-            return IOUtils.toString(in);
-        }
+        return retrofit.create(interfaceFile);
     }
 
-    // Retrofit Call
-    public static class CallBack<T> implements Callback<String> {
+    public static class CallBack<T> implements Callback<T> {
         private WebParam webParam;
 
         public CallBack(WebParam webParam) {
             this.webParam = webParam;
         }
 
-
         @Override
-        public void success(String res, Response response) {
-            try {
-                Object object;
-                if (webParam.model != null) {
-                    object = new Gson().fromJson(res, webParam.model);
-                } else {
-                    object = new Gson().fromJson(res, Object.class);
-                }
+        public void onResponse(Call<T> call, retrofit2.Response<T> response) {
+            String res = response.body().toString();
+            Object object;
+            if (response.isSuccessful()) {
                 if (webParam.callback != null) {
-                    webParam.callback.onSuccess(object, res, webParam.taskId, response.getStatus());
+                    if (webParam.model != null) {
+                        object = gson.fromJson(res, webParam.model);
+                    } else {
+                        object = gson.fromJson(res, Object.class);
+                    }
+                    webParam.callback.onSuccess(object, res, webParam.taskId, response.code());
                 }
-                if (webParam.showDialog && webParam.progressDialog != null && webParam.progressDialog.isShowing()) {
-                    webParam.progressDialog.dismiss();
+            } else {
+                if (webParam.callback != null) {
+                    object = gson.fromJson(res, Object.class);
+                    webParam.callback.onError(object, res, webParam.taskId, response.code());
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 
         @Override
-        public void failure(RetrofitError error) {
-            Response response = error.getResponse();
-            if (response != null && response.getBody() != null) {
-                if (webParam.callback != null) {
-                    String errorResponse = (String) error.getBodyAs(String.class);
-                    webParam.callback.onError(null, errorResponse, webParam.taskId, response.getStatus());
-                }
-            } else {
-                if (webParam.callback != null) {
-                    String errors;
-                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        errors = webParam.context.getString(R.string.error_internet_connection);
-                    } else if (error.getKind().equals(RetrofitError.Kind.HTTP)) {
-                        errors = webParam.context.getString(R.string.error_server_connection);
-                    } else {
-                        errors = error.getMessage();
-                    }
-                    webParam.callback.onError(null, errors, webParam.taskId, -1);
-                }
-            }
-            if (webParam.showDialog && webParam.progressDialog != null && webParam.progressDialog.isShowing()) {
-                webParam.progressDialog.dismiss();
+        public void onFailure(Call<T> call, Throwable t) {
+            if (webParam.callback != null) {
+                webParam.callback.onError(t.getMessage(), t.getMessage(), webParam.taskId, 0);
             }
         }
     }
 
+    public static final class StringConverterFactory extends Converter.Factory {
+
+        public static StringConverterFactory create() {
+            return new StringConverterFactory();
+        }
+
+        @Override
+        public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+            return new ConfigurationServiceConverter();
+        }
+
+        final class ConfigurationServiceConverter implements Converter<ResponseBody, String> {
+
+            @Override
+            public String convert(ResponseBody value) throws IOException {
+                BufferedReader r = new BufferedReader(new InputStreamReader(value.byteStream()));
+                StringBuilder total = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    total.append(line);
+                }
+                return total.toString();
+            }
+        }
+    }
 }
