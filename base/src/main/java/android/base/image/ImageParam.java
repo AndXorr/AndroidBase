@@ -20,7 +20,7 @@ public class ImageParam {
     public Activity activityContext;
     public String url, disableCacheKey;
     public ImageType imageType = ImageType.URL;
-    public int loadingThumbnail, errorThumbnail, taskId, height, width;
+    public int loadingThumbnail = -1, errorThumbnail = -1, taskId, height, width;
     public boolean needBitmap = false, disableCache = false, clearCache = false;
     public Map<?, ?> header = new LinkedHashMap<>();
     public ImageView imageView;
