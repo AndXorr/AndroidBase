@@ -31,6 +31,21 @@ public class PubNubManager {
             defaultParam();
         }
 
+        public Builder(@NonNull Context context, @NonNull PubNubParam.Event event) {
+            pubNubParam = new PubNubParam();
+            pubNubParam.context = context;
+            pubNubParam.event = event;
+            defaultParam();
+        }
+
+        public Builder(@NonNull Activity context, @NonNull PubNubParam.Event event) {
+            pubNubParam = new PubNubParam();
+            pubNubParam.context = context;
+            pubNubParam.activity = context;
+            pubNubParam.event = event;
+            defaultParam();
+        }
+
         public Builder(@NonNull Context context, String publish_key, String subscribe_key, String secret_key,
                        String cipher_key, boolean ssl_on) {
             pubNubParam = new PubNubParam();

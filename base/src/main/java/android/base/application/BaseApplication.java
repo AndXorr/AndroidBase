@@ -3,7 +3,9 @@ package android.base.application;
 import android.app.Activity;
 import android.app.Application;
 import android.base.activity.ActivityManagerUtil;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 
 /**
  * Created by clickapps on 9/2/16.
@@ -44,4 +46,9 @@ public class BaseApplication extends Application implements Application.Activity
     public void onActivityDestroyed(Activity activity) {
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 }

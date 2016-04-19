@@ -18,7 +18,7 @@ import java.util.Locale;
 /**
  * Created by clickapps on 10/12/15.
  */
-public class LocaleUtils {
+public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils{
 
     public static String getLocaleApplication(Context context) {
         return context.getResources().getConfiguration().locale.toString();
@@ -43,6 +43,7 @@ public class LocaleUtils {
                 }
             }
         }
+
         return countryCodeValue;
     }
 
