@@ -1,6 +1,7 @@
 package android.base.http;
 
 import android.base.R;
+import android.base.customview.ProgressViewApplication;
 import android.base.dialog.BaseProgressDialog;
 import android.text.TextUtils;
 
@@ -12,7 +13,7 @@ public class WebConnectUtils {
 
     public static BaseProgressDialog resolveProgressDialog(WebParam webParam) {
         if (webParam.progressDialog == null) {
-            BaseProgressDialog progressDialog = new BaseProgressDialog(webParam.context);
+            BaseProgressDialog progressDialog = new ProgressViewApplication(webParam.context).getProgressDialog();
             progressDialog.setMessage(TextUtils.isEmpty(webParam.progressDialogMessage)
                     ? webParam.context.getString(DEFAULT_MESSAGE) : webParam.progressDialogMessage);
             webParam.progressDialog = progressDialog;

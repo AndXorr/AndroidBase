@@ -1,9 +1,8 @@
 package android.base.activity;
 
 import android.base.fragment.BaseFragment;
-import android.base.http.WebParam;
 import android.base.interfaces.OnBackHandler;
-import android.base.interfaces.WebHandler;
+import android.base.http.WebHandler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

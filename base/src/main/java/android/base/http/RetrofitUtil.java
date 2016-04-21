@@ -41,10 +41,6 @@ public class RetrofitUtil {
             .addConverterFactory(StringConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson));
 
-    public RetrofitUtil(WebParam webParam) {
-        OnRetrofitAPI onRetrofitAPI = createService(OnRetrofitAPI.class, webParam);
-        new RetrofitCall<>(webParam, onRetrofitAPI);
-    }
 
     public RetrofitUtil() {
 

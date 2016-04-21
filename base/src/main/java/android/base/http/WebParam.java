@@ -2,10 +2,8 @@ package android.base.http;
 
 import android.app.Activity;
 import android.base.dialog.BaseProgressDialog;
-import android.base.interfaces.WebHandler;
 import android.content.Context;
 import android.os.Environment;
-import android.support.annotation.Nullable;
 
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -28,7 +26,6 @@ public class WebParam {
     public boolean showDialog = true, isJson = false, isMultipart = false, cacheResponse = false;
     public int cacheSize = 10 * 1024 * 1024; // 10 MiB
     public File cacheDir = Environment.getDownloadCacheDirectory();
-    public WebApi webApi;
 
     public enum HttpType {
         GET, POST, PUT, DELETE

@@ -2,8 +2,6 @@ package android.base.http;
 
 import android.app.Activity;
 import android.base.dialog.BaseProgressDialog;
-import android.base.interfaces.WebHandler;
-import android.base.log.Log;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,20 +30,6 @@ public class WebConnect {
             webParam.url = url;
         }
 
-        public Builder(@NonNull Activity context, @NonNull String url, @NonNull WebApi webApi) {
-            webParam = new WebParam();
-            webParam.activityContext = context;
-            webParam.context = context;
-            webParam.url = url;
-            webParam.webApi = webApi;
-        }
-
-        public Builder(@NonNull Context context, @NonNull String url, @NonNull WebApi webApi) {
-            webParam = new WebParam();
-            webParam.context = context;
-            webParam.url = url;
-            webParam.webApi = webApi;
-        }
 
         public Builder baseUrl(@NonNull String url) {
             webParam.baseUrl = url;
@@ -63,6 +47,12 @@ public class WebConnect {
         }
 
         public Builder headerParam(@NonNull Map<String, String> headerParam) {
+            webParam.headerParam = headerParam;
+            return this;
+        }
+
+        public Builder params(@NonNull Map<String, ?> requestParam, @NonNull Map<String, String> headerParam) {
+            webParam.requestParam = requestParam;
             webParam.headerParam = headerParam;
             return this;
         }
@@ -115,36 +105,36 @@ public class WebConnect {
             return this;
         }
 
-        public void connect() {
-            if (webParam.webApi != null) {
-                new RetrofitUtil(webParam);
-            } else {
-                Log.e(getClass().getCanonicalName(), "can't find WebApi");
-            }
-        }
+//        private void connect() {
+//            if (webParam.webApi != null) {
+//                new RetrofitUtil(webParam);
+//            } else {
+//                Log.e(getClass().getCanonicalName(), "can't find WebApi");
+//            }
+//        }
 
         public ApiClient getApiClient() {
             return new ApiClient(webParam);
         }
 
-        public static final class ApiClient {
-            private WebParam webParam;
+    }
 
-            private ApiClient() {
-            }
+    public static final class ApiClient {
+        private WebParam webParam;
 
-            private ApiClient(WebParam webParam) {
-                this.webParam = webParam;
-            }
-
-            public WebParam getWebParam() {
-                return webParam;
-            }
-
-            public <T> T connect(Class<T> cls) {
-                return new RetrofitUtil().createService(cls, webParam);
-            }
+        private ApiClient() {
         }
 
+        private ApiClient(WebParam webParam) {
+            this.webParam = webParam;
+        }
+
+        public WebParam getWebParam() {
+            return webParam;
+        }
+
+        public <T> T connect(Class<T> cls) {
+            return new RetrofitUtil().createService(cls, webParam);
+        }
     }
 }

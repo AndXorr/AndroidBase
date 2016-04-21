@@ -178,13 +178,7 @@ public final class ApplicationUtils {
     public static class voice extends android.base.util.categories.voice {
     }
 
-    public static class toast extends Alert {
-    }
-
-    public static class dialog extends Alert {
-    }
-
-    public static class snakebar extends Alert {
+    public static class alert extends Alert {
     }
 
     public static class imageUtil extends ImageUtil {

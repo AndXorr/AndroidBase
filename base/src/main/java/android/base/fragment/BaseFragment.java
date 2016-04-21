@@ -2,9 +2,8 @@ package android.base.fragment;
 
 import android.app.Fragment;
 import android.base.activity.BaseActivityAppCompat;
-import android.base.http.WebParam;
 import android.base.interfaces.OnBackHandler;
-import android.base.interfaces.WebHandler;
+import android.base.http.WebHandler;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;

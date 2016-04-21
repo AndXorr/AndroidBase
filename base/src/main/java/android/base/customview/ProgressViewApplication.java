@@ -91,6 +91,12 @@ public class ProgressViewApplication extends RelativeLayout {
         dialog.show();
     }
 
+    public BaseProgressDialog getProgressDialog() {
+        CustomDialog dialog = new CustomDialog(getContext(), R.style.Widget_ProgressDialog);
+        dialog.setIndeterminateDrawable(ContextCompat.getDrawable(getContext(), R.drawable.dialog_progress_indeterminate));
+        return dialog;
+    }
+
     public void enableWhiteColorProgressBar() {
         if (getProgressBar() != null) {
             getProgressBar().getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000, 0xFFFFFF));

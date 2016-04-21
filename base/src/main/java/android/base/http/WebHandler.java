@@ -1,4 +1,4 @@
-package android.base.interfaces;
+package android.base.http;
 
 import android.support.annotation.Nullable;
 
