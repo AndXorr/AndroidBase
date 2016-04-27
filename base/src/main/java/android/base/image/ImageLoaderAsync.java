@@ -1,7 +1,7 @@
 package android.base.image;
 
 import android.base.log.Log;
-import android.base.util.FileUtil;
+import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
@@ -57,7 +57,7 @@ public class ImageLoaderAsync {
     public static synchronized ImageLoaderAsync getInstance(Context context) {
         if (instance == null) {
             instance = new ImageLoaderAsync();
-            File cacheDir = FileUtil.getDirectoryAppImages(context);
+            File cacheDir = ApplicationUtils.FileUtil.getDirectoryAppImages(context);
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int width = displayMetrics.widthPixels;
             int height = displayMetrics.heightPixels;
@@ -65,26 +65,26 @@ public class ImageLoaderAsync {
                     context)
                     .memoryCacheExtraOptions(width / 2,
                             height / 2)
-                            // default = device screen dimensions
+                    // default = device screen dimensions
                     .diskCacheExtraOptions(width,
                             height, null)
                     .threadPoolSize(3)
-                            // default
+                    // default
                     .threadPriority(Thread.NORM_PRIORITY - 1)
-                            // default
+                    // default
                     .tasksProcessingOrder(QueueProcessingType.FIFO)
-                            // default
+                    // default
                     .denyCacheImageMultipleSizesInMemory()
-                            // .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                    // .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
                     .memoryCacheSize(10 * 1024 * 1024)
                     .diskCache(new UnlimitedDiskCache(cacheDir))
-                            // default
+                    // default
                     .diskCacheSize(30 * 1024 * 1024)
                     .diskCacheFileCount(100)
                     .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
-                            // .imageDownloader(new BaseImageDownloader(context)) //
-                            // default
-                            // .imageDecoder(new BaseImageDecoder()) // default
+                    // .imageDownloader(new BaseImageDownloader(context)) //
+                    // default
+                    // .imageDecoder(new BaseImageDecoder()) // default
                     .build();
             ImageLoader.getInstance().init(config);
             L.writeLogs(false);

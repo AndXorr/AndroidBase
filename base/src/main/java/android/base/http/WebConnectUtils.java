@@ -1,7 +1,7 @@
 package android.base.http;
 
 import android.base.R;
-import android.base.customview.ProgressViewApplication;
+import android.base.ui.custom.ProgressViewApplication;
 import android.base.dialog.BaseProgressDialog;
 import android.text.TextUtils;
 

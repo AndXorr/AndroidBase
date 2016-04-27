@@ -4,7 +4,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <android.base.widget.BaseTextView
+    <android.base.ui.widget.BaseTextView
         android:id="@android:id/text1"
         style="@style/FillWidth.WrapHeight"
         android:gravity="center"

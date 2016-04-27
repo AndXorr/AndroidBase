@@ -37,12 +37,12 @@ public class ActivityManagerUtil {
                 if (activityParam.bundle != null) {
                     intent.putExtras(activityParam.bundle);
                 }
-                if (activityParam.activityOptionsCompat != null && ApplicationUtils.isLollipop()) {
+                if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
                     activityParam.context.startActivity(intent, activityParam.activityOptionsCompat.toBundle());
                 } else {
                     activityParam.context.startActivity(intent);
                     if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
-                        if (ApplicationUtils.isLollipop()) {
+                        if (ApplicationUtils.System.isLollipop()) {
                             activityParam.context.getWindow().setEnterTransition(getSlide(activityParam.context));
                             activityParam.context.getWindow().setExitTransition(getSlide(activityParam.context));
                         } else {
@@ -63,12 +63,12 @@ public class ActivityManagerUtil {
                 if (activityParam.bundle != null) {
                     intent.putExtras(activityParam.bundle);
                 }
-                if (activityParam.activityOptionsCompat != null && ApplicationUtils.isLollipop()) {
+                if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
                     activityParam.context.startActivityForResult(intent, activityParam.requestCode, activityParam.activityOptionsCompat.toBundle());
                 } else {
                     activityParam.context.startActivityForResult(intent, activityParam.requestCode);
                     if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
-                        if (ApplicationUtils.isLollipop()) {
+                        if (ApplicationUtils.System.isLollipop()) {
                             activityParam.context.getWindow().setEnterTransition(getTransition(activityParam.context, activityParam.enter));
                             activityParam.context.getWindow().setExitTransition(getTransition(activityParam.context, activityParam.exit));
                         } else {
@@ -89,7 +89,7 @@ public class ActivityManagerUtil {
 
     private static void finish(ActivityParam activityParam) {
         ActivityCompat.finishAfterTransition(activityParam.context);
-        if (!ApplicationUtils.isLollipop()) {
+        if (!ApplicationUtils.System.isLollipop()) {
             if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
                 activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
         }

@@ -3,7 +3,7 @@
     style="@style/FillWidth.WrapHeight"
     android:orientation="vertical">
 
-    <android.base.widget.BaseProgressBar
+    <android.base.ui.widget.BaseProgressBar
         android:id="@id/loadmore_footer_progressViewApplication"
         style="@style/WrapWidth.WrapHeight"
         android:layout_gravity="center"

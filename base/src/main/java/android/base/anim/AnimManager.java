@@ -79,7 +79,7 @@ public class AnimManager {
                 AnimUtil.getPos(animParam);
             switch (animParam.type) {
                 case CircularReveal:
-                    if (ApplicationUtils.isLollipop()) {
+                    if (ApplicationUtils.System.isLollipop()) {
                         Animator anim =
                                 ViewAnimationUtils.createCircularReveal(animParam.view, animParam.setX,
                                         animParam.setY, animParam.startRadius, animParam.endRadius);

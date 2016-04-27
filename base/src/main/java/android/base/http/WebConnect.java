@@ -10,10 +10,9 @@ import java.io.File;
 import java.util.Map;
 
 /**
- * Created by clickapps on 16/11/15.
+ * Created by clickapps on 20/4/16.
  */
 public class WebConnect {
-
     public static class Builder {
         private WebParam webParam;
 
@@ -51,15 +50,20 @@ public class WebConnect {
             return this;
         }
 
-        public Builder params(@NonNull Map<String, ?> requestParam, @NonNull Map<String, String> headerParam) {
-            webParam.requestParam = requestParam;
-            webParam.headerParam = headerParam;
+        public Builder callback(@NonNull WebHandler.OnWebCallback callback, @NonNull Class<?> success, @NonNull Class<?> error) {
+            webParam.callback = callback;
+            webParam.model = success;
+            webParam.error = error;
             return this;
         }
 
-        public Builder callback(@NonNull WebHandler.OnWebCallback callback, @NonNull Class<?> model) {
-            webParam.callback = callback;
-            webParam.model = model;
+        public Builder successModel(@NonNull Class<?> success) {
+            webParam.model = success;
+            return this;
+        }
+
+        public Builder errorModel(@NonNull Class<?> error) {
+            webParam.error = error;
             return this;
         }
 
@@ -105,13 +109,9 @@ public class WebConnect {
             return this;
         }
 
-//        private void connect() {
-//            if (webParam.webApi != null) {
-//                new RetrofitUtil(webParam);
-//            } else {
-//                Log.e(getClass().getCanonicalName(), "can't find WebApi");
-//            }
-//        }
+        private ApiClient connect() {
+            return getApiClient();
+        }
 
         public ApiClient getApiClient() {
             return new ApiClient(webParam);

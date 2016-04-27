@@ -3,14 +3,14 @@
     style="@style/FillHeight.FillWidth"
     android:gravity="center">
 
-    <android.base.widget.BaseProgressBar
+    <android.base.ui.widget.BaseProgressBar
         android:id="@id/dialog_progress_baseProgressBar"
         style="@style/WrapWidth.WrapHeight"
         android:layout_centerHorizontal="true"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/dialog_progress_indeterminate" />
 
-    <android.base.widget.BaseTextView
+    <android.base.ui.widget.BaseTextView
         android:id="@id/dialog_progress_baseTextView"
         style="@style/WrapWidth.WrapHeight"
         android:layout_below="@id/dialog_progress_baseProgressBar"

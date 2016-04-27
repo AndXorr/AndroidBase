@@ -1,7 +1,7 @@
 package android.base.http;
 
-import android.base.log.Log;
-import android.base.util.Validator;
+
+import android.base.util.ApplicationUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -26,10 +27,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by clickapps on 18/11/15.
+ * Created by clickapps on 20/4/16.
  */
 public class RetrofitUtil {
-    public static String BASE_URL = "";
+    private String BASE_URL = WebConstant.BASE_URL;
     private final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
@@ -53,18 +54,18 @@ public class RetrofitUtil {
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Response response = chain.proceed(chain.request());
+                Request request = chain.request();
                 if (webParam.headerParam != null && webParam.headerParam.size() > 0) {
                     for (Map.Entry<String, String> entry : webParam.headerParam.entrySet()) {
-                        response.newBuilder().addHeader(entry.getKey(), entry.getValue());
+                        request = request.newBuilder().addHeader(entry.getKey(), entry.getValue()).build();
                     }
                 }
-                return response;
+                return chain.proceed(request);
             }
         });
         okHttpClientBuilder.addInterceptor(interceptor);
         builder.client(okHttpClientBuilder.build());
-        if (!Validator.isEmpty(webParam.baseUrl)) {
+        if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
             builder.baseUrl(webParam.baseUrl);
         }
         Retrofit retrofit = builder.build();
@@ -86,9 +87,11 @@ public class RetrofitUtil {
 
         @Override
         public void onResponse(Call<T> call, retrofit2.Response<T> response) {
-            String res = response.body().toString();
+            dismissDialog(webParam);
             Object object;
+            String res;
             if (response.isSuccessful()) {
+                res = response.body().toString();
                 if (webParam.callback != null) {
                     if (webParam.model != null) {
                         object = gson.fromJson(res, webParam.model);
@@ -98,18 +101,36 @@ public class RetrofitUtil {
                     webParam.callback.onSuccess(object, res, webParam.taskId, response.code());
                 }
             } else {
-                if (webParam.callback != null) {
-                    object = gson.fromJson(res, Object.class);
-                    webParam.callback.onError(object, res, webParam.taskId, response.code());
+                try {
+                    res = response.errorBody().string();
+                    if (webParam.callback != null) {
+                        if (webParam.error != null) {
+                            object = gson.fromJson(res, webParam.error);
+                        } else {
+                            object = gson.fromJson(res, Object.class);
+                        }
+                        webParam.callback.onError(object, res, webParam.taskId, response.code());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
 
         @Override
         public void onFailure(Call<T> call, Throwable t) {
+            dismissDialog(webParam);
             if (webParam.callback != null) {
                 webParam.callback.onError(t.getMessage(), t.getMessage(), webParam.taskId, 0);
             }
+        }
+    }
+
+    public static void dismissDialog(WebParam webParam) {
+        if (webParam.showDialog &&
+                webParam.progressDialog != null &&
+                webParam.progressDialog.isShowing()) {
+            webParam.progressDialog.dismiss();
         }
     }
 

@@ -21,6 +21,7 @@ public class WebParam {
     public Map<String, String> headerParam = new LinkedHashMap<>();
     public WebHandler.OnWebCallback callback;
     public Class<?> model;
+    public Class<?> error;
     public int taskId, retryCount;
     public BaseProgressDialog progressDialog;
     public boolean showDialog = true, isJson = false, isMultipart = false, cacheResponse = false;

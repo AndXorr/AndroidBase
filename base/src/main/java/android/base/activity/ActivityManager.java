@@ -76,7 +76,7 @@ public class ActivityManager {
         }
 
         private Builder defaultAnim() {
-            if (ApplicationUtils.isLollipop()) {
+            if (ApplicationUtils.System.isLollipop()) {
                 activityParam.enter = activityParam.exit = R.transition.activity_slide;
             } else {
                 activityParam.enter = R.anim.slide_in_left;

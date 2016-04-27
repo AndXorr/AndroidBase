@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/FillHeight.FillWidth">
 
-    <android.base.widget.BaseImageView
+    <android.base.ui.widget.BaseImageView
         android:id="@id/imageview_loading_baseImageView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <android.base.widget.BaseImageView
+    <android.base.ui.widget.BaseImageView
         android:id="@id/imageview_loading_baseImageView_gradient"
         style="@style/FillWidth.WrapHeight"
         android:layout_gravity="center" />
 
-    <android.base.widget.BaseProgressBar
+    <android.base.ui.widget.BaseProgressBar
         android:id="@id/imageview_loading_progressViewApp"
         style="@style/WrapWidth.WrapHeight"
         android:layout_gravity="center"
