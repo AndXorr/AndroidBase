@@ -2,7 +2,7 @@ package android.base.activity.broadcast;
 
 import android.app.Activity;
 import android.base.activity.BaseActivityAppCompat;
-import android.base.interfaces.OnActivityChildTaskProcess;
+import android.base.interfaces.OnRequestHandleListener;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +12,13 @@ import android.content.Intent;
  */
 public class LanguageBroadCastReceiver extends BroadcastReceiver {
     private Activity mActivity;
-    private OnActivityChildTaskProcess mCallBack;
+    private OnRequestHandleListener mCallBack;
 
     public LanguageBroadCastReceiver(Activity activity) {
         this.mActivity = activity;
     }
 
-    public LanguageBroadCastReceiver(Activity activity, OnActivityChildTaskProcess callBack) {
+    public LanguageBroadCastReceiver(Activity activity, OnRequestHandleListener callBack) {
         this.mActivity = activity;
         this.mCallBack = callBack;
     }
@@ -27,7 +27,7 @@ public class LanguageBroadCastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (mCallBack != null) {
-            mCallBack.onChildTask(null, null, 0, android.base.constant.Constant.ACTION_BROADCAST_LANGUAGE_CHANGED);
+            mCallBack.onRequest(null, null, 0, android.base.constant.Constant.ACTION_BROADCAST_LANGUAGE_CHANGED);
         }
         if (mActivity instanceof BaseActivityAppCompat) {
             BaseActivityAppCompat activity = (BaseActivityAppCompat) mActivity;

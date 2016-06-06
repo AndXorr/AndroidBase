@@ -15,4 +15,7 @@ public class Constant {
     public static final int BUILD_VERSION_JELLY_BEAN_MR1 = 17;
     public static final int BUILD_VERSION_ICE_CREAM_SANDWICH = 14;
 
+    private Constant() {
+        // private constructor
+    }
 }

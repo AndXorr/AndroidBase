@@ -20,70 +20,77 @@ import android.transition.TransitionSet;
  * Created by clickapps on 24/11/15.
  */
 public class ActivityManagerUtil {
-    private static Activity currentActivity;
+
+    private ActivityManagerUtil() {
+        // Nothing
+    }
+
+    private static Activity sCurrentActivity;
 
     protected static void performTask(ActivityParam activityParam) {
         ActivityParam.ActivityType activityType = activityParam.activityType;
         switch (activityType) {
             case START:
             case START_FINISH:
-                Intent intent = new Intent(activityParam.context, activityParam.uri);
-                if (activityParam.flag == 0) {
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            | Intent.FLAG_ACTIVITY_NEW_TASK);
-                } else {
-                    intent.setFlags(activityParam.flag);
-                }
-                if (activityParam.bundle != null) {
-                    intent.putExtras(activityParam.bundle);
-                }
-                if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
-                    activityParam.context.startActivity(intent, activityParam.activityOptionsCompat.toBundle());
-                } else {
-                    activityParam.context.startActivity(intent);
-                    if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
-                        if (ApplicationUtils.System.isLollipop()) {
-                            activityParam.context.getWindow().setEnterTransition(getSlide(activityParam.context));
-                            activityParam.context.getWindow().setExitTransition(getSlide(activityParam.context));
-                        } else {
-                            activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
-                        }
-                }
-                if (activityType == ActivityParam.ActivityType.START_FINISH) {
-                    finish(activityParam);
-                }
+                start(activityParam);
                 break;
             case START_RESULT:
             case START_RESULT_FINISH:
-                intent = new Intent(activityParam.context, activityParam.uri);
-                if (activityParam.flag == 0) {
-                } else {
-                    intent.setFlags(activityParam.flag);
-                }
-                if (activityParam.bundle != null) {
-                    intent.putExtras(activityParam.bundle);
-                }
-                if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
-                    activityParam.context.startActivityForResult(intent, activityParam.requestCode, activityParam.activityOptionsCompat.toBundle());
-                } else {
-                    activityParam.context.startActivityForResult(intent, activityParam.requestCode);
-                    if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
-                        if (ApplicationUtils.System.isLollipop()) {
-                            activityParam.context.getWindow().setEnterTransition(getTransition(activityParam.context, activityParam.enter));
-                            activityParam.context.getWindow().setExitTransition(getTransition(activityParam.context, activityParam.exit));
-                        } else {
-                            activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
-                        }
-                }
-                if (activityType == ActivityParam.ActivityType.START_RESULT_FINISH) {
-                    finish(activityParam);
-                }
+
                 break;
             case FINISH:
                 finish(activityParam);
                 break;
             default:
                 break;
+        }
+    }
+
+    private static void start(ActivityParam activityParam) {
+        Intent intent = new Intent(activityParam.context, activityParam.uri);
+        if (activityParam.flag == 0) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+        } else {
+            intent.setFlags(activityParam.flag);
+        }
+        if (activityParam.bundle != null) {
+            intent.putExtras(activityParam.bundle);
+        }
+        if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
+            activityParam.context.startActivity(intent, activityParam.activityOptionsCompat.toBundle());
+        } else {
+            activityParam.context.startActivity(intent);
+            if (activityParam.enableAnimation
+                    && activityParam.enter > 0
+                    && activityParam.exit > 0)
+                activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
+        }
+        if (activityParam.activityType == ActivityParam.ActivityType.START_FINISH) {
+            finish(activityParam);
+        }
+    }
+
+    private static void startResult(ActivityParam activityParam) {
+        Intent intent = new Intent(activityParam.context, activityParam.uri);
+        if (activityParam.flag == 0) {
+        } else {
+            intent.setFlags(activityParam.flag);
+        }
+        if (activityParam.bundle != null) {
+            intent.putExtras(activityParam.bundle);
+        }
+        if (activityParam.activityOptionsCompat != null && ApplicationUtils.System.isLollipop()) {
+            activityParam.context.startActivityForResult(intent, activityParam.requestCode, activityParam.activityOptionsCompat.toBundle());
+        } else {
+            activityParam.context.startActivityForResult(intent, activityParam.requestCode);
+            if (activityParam.enableAnimation
+                    && activityParam.enter > 0
+                    && activityParam.exit > 0)
+                activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
+        }
+        if (activityParam.activityType == ActivityParam.ActivityType.START_RESULT_FINISH) {
+            finish(activityParam);
         }
     }
 
@@ -128,7 +135,7 @@ public class ActivityManagerUtil {
     }
 
     public static Activity getTopActivity() {
-        return currentActivity;
+        return sCurrentActivity;
     }
 
     /**
@@ -138,6 +145,6 @@ public class ActivityManagerUtil {
      */
     @TargetApi(Constant.BUILD_VERSION_ICE_CREAM_SANDWICH)
     public static void setTopActivity(@NonNull Activity currentActivity) {
-        ActivityManagerUtil.currentActivity = currentActivity;
+        ActivityManagerUtil.sCurrentActivity = currentActivity;
     }
 }

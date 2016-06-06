@@ -14,12 +14,12 @@ public class BaseApplication extends Application implements Application.Activity
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+        // Nothing used
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
-
+        // Nothing used
     }
 
     @Override
@@ -29,21 +29,22 @@ public class BaseApplication extends Application implements Application.Activity
 
     @Override
     public void onActivityPaused(Activity activity) {
-
+        // Nothing used
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-
+        // Nothing used
     }
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+        // Nothing used
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
+        // Nothing used
     }
 
     @Override

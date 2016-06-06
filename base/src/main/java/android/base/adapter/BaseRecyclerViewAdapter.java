@@ -22,6 +22,10 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
     private OnItemLongClickListener itemLongClickListener;
     private Context context;
 
+    public BaseRecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
+
     public interface OnItemClickListener<T> {
         void onItemClick(BaseRecyclerView recyclerView, View view, int position, T model);
     }
@@ -61,10 +65,6 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
         Optional<OnItemLongClickListener> onItemLongClick = Optional.absent();
         onItemLongClick = Optional.fromNullable(itemLongClickListener).or(onItemLongClick);
         return onItemLongClick;
-    }
-
-    public BaseRecyclerViewAdapter(Context context) {
-        this.context = context;
     }
 
     public Context getContext() {

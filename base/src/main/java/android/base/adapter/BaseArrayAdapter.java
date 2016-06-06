@@ -42,12 +42,10 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
 
     public BaseArrayAdapter(Context context) {
         super(context, android.R.layout.simple_list_item_1);
-        // TODO Auto-generated constructor stub
     }
 
     public BaseArrayAdapter(Activity context) {
         super(context, android.R.layout.simple_list_item_1);
-        // TODO Auto-generated constructor stub
         this.context = context;
     }
 
@@ -74,13 +72,11 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     public int getCount() {
         if (mList == null)
             return 0;
-        // TODO Auto-generated method stub
         return mList.size();
     }
 
     @Override
     public T getItem(int position) {
-        // TODO Auto-generated method stub
         return mList.get(position);
     }
 

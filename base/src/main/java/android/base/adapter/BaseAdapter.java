@@ -43,12 +43,10 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     protected String TAG = BaseAdapter.class.getSimpleName();
 
     public BaseAdapter(Context context) {
-        // TODO Auto-generated constructor stub
         this.context = context;
     }
 
     public BaseAdapter(Activity context) {
-        // TODO Auto-generated constructor stub
         this.activityContext = context;
     }
 
@@ -75,25 +73,21 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return mList.size();
     }
 
     @Override
     public T getItem(int position) {
-        // TODO Auto-generated method stub
         return mList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         return convertView;
     }
 

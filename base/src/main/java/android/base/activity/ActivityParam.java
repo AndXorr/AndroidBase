@@ -9,14 +9,14 @@ import android.support.v4.app.ActivityOptionsCompat;
  */
 public class ActivityParam {
 
-    public Activity context;
-    public Class<?> uri;
-    public int enter = 0, exit = 0, requestCode, flag = 0;
-    public ActivityType activityType = ActivityType.START;
-    public Bundle bundle;
-    public ActivityOptionsCompat activityOptionsCompat;
+    protected Activity context;
+    protected Class<?> uri;
+    protected int enter = 0, exit = 0, requestCode = 0, flag = 0;
+    protected ActivityType activityType = ActivityType.START;
+    protected Bundle bundle;
+    protected ActivityOptionsCompat activityOptionsCompat;
 
-    public boolean enableAnimation = false, isBackStack = false;
+    protected boolean enableAnimation = false, isBackStack = false;
 
     public enum ActivityType {
         START, START_RESULT, FINISH, START_FINISH, START_RESULT_FINISH

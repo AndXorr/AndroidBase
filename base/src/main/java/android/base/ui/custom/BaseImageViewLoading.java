@@ -30,7 +30,6 @@ public class BaseImageViewLoading extends FrameLayout {
 
     public BaseImageViewLoading(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stub
         initView();
         if (attrs != null) {
             if (Build.VERSION.SDK_INT >= Constant.BUILD_VERSION_LOLLIPOP) {
@@ -53,13 +52,11 @@ public class BaseImageViewLoading extends FrameLayout {
 
     public BaseImageViewLoading(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
         initView();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO Auto-generated method stub
         mImageView.setLayoutParams(getLayoutParams());
         mGradientImageView.setLayoutParams(getLayoutParams());
 //        mProgressBar.setLayoutParams(getLayoutParams());

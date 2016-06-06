@@ -9,7 +9,7 @@ import android.view.View;
  * 2. List view of fragments
  * 3. Any other activity on fragment
  */
-public interface OnActivityChildTaskProcess {
+public interface OnRequestHandleListener {
     /**
      * call back for the list item click
      *
@@ -18,6 +18,6 @@ public interface OnActivityChildTaskProcess {
      * @param bundle bundle containing data to transfer via callback
      * @param id     integer value to identify task to be performed
      */
-    <T> void onChildTask(View view, Bundle bundle, int id, T object);
+    <T> void onRequest(View view, Bundle bundle, int id, T t);
 }
 

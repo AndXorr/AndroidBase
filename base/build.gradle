@@ -54,4 +54,8 @@ dependencies {
     // https://github.com/xgc1986/ParallaxPagerTransformer
     compile 'com.xgc1986.android:parallaxpagertransformer:1.0.4'
 
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.android.support:support-v13:23.3.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
