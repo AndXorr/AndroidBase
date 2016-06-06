@@ -1,6 +1,7 @@
 package android.base.pubnub;
 
 import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 
 import com.google.common.base.Optional;
 import com.pubnub.api.Callback;
@@ -25,16 +26,15 @@ public class PubNub {
         pubnub.setResumeOnReconnect(true);
         pubnub.setOrigin(PubNubConstant.ORIGIN);
         pubnub.setAuthKey(pubNubParam.secret_key);
-        handleEvent(pubNubParam);
     }
 
-    private void handleEvent(PubNubParam pubNubParam) {
+    public void handleEvent(PubNubParam pubNubParam) {
         switch (pubNubParam.event) {
             case SUB:
                 try {
                     pubnub.subscribe(pubNubParam.channels, new PubNubCallback(pubNubParam));
                 } catch (PubnubException e) {
-                    e.printStackTrace();
+                    ApplicationUtils.Log.e(e.getMessage());
                 }
                 break;
             case UNSUB:
@@ -42,6 +42,7 @@ public class PubNub {
                 break;
             case UNSUBALL:
                 pubnub.unsubscribeAll();
+                break;
             default:
                 break;
         }

@@ -10,4 +10,8 @@ public class PubNubConstant {
     public static final String SECRET_KEY = "sec-c-OWVmZmJlMWEtZjk4NC00NDJmLWE2MDEtYWFlNDcyMDhiYTM2";
     public static final String CIPHER_KEY = "sec-c-OWVmZmJlMWEtZjk4NC00NDJmLWE2MDEtYWFlNDcyMDhiYTM2";
     public static final String ORIGIN = "origin";
+
+    private PubNubConstant() {
+
+    }
 }
