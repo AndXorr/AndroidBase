@@ -16,18 +16,18 @@ import java.util.Map;
  * Created by Sahni on 17-11-2015.
  */
 public class ImageParam {
-    public Context context;
-    public Activity activityContext;
-    public String url, disableCacheKey;
-    public ImageType imageType = ImageType.URL;
-    public int loadingThumbnail = -1, errorThumbnail = -1, taskId, height, width;
-    public boolean needBitmap = false, disableCache = false, clearCache = false;
-    public Map<?, ?> header = new LinkedHashMap<>();
-    public ImageView imageView;
-    public ProgressBar progressBar;
-    public onCallback callback;
-    public Bitmap.Config config = Bitmap.Config.RGB_565;
-    public DisplayImageOptions displayImageOptions = ImageLoaderAsync.mDisplayImageOptions;
+    protected Context context;
+    protected Activity activityContext;
+    protected String url, disableCacheKey;
+    protected ImageType imageType = ImageType.URL;
+    protected int loadingThumbnail = -1, errorThumbnail = -1, taskId, height, width;
+    protected boolean needBitmap = false, disableCache = false, clearCache = false;
+    protected Map<?, ?> header = new LinkedHashMap<>();
+    protected ImageView imageView;
+    protected ProgressBar progressBar;
+    protected onCallback callback;
+    protected Bitmap.Config config = Bitmap.Config.RGB_565;
+    protected DisplayImageOptions displayImageOptions = ImageLoaderAsync.mDisplayImageOptions;
 
     public enum ImageType {
         URL, URI, FILE
