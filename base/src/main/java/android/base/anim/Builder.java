@@ -1,16 +1,12 @@
 package android.base.anim;
 
-import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.app.Activity;
 import android.base.log.Log;
-import android.base.util.ApplicationUtils;
-import android.base.util.BaseException;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 
 /**
  * Created by sahni on 6/6/16.

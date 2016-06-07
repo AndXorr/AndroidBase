@@ -15,9 +15,21 @@ import android.view.ViewAnimationUtils;
  * Created by clickapps on 9/12/15.
  */
 public class AnimManager {
+    private static volatile AnimManager sAnimManager;
 
     private AnimManager() {
         // private constructor
+    }
+
+    public static AnimManager get() {
+        if (sAnimManager == null) {
+            synchronized (AnimManager.class) {
+                if (sAnimManager == null) {
+                    sAnimManager = new AnimManager();
+                }
+            }
+        }
+        return sAnimManager;
     }
 
     public static Builder with(@NonNull Context context, @NonNull View view, AnimParam.AnimType animType) {

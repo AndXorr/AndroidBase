@@ -13,6 +13,22 @@ import android.util.Log;
  * Created by clickapps on 20/7/15.
  */
 public class ActivityManager {
+    private static volatile ActivityManager sActivityManager;
+
+    private ActivityManager() {
+
+    }
+
+    public static ActivityManager get() {
+        if (sActivityManager == null) {
+            synchronized (ActivityManager.class) {
+                if (sActivityManager == null) {
+                    sActivityManager = new ActivityManager();
+                }
+            }
+        }
+        return sActivityManager;
+    }
 
     public static Builder with(@NonNull Activity context) {
         return new Builder(context);
@@ -22,4 +38,6 @@ public class ActivityManager {
     public static Builder with(@NonNull Activity context, ActivityParam.ActivityType activityType) {
         return new Builder(context, activityType);
     }
+
+
 }

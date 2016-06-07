@@ -20,12 +20,11 @@ import android.transition.TransitionSet;
  * Created by clickapps on 24/11/15.
  */
 public class ActivityManagerUtil {
+    private static Activity sCurrentActivity;
 
     private ActivityManagerUtil() {
         // Nothing
     }
-
-    private static Activity sCurrentActivity;
 
     protected static void performTask(ActivityParam activityParam) {
         ActivityParam.ActivityType activityType = activityParam.activityType;

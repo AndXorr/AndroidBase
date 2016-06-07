@@ -22,9 +22,21 @@ import android.widget.TextView;
  * Created by Sahni on 28-07-2015.
  */
 public class Alert {
+    private static volatile Alert sAlert;
 
     private Alert() {
         // private constructor
+    }
+
+    public static Alert get() {
+        if (sAlert == null) {
+            synchronized (Alert.class) {
+                if (sAlert == null) {
+                    sAlert = new Alert();
+                }
+            }
+        }
+        return sAlert;
     }
 
     /**

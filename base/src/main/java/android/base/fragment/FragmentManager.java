@@ -11,9 +11,21 @@ import android.util.Log;
  * Created by clickapps on 20/7/15.
  */
 public class FragmentManager {
+    private static volatile FragmentManager sFragmentManager;
 
     private FragmentManager() {
         // private constructor
+    }
+
+    public static FragmentManager get() {
+        if (sFragmentManager == null) {
+            synchronized (FragmentManager.class) {
+                if (sFragmentManager == null) {
+                    sFragmentManager = new FragmentManager();
+                }
+            }
+        }
+        return sFragmentManager;
     }
 
     public static Builder with(@NonNull FragmentActivity context, @IdRes int replaceId) {

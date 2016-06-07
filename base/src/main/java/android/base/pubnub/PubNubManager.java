@@ -14,8 +14,21 @@ import java.util.List;
  * Created by clickapps on 5/2/16.
  */
 public class PubNubManager {
+    private static volatile PubNubManager sPubNubManager;
+
     private PubNubManager() {
 
+    }
+
+    public static PubNubManager get() {
+        if (sPubNubManager == null) {
+            synchronized (PubNubManager.class) {
+                if (sPubNubManager == null) {
+                    sPubNubManager = new PubNubManager();
+                }
+            }
+        }
+        return sPubNubManager;
     }
 
     public static Builder with(@NonNull Context context) {

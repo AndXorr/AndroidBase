@@ -11,8 +11,21 @@ import java.util.Map;
  * Created by clickapps on 27/11/15.
  */
 public final class DatabaseManager {
+    private static volatile DatabaseManager sDatabaseManager;
+
     private DatabaseManager() {
         // private constructor
+    }
+
+    public static DatabaseManager get() {
+        if (sDatabaseManager == null) {
+            synchronized (DatabaseManager.class) {
+                if (sDatabaseManager == null) {
+                    sDatabaseManager = new DatabaseManager();
+                }
+            }
+        }
+        return sDatabaseManager;
     }
 
     public static Builder with(@NonNull Context context) {
