@@ -1,10 +1,16 @@
 package android.base.anim;
 
+
 /**
- * Created by clickapps on 9/12/15.
+ * The type Anim util.
  */
 public class AnimUtil {
 
+    /**
+     * Gets pos.
+     *
+     * @param animParam the anim param
+     */
     public static void getPos(AnimParam animParam) {
         int x = 0, y = 0;
         switch (animParam.posX) {

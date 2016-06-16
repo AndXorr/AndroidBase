@@ -8,16 +8,18 @@ import android.location.Geocoder;
 import java.io.IOException;
 import java.util.List;
 
+
 /**
- * Created by nunofeliciano on 12/10/14.
+ * The type Location util.
  */
 public class LocationUtil {
 
     /**
      * Gets the location by Coordinates
      *
-     * @param latitude
-     * @param longitude
+     * @param context   the context
+     * @param latitude  the latitude
+     * @param longitude the longitude
      * @return Location model
      */
     public static LocationModel getLocationByCoordinates(Context context, Double latitude, Double longitude) {

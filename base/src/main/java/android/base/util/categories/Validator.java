@@ -4,8 +4,9 @@ import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
 
+
 /**
- * Created by cesarferreira on 01/11/14.
+ * The type Validator.
  */
 public class Validator extends StringUtils {
 
@@ -16,9 +17,10 @@ public class Validator extends StringUtils {
 
 
     /**
+     * Is email valid boolean.
+     *
      * @param email email address that need to check
-     * @return true if email address is matched with defined pattern.
-     * Here pattern is used from api level 22 android
+     * @return true if email address is matched with defined pattern. Here pattern is used from api level 22 android
      */
     public static boolean isEmailValid(String email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -26,9 +28,11 @@ public class Validator extends StringUtils {
 
 
     /**
+     * Is password valid boolean.
+     *
      * @param password that need to check
      * @return true if password is matched with defined pattern.
-     * @link http://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
+     * @link http ://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
      */
     public static boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
@@ -37,19 +41,21 @@ public class Validator extends StringUtils {
 
 
     /**
-     * @param password
+     * Is password matches boolean.
+     *
+     * @param password        the password
      * @param confirmPassword that need to match
-     * @return true if email address is matched with defined pattern.
-     * Here pattern is used from api level 22 android
+     * @return true if email address is matched with defined pattern. Here pattern is used from api level 22 android
      */
     public static boolean isPasswordMatches(String password, String confirmPassword) {
         return isMatches(password, confirmPassword);
     }
 
     /**
+     * Is username valid boolean.
+     *
      * @param username that need to check
-     * @return true if email address is matched with defined pattern.
-     * Here pattern is used from api level 22 android
+     * @return true if email address is matched with defined pattern. Here pattern is used from api level 22 android
      */
     public static boolean isUsernameValid(String username) {
         return username.matches(USERNAMEPARTTEN);
@@ -66,6 +72,13 @@ public class Validator extends StringUtils {
         return !(!TextUtils.isEmpty(str) && !str.equals("null"));
     }
 
+    /**
+     * Is matches boolean.
+     *
+     * @param str1 the str 1
+     * @param str2 the str 2
+     * @return the boolean
+     */
     public static boolean isMatches(String str1, String str2) {
         return TextUtils.equals(str1, str2);
     }

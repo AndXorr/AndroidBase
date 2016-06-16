@@ -7,8 +7,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 
+
 /**
- * Created by clickapps on 9/2/16.
+ * The type Base application.
  */
 public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
 

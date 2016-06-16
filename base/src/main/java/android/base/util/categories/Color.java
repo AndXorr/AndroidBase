@@ -1,14 +1,17 @@
 package android.base.util.categories;
 
+
 /**
- * Created by cesarferreira on 19/02/15.
+ * The type Color.
  */
 public class Color {
 
     /**
+     * Add alpha string.
+     *
      * @param originalColor color, without alpha
      * @param alpha         from 0.0 to 1.0
-     * @return
+     * @return string
      */
     public static String addAlpha(String originalColor, double alpha) {
         long alphaFixed = Math.round(alpha * 255);

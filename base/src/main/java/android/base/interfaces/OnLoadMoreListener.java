@@ -1,9 +1,12 @@
 package android.base.interfaces;
 
 /**
- * Created by clickapps on 24/2/16.
+ * The interface On load more listener.
  */
 public interface OnLoadMoreListener {
 
+    /**
+     * On load more.
+     */
     public void onLoadMore();
 }

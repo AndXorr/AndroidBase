@@ -14,9 +14,9 @@ import android.view.View;
 
 /**
  * Created by clickapps on 30/6/15.
- * <p/>
+ * <p>
  * http://stackoverflow.com/questions/18462391/android-viewpager-scrolling-issue-with-only-one-item-when-using-getpagewidth-fro
- * <p/>
+ * <p>
  * http://stackoverflow.com/questions/32033111/set-viewpager-inside-scrollview-without-specifying-its-height
  */
 public class BaseViewPager extends ViewPager {
@@ -29,14 +29,30 @@ public class BaseViewPager extends ViewPager {
     * Added on 24th Sept, 2015 - Manmeet*/
     private boolean isChildCenterHorizontalAligned = false;
 
+    /**
+     * Instantiates a new Base view pager.
+     *
+     * @param context the context
+     */
     public BaseViewPager(Context context) {
         super(context);
     }
 
+    /**
+     * Instantiates a new Base view pager.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * Init.
+     *
+     * @param attrs the attrs
+     */
     public void init(AttributeSet attrs) {
 
     }
@@ -63,14 +79,29 @@ public class BaseViewPager extends ViewPager {
         return isPagingEnabled && super.onTouchEvent(event);
     }
 
+    /**
+     * Sets paging enabled.
+     *
+     * @param pagingEnabled the paging enabled
+     */
     public void setPagingEnabled(boolean pagingEnabled) {
         isPagingEnabled = pagingEnabled;
     }
 
+    /**
+     * Sets child id.
+     *
+     * @param childId the child id
+     */
     public void setChildId(int childId) {
         this.childId = childId;
     }
 
+    /**
+     * Sets height change.
+     *
+     * @param heightChange the height change
+     */
     public void setHeightChange(boolean heightChange) {
         isHeightChanges = heightChange;
     }
@@ -119,6 +150,12 @@ public class BaseViewPager extends ViewPager {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
+    /**
+     * Measure fragment int.
+     *
+     * @param view the view
+     * @return the int
+     */
     public int measureFragment(View view) {
         if (view == null)
             return 0;
@@ -158,10 +195,21 @@ public class BaseViewPager extends ViewPager {
         return super.drawChild(canvas, child, drawingTime);
     }
 
+    /**
+     * Is child center horizontal aligned boolean.
+     *
+     * @return the boolean
+     */
     public boolean isChildCenterHorizontalAligned() {
         return isChildCenterHorizontalAligned;
     }
 
+    /**
+     * Sets is child center horizontal aligned.
+     *
+     * @param isChildCenterHorizontalAligned the is child center horizontal aligned
+     * @param activity                       the activity
+     */
     public void setIsChildCenterHorizontalAligned(boolean isChildCenterHorizontalAligned, Activity activity) {
         this.mActivity = activity;
         this.isChildCenterHorizontalAligned = isChildCenterHorizontalAligned;

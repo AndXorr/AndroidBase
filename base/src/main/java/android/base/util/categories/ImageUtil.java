@@ -28,11 +28,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * The type Image util.
+ */
 public class ImageUtil {
 
     /**
      * Convert drawable resource to bitmap
      *
+     * @param context  the context
      * @param drawable drawable resource to be converted
      * @return a bitmap
      */
@@ -64,6 +68,17 @@ public class ImageUtil {
         return bitmap;
     }
 
+    /**
+     * Save bitmap downscaled file.
+     *
+     * @param bitmap    the bitmap
+     * @param filename  the filename
+     * @param path      the path
+     * @param recycle   the recycle
+     * @param maxWidth  the max width
+     * @param maxHeight the max height
+     * @return the file
+     */
     public static File saveBitmapDownscaled(Bitmap bitmap, String filename, String path, boolean recycle, int maxWidth, int maxHeight) {
         float heightScaleFactor = 1;
         float widthScaleFactor = 1;
@@ -83,6 +98,15 @@ public class ImageUtil {
         return saveBitmap(bitmap, filename, path, recycle);
     }
 
+    /**
+     * Save bitmap file.
+     *
+     * @param bitmap   the bitmap
+     * @param filename the filename
+     * @param path     the path
+     * @param recycle  the recycle
+     * @return the file
+     */
     public static File saveBitmap(Bitmap bitmap, String filename, String path, boolean recycle) {
         FileOutputStream out = null;
         try {
@@ -108,12 +132,24 @@ public class ImageUtil {
         return null;
     }
 
+    /**
+     * Flip bitmap.
+     *
+     * @param src the src
+     * @return the bitmap
+     */
     public static Bitmap flip(Bitmap src) {
         Matrix m = new Matrix();
         m.preScale(-1, 1);
         return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
     }
 
+    /**
+     * Size of int.
+     *
+     * @param data the data
+     * @return the int
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static int sizeOf(Bitmap data) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR1) {
@@ -126,6 +162,8 @@ public class ImageUtil {
     }
 
     /**
+     * Change bitmap contrast brightness bitmap.
+     *
      * @param bmp        input bitmap
      * @param contrast   0..10 1 is default
      * @param brightness -255..255 0 is default
@@ -176,7 +214,7 @@ public class ImageUtil {
     /**
      * Get the screen height.
      *
-     * @param context
+     * @param context the context
      * @return the screen height
      */
     @SuppressWarnings("deprecation")
@@ -195,7 +233,7 @@ public class ImageUtil {
     /**
      * Get the screen width.
      *
-     * @param context
+     * @param context the context
      * @return the screen width
      */
     @SuppressWarnings("deprecation")
@@ -211,6 +249,14 @@ public class ImageUtil {
         return display.getWidth();
     }
 
+    /**
+     * Gets tint drawable.
+     *
+     * @param context  the context
+     * @param drawable the drawable
+     * @param resId    the res id
+     * @return the tint drawable
+     */
     public static Drawable getTintDrawable(@NonNull Context context, @DrawableRes int drawable, int resId) {
         Drawable d = ContextCompat.getDrawable(context, drawable);
         DrawableCompat.wrap(d);

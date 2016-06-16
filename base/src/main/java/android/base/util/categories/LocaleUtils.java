@@ -16,19 +16,38 @@ import android.util.DisplayMetrics;
 
 import java.util.Locale;
 
+
 /**
- * Created by clickapps on 10/12/15.
+ * The type Locale utils.
  */
 public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
 
+    /**
+     * Gets locale application.
+     *
+     * @param context the context
+     * @return the locale application
+     */
     public static String getLocaleApplication(Context context) {
         return context.getResources().getConfiguration().locale.toString();
     }
 
+    /**
+     * Gets locale current app.
+     *
+     * @param context the context
+     * @return the locale current app
+     */
     public static Locale getLocaleCurrentApp(Context context) {
         return context.getResources().getConfiguration().locale;
     }
 
+    /**
+     * Gets phone number.
+     *
+     * @param context the context
+     * @return the phone number
+     */
     public static String getPhoneNumber(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCodeValue = tm.getSimCountryIso();
@@ -48,10 +67,23 @@ public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
         return countryCodeValue;
     }
 
+    /**
+     * Update locale.
+     *
+     * @param context      the context
+     * @param languageCode the language code
+     */
     public static void updateLocale(@Nullable Context context, @NonNull String languageCode) {
         updateLocale(context, languageCode, false);
     }
 
+    /**
+     * Update locale.
+     *
+     * @param context         the context
+     * @param languageCode    the language code
+     * @param enableBroadCast the enable broad cast
+     */
     public static void updateLocale(@Nullable Context context,
                                     @NonNull String languageCode, boolean enableBroadCast) {
         if (context != null

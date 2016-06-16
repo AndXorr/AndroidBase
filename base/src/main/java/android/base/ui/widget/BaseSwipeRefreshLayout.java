@@ -29,15 +29,32 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
 
     }
 
+    /**
+     * The interface On refresh listener.
+     */
     public interface OnRefreshListener {
+        /**
+         * On refresh.
+         */
         void onRefresh();
     }
 
+    /**
+     * Instantiates a new Base swipe refresh layout.
+     *
+     * @param context the context
+     */
     public BaseSwipeRefreshLayout(Context context) {
         super(context);
         setColorTheme();
     }
 
+    /**
+     * Instantiates a new Base swipe refresh layout.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseSwipeRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         setColorTheme();
@@ -48,6 +65,11 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
         setProgressBackgroundColorSchemeColor(ContextCompat.getColor(getContext(), R.color.app_theme_base));
     }
 
+    /**
+     * Sets on refresh listener.
+     *
+     * @param listener the listener
+     */
     public void setOnRefreshListener(OnRefreshListener listener) {
         onRefreshListener = listener;
         if (onRefreshListener != null)

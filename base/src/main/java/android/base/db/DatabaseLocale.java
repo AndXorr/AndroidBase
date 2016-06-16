@@ -4,8 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 /**
- * Created by clickapps on 2/7/15.
+ * The type Database locale.
  */
 public class DatabaseLocale extends SQLiteOpenHelper {
     // Table Names
@@ -18,6 +19,11 @@ public class DatabaseLocale extends SQLiteOpenHelper {
             + TABLE_LOCALE + "(" + KEY_ID + " INTEGER PRIMARY KEY," + LANG_CODE
             + " TEXT" + ")";
 
+    /**
+     * Instantiates a new Database locale.
+     *
+     * @param context the context
+     */
     public DatabaseLocale(Context context) {
         super(context, "Locale", null, 1);
     }

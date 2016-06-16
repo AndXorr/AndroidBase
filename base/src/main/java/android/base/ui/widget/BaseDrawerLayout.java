@@ -11,21 +11,42 @@ import android.view.View;
  * Created by clickapps on 27/11/15.
  */
 public class BaseDrawerLayout extends DrawerLayout {
+    /**
+     * Instantiates a new Base drawer layout.
+     *
+     * @param context the context
+     */
     public BaseDrawerLayout(Context context) {
         super(context);
         setup();
     }
 
+    /**
+     * Instantiates a new Base drawer layout.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseDrawerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         setup();
     }
 
+    /**
+     * Instantiates a new Base drawer layout.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public BaseDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup();
     }
 
+    /**
+     * Sets .
+     */
     public void setup() {
         this.setDrawerListener(new DrawerListener() {
             @Override
@@ -50,6 +71,9 @@ public class BaseDrawerLayout extends DrawerLayout {
         });
     }
 
+    /**
+     * Toggle.
+     */
     public void toggle() {
         if (isDrawerOpen(GravityCompat.START)) {
             closeDrawer();
@@ -58,6 +82,11 @@ public class BaseDrawerLayout extends DrawerLayout {
         }
     }
 
+    /**
+     * Toggle.
+     *
+     * @param view the view
+     */
     public void toggle(View view) {
         if (isDrawerOpen(view)) {
             this.closeDrawer(view);
@@ -66,10 +95,16 @@ public class BaseDrawerLayout extends DrawerLayout {
         }
     }
 
+    /**
+     * Open drawer.
+     */
     public void openDrawer() {
         openDrawer(GravityCompat.START);
     }
 
+    /**
+     * Close drawer.
+     */
     public void closeDrawer() {
         openDrawer(GravityCompat.START);
     }

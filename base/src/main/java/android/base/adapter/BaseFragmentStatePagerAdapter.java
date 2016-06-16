@@ -4,19 +4,26 @@ import android.app.FragmentManager;
 import android.base.fragment.BaseFragment;
 import android.content.Context;
 import android.support.v13.app.FragmentStatePagerAdapter;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by clickapps on 9/2/16.
+ *
+ * @param <T> the type parameter
  */
 public abstract class BaseFragmentStatePagerAdapter<T extends BaseFragment> extends FragmentStatePagerAdapter {
-    public List<T> list = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
     private Context context;
     private int count;
 
+    /**
+     * Instantiates a new Base fragment state pager adapter.
+     *
+     * @param fm      the fm
+     * @param context the context
+     */
     public BaseFragmentStatePagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
@@ -24,7 +31,9 @@ public abstract class BaseFragmentStatePagerAdapter<T extends BaseFragment> exte
     }
 
     /**
-     * @param items
+     * Sets list.
+     *
+     * @param items the items
      */
     public void setList(List<T> items) {
         list = new ArrayList<>(items);
@@ -33,12 +42,19 @@ public abstract class BaseFragmentStatePagerAdapter<T extends BaseFragment> exte
     }
 
     /**
-     * @return ListArray<T>
+     * Gets list.
+     *
+     * @return ListArray<T> list
      */
     public List<T> getList() {
         return list;
     }
 
+    /**
+     * Gets context.
+     *
+     * @return the context
+     */
     public Context getContext() {
         return context;
     }

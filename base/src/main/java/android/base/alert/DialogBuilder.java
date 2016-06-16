@@ -8,123 +8,239 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
+
 /**
- * Created by sahni on 6/6/16.
+ * The type Dialog builder.
  */
 public class DialogBuilder {
 
     private AlertParam alertParam;
 
+    /**
+     * Instantiates a new Dialog builder.
+     *
+     * @param context the context
+     */
     public DialogBuilder(Context context) {
         alertParam = new AlertParam();
         alertParam.context = context;
     }
 
+    /**
+     * Instantiates a new Dialog builder.
+     *
+     * @param context    the context
+     * @param dialogType the dialog type
+     */
     public DialogBuilder(Context context, AlertParam.DialogType dialogType) {
         alertParam = new AlertParam();
         alertParam.context = context;
         alertParam.dialogType = dialogType;
     }
 
-    /*Set Message for AlertDialog*/
+    /**
+     * Message dialog builder.
+     *
+     * @param message the message
+     * @return the dialog builder
+     */
+/*Set Message for AlertDialog*/
     public DialogBuilder message(String message) {
         alertParam.message = message;
         return this;
     }
 
-    /*Set Message resId for AlertDialog*/
+    /**
+     * Message dialog builder.
+     *
+     * @param resId the res id
+     * @return the dialog builder
+     */
+/*Set Message resId for AlertDialog*/
     public DialogBuilder message(int resId) {
         alertParam.messageResId = resId;
         return this;
     }
 
-    /*Set Title for AlertDialog*/
+    /**
+     * Title dialog builder.
+     *
+     * @param title the title
+     * @return the dialog builder
+     */
+/*Set Title for AlertDialog*/
     public DialogBuilder title(String title) {
         alertParam.title = title;
         return this;
     }
 
-    /*Set Title resId for AlertDialog*/
+    /**
+     * Title dialog builder.
+     *
+     * @param resId the res id
+     * @return the dialog builder
+     */
+/*Set Title resId for AlertDialog*/
     public DialogBuilder title(int resId) {
         alertParam.titleResId = resId;
         return this;
     }
 
-    /*Set DialogType for AlertDialog*/
+    /**
+     * Dialog type dialog builder.
+     *
+     * @param dialogType the dialog type
+     * @return the dialog builder
+     */
+/*Set DialogType for AlertDialog*/
     public DialogBuilder dialogType(AlertParam.DialogType dialogType) {
         alertParam.dialogType = dialogType;
         return this;
     }
 
-    /*Set icon for AlertDialog*/
+    /**
+     * Icon dialog builder.
+     *
+     * @param icon the icon
+     * @return the dialog builder
+     */
+/*Set icon for AlertDialog*/
     public DialogBuilder icon(int icon) {
         alertParam.icon = icon;
         return this;
     }
 
-    /*Set Drawable for AlertDialog*/
+    /**
+     * Icon dialog builder.
+     *
+     * @param drawable the drawable
+     * @return the dialog builder
+     */
+/*Set Drawable for AlertDialog*/
     public DialogBuilder icon(Drawable drawable) {
         alertParam.drawable = drawable;
         return this;
     }
 
-    /*Set PositiveButton Message for AlertDialog*/
+    /**
+     * Positive button dialog builder.
+     *
+     * @param positiveButton the positive button
+     * @return the dialog builder
+     */
+/*Set PositiveButton Message for AlertDialog*/
     public DialogBuilder positiveButton(String positiveButton) {
         alertParam.positiveButton = positiveButton;
         return this;
     }
 
-    /*Set NegativeButton Message for AlertDialog*/
+    /**
+     * Negative button dialog builder.
+     *
+     * @param negativeButton the negative button
+     * @return the dialog builder
+     */
+/*Set NegativeButton Message for AlertDialog*/
     public DialogBuilder negativeButton(String negativeButton) {
         alertParam.negativeButton = negativeButton;
         return this;
     }
 
-    /*Set PositiveButton Message resId for AlertDialog*/
+    /**
+     * Positive button dialog builder.
+     *
+     * @param resId the res id
+     * @return the dialog builder
+     */
+/*Set PositiveButton Message resId for AlertDialog*/
     public DialogBuilder positiveButton(int resId) {
         alertParam.positiveButtonResId = resId;
         return this;
     }
 
-    /*Set NegativeButton Message resId for AlertDialog*/
+    /**
+     * Negative button dialog builder.
+     *
+     * @param resId the res id
+     * @return the dialog builder
+     */
+/*Set NegativeButton Message resId for AlertDialog*/
     public DialogBuilder negativeButton(int resId) {
         alertParam.negativeButtonResId = resId;
         return this;
     }
 
-    /*Set Listener for AlertDialog*/
+    /**
+     * Listener dialog builder.
+     *
+     * @param l the l
+     * @return the dialog builder
+     */
+/*Set Listener for AlertDialog*/
     public DialogBuilder listener(OnDialogProcess l) {
         alertParam.listener = l;
         return this;
     }
 
-    /*Set data bundle for AlertDialog*/
+    /**
+     * Bundle dialog builder.
+     *
+     * @param bundle the bundle
+     * @return the dialog builder
+     */
+/*Set data bundle for AlertDialog*/
     public DialogBuilder bundle(Bundle bundle) {
         alertParam.bundle = bundle;
         return this;
     }
 
-    /*get data bundle for AlertDialog*/
+    /**
+     * Gets bundle.
+     *
+     * @return the bundle
+     */
+/*get data bundle for AlertDialog*/
     public Bundle getBundle() {
         return alertParam.bundle;
     }
 
-    /* Set alertTask Id for Uniqueness */
+    /**
+     * Task id dialog builder.
+     *
+     * @param alertTaskId the alert task id
+     * @return the dialog builder
+     */
+/* Set alertTask Id for Uniqueness */
     public DialogBuilder taskId(int alertTaskId) {
         alertParam.alertTaskId = alertTaskId;
         return this;
     }
 
+    /**
+     * Cancelable dialog builder.
+     *
+     * @param isCancel the is cancel
+     * @return the dialog builder
+     */
     public DialogBuilder cancelable(boolean isCancel) {
         alertParam.isCancelable = isCancel;
         return this;
     }
 
+    /**
+     * List dialog builder.
+     *
+     * @param list the list
+     * @return the dialog builder
+     */
     public DialogBuilder list(String[] list) {
         alertParam.list = list;
         return this;
     }
 
+    /**
+     * Show.
+     */
     public void show() {
         // alert dialog functionality
         AlertDialog.Builder mAlert = new AlertDialog.Builder(alertParam.context);
@@ -192,6 +308,12 @@ public class DialogBuilder {
         private AlertParam alertParam;
         private int buttonType;
 
+        /**
+         * Instantiates a new On dialog click.
+         *
+         * @param alertParam the alert param
+         * @param buttonType the button type
+         */
         public OnDialogClick(AlertParam alertParam, int buttonType) {
             this.alertParam = alertParam;
             this.buttonType = buttonType;

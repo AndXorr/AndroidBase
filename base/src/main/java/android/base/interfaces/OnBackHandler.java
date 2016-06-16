@@ -1,8 +1,12 @@
 package android.base.interfaces;
 
+
 /**
- * Created by clickapps on 26/11/15.
+ * The interface On back handler.
  */
 public interface OnBackHandler {
+    /**
+     * On back pressed.
+     */
     void onBackPressed();
 }

@@ -17,7 +17,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as Widget instead of EditText.This class has also a custom
  * attribute which is used in xml file.
- * <p/>
+ * <p>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on EditText text.
  * </P>
@@ -26,12 +26,23 @@ import android.util.AttributeSet;
  */
 public class BaseEditText extends AppCompatEditText {
 
+    /**
+     * Instantiates a new Base edit text.
+     *
+     * @param context the context
+     */
     public BaseEditText(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
 
     }
 
+    /**
+     * Instantiates a new Base edit text.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub

@@ -17,17 +17,42 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
+
 /**
- * Created by Sahni on 28-11-2015.
+ * The type Tint utils.
  */
 public class TintUtils {
+    private TintUtils() {
 
+    }
+
+    /**
+     * The type Theme resolver.
+     */
     public static class ThemeResolver {
+        private ThemeResolver() {
 
+        }
+
+        /**
+         * Gets color.
+         *
+         * @param context the context
+         * @param attr    the attr
+         * @return the color
+         */
         public static int getColor(Context context, @AttrRes int attr) {
             return getColor(context, attr, 0);
         }
 
+        /**
+         * Gets color.
+         *
+         * @param context      the context
+         * @param attr         the attr
+         * @param defaultColor the default color
+         * @return the color
+         */
         public static int getColor(Context context, @AttrRes int attr, int defaultColor) {
             TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
             try {
@@ -38,6 +63,12 @@ public class TintUtils {
         }
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param radioButton the radio button
+     * @param color       the color
+     */
     public static void setTint(RadioButton radioButton, int color) {
         ColorStateList sl = new ColorStateList(new int[][]{
                 new int[]{-android.R.attr.state_checked},
@@ -55,6 +86,12 @@ public class TintUtils {
         }
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param seekBar the seek bar
+     * @param color   the color
+     */
     public static void setTint(SeekBar seekBar, int color) {
         ColorStateList s1 = ColorStateList.valueOf(color);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -81,10 +118,23 @@ public class TintUtils {
         }
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param progressBar the progress bar
+     * @param color       the color
+     */
     public static void setTint(ProgressBar progressBar, int color) {
         setTint(progressBar, color, false);
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param progressBar       the progress bar
+     * @param color             the color
+     * @param skipIndeterminate the skip indeterminate
+     */
     public static void setTint(ProgressBar progressBar, int color, boolean skipIndeterminate) {
         ColorStateList sl = ColorStateList.valueOf(color);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -119,6 +169,12 @@ public class TintUtils {
         return new ColorStateList(states, colors);
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param editText the edit text
+     * @param color    the color
+     */
     public static void setTint(EditText editText, int color) {
         ColorStateList editTextColorStateList = createEditTextColorStateList(editText.getContext(), color);
         if (editText instanceof AppCompatEditText) {
@@ -128,6 +184,12 @@ public class TintUtils {
         }
     }
 
+    /**
+     * Sets tint.
+     *
+     * @param box   the box
+     * @param color the color
+     */
     public static void setTint(CheckBox box, int color) {
         ColorStateList sl = new ColorStateList(new int[][]{
                 new int[]{-android.R.attr.state_checked},

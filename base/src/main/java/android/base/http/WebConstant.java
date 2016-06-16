@@ -1,8 +1,12 @@
 package android.base.http;
 
+
 /**
- * Created by clickapps on 20/4/16.
+ * The type Web constant.
  */
 public class WebConstant {
+    /**
+     * The constant BASE_URL.
+     */
     public static String BASE_URL =  "";
 }

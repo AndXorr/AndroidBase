@@ -46,6 +46,9 @@ import java.util.ArrayList;
  */
 public class GridViewWithHeaderAndFooter extends GridView {
 
+    /**
+     * The constant DEBUG.
+     */
     public static boolean DEBUG = false;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
@@ -59,6 +62,9 @@ public class GridViewWithHeaderAndFooter extends GridView {
          * The view to add to the grid
          */
         public View view;
+        /**
+         * The View container.
+         */
         public ViewGroup viewContainer;
         /**
          * The data backing the view. This is returned from {@link ListAdapter#getItem(int)}.
@@ -84,16 +90,34 @@ public class GridViewWithHeaderAndFooter extends GridView {
     private void initHeaderGridView() {
     }
 
+    /**
+     * Instantiates a new Grid view with header and footer.
+     *
+     * @param context the context
+     */
     public GridViewWithHeaderAndFooter(Context context) {
         super(context);
         initHeaderGridView();
     }
 
+    /**
+     * Instantiates a new Grid view with header and footer.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public GridViewWithHeaderAndFooter(Context context, AttributeSet attrs) {
         super(context, attrs);
         initHeaderGridView();
     }
 
+    /**
+     * Instantiates a new Grid view with header and footer.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public GridViewWithHeaderAndFooter(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initHeaderGridView();
@@ -117,7 +141,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     /**
      * Do not call this method unless you know how it works.
      *
-     * @param clipChildren
+     * @param clipChildren the clip children
      */
     public void setClipChildrenSupper(boolean clipChildren) {
         super.setClipChildren(false);
@@ -127,7 +151,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
      * Add a fixed view to appear at the top of the grid. If addHeaderView is
      * called more than once, the views will appear in the order they were
      * added. Views added using this call can take focus if they want.
-     * <p/>
+     * <p>
      * NOTE: Call this before calling setAdapter. This is so HeaderGridView can wrap
      * the supplied cursor with one that will also account for header views.
      *
@@ -141,7 +165,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
      * Add a fixed view to appear at the top of the grid. If addHeaderView is
      * called more than once, the views will appear in the order they were
      * added. Views added using this call can take focus if they want.
-     * <p/>
+     * <p>
      * NOTE: Call this before calling setAdapter. This is so HeaderGridView can wrap
      * the supplied cursor with one that will also account for header views.
      *
@@ -178,10 +202,22 @@ public class GridViewWithHeaderAndFooter extends GridView {
         }
     }
 
+    /**
+     * Add footer view.
+     *
+     * @param v the v
+     */
     public void addFooterView(View v) {
         addFooterView(v, null, true);
     }
 
+    /**
+     * Add footer view.
+     *
+     * @param v            the v
+     * @param data         the data
+     * @param isSelectable the is selectable
+     */
     public void addFooterView(View v, Object data, boolean isSelectable) {
         ListAdapter mAdapter = getAdapter();
         if (mAdapter != null && !(mAdapter instanceof HeaderViewGridAdapter)) {
@@ -210,10 +246,20 @@ public class GridViewWithHeaderAndFooter extends GridView {
         }
     }
 
+    /**
+     * Gets header view count.
+     *
+     * @return the header view count
+     */
     public int getHeaderViewCount() {
         return mHeaderViewInfos.size();
     }
 
+    /**
+     * Gets footer view count.
+     *
+     * @return the footer view count
+     */
     public int getFooterViewCount() {
         return mFooterViewInfos.size();
     }
@@ -222,8 +268,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
      * Removes a previously-added header view.
      *
      * @param v The view to remove
-     * @return true if the view was removed, false if the view was not a header
-     * view
+     * @return true if the view was removed, false if the view was not a header view
      */
     public boolean removeHeaderView(View v) {
         if (mHeaderViewInfos.size() > 0) {
@@ -242,8 +287,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
      * Removes a previously-added footer view.
      *
      * @param v The view to remove
-     * @return true if the view was removed, false if the view was not a header
-     * view
+     * @return true if the view was removed, false if the view was not a header view
      */
     public boolean removeFooterView(View v) {
         if (mFooterViewInfos.size() > 0) {
@@ -308,10 +352,19 @@ public class GridViewWithHeaderAndFooter extends GridView {
         mViewForMeasureRowHeight = null;
     }
 
+    /**
+     * Invalidate row height.
+     */
     public void invalidateRowHeight() {
         mRowHeight = -1;
     }
 
+    /**
+     * Gets header height.
+     *
+     * @param row the row
+     * @return the header height
+     */
     public int getHeaderHeight(int row) {
         if (row >= 0) {
             return mHeaderViewInfos.get(row).view.getMeasuredHeight();
@@ -360,6 +413,11 @@ public class GridViewWithHeaderAndFooter extends GridView {
         return value;
     }
 
+    /**
+     * Gets row height.
+     *
+     * @return the row height
+     */
     public int getRowHeight() {
         if (mRowHeight > 0) {
             return mRowHeight;
@@ -388,6 +446,9 @@ public class GridViewWithHeaderAndFooter extends GridView {
         return mRowHeight;
     }
 
+    /**
+     * Try to scroll to bottom smoothly.
+     */
     @TargetApi(11)
     public void tryToScrollToBottomSmoothly() {
         int lastPos = getAdapter().getCount() - 1;
@@ -398,6 +459,11 @@ public class GridViewWithHeaderAndFooter extends GridView {
         }
     }
 
+    /**
+     * Try to scroll to bottom smoothly.
+     *
+     * @param duration the duration
+     */
     @TargetApi(11)
     public void tryToScrollToBottomSmoothly(int duration) {
         int lastPos = getAdapter().getCount() - 1;
@@ -427,7 +493,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     /**
      * Return original adapter for convenience.
      *
-     * @return
+     * @return original adapter
      */
     public ListAdapter getOriginalAdapter() {
         return mOriginalAdapter;
@@ -438,6 +504,11 @@ public class GridViewWithHeaderAndFooter extends GridView {
      */
     private class FullWidthFixedViewLayout extends FrameLayout {
 
+        /**
+         * Instantiates a new Full width fixed view layout.
+         *
+         * @param context the context
+         */
         public FullWidthFixedViewLayout(Context context) {
             super(context);
         }
@@ -485,20 +556,39 @@ public class GridViewWithHeaderAndFooter extends GridView {
         // or headers changing, which changes the number of placeholders needed
         private final DataSetObservable mDataSetObservable = new DataSetObservable();
         private final ListAdapter mAdapter;
+        /**
+         * The Empty info list.
+         */
         static final ArrayList<FixedViewInfo> EMPTY_INFO_LIST =
                 new ArrayList<>();
 
-        // This ArrayList is assumed to NOT be null.
+        /**
+         * The M header view infos.
+         */
+// This ArrayList is assumed to NOT be null.
         ArrayList<FixedViewInfo> mHeaderViewInfos;
+        /**
+         * The M footer view infos.
+         */
         ArrayList<FixedViewInfo> mFooterViewInfos;
         private int mNumColumns = 1;
         private int mRowHeight = -1;
+        /**
+         * The M are all fixed views selectable.
+         */
         boolean mAreAllFixedViewsSelectable;
         private final boolean mIsFilterable;
         private boolean mCachePlaceHoldView = true;
         // From Recycle Bin or calling getView, this a question...
         private boolean mCacheFirstHeaderView = false;
 
+        /**
+         * Instantiates a new Header view grid adapter.
+         *
+         * @param headerViewInfos the header view infos
+         * @param footViewInfos   the foot view infos
+         * @param adapter         the adapter
+         */
         public HeaderViewGridAdapter(ArrayList<FixedViewInfo> headerViewInfos, ArrayList<FixedViewInfo> footViewInfos, ListAdapter adapter) {
             mAdapter = adapter;
             mIsFilterable = adapter instanceof Filterable;
@@ -517,6 +607,11 @@ public class GridViewWithHeaderAndFooter extends GridView {
                     && areAllListInfosSelectable(mFooterViewInfos);
         }
 
+        /**
+         * Sets num columns.
+         *
+         * @param numColumns the num columns
+         */
         public void setNumColumns(int numColumns) {
             if (numColumns < 1) {
                 return;
@@ -527,14 +622,29 @@ public class GridViewWithHeaderAndFooter extends GridView {
             }
         }
 
+        /**
+         * Sets row height.
+         *
+         * @param height the height
+         */
         public void setRowHeight(int height) {
             mRowHeight = height;
         }
 
+        /**
+         * Gets headers count.
+         *
+         * @return the headers count
+         */
         public int getHeadersCount() {
             return mHeaderViewInfos.size();
         }
 
+        /**
+         * Gets footers count.
+         *
+         * @return the footers count
+         */
         public int getFootersCount() {
             return mFooterViewInfos.size();
         }
@@ -561,6 +671,12 @@ public class GridViewWithHeaderAndFooter extends GridView {
             return true;
         }
 
+        /**
+         * Remove header boolean.
+         *
+         * @param v the v
+         * @return the boolean
+         */
         public boolean removeHeader(View v) {
             for (int i = 0; i < mHeaderViewInfos.size(); i++) {
                 FixedViewInfo info = mHeaderViewInfos.get(i);
@@ -575,6 +691,12 @@ public class GridViewWithHeaderAndFooter extends GridView {
             return false;
         }
 
+        /**
+         * Remove footer boolean.
+         *
+         * @param v the v
+         * @return the boolean
+         */
         public boolean removeFooter(View v) {
             for (int i = 0; i < mFooterViewInfos.size(); i++) {
                 FixedViewInfo info = mFooterViewInfos.get(i);
@@ -845,6 +967,9 @@ public class GridViewWithHeaderAndFooter extends GridView {
             return mAdapter;
         }
 
+        /**
+         * Notify data set changed.
+         */
         public void notifyDataSetChanged() {
             mDataSetObservable.notifyChanged();
         }

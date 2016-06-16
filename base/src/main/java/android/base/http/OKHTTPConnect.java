@@ -24,15 +24,24 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+
 /**
- * Created by Amit Sahni on 25-06-2015.
+ * The type Okhttp connect.
  */
 public class OKHTTPConnect {
+    /**
+     * The constant JSON.
+     */
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static final MediaType MEDIA_TYPE_IMAGE = MediaType.parse("image/*");
     private OkHttpClient client = new OkHttpClient();
 
+    /**
+     * Instantiates a new Okhttp connect.
+     *
+     * @param param the param
+     */
     public OKHTTPConnect(WebParam param) {
         OkHttpClient.Builder builder = client.newBuilder();
         builder.connectTimeout(10, TimeUnit.SECONDS)
@@ -228,6 +237,11 @@ public class OKHTTPConnect {
     private class Callback implements okhttp3.Callback {
         private WebParam webParam;
 
+        /**
+         * Instantiates a new Callback.
+         *
+         * @param webParam the web param
+         */
         public Callback(WebParam webParam) {
             this.webParam = webParam;
         }

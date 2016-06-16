@@ -1,14 +1,12 @@
 package android.base.fragment;
 
-import android.app.Fragment;
-import android.base.R;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+
 
 /**
- * Created by clickapps on 20/7/15.
+ * The type Fragment manager.
  */
 public class FragmentManager {
     private static volatile FragmentManager sFragmentManager;
@@ -17,6 +15,11 @@ public class FragmentManager {
         // private constructor
     }
 
+    /**
+     * Get fragment manager.
+     *
+     * @return the fragment manager
+     */
     public static FragmentManager get() {
         if (sFragmentManager == null) {
             synchronized (FragmentManager.class) {
@@ -28,6 +31,13 @@ public class FragmentManager {
         return sFragmentManager;
     }
 
+    /**
+     * With builder.
+     *
+     * @param context   the context
+     * @param replaceId the replace id
+     * @return the builder
+     */
     public static Builder with(@NonNull FragmentActivity context, @IdRes int replaceId) {
         return new Builder(context, replaceId);
     }

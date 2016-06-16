@@ -17,14 +17,32 @@ public class BaseRecyclerView extends RecyclerView {
     private View emptyView;
     private OnLoadMoreListener loadMoreListener;
 
+    /**
+     * Instantiates a new Base recycler view.
+     *
+     * @param context the context
+     */
     public BaseRecyclerView(Context context) {
         super(context);
     }
 
+    /**
+     * Instantiates a new Base recycler view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * Instantiates a new Base recycler view.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public BaseRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
@@ -72,14 +90,33 @@ public class BaseRecyclerView extends RecyclerView {
         checkIfEmpty();
     }
 
+    /**
+     * Sets empty view.
+     *
+     * @param emptyView the empty view
+     */
     public void setEmptyView(@NonNull View emptyView) {
         this.emptyView = emptyView;
         checkIfEmpty();
     }
 
     private boolean loading = false;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
+    /**
+     * The Past visibles items.
+     */
+    int pastVisiblesItems, /**
+     * The Visible item count.
+     */
+    visibleItemCount, /**
+     * The Total item count.
+     */
+    totalItemCount;
 
+    /**
+     * Sets on load more listener.
+     *
+     * @param onLoadMoreListener the on load more listener
+     */
     public void setOnLoadMoreListener(@NonNull final OnLoadMoreListener onLoadMoreListener) {
         loadMoreListener = onLoadMoreListener;
         this.addOnScrollListener(scrollListener);

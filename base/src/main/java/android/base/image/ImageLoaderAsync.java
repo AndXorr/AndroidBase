@@ -31,13 +31,31 @@ public class ImageLoaderAsync {
 
     // ImageLoaderAsync
     private static ImageLoaderAsync instance;
-    // DisplayImageOption
+    /**
+     * The constant mDisplayImageOptions.
+     */
+// DisplayImageOption
     protected static DisplayImageOptions mDisplayImageOptions;
+    /**
+     * The constant WEB.
+     */
     protected static String WEB = "http://"; // from Web
+    /**
+     * The constant SDCARD.
+     */
     protected static String SDCARD = "file:///"; // from SD card
+    /**
+     * The constant CONTENT.
+     */
     protected static String CONTENT = "content://"; // from content
-    // provider
+    /**
+     * The constant ASSETS.
+     */
+// provider
     protected static String ASSETS = "assets://"; // from assets
+    /**
+     * The constant DRAWABLE.
+     */
     protected static String DRAWABLE = "drawable://";// from drawables
     // (only images,
     // non-9patch)
@@ -51,7 +69,6 @@ public class ImageLoaderAsync {
      * return already created
      *
      * @param context {@link Context}
-     * @param
      * @return {@link ImageLoaderAsync}
      */
     public static synchronized ImageLoaderAsync getInstance(Context context) {
@@ -115,6 +132,13 @@ public class ImageLoaderAsync {
         return mDisplayImageOptions;
     }
 
+    /**
+     * Gets local saved path.
+     *
+     * @param url     the url
+     * @param context the context
+     * @return the local saved path
+     */
     public File getLocalSavedPath(String url, Context context) {
         File file = DiskCacheUtils.findInCache(url, getImageLoader().getDiskCache());
         if (file == null) return null;
@@ -129,7 +153,7 @@ public class ImageLoaderAsync {
      * @param imageUri Image URI (i.e. "http://site.com/image.png",
      * @param width    set width of image
      * @param height   set height of image
-     * @return bitmap
+     * @return bitmap bitmap sync
      */
     public final Bitmap getBitmapSync(String imageUri, int width, int height) {
         ImageSize size = new ImageSize(width, height);
@@ -145,7 +169,7 @@ public class ImageLoaderAsync {
      * @param imageUri Image URI (i.e. "file:///mnt/sdcard/image.png")
      * @param width    set width of image
      * @param height   set height of image
-     * @return bitmap
+     * @return bitmap bitmap file sync
      */
     public final Bitmap getBitmapFileSync(String imageUri, int width,
                                           int height) {
@@ -168,6 +192,9 @@ public class ImageLoaderAsync {
         DiskCacheUtils.removeFromCache(key, ImageLoader.getInstance().getDiskCache());
     }
 
+    /**
+     * Clear whole cache.
+     */
     public void clearWholeCache() {
         getImageLoader().clearDiskCache();
         getImageLoader().clearMemoryCache();
@@ -175,6 +202,8 @@ public class ImageLoaderAsync {
 
     /**
      * This method is used to setImage on AsyncImageView
+     *
+     * @param imageParam the image param
      */
     public void setImage(final ImageParam imageParam) {
         getImageLoader().displayImage(imageParam.url, imageParam.imageView,

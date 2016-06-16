@@ -13,14 +13,23 @@ import android.widget.ImageView;
  */
 public class BaseCheckableImageView extends ImageView implements Checkable {
 
+    /**
+     * Instantiates a new Base checkable image view.
+     *
+     * @param context the context
+     */
     public BaseCheckableImageView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
     }
 
+    /**
+     * Instantiates a new Base checkable image view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseCheckableImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stub
 
     }
 

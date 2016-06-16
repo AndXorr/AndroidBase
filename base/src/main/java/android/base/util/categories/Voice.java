@@ -7,21 +7,24 @@ import android.speech.RecognizerIntent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Voice.
+ */
 public class Voice {
+	/**
+	 * Instantiates a new Voice.
+	 */
 	protected Voice() {
 	}
-	
+
 	/**
 	 * Start google activity of speechRecognition (needed on
 	 * onActivityResult(int requestCode, int resultCode, Intent data) to call
 	 * getSpeechRecognitionResults() to get the results)
-	 * 
-	 * @param activity
-	 *            - activity
-	 * @param maxResults
-	 *            - Max number of results that you want to get
-	 * @param text
-	 *            - what will ask to user when activity start
+	 *
+	 * @param activity   - activity
+	 * @param maxResults - Max number of results that you want to get
+	 * @param text       - what will ask to user when activity start
 	 */
 	public static void speechRecognition(final Activity activity, int maxResults, String text) {
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -35,15 +38,11 @@ public class Voice {
 	/**
 	 * Get all results from the Google Speech Recognition activity (DO NOT FORGET call this function on
 	 * onActivityResult())
-	 * 
-	 * @param requestCode
-	 *            - onActivityResult request code
-	 * @param resultCode
-	 *            - onActivityResult result code
-	 * @param data
-	 *            - onActivityResult Intent data
-	 * @return ArrayList<String> with all results or null if was not possible to
-	 *         get any results
+	 *
+	 * @param requestCode - onActivityResult request code
+	 * @param resultCode  - onActivityResult result code
+	 * @param data        - onActivityResult Intent data
+	 * @return ArrayList<String>  with all results or null if was not possible to         get any results
 	 */
 	public static ArrayList<String> getSpeechRecognitionResults(int requestCode, int resultCode, Intent data) {
 		ArrayList<String> matches = null;
@@ -61,18 +60,12 @@ public class Voice {
 	 * Get the first result that matches the Result List from Google Speech
 	 * Recognition activity (DO NOT FORGET call this function on onActivityResult()) and the Dictionary
 	 * given
-	 * 
-	 * @param requestCode
-	 *            - onActivityResult request code
-	 * @param resultCode
-	 *            - onActivityResult result code
-	 * @param data
-	 *            - onActivityResult Intent data
-	 * @param array
-	 *            - Dictionary with all keywords
-	 * 
-	 * @return String with the first result matched or null if was not possible
-	 *         to get any result
+	 *
+	 * @param requestCode - onActivityResult request code
+	 * @param resultCode  - onActivityResult result code
+	 * @param data        - onActivityResult Intent data
+	 * @param array       - Dictionary with all keywords
+	 * @return String with the first result matched or null if was not possible         to get any result
 	 */
 	public static String getSpeechRecognitionResultFromDicionary(int requestCode, int resultCode, Intent data, ArrayList<String> array) {
 		ArrayList<String> matches = null;
@@ -94,13 +87,10 @@ public class Voice {
 	/**
 	 * Get first result from the Google Speech Recognition activity (DO NOT FORGET call this function on
 	 * onActivityResult())
-	 * 
-	 * @param requestCode
-	 *            - onActivityResult request code
-	 * @param resultCode
-	 *            - onActivityResult result code
-	 * @param data
-	 *            - onActivityResult Intent data
+	 *
+	 * @param requestCode - onActivityResult request code
+	 * @param resultCode  - onActivityResult result code
+	 * @param data        - onActivityResult Intent data
 	 * @return string containing the first result of what was recognized
 	 */
 	public static String getSpeechRecognitionFirstResult(int requestCode, int resultCode, Intent data) {

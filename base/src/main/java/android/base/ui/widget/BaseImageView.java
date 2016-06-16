@@ -23,17 +23,33 @@ import android.util.AttributeSet;
  */
 public class BaseImageView extends AppCompatImageView {
 
+    /**
+     * Instantiates a new Base image view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stub
         init(attrs);
     }
 
+    /**
+     * Instantiates a new Base image view.
+     *
+     * @param context the context
+     */
     public BaseImageView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
     }
 
+    /**
+     * Instantiates a new Base image view.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public BaseImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);

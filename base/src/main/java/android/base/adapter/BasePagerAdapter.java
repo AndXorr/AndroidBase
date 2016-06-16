@@ -3,8 +3,9 @@ package android.base.adapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 
+
 /**
- * Created by Sahni on 19-12-2015.
+ * The type Base pager adapter.
  */
 public class BasePagerAdapter extends PagerAdapter {
 

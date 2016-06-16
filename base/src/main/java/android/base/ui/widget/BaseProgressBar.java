@@ -15,10 +15,21 @@ import android.widget.ProgressBar;
  * Created by clickapps on 3/7/15.
  */
 public class BaseProgressBar extends ProgressBar {
+    /**
+     * Instantiates a new Base progress bar.
+     *
+     * @param context the context
+     */
     public BaseProgressBar(Context context) {
         super(context);
     }
 
+    /**
+     * Instantiates a new Base progress bar.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
@@ -34,6 +45,11 @@ public class BaseProgressBar extends ProgressBar {
         }
     }
 
+    /**
+     * Sets indeterminate tint.
+     *
+     * @param resId the res id
+     */
     public void setIndeterminateTint(int resId) {
         Drawable d = getIndeterminateDrawable();
         if (d != null && resId != -1) {

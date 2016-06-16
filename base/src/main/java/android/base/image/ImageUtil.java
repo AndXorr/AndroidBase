@@ -11,8 +11,9 @@ import android.widget.ProgressBar;
 
 import java.util.Map;
 
+
 /**
- * Created by Sahni on 17-11-2015.
+ * The type Image util.
  */
 public class ImageUtil {
     private static volatile ImageUtil sImageUtil;
@@ -21,6 +22,11 @@ public class ImageUtil {
 
     }
 
+    /**
+     * Get image util.
+     *
+     * @return the image util
+     */
     public static ImageUtil get() {
         if (sImageUtil == null) {
             synchronized (ImageUtil.class) {
@@ -32,10 +38,24 @@ public class ImageUtil {
         return sImageUtil;
     }
 
+    /**
+     * With builder.
+     *
+     * @param context the context
+     * @param url     the url
+     * @return the builder
+     */
     public static Builder with(@NonNull Context context, @NonNull String url) {
         return new Builder(context, url);
     }
 
+    /**
+     * With builder.
+     *
+     * @param context the context
+     * @param url     the url
+     * @return the builder
+     */
     public static Builder with(@NonNull Activity context, @NonNull String url) {
         return new Builder(context, url);
     }

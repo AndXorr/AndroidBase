@@ -10,8 +10,17 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 
 
+/**
+ * The type Base radio button.
+ */
 public class BaseRadioButton extends AppCompatRadioButton {
 
+    /**
+     * Instantiates a new Base radio button.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub

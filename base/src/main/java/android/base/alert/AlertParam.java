@@ -12,42 +12,150 @@ import android.widget.Toast;
 
 
 /**
- * Created by Sahni on 28-07-2015.
+ * The type Alert param.
  */
 public class AlertParam {
+    /**
+     * The Message.
+     */
     protected String message = "";
+    /**
+     * The Context.
+     */
     protected Context context;
-    protected int messageResId = 0, duration = Toast.LENGTH_SHORT;
-    //    Dialog class
+    /**
+     * The Message res id.
+     */
+    protected int messageResId = 0, /**
+     * The Duration.
+     */
+    duration = Toast.LENGTH_SHORT;
+    /**
+     * The constant ITEM.
+     */
+//    Dialog class
     protected static final String ITEM = "item";
+    /**
+     * The Title.
+     */
     protected String title = "";
+    /**
+     * The Title res id.
+     */
     protected int titleResId = 0;
+    /**
+     * The Alert task id.
+     */
     protected int alertTaskId = 0;
+    /**
+     * The Dialog type.
+     */
     protected DialogType dialogType = DialogType.SINGLE_OPTION;
+    /**
+     * The Listener.
+     */
     protected OnDialogProcess listener;
+    /**
+     * The Icon.
+     */
     protected int icon = 0;
+    /**
+     * The Drawable.
+     */
     protected Drawable drawable;
-    protected String positiveButton, negativeButton;
-    protected int positiveButtonResId, negativeButtonResId;
+    /**
+     * The Positive button.
+     */
+    protected String positiveButton, /**
+     * The Negative button.
+     */
+    negativeButton;
+    /**
+     * The Positive button res id.
+     */
+    protected int positiveButtonResId, /**
+     * The Negative button res id.
+     */
+    negativeButtonResId;
+    /**
+     * The Bundle.
+     */
     protected Bundle bundle;
+    /**
+     * The Is cancelable.
+     */
     protected boolean isCancelable = true;
+    /**
+     * The List.
+     */
     protected String[] list;
 
+    /**
+     * The enum Dialog type.
+     */
     public enum DialogType {
-        SINGLE_OPTION, DOUBLE_OPTION, DIALOG_LIST
+        /**
+         * Single option dialog type.
+         */
+        SINGLE_OPTION, /**
+         * Double option dialog type.
+         */
+        DOUBLE_OPTION, /**
+         * Dialog list dialog type.
+         */
+        DIALOG_LIST
     }
 
-    //    SnackBuilder class
+    /**
+     * The Activity context.
+     */
+//    SnackBuilder class
     protected Activity activityContext;
+    /**
+     * The Action message.
+     */
     protected String actionMessage = "";
-    protected int actionMessageResId, actionMessageMaxLine = -1;
+    /**
+     * The Action message res id.
+     */
+    protected int actionMessageResId, /**
+     * The Action message max line.
+     */
+    actionMessageMaxLine = -1;
+    /**
+     * The Snack bar view.
+     */
     protected View snackBarView;
-    protected int actionColorResId = R.color.colorPrimary_base, textColor = R.color.colorPrimary_base;
+    /**
+     * The Action color res id.
+     */
+    protected int actionColorResId = R.color.colorPrimary_base, /**
+     * The Text color.
+     */
+    textColor = R.color.colorPrimary_base;
+    /**
+     * The Action background res id.
+     */
     protected int actionBackgroundResId = R.color.colorPrimaryDark_base;
+    /**
+     * The Snack bar duration.
+     */
     protected int snackBarDuration = Snackbar.LENGTH_LONG;
+    /**
+     * The On snack bar action listener.
+     */
     protected OnSnackBarActionListener onSnackBarActionListener;
 
+    /**
+     * The interface On snack bar action listener.
+     */
     public interface OnSnackBarActionListener {
+        /**
+         * On snack bar action clicked.
+         *
+         * @param uniqueId the unique id
+         * @param view     the view
+         */
         void onSnackBarActionClicked(int uniqueId, View view);
     }
 }

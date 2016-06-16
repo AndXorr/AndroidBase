@@ -14,23 +14,26 @@ import java.util.List;
 
 /**
  * https://gist.github.com/sebnapi/fde648c17616d9d3bcde
- * <p/>
+ * <p>
  * If you extend this Adapter you are able to add a Header, a Footer or both
  * by a similar ViewHolder pattern as in RecyclerView.
- * <p/>
+ * <p>
  * If you want to omit changes to your class hierarchy you can try the Plug-and-Play
  * approach HeaderRecyclerViewAdapterV1.
- * <p/>
+ * <p>
  * Don't override (Be careful while overriding)
  * - onCreateViewHolder
  * - onBindViewHolder
  * - getItemCount
  * - getItemViewType
- * <p/>
+ * <p>
  * You need to override the abstract methods introduced by this class. This class
  * is not using generics as RecyclerView.Adapter make yourself sure to cast right.
- * <p/>
+ * <p>
  * TOTALLY UNTESTED - USE WITH CARE - HAVE FUN :)
+ *
+ * @param <VH> the type parameter
+ * @param <T>  the type parameter
  */
 public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends BaseRecyclerViewAdapter<VH, T> {
     private static final int TYPE_HEADER = Integer.MIN_VALUE;
@@ -50,11 +53,19 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
         }
     }
 
+    /**
+     * Sets hide footer.
+     */
     public void setHideFooter() {
         hideFooter = true;
         notifyDataSetChanged();
     }
 
+    /**
+     * Is hide footer boolean.
+     *
+     * @return the boolean
+     */
     public boolean isHideFooter() {
         return hideFooter;
     }
@@ -67,6 +78,11 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
         return this.list.get(pos);
     }
 
+    /**
+     * Instantiates a new Base header footer recycler view adapter.
+     *
+     * @param context the context
+     */
     public BaseHeaderFooterRecyclerViewAdapter(Context context) {
         super(context);
     }
@@ -120,29 +136,83 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
         return basicItemType + TYPE_ADAPTEE_OFFSET;
     }
 
+    /**
+     * Use header boolean.
+     *
+     * @return the boolean
+     */
     public abstract boolean useHeader();
 
+    /**
+     * On create header view holder vh.
+     *
+     * @param parent   the parent
+     * @param viewType the view type
+     * @return the vh
+     */
     public abstract VH onCreateHeaderViewHolder(ViewGroup parent, int viewType);
 
+    /**
+     * On bind header view.
+     *
+     * @param holder   the holder
+     * @param position the position
+     */
     public abstract void onBindHeaderView(VH holder, int position);
 
+    /**
+     * Use footer boolean.
+     *
+     * @return the boolean
+     */
     public abstract boolean useFooter();
 
+    /**
+     * On create footer view holder vh.
+     *
+     * @param parent   the parent
+     * @param viewType the view type
+     * @return the vh
+     */
     public abstract VH onCreateFooterViewHolder(ViewGroup parent, int viewType);
 
+    /**
+     * On bind footer view.
+     *
+     * @param holder   the holder
+     * @param position the position
+     */
     public abstract void onBindFooterView(VH holder, int position);
 
+    /**
+     * On create basic item view holder vh.
+     *
+     * @param parent   the parent
+     * @param viewType the view type
+     * @return the vh
+     */
     public abstract VH onCreateBasicItemViewHolder(ViewGroup parent, int viewType);
 
+    /**
+     * On bind basic item view.
+     *
+     * @param holder   the holder
+     * @param position the position
+     */
     public abstract void onBindBasicItemView(VH holder, int position);
 
+    /**
+     * Gets basic item count.
+     *
+     * @return the basic item count
+     */
     public abstract int getBasicItemCount();
 
     /**
      * make sure you don't use [Integer.MAX_VALUE-1, Integer.MAX_VALUE] as BasicItemViewType
      *
-     * @param position
-     * @return
+     * @param position the position
+     * @return basic item type
      */
     public abstract int getBasicItemType(int position);
 }

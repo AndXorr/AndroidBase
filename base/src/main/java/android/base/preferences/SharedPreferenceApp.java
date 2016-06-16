@@ -22,6 +22,8 @@ public class SharedPreferenceApp {
 
     /**
      * Parameterized Constructor is called
+     *
+     * @param context the context
      */
     public SharedPreferenceApp(@NonNull Context context) {
         pref = context.getSharedPreferences(getClass().getSimpleName(), 0);
@@ -33,7 +35,6 @@ public class SharedPreferenceApp {
      * Constructor as private
      */
     private SharedPreferenceApp() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -43,6 +44,7 @@ public class SharedPreferenceApp {
      *
      * @param key   Unique Key for a value
      * @param value Value to be stored
+     * @return the shared preference app
      */
     public SharedPreferenceApp putBoolean(String key, boolean value) {
         editor.putBoolean(key, value).commit();
@@ -56,6 +58,7 @@ public class SharedPreferenceApp {
      *
      * @param key   Unique Key for a value
      * @param value Value to be stored
+     * @return the shared preference app
      */
     public SharedPreferenceApp putString(String key, String value) {
         editor.putString(key, value).commit();
@@ -69,6 +72,7 @@ public class SharedPreferenceApp {
      *
      * @param key   Unique Key for a value
      * @param value Value to be stored
+     * @return the shared preference app
      */
     public SharedPreferenceApp putInt(String key, int value) {
         editor.putInt(key, value).commit();
@@ -82,6 +86,7 @@ public class SharedPreferenceApp {
      *
      * @param key   Unique Key for a value
      * @param value Value to be stored
+     * @return the shared preference app
      */
     public SharedPreferenceApp putLong(String key, long value) {
         editor.putLong(key, value).commit();
@@ -95,6 +100,7 @@ public class SharedPreferenceApp {
      *
      * @param key   Unique Key for a value
      * @param value Value to be stored
+     * @return the shared preference app
      */
     public SharedPreferenceApp putFloat(String key, float value) {
         editor.putFloat(key, value).commit();
@@ -108,6 +114,7 @@ public class SharedPreferenceApp {
      * </p>
      *
      * @param key set key that value needs to be removed.
+     * @return the shared preference app
      */
     public SharedPreferenceApp remove(String key) {
         editor.remove(key).commit();
@@ -116,6 +123,8 @@ public class SharedPreferenceApp {
 
     /**
      * This method will clear the whole preference.
+     *
+     * @return the shared preference app
      */
     public SharedPreferenceApp clearPref() {
         editor.clear().commit();
@@ -129,7 +138,7 @@ public class SharedPreferenceApp {
      *
      * @param key      retrieve by unique key
      * @param defValue give here defaultValue if not found defalutValue is assigned
-     * @return string
+     * @return string string
      */
     public String getString(String key, String defValue) {
         return pref.getString(key, defValue);
@@ -142,7 +151,7 @@ public class SharedPreferenceApp {
      *
      * @param key      retrieve by unique key
      * @param defValue give here defaultValue if not found defalutValue is assigned
-     * @return int
+     * @return int int
      */
     public int getInt(String key, int defValue) {
 
@@ -156,7 +165,7 @@ public class SharedPreferenceApp {
      *
      * @param key      retrieve by unique key
      * @param defValue give here defaultValue if not found defalutValue is assigned
-     * @return boolean
+     * @return boolean boolean
      */
     public boolean getBoolean(String key, boolean defValue) {
         return pref.getBoolean(key, defValue);
@@ -169,7 +178,7 @@ public class SharedPreferenceApp {
      *
      * @param key      retrieve by unique key
      * @param defValue give here defaultValue if not found defalutValue is assigned
-     * @return long
+     * @return long long
      */
     public long getLong(String key, long defValue) {
         return pref.getLong(key, defValue);
@@ -182,7 +191,7 @@ public class SharedPreferenceApp {
      *
      * @param key      retrieve by unique key
      * @param defValue give here defaultValue if not found defalutValue is assigned
-     * @return float
+     * @return float float
      */
     public float getFloat(String key, float defValue) {
         return pref.getFloat(key, defValue);
@@ -193,10 +202,21 @@ public class SharedPreferenceApp {
 //        editor.commit();
 //    }
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     public Map<String, ?> getAll() {
         return pref.getAll();
     }
 
+    /**
+     * Has preference boolean.
+     *
+     * @param key the key
+     * @return the boolean
+     */
     public boolean hasPreference(String key) {
         return pref.contains(key);
     }

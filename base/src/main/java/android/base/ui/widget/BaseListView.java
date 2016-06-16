@@ -26,16 +26,34 @@ public class BaseListView extends ListView {
 
     private BaseTextView baseTextView;
 
+    /**
+     * Instantiates a new Base list view.
+     *
+     * @param context the context
+     */
     public BaseListView(Context context) {
         super(context);
         init();
     }
 
+    /**
+     * Instantiates a new Base list view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
+    /**
+     * Instantiates a new Base list view.
+     *
+     * @param context      the context
+     * @param attrs        the attrs
+     * @param defStyleAttr the def style attr
+     */
     public BaseListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
@@ -47,7 +65,11 @@ public class BaseListView extends ListView {
         setFooterDividersEnabled(false);
     }
 
-    /* Set Empty view if no data is there */
+    /**
+     * Sets empty view.
+     *
+     * @param resId the res id
+     */
     public void setEmptyView(int resId) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.view_empty_base, null);
         baseTextView = (BaseTextView) view.findViewById(R.id.view_empty_baseTextView);
@@ -57,7 +79,11 @@ public class BaseListView extends ListView {
         setEmptyView(view);
     }
 
-    /* Set Empty view if no data is there */
+    /**
+     * Sets empty view.
+     *
+     * @param message the message
+     */
     public void setEmptyView(String message) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.view_empty_base, null);
         baseTextView = (BaseTextView) view.findViewById(R.id.view_empty_baseTextView);
@@ -67,16 +93,29 @@ public class BaseListView extends ListView {
         setEmptyView(view);
     }
 
+    /**
+     * Sets empty text.
+     *
+     * @param resId the res id
+     */
     public void setEmptyText(int resId) {
         if (baseTextView == null) return;
         baseTextView.setText(resId);
     }
 
+    /**
+     * Sets empty text.
+     *
+     * @param message the message
+     */
     public void setEmptyText(String message) {
         if (baseTextView == null) return;
         baseTextView.setText(message);
     }
 
+    /**
+     * Add footer view.
+     */
     public void addFooterView() {
         super.addFooterView(mView);
     }

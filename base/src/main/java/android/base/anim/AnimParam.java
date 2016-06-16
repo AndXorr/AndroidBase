@@ -9,22 +9,68 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
+
 /**
- * Created by clickapps on 9/12/15.
+ * The type Anim param.
  */
 public class AnimParam {
+    /**
+     * The View.
+     */
     protected View view;
+    /**
+     * The Context.
+     */
     protected Context context;
+    /**
+     * The Activity context.
+     */
     protected Activity activityContext;
-    protected int duration = AnimConstant.DURATION_DEFAULT, setX, setY;
-    protected float startRadius = 0, endRadius = 0;
+    /**
+     * The Duration.
+     */
+    protected int duration = AnimConstant.DURATION_DEFAULT, /**
+     * The Set x.
+     */
+    setX, /**
+     * The Set y.
+     */
+    setY;
+    /**
+     * The Start radius.
+     */
+    protected float startRadius = 0, /**
+     * The End radius.
+     */
+    endRadius = 0;
+    /**
+     * The Interpolator.
+     */
     protected TimeInterpolator interpolator = AnimConstant.TIME_INTERPOLATOR;
+    /**
+     * The Animator listener adapter.
+     */
     protected AnimatorListenerAdapter animatorListenerAdapter;
+    /**
+     * The Type.
+     */
     protected AnimType type;
+    /**
+     * The Pos x.
+     */
     protected AnimPos posX;
+    /**
+     * The Pos y.
+     */
     protected AnimPos posY;
 
+    /**
+     * The enum Anim type.
+     */
     public enum AnimType {
+        /**
+         * The Circular reveal.
+         */
         @SuppressWarnings("BUILD_VERSION_LOLLIPOP")CircularReveal {
             @Override
             public void animate(AnimParam animParam) {
@@ -41,10 +87,33 @@ public class AnimParam {
             }
         };
 
+        /**
+         * Animate.
+         *
+         * @param animParam the anim param
+         */
         public abstract void animate(AnimParam animParam);
     }
 
+    /**
+     * The enum Anim pos.
+     */
     public enum AnimPos {
-        LEFT, RIGHT, TOP, BOTTOM, CENTER
+        /**
+         * Left anim pos.
+         */
+        LEFT, /**
+         * Right anim pos.
+         */
+        RIGHT, /**
+         * Top anim pos.
+         */
+        TOP, /**
+         * Bottom anim pos.
+         */
+        BOTTOM, /**
+         * Center anim pos.
+         */
+        CENTER
     }
 }

@@ -11,8 +11,9 @@ import com.pubnub.api.PubnubException;
 
 import java.text.MessageFormat;
 
+
 /**
- * Created by clickapps on 5/2/16.
+ * The type Pub nub.
  */
 public class PubNub {
 
@@ -22,6 +23,11 @@ public class PubNub {
 
     private Pubnub pubnub;
 
+    /**
+     * Instantiates a new Pub nub.
+     *
+     * @param pubNubParam the pub nub param
+     */
     public PubNub(PubNubParam pubNubParam) {
         pubnub = new Pubnub(pubNubParam.publish_key, pubNubParam.subscribe_key,
                 pubNubParam.secret_key, pubNubParam.cipher_key, pubNubParam.ssl_on);
@@ -31,10 +37,20 @@ public class PubNub {
         pubnub.setAuthKey(pubNubParam.secret_key);
     }
 
+    /**
+     * Gets pub nub.
+     *
+     * @return the pub nub
+     */
     public Pubnub getPubNub() {
         return pubnub;
     }
 
+    /**
+     * Handle event.
+     *
+     * @param pubNubParam the pub nub param
+     */
     public void handleEvent(PubNubParam pubNubParam) {
         switch (pubNubParam.event) {
             case SUB:

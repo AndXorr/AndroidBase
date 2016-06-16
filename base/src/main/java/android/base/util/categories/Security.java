@@ -7,6 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The type Security.
+ */
 public class Security {
 
     /**
@@ -107,7 +110,7 @@ public class Security {
      * Calculate the MD5 of a given String
      *
      * @param string String to be MD5'ed
-     * @return MD5'ed String
+     * @return MD5 'ed String
      */
     public static String calculateMD5(String string) {
         byte[] hash;
@@ -136,7 +139,7 @@ public class Security {
      * Calculate the SHA-1 of a given String
      *
      * @param string String to be SHA1'ed
-     * @return SHA1'ed String
+     * @return SHA1 'ed String
      */
     public static String calculateSHA1(String string) {
         MessageDigest md = null;

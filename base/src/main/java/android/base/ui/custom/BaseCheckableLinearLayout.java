@@ -34,6 +34,12 @@ public class BaseCheckableLinearLayout extends LinearLayout implements Checkable
 
     private boolean mChecked = false;
 
+    /**
+     * Instantiates a new Base checkable linear layout.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseCheckableLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

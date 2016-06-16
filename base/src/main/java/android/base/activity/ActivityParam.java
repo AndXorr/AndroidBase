@@ -4,21 +4,73 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 
+
 /**
- * Created by Sahni on 10-11-2015.
+ * The type Activity param.
  */
 public class ActivityParam {
 
+    /**
+     * The Context.
+     */
     protected Activity context;
+    /**
+     * The Uri.
+     */
     protected Class<?> uri;
-    protected int enter = 0, exit = 0, requestCode = 0, flag = 0;
+    /**
+     * The Enter.
+     */
+    protected int enter = 0, /**
+     * The Exit.
+     */
+    exit = 0, /**
+     * The Request code.
+     */
+    requestCode = 0, /**
+     * The Flag.
+     */
+    flag = 0;
+    /**
+     * The Activity type.
+     */
     protected ActivityType activityType = ActivityType.START;
+    /**
+     * The Bundle.
+     */
     protected Bundle bundle;
+    /**
+     * The Activity options compat.
+     */
     protected ActivityOptionsCompat activityOptionsCompat;
 
-    protected boolean enableAnimation = false, isBackStack = false;
+    /**
+     * The Enable animation.
+     */
+    protected boolean enableAnimation = false, /**
+     * The Is back stack.
+     */
+    isBackStack = false;
 
+    /**
+     * The enum Activity type.
+     */
     public enum ActivityType {
-        START, START_RESULT, FINISH, START_FINISH, START_RESULT_FINISH
+        /**
+         * Start activity type.
+         */
+        START, /**
+         * Start result activity type.
+         */
+        START_RESULT, /**
+         * Finish activity type.
+         */
+        FINISH, /**
+         * Start finish activity type.
+         */
+        START_FINISH, /**
+         * Start result finish activity type.
+         */
+        START_RESULT_FINISH
     }
 }

@@ -3,16 +3,39 @@ package android.base.util.categories;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+/**
+ * The type Log.
+ */
 public class Log {
+    /**
+     * The constant VERBOSE.
+     */
     public static final int VERBOSE = android.util.Log.VERBOSE;
+    /**
+     * The constant DEBUG.
+     */
     public static final int DEBUG = android.util.Log.DEBUG;
+    /**
+     * The constant INFO.
+     */
     public static final int INFO = android.util.Log.INFO;
+    /**
+     * The constant WARN.
+     */
     public static final int WARN = android.util.Log.WARN;
+    /**
+     * The constant ERROR.
+     */
     public static final int ERROR = android.util.Log.ERROR;
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "log";
 
     /**
      * private constructor
+     *
+     * @param value the value
      */
 //	private log() {
 //	}
@@ -24,6 +47,7 @@ public class Log {
      * Sends an ERROR log message
      *
      * @param message The message you would like logged.
+     * @return the int
      */
     public static int e(String message) {
         return logger(ERROR, message);
@@ -34,6 +58,7 @@ public class Log {
      *
      * @param message   The message you would like logged.
      * @param throwable An exception to log
+     * @return the int
      */
     public static int e(String message, Throwable throwable) {
         return logger(ERROR, message, throwable);
@@ -43,6 +68,7 @@ public class Log {
      * Sends an INFO log message.
      *
      * @param message The message you would like logged.
+     * @return the int
      */
     public static int i(String message) {
         return logger(INFO, message);
@@ -53,6 +79,7 @@ public class Log {
      *
      * @param message   The message you would like logged.
      * @param throwable An exception to log
+     * @return the int
      */
     public static int i(String message, Throwable throwable) {
         return logger(INFO, message, throwable);
@@ -62,6 +89,7 @@ public class Log {
      * Sends a VERBBOSE log message.
      *
      * @param message The message you would like logged.
+     * @return the int
      */
     public static int v(String message) {
         return logger(VERBOSE, message);
@@ -72,6 +100,7 @@ public class Log {
      *
      * @param message   The message you would like logged.
      * @param throwable An exception to log
+     * @return the int
      */
     public static int v(String message, Throwable throwable) {
         return logger(VERBOSE, message, throwable);
@@ -81,6 +110,7 @@ public class Log {
      * Sends a WARNING log message.
      *
      * @param message The message you would like logged.
+     * @return the int
      */
     public static int w(String message) {
         return logger(WARN, message);
@@ -91,6 +121,7 @@ public class Log {
      *
      * @param message   The message you would like logged.
      * @param throwable An exception to log
+     * @return the int
      */
     public static int w(String message, Throwable throwable) {
         return logger(WARN, message, throwable);
@@ -100,6 +131,7 @@ public class Log {
      * Sends a DEBUG log message.
      *
      * @param message The message you would like logged.
+     * @return the int
      */
     public static int d(String message) {
         return logger(DEBUG, message);
@@ -110,6 +142,7 @@ public class Log {
      *
      * @param message   The message you would like logged.
      * @param throwable An exception to log
+     * @return the int
      */
     public static int d(String message, Throwable throwable) {
         return logger(DEBUG, message, throwable);
@@ -174,6 +207,12 @@ public class Log {
         return -1;
     }
 
+    /**
+     * Static fields.
+     *
+     * @param clazz the clazz
+     * @throws IllegalAccessException the illegal access exception
+     */
     public static void staticFields(Class<?> clazz) throws IllegalAccessException {
         for (Field f : clazz.getDeclaredFields()) {
             if (Modifier.isStatic(f.getModifiers())) {
@@ -185,6 +224,12 @@ public class Log {
         }
     }
 
+    /**
+     * Private fields.
+     *
+     * @param clazz the clazz
+     * @throws IllegalAccessException the illegal access exception
+     */
     public static void privateFields(Class<?> clazz) throws IllegalAccessException {
         for (Field f : clazz.getDeclaredFields()) {
             if (Modifier.isPrivate(f.getModifiers())) {

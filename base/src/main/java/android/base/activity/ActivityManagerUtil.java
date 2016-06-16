@@ -16,8 +16,9 @@ import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 
+
 /**
- * Created by clickapps on 24/11/15.
+ * The type Activity manager util.
  */
 public class ActivityManagerUtil {
     private static Activity sCurrentActivity;
@@ -26,6 +27,11 @@ public class ActivityManagerUtil {
         // Nothing
     }
 
+    /**
+     * Perform task.
+     *
+     * @param activityParam the activity param
+     */
     protected static void performTask(ActivityParam activityParam) {
         ActivityParam.ActivityType activityType = activityParam.activityType;
         switch (activityType) {
@@ -35,12 +41,13 @@ public class ActivityManagerUtil {
                 break;
             case START_RESULT:
             case START_RESULT_FINISH:
-
+                startResult(activityParam);
                 break;
             case FINISH:
                 finish(activityParam);
                 break;
             default:
+                // nothing happened
                 break;
         }
     }
@@ -72,8 +79,7 @@ public class ActivityManagerUtil {
 
     private static void startResult(ActivityParam activityParam) {
         Intent intent = new Intent(activityParam.context, activityParam.uri);
-        if (activityParam.flag == 0) {
-        } else {
+        if (activityParam.flag != 0) {
             intent.setFlags(activityParam.flag);
         }
         if (activityParam.bundle != null) {
@@ -95,17 +101,27 @@ public class ActivityManagerUtil {
 
     private static void finish(ActivityParam activityParam) {
         ActivityCompat.finishAfterTransition(activityParam.context);
-        if (!ApplicationUtils.System.isLollipop()) {
-            if (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)
-                activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
+        if (!ApplicationUtils.System.isLollipop()
+                && (activityParam.enableAnimation && activityParam.enter > 0 && activityParam.exit > 0)) {
+            activityParam.context.overridePendingTransition(activityParam.enter, activityParam.exit);
         }
     }
 
+    /**
+     * Gets transition manager.
+     *
+     * @return the transition manager
+     */
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static TransitionManager getTransitionManager() {
         return new TransitionManager();
     }
 
+    /**
+     * Gets slide.
+     *
+     * @return the slide
+     */
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static Slide getSlide() {
         Slide slide = new Slide();
@@ -113,17 +129,36 @@ public class ActivityManagerUtil {
         return slide;
     }
 
+    /**
+     * Gets slide.
+     *
+     * @param context the context
+     * @return the slide
+     */
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static Slide getSlide(Context context) {
         Transition transition = TransitionInflater.from(context).inflateTransition(R.transition.activity_slide);
         return (Slide) transition;
     }
 
+    /**
+     * Gets transition.
+     *
+     * @param context the context
+     * @param resId   the res id
+     * @return the transition
+     */
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static Transition getTransition(Context context, @TransitionRes int resId) {
         return TransitionInflater.from(context).inflateTransition(resId);
     }
 
+    /**
+     * Gets transition set.
+     *
+     * @param transition the transition
+     * @return the transition set
+     */
     @TargetApi(Constant.BUILD_VERSION_KITKAT)
     public static TransitionSet getTransitionSet(Transition... transition) {
         TransitionSet transitionSet = new TransitionSet();
@@ -133,6 +168,11 @@ public class ActivityManagerUtil {
         return transitionSet;
     }
 
+    /**
+     * Gets top activity.
+     *
+     * @return the top activity
+     */
     public static Activity getTopActivity() {
         return sCurrentActivity;
     }
@@ -140,7 +180,7 @@ public class ActivityManagerUtil {
     /**
      * Only set from BaseApplication
      *
-     * @param currentActivity
+     * @param currentActivity the current activity
      */
     @TargetApi(Constant.BUILD_VERSION_ICE_CREAM_SANDWICH)
     public static void setTopActivity(@NonNull Activity currentActivity) {

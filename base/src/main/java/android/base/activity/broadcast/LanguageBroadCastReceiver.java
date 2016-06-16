@@ -9,15 +9,30 @@ import android.content.Intent;
 
 /**
  * Created by clickapps on 24/2/16.
+ * <p class="note">Language change Broadcast is included in this {@link LanguageBroadCastReceiver}.
+ * Whenever language changes this broadcast hits and result will pass on to listener {@link OnRequestHandleListener} if having
+ * and also to {@link BaseActivityAppCompat}
+ * </p>
  */
 public class LanguageBroadCastReceiver extends BroadcastReceiver {
     private Activity mActivity;
     private OnRequestHandleListener mCallBack;
 
+    /**
+     * Instantiates a new Language broad cast receiver.
+     *
+     * @param activity the activity
+     */
     public LanguageBroadCastReceiver(Activity activity) {
         this.mActivity = activity;
     }
 
+    /**
+     * Instantiates a new Language broad cast receiver.
+     *
+     * @param activity the activity
+     * @param callBack the call back
+     */
     public LanguageBroadCastReceiver(Activity activity, OnRequestHandleListener callBack) {
         this.mActivity = activity;
         this.mCallBack = callBack;

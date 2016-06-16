@@ -5,12 +5,19 @@ import android.base.ui.custom.ProgressViewApplication;
 import android.base.dialog.BaseProgressDialog;
 import android.text.TextUtils;
 
+
 /**
- * Created by clickapps on 19/11/15.
+ * The type Web connect utils.
  */
 public class WebConnectUtils {
     private static final int DEFAULT_MESSAGE = R.string.loading;
 
+    /**
+     * Resolve progress dialog base progress dialog.
+     *
+     * @param webParam the web param
+     * @return the base progress dialog
+     */
     public static BaseProgressDialog resolveProgressDialog(WebParam webParam) {
         if (webParam.progressDialog == null) {
             BaseProgressDialog progressDialog = new ProgressViewApplication(webParam.context).getProgressDialog();

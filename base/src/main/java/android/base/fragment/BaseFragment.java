@@ -16,8 +16,7 @@ import android.view.ViewGroup;
  * application that will have common functionality define below :
  *
  * @author amit.singh
- * @method initUI method for initialize User Interface widgets
- * more.
+ * @method initUI method for initialize User Interface widgets more.
  * @implements onClick listener for click event with in the class components
  */
 public abstract class BaseFragment extends Fragment implements
@@ -29,6 +28,9 @@ public abstract class BaseFragment extends Fragment implements
         WebHandler.OnWebCallback {
 
 
+    /**
+     * The View.
+     */
     protected View view;
     private boolean enableBackHandle = false;
 
@@ -38,6 +40,11 @@ public abstract class BaseFragment extends Fragment implements
         return initUI(inflater, container);
     }
 
+    /**
+     * Sets enable back handle.
+     *
+     * @param enableBackHandle the enable back handle
+     */
     public void setEnableBackHandle(boolean enableBackHandle) {
         this.enableBackHandle = enableBackHandle;
     }
@@ -49,7 +56,7 @@ public abstract class BaseFragment extends Fragment implements
          */
         if (getActivity() instanceof BaseActivityAppCompat) {
             if (enableBackHandle)
-                ((BaseActivityAppCompat) getActivity()).backHandler = this;
+                ((BaseActivityAppCompat) getActivity()).setBackHandler(this);
         }
         super.onResume();
     }
@@ -77,6 +84,10 @@ public abstract class BaseFragment extends Fragment implements
     /**
      * Inflate View in this method back end called
      * {@link BaseFragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     *
+     * @param inflater  the inflater
+     * @param container the container
+     * @return the view
      */
     protected abstract View initUI(LayoutInflater inflater, ViewGroup container);
 

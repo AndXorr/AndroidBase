@@ -1,13 +1,29 @@
 package android.base.util.categories;
 
+
 /**
- * Created by nunofeliciano on 12/10/14.
+ * The type Location model.
  */
 public class LocationModel {
+    /**
+     * The Latitude.
+     */
     public Double latitude;
+    /**
+     * The Longitude.
+     */
     public Double longitude;
+    /**
+     * The Address.
+     */
     public String address;
+    /**
+     * The City.
+     */
     public String city;
+    /**
+     * The Country.
+     */
     public String country;
 
     @Override

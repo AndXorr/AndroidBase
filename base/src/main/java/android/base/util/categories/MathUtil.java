@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+/**
+ * The type Math util.
+ */
 public class MathUtil {
 
 	/**
@@ -21,11 +24,9 @@ public class MathUtil {
 
 	/**
 	 * Rounds a double value to a certain number of digits
-	 * 
-	 * @param toBeRounded
-	 *            number to be rounded
-	 * @param digits
-	 *            number of digits to be rounded
+	 *
+	 * @param toBeRounded number to be rounded
+	 * @param digits      number of digits to be rounded
 	 * @return the double rounded
 	 */
 	public static double round(double toBeRounded, int digits) {
@@ -44,9 +45,8 @@ public class MathUtil {
 
 	/**
 	 * Converts pounds to kilograms
-	 * 
-	 * @param weight
-	 *            to be converted
+	 *
+	 * @param weight to be converted
 	 * @return value converted
 	 */
 	public static double poundsToKg(double weight) {
@@ -55,9 +55,8 @@ public class MathUtil {
 
 	/**
 	 * Converts kilograms to pounds
-	 * 
-	 * @param weight
-	 *            to be converted
+	 *
+	 * @param weight to be converted
 	 * @return value converted
 	 */
 	public static double kgToPounds(double weight) {
@@ -66,9 +65,8 @@ public class MathUtil {
 
 	/**
 	 * Converts inches to centimeters
-	 * 
-	 * @param value
-	 *            to be converted
+	 *
+	 * @param inches the inches
 	 * @return value converted
 	 */
 	public static double inchesToCm(double inches) {
@@ -77,9 +75,8 @@ public class MathUtil {
 
 	/**
 	 * Converts centimeters to inches
-	 * 
-	 * @param value
-	 *            to be converted
+	 *
+	 * @param cm the cm
 	 * @return value converted
 	 */
 	public static double cmToInches(double cm) {
@@ -88,11 +85,9 @@ public class MathUtil {
 
 	/**
 	 * Returns a random integer between MIN inclusive and MAX inclusive.
-	 * 
-	 * @param min
-	 *            value inclusive
-	 * @param max
-	 *            value inclusive
+	 *
+	 * @param min value inclusive
+	 * @param max value inclusive
 	 * @return an int between MIN inclusive and MAX exclusive.
 	 */
 	public static int getRandomInteger(int min, int max) {
@@ -104,9 +99,8 @@ public class MathUtil {
 	 * Returns a random integer between 0 (Zero) inclusive and MAX inclusive. <br/>
 	 * Same as {@code getRandomInteger(0, max);} <br/>
 	 * See {@see RandomUtil#getRandomInteger(int, int)}
-	 * 
-	 * @param max
-	 *            value exclusive
+	 *
+	 * @param max value exclusive
 	 * @return an int between 0 inclusive and MAX inclusive.
 	 */
 	public static int getRandomInteger(int max) {
@@ -115,11 +109,9 @@ public class MathUtil {
 
 	/**
 	 * Returns a random double between MIN inclusive and MAX inclusive.
-	 * 
-	 * @param min
-	 *            value inclusive
-	 * @param max
-	 *            value inclusive
+	 *
+	 * @param min value inclusive
+	 * @param max value inclusive
 	 * @return an int between 0 inclusive and MAX exclusive.
 	 */
 	public static double getRandomDouble(double min, double max) {
@@ -131,9 +123,8 @@ public class MathUtil {
 	 * Returns a random double between 0 (Zero) inclusive and MAX inclusive. <br/>
 	 * Same as {@code getRandomDouble(0, max);} <br/>
 	 * See {@see RandomUtil#getRandomDouble(double, double)}
-	 * 
-	 * @param max
-	 *            value exclusive
+	 *
+	 * @param max value exclusive
 	 * @return an int between 0 inclusive and MAX inclusive.
 	 */
 	public static double getRandomDouble(double max) {
@@ -143,13 +134,10 @@ public class MathUtil {
 	/**
 	 * Get a random position(object) from an array of generic objects. <br/>
 	 * Using generics saves the trouble of casting the return object.
-	 * 
-	 * @param <T>
-	 *            the type of the array to get the object from
-	 * @param array
-	 *            the array with objects
-	 * @return random object from given array or null of array is either null or
-	 *         empty
+	 *
+	 * @param <T>   the type of the array to get the object from
+	 * @param array the array with objects
+	 * @return random object from given array or null of array is either null or         empty
 	 */
 	public static <T> T getRandomPosition(T[] array) {
 		if (array == null || array.length == 0) {
@@ -161,13 +149,10 @@ public class MathUtil {
 	/**
 	 * Get a random position(object) from a list of generic objects. <br/>
 	 * Using generics saves the trouble of casting the return object.
-	 * 
-	 * @param <T>
-	 *            the type of the list objects to get the object from
-	 * @param list
-	 *            the list with objects
-	 * @return random object from given list or null of list is either null or
-	 *         empty
+	 *
+	 * @param <T>  the type of the list objects to get the object from
+	 * @param list the list with objects
+	 * @return random object from given list or null of list is either null or         empty
 	 */
 	public static <T> T getRandomPosition(List<T> list) {
 		if (list == null || list.isEmpty()) {
@@ -178,8 +163,8 @@ public class MathUtil {
 
 	/**
 	 * Degrees to radians
-	 * 
-	 * @param degrees
+	 *
+	 * @param degrees the degrees
 	 * @return the converted value
 	 */
 	public static float degreesToRadians(float degrees) {
@@ -188,8 +173,8 @@ public class MathUtil {
 
 	/**
 	 * Radians to degrees
-	 * 
-	 * @param degrees
+	 *
+	 * @param radians the radians
 	 * @return the converted value
 	 */
 	public static float radiansToDegrees(float radians) {
@@ -198,11 +183,9 @@ public class MathUtil {
 
 	/**
 	 * Arc cosine
-	 * 
-	 * @param value
-	 * @return Returns the closest double approximation of the arc cosine of the
-	 *         argument within the range [0..pi]. The returned result is within
-	 *         1 ulp (unit in the last place) of the real result.
+	 *
+	 * @param value the value
+	 * @return Returns the closest double approximation of the arc cosine of the         argument within the range [0..pi]. The returned result is within         1 ulp (unit in the last place) of the real result.
 	 */
 	public static float acos(float value) {
 		return (float) Math.acos(value);
@@ -210,11 +193,9 @@ public class MathUtil {
 
 	/**
 	 * Arc sine
-	 * 
-	 * @param value
-	 * @return Returns the closest double approximation of the arc sine of the
-	 *         argument within the range [-pi/2..pi/2]. The returned result is
-	 *         within 1 ulp (unit in the last place) of the real result.
+	 *
+	 * @param value the value
+	 * @return Returns the closest double approximation of the arc sine of the         argument within the range [-pi/2..pi/2]. The returned result is         within 1 ulp (unit in the last place) of the real result.
 	 */
 	public static float asin(float value) {
 		return (float) Math.asin(value);
@@ -222,11 +203,9 @@ public class MathUtil {
 
 	/**
 	 * Arc tangent
-	 * 
-	 * @param value
-	 * @return Returns the closest double approximation of the arc tangent of
-	 *         the argument within the range [-pi/2..pi/2]. The returned result
-	 *         is within 1 ulp (unit in the last place) of the real result.
+	 *
+	 * @param value the value
+	 * @return Returns the closest double approximation of the arc tangent of         the argument within the range [-pi/2..pi/2]. The returned result         is within 1 ulp (unit in the last place) of the real result.
 	 */
 	public static float atan(float value) {
 		return (float) Math.atan(value);
@@ -234,14 +213,10 @@ public class MathUtil {
 
 	/**
 	 * Arc tangent of y/x within the range [-pi..pi]
-	 * 
-	 * @param a
-	 * @param b
-	 * @return Returns the closest double approximation of the arc tangent of
-	 *         y/x within the range [-pi..pi]. This is the angle of the polar
-	 *         representation of the rectangular coordinates (x,y). The returned
-	 *         result is within 2 ulps (units in the last place) of the real
-	 *         result.
+	 *
+	 * @param a the a
+	 * @param b the b
+	 * @return Returns the closest double approximation of the arc tangent of         y/x within the range [-pi..pi]. This is the angle of the polar         representation of the rectangular coordinates (x,y). The returned         result is within 2 ulps (units in the last place) of the real         result.
 	 */
 	public static float atan2(float a, float b) {
 		return (float) Math.atan2(a, b);
@@ -249,9 +224,8 @@ public class MathUtil {
 
 	/**
 	 * Tangent of an angle
-	 * 
-	 * @param angle
-	 *            angle
+	 *
+	 * @param angle angle
 	 * @return the tangent
 	 */
 	public static float tan(float angle) {
@@ -260,9 +234,8 @@ public class MathUtil {
 
 	/**
 	 * Absolute value
-	 * 
-	 * @param v
-	 *            value
+	 *
+	 * @param v value
 	 * @return returns the absolute value
 	 */
 	public static float abs(float v) {
@@ -272,16 +245,13 @@ public class MathUtil {
 	/**
 	 * Number's logarithm <br>
 	 * Special cases:
-	 * 
+	 * <p>
 	 * <li>log(+0.0) = -infinity</li> <li>log(-0.0) = -infinity</li><li>
 	 * log((anything < 0) = NaN</li> <li>log(+infinity) = +infinity</li><li>
 	 * log(-infinity) = NaN</li><li>log(NaN) = NaN</li>
-	 * 
-	 * 
-	 * @param number
-	 * @return Returns the closest double approximation of the natural logarithm
-	 *         of the argument. The returned result is within 1 ulp (unit in the
-	 *         last place) of the real result.
+	 *
+	 * @param number the number
+	 * @return Returns the closest double approximation of the natural logarithm         of the argument. The returned result is within 1 ulp (unit in the         last place) of the real result.
 	 */
 	public static float logarithm(float number) {
 		return (float) Math.log(number);
@@ -289,12 +259,9 @@ public class MathUtil {
 
 	/**
 	 * Number's Exponencial
-	 * 
-	 * @param number
-	 *            float number
-	 * @return Returns the closest double approximation of the natural logarithm
-	 *         of the argument. The returned result is within 1 ulp (unit in the
-	 *         last place) of the real result.
+	 *
+	 * @param number float number
+	 * @return Returns the closest double approximation of the natural logarithm         of the argument. The returned result is within 1 ulp (unit in the         last place) of the real result.
 	 */
 	public static float exponencial(float number) {
 		return (float) Math.exp(number);
@@ -302,11 +269,9 @@ public class MathUtil {
 
 	/**
 	 * Gets the higher number
-	 * 
-	 * @param a
-	 *            float number
-	 * @param b
-	 *            float number
+	 *
+	 * @param a float number
+	 * @param b float number
 	 * @return the higher number between a and b
 	 */
 	public static float max(float a, float b) {
@@ -315,11 +280,9 @@ public class MathUtil {
 
 	/**
 	 * Gets the higher number
-	 * 
-	 * @param a
-	 *            int number
-	 * @param b
-	 *            int number
+	 *
+	 * @param a int number
+	 * @param b int number
 	 * @return the higher number between a and b
 	 */
 	public static int max(int a, int b) {
@@ -328,11 +291,9 @@ public class MathUtil {
 
 	/**
 	 * Gets the lower number
-	 * 
-	 * @param a
-	 *            float number
-	 * @param b
-	 *            float number
+	 *
+	 * @param a float number
+	 * @param b float number
 	 * @return the lower number between a and b
 	 */
 	public static float min(float a, float b) {
@@ -341,11 +302,9 @@ public class MathUtil {
 
 	/**
 	 * Gets the lower number
-	 * 
-	 * @param a
-	 *            float number
-	 * @param b
-	 *            float number
+	 *
+	 * @param a float number
+	 * @param b float number
 	 * @return the lower number between a and b
 	 */
 	public static int min(int a, int b) {
@@ -354,9 +313,8 @@ public class MathUtil {
 
 	/**
 	 * Check if a number is Odd
-	 * 
-	 * @param num
-	 *            int number
+	 *
+	 * @param num int number
 	 * @return true if the num is odd and false if it's even
 	 */
 	public static boolean isOdd(int num) {
@@ -365,9 +323,8 @@ public class MathUtil {
 
 	/**
 	 * Check if a number is Even
-	 * 
-	 * @param num
-	 *            int number
+	 *
+	 * @param num int number
 	 * @return true if the num is even and false if it's odd
 	 */
 	public static boolean isEven(int num) {
@@ -376,23 +333,22 @@ public class MathUtil {
 
 	/**
 	 * Returns a random number between MIN inclusive and MAX exclusive.
-	 * 
-	 * @param min
-	 *            value inclusive
-	 * @param max
-	 *            value exclusive
+	 *
+	 * @param min value inclusive
+	 * @param max value exclusive
 	 * @return an int between MIN inclusive and MAX exclusive.
 	 */
 	public static int getRandomNumber(int min, int max) {
 		Random r = new Random();
 		return r.nextInt(max - min + 1) + min;
 	}
-	
+
 	/**
 	 * Truncates a value
-	 * @param value - value to be truncated
+	 *
+	 * @param value  - value to be truncated
 	 * @param places - decimal places
-	 * @return
+	 * @return double
 	 */
 	public static double truncate(double value, int places) {
 	    if (places < 0) {

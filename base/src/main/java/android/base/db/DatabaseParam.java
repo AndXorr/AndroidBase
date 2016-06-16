@@ -7,47 +7,120 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 /**
- * Created by clickapps on 27/11/15.
+ * The type Database param.
  */
 public final class DatabaseParam {
+    /**
+     * The Context.
+     */
     protected Context context;
+    /**
+     * The Sq lite open helper.
+     */
     protected SQLiteOpenHelper sqLiteOpenHelper;
-    protected SQLiteDatabase dRead, dWrite;
-    protected String table, where, orderBy, grpBy, having, limit, sql;
-    protected String[] columns, whereArgs;
+    /**
+     * The D read.
+     */
+    protected SQLiteDatabase dRead, /**
+     * The D write.
+     */
+    dWrite;
+    /**
+     * The Table.
+     */
+    protected String table, /**
+     * The Where.
+     */
+    where, /**
+     * The Order by.
+     */
+    orderBy, /**
+     * The Grp by.
+     */
+    grpBy, /**
+     * The Having.
+     */
+    having, /**
+     * The Limit.
+     */
+    limit, /**
+     * The Sql.
+     */
+    sql;
+    /**
+     * The Columns.
+     */
+    protected String[] columns, /**
+     * The Where args.
+     */
+    whereArgs;
+    /**
+     * The Map.
+     */
     protected Map<String, String> map = new LinkedHashMap<>();
+    /**
+     * The Is bulk.
+     */
     protected boolean isBulk = false;
+    /**
+     * The Crud.
+     */
     protected CRUD crud;
 
+    /**
+     * The enum Crud.
+     */
     public enum CRUD {
+        /**
+         * The Fetch.
+         */
         FETCH {
             @Override
             public Object execute(DatabaseParam param) {
                 return null;
             }
-        }, FETCH_RAW {
+        }, /**
+         * The Fetch raw.
+         */
+        FETCH_RAW {
             @Override
             public Object execute(DatabaseParam param) {
                 return null;
             }
-        }, INSERT {
+        }, /**
+         * The Insert.
+         */
+        INSERT {
             @Override
             public Object execute(DatabaseParam param) {
                 return null;
             }
-        }, DELETE {
+        }, /**
+         * The Delete.
+         */
+        DELETE {
             @Override
             public Object execute(DatabaseParam param) {
                 return null;
             }
-        }, UPDATE {
+        }, /**
+         * The Update.
+         */
+        UPDATE {
             @Override
             public Object execute(DatabaseParam param) {
                 return null;
             }
         };
 
+        /**
+         * Execute object.
+         *
+         * @param param the param
+         * @return the object
+         */
         public abstract Object execute(DatabaseParam param);
     }
 }

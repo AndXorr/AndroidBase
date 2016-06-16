@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as widget. This is used instead of using Button. This
  * class has also a custom attribute which is used in xml file.
- * <p/>
+ * <p>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on button text.
  * </P>
@@ -28,12 +28,23 @@ import android.util.AttributeSet;
  */
 public class BaseButton extends AppCompatButton {
 
+    /**
+     * Instantiates a new Base button.
+     *
+     * @param context the context
+     */
     public BaseButton(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
 
     }
 
+    /**
+     * Instantiates a new Base button.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
@@ -55,10 +66,22 @@ public class BaseButton extends AppCompatButton {
         }
     }
 
+    /**
+     * Sets background drawable tint.
+     *
+     * @param resId the res id
+     */
     public void setBackgroundDrawableTint(@ColorRes int resId) {
         setSupportBackgroundTintList(ContextCompat.getColorStateList(getContext(), resId));
     }
 
+    /**
+     * Gets tint drawable.
+     *
+     * @param drawable the drawable
+     * @param resId    the res id
+     * @return the tint drawable
+     */
     public Drawable getTintDrawable(@DrawableRes int drawable, int resId) {
         Drawable d = ContextCompat.getDrawable(getContext(), drawable);
         DrawableCompat.wrap(d);
@@ -89,10 +112,20 @@ public class BaseButton extends AppCompatButton {
     private float letterSpacing = LetterSpacingUtils.BIGGEST;
     private CharSequence originalText = "";
 
+    /**
+     * Gets text spacing.
+     *
+     * @return the text spacing
+     */
     public float getTextSpacing() {
         return letterSpacing;
     }
 
+    /**
+     * Sets text spacing.
+     *
+     * @param letterSpacing the letter spacing
+     */
     public void setTextSpacing(float letterSpacing) {
         this.letterSpacing = letterSpacing;
         originalText = getText();

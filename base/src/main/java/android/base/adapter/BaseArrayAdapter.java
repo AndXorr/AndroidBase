@@ -28,22 +28,28 @@ import java.util.List;
  * <p>
  * </ul>
  *
- * @param <T> <P>
- *            This class is of generic type. T here describes the getter/setter
- *            class. T should is either {@link String} , {@link Integer} or any
- *            user defined class model.
- *            </p>
+ * @param <T> <P>            This class is of generic type. T here describes the getter/setter            class. T should is either {@link String} , {@link Integer} or any            user defined class model.            </p>
  * @author amit.singh
  */
 @SuppressWarnings("rawtypes")
 public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
-    public List<T> mList = new ArrayList<>();
+    private List<T> mList = new ArrayList<>();
     private Activity context;
 
+    /**
+     * Instantiates a new Base array adapter.
+     *
+     * @param context the context
+     */
     public BaseArrayAdapter(Context context) {
         super(context, android.R.layout.simple_list_item_1);
     }
 
+    /**
+     * Instantiates a new Base array adapter.
+     *
+     * @param context the context
+     */
     public BaseArrayAdapter(Activity context) {
         super(context, android.R.layout.simple_list_item_1);
         this.context = context;
@@ -52,7 +58,7 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     /**
      * This method is used to setList containing ListArray<T>
      *
-     * @param items
+     * @param items the items
      */
     public void setList(List<T> items) {
         mList = new ArrayList<>(items);
@@ -62,7 +68,7 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     /**
      * This method is used to get the setListArray
      *
-     * @return ListArray<T>
+     * @return ListArray<T> list
      */
     public List<T> getList() {
         return mList;
@@ -80,6 +86,11 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
         return mList.get(position);
     }
 
+    /**
+     * Gets activity context.
+     *
+     * @return the activity context
+     */
     @Nullable
     public Activity getActivityContext() {
         return context;

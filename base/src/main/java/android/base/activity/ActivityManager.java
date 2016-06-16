@@ -9,8 +9,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 
+
 /**
- * Created by clickapps on 20/7/15.
+ * The type Activity manager.
  */
 public class ActivityManager {
     private static volatile ActivityManager sActivityManager;
@@ -19,6 +20,11 @@ public class ActivityManager {
 
     }
 
+    /**
+     * Get the singleton.
+     *
+     * @return the singleton
+     */
     public static ActivityManager get() {
         if (sActivityManager == null) {
             synchronized (ActivityManager.class) {
@@ -30,11 +36,25 @@ public class ActivityManager {
         return sActivityManager;
     }
 
+    /**
+     * Use Activity manager
+     *
+     * @param context The activity to use.
+     * @return A builder that can be used to pass values
+     * @see #with(android.app.Activity, ActivityParam.ActivityType) #with(android.app.Activity, ActivityParam.ActivityType)#with(android.app.Activity, ActivityParam.ActivityType)
+     */
     public static Builder with(@NonNull Activity context) {
         return new Builder(context);
     }
 
-
+    /**
+     * Use Activity manager
+     *
+     * @param context      The activity to use.
+     * @param activityType the activity type
+     * @return A builder that can be used to pass values
+     * @see #with(android.app.Activity) #with(android.app.Activity)#with(android.app.Activity)
+     */
     public static Builder with(@NonNull Activity context, ActivityParam.ActivityType activityType) {
         return new Builder(context, activityType);
     }

@@ -17,6 +17,9 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * The type Date util.
+ */
 public class DateUtil {
     /**
      * private constructor
@@ -25,7 +28,13 @@ public class DateUtil {
 //	}
 
     public static final int YESTERDAY = -1;
+    /**
+     * The constant TODAY.
+     */
     public static final int TODAY = 0;
+    /**
+     * The constant TOMORROW.
+     */
     public static final int TOMORROW = 1;
 
     /**
@@ -87,6 +96,7 @@ public class DateUtil {
      * format
      *
      * @param dateFormat date format default will be yyyy-MM-dd hh:mm:ss
+     * @param locale     the locale
      * @return current date
      */
     public static String getCurrentDateTime(String dateFormat, Locale locale) {
@@ -110,8 +120,8 @@ public class DateUtil {
     /**
      * Functionality to find time in UTC after conversion of device local time
      *
-     * @param format required format of date. if null/empty then default format is
-     *               yyyy-MM-dd HH:mm:ss
+     * @param format required format of date. if null/empty then default format is               yyyy-MM-dd HH:mm:ss
+     * @param locale the locale
      * @return date time string
      */
     public static String getCurrentUTCDateTime(String format, Locale locale) {
@@ -137,8 +147,8 @@ public class DateUtil {
      * Functionality to convert utc time into device's locale time
      *
      * @param utcDateTime utc date-time that need to convert
-     * @param format      of required output time if you pass null/empty then default is
-     *                    (MM/dd/yyyy hh:mm:ss aa)
+     * @param format      of required output time if you pass null/empty then default is                    (MM/dd/yyyy hh:mm:ss aa)
+     * @param locale      the locale
      * @return locale date time string
      */
     public static String convertUtcToLocal(String utcDateTime, String format, Locale locale) {
@@ -177,8 +187,7 @@ public class DateUtil {
     /**
      * Gets a date with a desired format as a String
      *
-     * @param day    Can be: <li>QuickUtils.date.YESTERDAY</li><li>
-     *               QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
+     * @param day    Can be: <li>QuickUtils.date.YESTERDAY</li><li>               QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
      * @param format desired format (e.g. "yyyy-MM-dd HH:mm:ss")
      * @return returns a day with the given format
      */
@@ -190,9 +199,9 @@ public class DateUtil {
     /**
      * Gets a date with a desired format as a String
      *
-     * @param day    Can be: <li>QuickUtils.date.YESTERDAY</li><li>
-     *               QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
+     * @param day    Can be: <li>QuickUtils.date.YESTERDAY</li><li>               QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
      * @param format desired format (e.g. "yyyy-MM-dd HH:mm:ss")
+     * @param locale the locale
      * @return returns a day with the given format
      */
     public static String getDayAsString(int day, String format, Locale locale) {
@@ -249,8 +258,7 @@ public class DateUtil {
     /**
      * Gets the desired day as a Date
      *
-     * @param day Can be: <li>QuickUtils.date.YESTERDAY</li><li>
-     *            QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
+     * @param day Can be: <li>QuickUtils.date.YESTERDAY</li><li>            QuickUtils.date.TODAY</li><li>QuickUtils.date.TOMORROW</li>
      * @return returns a Date for that day
      */
     public static java.util.Date getDayAsDate(int day) {
@@ -261,12 +269,12 @@ public class DateUtil {
 
     /**
      * Parse a data string into a real Date
-     * <p/>
+     * <p>
      * Note: (e.g. "yyyy-MM-dd HH:mm:ss")
      *
      * @param dateString date in String format
      * @param dateFormat desired format (e.g. "yyyy-MM-dd HH:mm:ss")
-     * @return
+     * @return java . util . date
      */
     public static java.util.Date parseDate(String dateString, String dateFormat) {
         java.util.Date newDate = null;
@@ -306,7 +314,7 @@ public class DateUtil {
      * Get number with a suffix
      *
      * @param number number that will be converted
-     * @return (e.g. "1" becomes "1st", "3" becomes "3rd", etc)
+     * @return (e.g. 1becomes1st, 3becomes3rd, etc)
      */
     public static String getNumberWithSuffix(int number) {
         int j = number % 10;
@@ -375,11 +383,29 @@ public class DateUtil {
     }
 
     private final static String TAG = ApplicationUtils.Date.class.getSimpleName();
+    /**
+     * The constant FORMAT.
+     */
     public final static String FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    /**
+     * The constant DATE_TIME_FORMAT.
+     */
     public final static String DATE_TIME_FORMAT = "dd MMM - HH:mm";
+    /**
+     * The constant TIME_FORMAT.
+     */
     public final static String TIME_FORMAT = "HH:mm:ss";
+    /**
+     * The constant DATETIME_FORMAT.
+     */
     public final static String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * The constant DATE_TIME_FORMAT_DHM_DATE_MO.
+     */
     public final static String DATE_TIME_FORMAT_DHM_DATE_MO = "E HH:mm  dd MMM";
+    /**
+     * The constant DATE.
+     */
     public final static String DATE = "yyyy-MM-dd";
     private final static long ONE_SECOND = 1000;
     private final static long HALF_SECONDS = ONE_SECOND * 15;
@@ -408,6 +434,12 @@ public class DateUtil {
         return sdf.format(new Date());
     }
 
+    /**
+     * Gets date format.
+     *
+     * @param format the format
+     * @return the date format
+     */
     public static SimpleDateFormat getDateFormat(String format) {
         if (TextUtils.isEmpty(format)) {
             format = "yyyy-MM-dd hh:mm:ss";
@@ -415,6 +447,12 @@ public class DateUtil {
         return new SimpleDateFormat(format, Locale.ENGLISH);
     }
 
+    /**
+     * Gets date format locale.
+     *
+     * @param format the format
+     * @return the date format locale
+     */
     public static SimpleDateFormat getDateFormatLocale(String format) {
         if (TextUtils.isEmpty(format)) {
             format = "yyyy-MM-dd hh:mm:ss";
@@ -422,6 +460,12 @@ public class DateUtil {
         return new SimpleDateFormat(format, Locale.getDefault());
     }
 
+    /**
+     * Gets current date time locale.
+     *
+     * @param dateFormat the date format
+     * @return the current date time locale
+     */
     public static String getCurrentDateTimeLocale(String dateFormat) {
         if (TextUtils.isEmpty(dateFormat)) {
             dateFormat = "yyyy-MM-dd hh:mm:ss";
@@ -434,8 +478,7 @@ public class DateUtil {
     /**
      * Functionality to find time in UTC after conversion of device local time
      *
-     * @param format required format of date. if null/empty then default format is
-     *               yyyy-MM-dd HH:mm:ss
+     * @param format required format of date. if null/empty then default format is               yyyy-MM-dd HH:mm:ss
      * @return date time string
      */
     public static String getCurrentUTCDateTime(String format) {
@@ -472,8 +515,7 @@ public class DateUtil {
      * Functionality to convert utc time into device's locale time
      *
      * @param utcDateTime utc date-time that need to convert
-     * @param format      of required output time if you pass null/empty then default is
-     *                    (MM/dd/yyyy hh:mm:ss aa)
+     * @param format      of required output time if you pass null/empty then default is                    (MM/dd/yyyy hh:mm:ss aa)
      * @return locale date time string
      */
     public static String convertUtcToLocal(String utcDateTime, String format) {
@@ -519,9 +561,8 @@ public class DateUtil {
      * Functionality to convert utc time into device's locale time
      *
      * @param utcDateTime   utc date-time that need to convert
-     * @param format        of required output time if you pass null/empty then default is
-     *                      (MM/dd/yyyy hh:mm:ss aa)
-     * @param currentFormat
+     * @param format        of required output time if you pass null/empty then default is                      (MM/dd/yyyy hh:mm:ss aa)
+     * @param currentFormat the current format
      * @return locale date time string
      */
     public static String convertUtcToLocal(String utcDateTime, String format,
@@ -568,9 +609,10 @@ public class DateUtil {
     /**
      * Functionality to calculate time difference
      *
-     * @param firstDateTime
-     * @param secondDateTime
+     * @param firstDateTime  the first date time
+     * @param secondDateTime the second date time
      * @return time difference in milliseconds
+     * @throws ParseException the parse exception
      */
     public long getTimeDifferenceInMilliseconds(Date firstDateTime,
                                                 Date secondDateTime) throws ParseException {
@@ -580,14 +622,11 @@ public class DateUtil {
 
     /**
      * Functionality to get addition of two dates {@link <ahref http
-     * ://stackoverflow.com/questions/2067657/sum-two-dates-in-java/>}
+     * ://stackoverflow.com/questions/2067657/sum-two-dates-in-java/>}*
      *
-     * @param firstDateTimeString
-     * @param secondDateTimeString this date time string should be appended with either + or - to
-     *                             identify addition or subtraction. If not appended with either
-     *                             sign then default will be + sign
-     * @param format               in which the date-time need to convert. If null/empty then
-     *                             default format is MM/dd/yyyy hh:mm:ss aa
+     * @param firstDateTimeString  the first date time string
+     * @param secondDateTimeString this date time string should be appended with either + or - to                             identify addition or subtraction. If not appended with either                             sign then default will be + sign
+     * @param format               in which the date-time need to convert. If null/empty then                             default format is MM/dd/yyyy hh:mm:ss aa
      * @return new date-time string
      */
     public static String addSubstractTwoDates(String firstDateTimeString,
@@ -638,6 +677,9 @@ public class DateUtil {
 
     /**
      * Functionality to convert Date to day/hours/mins/seconds
+     *
+     * @param milliSecond the milli second
+     * @return the calendar
      */
     public static Calendar getCalendar(long milliSecond) {
         if (milliSecond != 0) {
@@ -653,8 +695,8 @@ public class DateUtil {
      * Functionality to convert string to date
      *
      * @param dateTimeString that need to convert into date format
-     * @param format         in which the date-time need to convert. If null/empty then
-     *                       default format is MM/dd/yyyy kk:mm:ss
+     * @param format         in which the date-time need to convert. If null/empty then                       default format is MM/dd/yyyy kk:mm:ss
+     * @return the date
      */
     public static Date convertStringToDate(String dateTimeString, String format) {
         try {
@@ -677,9 +719,9 @@ public class DateUtil {
      * Functionality to convert string to date
      *
      * @param dateTimeString that need to convert into date format
-     * @param format         in which the date-time need to convert. If null/empty then
-     *                       default format is MM/dd/yyyy kk:mm:ss
+     * @param format         in which the date-time need to convert. If null/empty then                       default format is MM/dd/yyyy kk:mm:ss
      * @param currentFormat  in which the date-time is now.
+     * @return the string
      */
     public static String convertStringToDate(String dateTimeString, String format, String currentFormat) {
         try {
@@ -739,11 +781,10 @@ public class DateUtil {
      * Functionality to get time of requested country/zone {@link <ahref http
      * ://stackoverflow
      * .com/questions/9108356/get-time-of-different-time-zones-on
-     * -selection-of-time-from-time-picker/>}
+     * -selection-of-time-from-time-picker/>}*
      *
      * @param countryCityZoneString name of the country/city/zone
-     * @param format                in which the date-time need to convert. If null/empty then
-     *                              default format is MM/dd/yyyy kk:mm:ss
+     * @param format                in which the date-time need to convert. If null/empty then                              default format is MM/dd/yyyy kk:mm:ss
      * @return date time of requested country
      */
     public static String getDateTimeByCountryCityOrZone(
@@ -840,9 +881,9 @@ public class DateUtil {
     /**
      * Functionality to convert date in milli seconds
      *
-     * @param year
-     * @param month
-     * @param day
+     * @param year  the year
+     * @param month the month
+     * @param day   the day
      * @return converted date in to milliseconds
      */
     public static long convertDateToMilli(int year, int month, int day) {
@@ -857,6 +898,10 @@ public class DateUtil {
      * http://www.rgagnon.com/javadetails/java-0585.html
      * converts time (in milliseconds) to human-readable format
      * "<w> days, <x> hours, <y> minutes and (z) seconds"
+     *
+     * @param context  the context
+     * @param duration the duration
+     * @return the string
      */
     public static String millisToLongDHMS(Context context, long duration) {
         StringBuilder res = new StringBuilder();
@@ -898,6 +943,13 @@ public class DateUtil {
         }
     }
 
+    /**
+     * Gets time ago.
+     *
+     * @param context     the context
+     * @param createdDate the created date
+     * @return the time ago
+     */
     public static String getTimeAgo(Context context, String createdDate) {
         Date date;
         if (createdDate.contains("T")) {
@@ -915,6 +967,14 @@ public class DateUtil {
         return "";
     }
 
+    /**
+     * Gets time ago.
+     *
+     * @param context       the context
+     * @param createdDate   the created date
+     * @param currentFormat the current format
+     * @return the time ago
+     */
     public static String getTimeAgo(Context context, String createdDate, String currentFormat) {
         Date date;
         String value = convertUtcToLocal(createdDate, DATETIME_FORMAT, currentFormat);
@@ -928,6 +988,13 @@ public class DateUtil {
         return "";
     }
 
+    /**
+     * Gets time to go.
+     *
+     * @param context     the context
+     * @param createdDate the created date
+     * @return the time to go
+     */
     public static String getTimeToGo(Context context, String createdDate) {
         String value = convertUtcToLocal(createdDate, "yyyy-MM-dd HH:mm:ss", FORMAT);
         Date date = convertStringToDate(value, "yyyy-MM-dd HH:mm:ss");

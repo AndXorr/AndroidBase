@@ -9,83 +9,159 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+
 /**
- * Created by sahni on 6/6/16.
+ * The type Snack builder.
  */
 public class SnackBuilder {
 
     private AlertParam alertParam;
     private Snackbar snackbar;
 
+    /**
+     * Instantiates a new Snack builder.
+     *
+     * @param context the context
+     * @param resId   the res id
+     */
     public SnackBuilder(Activity context, @StringRes int resId) {
         alertParam = new AlertParam();
         alertParam.activityContext = context;
         alertParam.messageResId = resId;
     }
 
+    /**
+     * Instantiates a new Snack builder.
+     *
+     * @param context the context
+     * @param msg     the msg
+     */
     public SnackBuilder(Activity context, String msg) {
         alertParam = new AlertParam();
         alertParam.activityContext = context;
         alertParam.message = msg;
     }
 
-    /*Set ActionMessage for SnackBuilder*/
+    /**
+     * Action message snack builder.
+     *
+     * @param actionMessage the action message
+     * @return the snack builder
+     */
+/*Set ActionMessage for SnackBuilder*/
     public SnackBuilder actionMessage(String actionMessage) {
         alertParam.actionMessage = actionMessage;
         return this;
     }
 
-    /*Set ActionMessage resId for SnackBuilder*/
+    /**
+     * Action message snack builder.
+     *
+     * @param resId the res id
+     * @return the snack builder
+     */
+/*Set ActionMessage resId for SnackBuilder*/
     public SnackBuilder actionMessage(int resId) {
         alertParam.actionMessageResId = resId;
         return this;
     }
 
-    /*Set View for SnackBuilder*/
+    /**
+     * View snack builder.
+     *
+     * @param view the view
+     * @return the snack builder
+     */
+/*Set View for SnackBuilder*/
     public SnackBuilder view(View view) {
         alertParam.snackBarView = view;
         alertParam.snackBarView.setFocusable(false);
         return this;
     }
 
-    /*Set Listener for SnackBuilder*/
+    /**
+     * Listener snack builder.
+     *
+     * @param l the l
+     * @return the snack builder
+     */
+/*Set Listener for SnackBuilder*/
     public SnackBuilder listener(AlertParam.OnSnackBarActionListener l) {
         alertParam.onSnackBarActionListener = l;
         return this;
     }
 
-    /*Set color for SnackBuilder*/
+    /**
+     * Action color snack builder.
+     *
+     * @param resId the res id
+     * @return the snack builder
+     */
+/*Set color for SnackBuilder*/
     public SnackBuilder actionColor(int resId) {
         alertParam.actionColorResId = resId;
         return this;
     }
 
-    /*Set color for SnackBuilder*/
+    /**
+     * Text color snack builder.
+     *
+     * @param resId the res id
+     * @return the snack builder
+     */
+/*Set color for SnackBuilder*/
     public SnackBuilder textColor(int resId) {
         alertParam.textColor = resId;
         return this;
     }
 
+    /**
+     * Duration snack builder.
+     *
+     * @param duration the duration
+     * @return the snack builder
+     */
     public SnackBuilder duration(int duration) {
         alertParam.snackBarDuration = duration;
         return this;
     }
 
+    /**
+     * Background color snack builder.
+     *
+     * @param color the color
+     * @return the snack builder
+     */
     public SnackBuilder backgroundColor(int color) {
         alertParam.actionBackgroundResId = color;
         return this;
     }
 
+    /**
+     * Unique id snack builder.
+     *
+     * @param uniqueId the unique id
+     * @return the snack builder
+     */
     public SnackBuilder uniqueId(int uniqueId) {
         alertParam.alertTaskId = uniqueId;
         return this;
     }
 
+    /**
+     * Action message max lines snack builder.
+     *
+     * @param maxLines the max lines
+     * @return the snack builder
+     */
     public SnackBuilder actionMessageMaxLines(int maxLines) {
         alertParam.actionMessageMaxLine = maxLines;
         return this;
     }
 
+    /**
+     * Show.
+     */
     public void show() {
         if (snackbar != null)
             snackbar.dismiss();

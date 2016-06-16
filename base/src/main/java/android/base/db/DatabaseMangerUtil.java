@@ -6,12 +6,19 @@ import android.database.Cursor;
 
 import java.util.Map;
 
+
 /**
- * Created by clickapps on 27/11/15.
+ * The type Database manger util.
  */
 public final class DatabaseMangerUtil {
     private static String TAG = "DatabaseMangerUtil";
 
+    /**
+     * Insert long.
+     *
+     * @param param the param
+     * @return the long
+     */
     public static long insert(DatabaseParam param) {
         String message = "";
         long i;
@@ -42,6 +49,12 @@ public final class DatabaseMangerUtil {
         return i;
     }
 
+    /**
+     * Update long.
+     *
+     * @param param the param
+     * @return the long
+     */
     public static long update(DatabaseParam param) {
         String message = "";
         long i;
@@ -71,6 +84,12 @@ public final class DatabaseMangerUtil {
         return i;
     }
 
+    /**
+     * Delete long.
+     *
+     * @param param the param
+     * @return the long
+     */
     public static long delete(DatabaseParam param) {
         String message = "";
         long i;
@@ -86,6 +105,12 @@ public final class DatabaseMangerUtil {
         return i;
     }
 
+    /**
+     * Query cursor.
+     *
+     * @param param the param
+     * @return the cursor
+     */
     public static Cursor query(DatabaseParam param) {
         String message = "";
         try {
@@ -101,6 +126,12 @@ public final class DatabaseMangerUtil {
         }
     }
 
+    /**
+     * Raw query cursor.
+     *
+     * @param param the param
+     * @return the cursor
+     */
     public static Cursor rawQuery(DatabaseParam param) {
         String message = "";
         try {

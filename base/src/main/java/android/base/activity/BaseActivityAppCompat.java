@@ -22,13 +22,23 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
 
 
     /**
+     * Instantiates a new Base activity app compat.
+     */
+    protected BaseActivityAppCompat() {
+        backHandler = null;
+    }
+
+    /**
      * This method is used to initialize UI of the layout. Called in onCreate()
      */
     protected abstract void initUI();
 
 
+    /**
+     * The Tag.
+     */
     protected String TAG;
-    public OnBackHandler backHandler = null;
+    private OnBackHandler backHandler;
     private BaseFragment fragment = null;
 
     /**
@@ -46,15 +56,38 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
 
     }
 
+    /**
+     * Sets back handler.
+     *
+     * @param backHandler the back handler
+     */
+    public void setBackHandler(OnBackHandler backHandler) {
+        this.backHandler = backHandler;
+    }
+
+    /**
+     * Gets back handler.
+     *
+     * @return the back handler
+     */
+    public OnBackHandler getBackHandler() {
+        return backHandler;
+    }
+
     @Override
     public void onBackPressed() {
-        if (backHandler != null) {
-            backHandler.onBackPressed();
+        if (getBackHandler() != null) {
+            getBackHandler().onBackPressed();
         } else {
             super.onBackPressed();
         }
     }
 
+    /**
+     * Sets fragment.
+     *
+     * @param fragment the fragment
+     */
     public void setFragment(BaseFragment fragment) {
         this.fragment = fragment;
     }

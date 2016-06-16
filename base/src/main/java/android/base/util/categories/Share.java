@@ -4,11 +4,15 @@ import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * The type Share.
+ */
 public class Share {
 
     /**
      * Share via Email
      *
+     * @param context   the context
      * @param email     destination email (e.g. support@company.com)
      * @param subject   email subject
      * @param emailBody email body
@@ -34,6 +38,7 @@ public class Share {
      * the data is being delivered to is not specified; it is up to the receiver
      * of this action to ask the user where the data should be sent.
      *
+     * @param context the context
      * @param subject The title, if applied
      * @param message Message to be delivered
      */

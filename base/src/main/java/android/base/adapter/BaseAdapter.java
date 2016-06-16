@@ -26,26 +26,38 @@ import java.util.List;
  * <P>
  * {@link #getList()} method is used to getList from this adapter.
  * </p>
- * <p/>
+ * <p>
  * </ul>
  *
- * @param <T> <P>
- *            This class is of generic type. T here describes the getter/setter
- *            class. T should is either {@link String} , {@link Integer} or any
- *            user defined class model.
- *            </p>
+ * @param <T> <P>            This class is of generic type. T here describes the getter/setter            class. T should is either {@link String} , {@link Integer} or any            user defined class model.            </p>
  * @author amit.singh
  */
 public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     private Context context;
     private Activity activityContext;
+    /**
+     * The M list.
+     */
     protected List<T> mList = new ArrayList<>();
+    /**
+     * The Tag.
+     */
     protected String TAG = BaseAdapter.class.getSimpleName();
 
+    /**
+     * Instantiates a new Base adapter.
+     *
+     * @param context the context
+     */
     public BaseAdapter(Context context) {
         this.context = context;
     }
 
+    /**
+     * Instantiates a new Base adapter.
+     *
+     * @param context the context
+     */
     public BaseAdapter(Activity context) {
         this.activityContext = context;
     }
@@ -53,7 +65,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     /**
      * This method is used to setList containing ListArray<T>
      *
-     * @param items
+     * @param items the items
      */
     public void setList(List<T> items) {
         if (items != null) {
@@ -65,7 +77,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     /**
      * This method is used to get the setListArray
      *
-     * @return ListArray<T>
+     * @return ListArray<T> list
      */
     public List<T> getList() {
         return mList;
@@ -100,6 +112,11 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
         return context;
     }
 
+    /**
+     * Gets activity context.
+     *
+     * @return the activity context
+     */
     public Activity getActivityContext() {
         return activityContext;
     }

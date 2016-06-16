@@ -26,8 +26,9 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 /**
- * Created by clickapps on 20/4/16.
+ * The type Retrofit util.
  */
 public class RetrofitUtil {
     private String BASE_URL = WebConstant.BASE_URL;
@@ -43,10 +44,21 @@ public class RetrofitUtil {
             .addConverterFactory(GsonConverterFactory.create(gson));
 
 
+    /**
+     * Instantiates a new Retrofit util.
+     */
     public RetrofitUtil() {
 
     }
 
+    /**
+     * Create service t.
+     *
+     * @param <T>           the type parameter
+     * @param interfaceFile the interface file
+     * @param webParam      the web param
+     * @return the t
+     */
     public <T> T createService(Class<T> interfaceFile, final WebParam webParam) {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         okHttpClientBuilder.connectTimeout(CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
@@ -78,9 +90,19 @@ public class RetrofitUtil {
         return retrofit.create(interfaceFile);
     }
 
+    /**
+     * The type Call back.
+     *
+     * @param <T> the type parameter
+     */
     public static class CallBack<T> implements Callback<T> {
         private WebParam webParam;
 
+        /**
+         * Instantiates a new Call back.
+         *
+         * @param webParam the web param
+         */
         public CallBack(WebParam webParam) {
             this.webParam = webParam;
         }
@@ -112,7 +134,7 @@ public class RetrofitUtil {
                         webParam.callback.onError(object, res, webParam.taskId, response.code());
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ApplicationUtils.Log.e(e.getMessage());
                 }
             }
         }
@@ -126,6 +148,11 @@ public class RetrofitUtil {
         }
     }
 
+    /**
+     * Dismiss dialog.
+     *
+     * @param webParam the web param
+     */
     public static void dismissDialog(WebParam webParam) {
         if (webParam.showDialog &&
                 webParam.progressDialog != null &&
@@ -134,8 +161,16 @@ public class RetrofitUtil {
         }
     }
 
+    /**
+     * The type String converter factory.
+     */
     public static final class StringConverterFactory extends Converter.Factory {
 
+        /**
+         * Create string converter factory.
+         *
+         * @return the string converter factory
+         */
         public static StringConverterFactory create() {
             return new StringConverterFactory();
         }
@@ -145,6 +180,9 @@ public class RetrofitUtil {
             return new ConfigurationServiceConverter();
         }
 
+        /**
+         * The type Configuration service converter.
+         */
         final class ConfigurationServiceConverter implements Converter<ResponseBody, String> {
 
             @Override

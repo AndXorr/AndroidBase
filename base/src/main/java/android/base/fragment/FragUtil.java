@@ -2,19 +2,26 @@ package android.base.fragment;
 
 import android.app.*;
 import android.app.FragmentManager;
+import android.base.util.ApplicationUtils;
 import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Created by Sahni on 19-11-2015.
+ * The type Frag util.
  */
 public class FragUtil {
+
+    private FragUtil() {
+    }
 
     /**
      * This method is used to popFragment from stack
      *
+     * @param activity  the activity
+     * @param replaceId the replace id
      * @Waring This methods runs on UI Thread
      */
     public static void popFragment(FragmentActivity activity, int replaceId) {
@@ -33,6 +40,8 @@ public class FragUtil {
     /**
      * This method is used to popFragment from stack
      *
+     * @param activity the activity
+     * @param tag      the tag
      * @Waring This methods runs on UI Thread
      */
     public static void popFragment(FragmentActivity activity, String tag) {
@@ -50,6 +59,8 @@ public class FragUtil {
 
     /**
      * This method is used to clear all the fragments from stack
+     *
+     * @param activity the activity
      */
     public static void clearBackStack(FragmentActivity activity) {
         try {
@@ -66,13 +77,15 @@ public class FragUtil {
                 fm.popBackStack();
             }
 
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            ApplicationUtils.Log.e(e.getMessage());
         }
     }
 
     /**
      * This method is used to remove all the stack in async
+     *
+     * @param activity the activity
      */
     public static void clearAllStack(FragmentActivity activity) {
         if (activity == null)
@@ -84,6 +97,7 @@ public class FragUtil {
     /**
      * This method is used to remove all the stack in sync
      *
+     * @param activity the activity
      * @Waring This methods runs on UI Thread
      */
     public static void clearAllStackImmediate(FragmentActivity activity) {
@@ -96,6 +110,7 @@ public class FragUtil {
     /**
      * This method is used to get the top fragmnet on the stack
      *
+     * @param activity the activity
      * @return {@link Fragment}
      */
     public static Fragment getTopFragment(FragmentActivity activity) {
@@ -113,13 +128,14 @@ public class FragUtil {
     /**
      * This method is used to get List of backstack fragments
      *
+     * @param activity the activity
      * @return {@link List}
      */
     public static List<String> getStackList(FragmentActivity activity) {
-        if (activity == null)
-            return null;
         List<String> stackList = new ArrayList<>();
         stackList.clear();
+        if (activity == null)
+            return stackList;
         FragmentManager fm = activity.getFragmentManager();
         for (int entry = 0; entry < fm.getBackStackEntryCount(); entry++) {
             stackList.add(fm.getBackStackEntryAt(entry).getName());
@@ -130,7 +146,8 @@ public class FragUtil {
     /**
      * This method is used to get the fragment
      *
-     * @param id set UniqueId
+     * @param activity the activity
+     * @param id       set UniqueId
      * @return {@link Fragment}
      */
     public static Fragment getFragment(FragmentActivity activity, int id) {
@@ -142,7 +159,8 @@ public class FragUtil {
     /**
      * This method is used to get the fragment
      *
-     * @param tag set UniqueTag
+     * @param activity the activity
+     * @param tag      set UniqueTag
      * @return {@link Fragment}
      */
     public static Fragment getFragment(FragmentActivity activity, String tag) {
@@ -154,7 +172,7 @@ public class FragUtil {
     /**
      * Functionality to refresh or restart a fragment
      *
-     * @param activity
+     * @param activity   the activity
      * @param fragmentId resource id for fragment
      */
     public static void restartFragment(FragmentActivity activity, int fragmentId) {
@@ -167,7 +185,7 @@ public class FragUtil {
                 fragTransaction.commit();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            ApplicationUtils.Log.e(e.getMessage());
         }
     }
 }

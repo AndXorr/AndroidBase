@@ -25,16 +25,34 @@ public class ProgressViewApplication extends RelativeLayout {
     private BaseProgressBar progressBar;
     private View view;
 
+    /**
+     * Instantiates a new Progress view application.
+     *
+     * @param context the context
+     */
     public ProgressViewApplication(Context context) {
         super(context);
         init(null);
     }
 
+    /**
+     * Instantiates a new Progress view application.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public ProgressViewApplication(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
+    /**
+     * Instantiates a new Progress view application.
+     *
+     * @param context      the context
+     * @param attrs        the attrs
+     * @param defStyleAttr the def style attr
+     */
     public ProgressViewApplication(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
@@ -75,14 +93,27 @@ public class ProgressViewApplication extends RelativeLayout {
     }
 
 
+    /**
+     * Gets text view.
+     *
+     * @return the text view
+     */
     public BaseTextView getTextView() {
         return textView;
     }
 
+    /**
+     * Gets progress bar.
+     *
+     * @return the progress bar
+     */
     public BaseProgressBar getProgressBar() {
         return progressBar;
     }
 
+    /**
+     * Show.
+     */
     public void show() {
         CustomDialog dialog = new CustomDialog(getContext(), R.style.Widget_ProgressDialog);
         dialog.setIndeterminateDrawable(ContextCompat.getDrawable(getContext(), R.drawable.dialog_progress_indeterminate));
@@ -91,23 +122,41 @@ public class ProgressViewApplication extends RelativeLayout {
         dialog.show();
     }
 
+    /**
+     * Gets progress dialog.
+     *
+     * @return the progress dialog
+     */
     public BaseProgressDialog getProgressDialog() {
         CustomDialog dialog = new CustomDialog(getContext(), R.style.Widget_ProgressDialog);
         dialog.setIndeterminateDrawable(ContextCompat.getDrawable(getContext(), R.drawable.dialog_progress_indeterminate));
         return dialog;
     }
 
+    /**
+     * Enable white color progress bar.
+     */
     public void enableWhiteColorProgressBar() {
         if (getProgressBar() != null) {
             getProgressBar().getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000, 0xFFFFFF));
         }
     }
 
+    /**
+     * Sets progress text.
+     *
+     * @param resId the res id
+     */
     public void setProgressText(@StringRes int resId) {
         getTextView().setVisibility(VISIBLE);
         getTextView().setText(resId);
     }
 
+    /**
+     * Sets progress text.
+     *
+     * @param text the text
+     */
     public void setProgressText(String text) {
         if (!ApplicationUtils.Validator.isEmptyOrNull(text)) {
             getTextView().setVisibility(VISIBLE);
@@ -115,12 +164,26 @@ public class ProgressViewApplication extends RelativeLayout {
         }
     }
 
+    /**
+     * The type Custom dialog.
+     */
     public class CustomDialog extends BaseProgressDialog {
 
+        /**
+         * Instantiates a new Custom dialog.
+         *
+         * @param context the context
+         */
         public CustomDialog(Context context) {
             super(context);
         }
 
+        /**
+         * Instantiates a new Custom dialog.
+         *
+         * @param context the context
+         * @param theme   the theme
+         */
         public CustomDialog(Context context, int theme) {
             super(context, theme);
         }

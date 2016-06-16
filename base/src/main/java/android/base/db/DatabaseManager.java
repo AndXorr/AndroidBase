@@ -1,14 +1,12 @@
 package android.base.db;
 
-import android.base.log.Log;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
-import java.util.Map;
 
 /**
- * Created by clickapps on 27/11/15.
+ * The type Database manager.
  */
 public final class DatabaseManager {
     private static volatile DatabaseManager sDatabaseManager;
@@ -17,6 +15,11 @@ public final class DatabaseManager {
         // private constructor
     }
 
+    /**
+     * Get database manager.
+     *
+     * @return the database manager
+     */
     public static DatabaseManager get() {
         if (sDatabaseManager == null) {
             synchronized (DatabaseManager.class) {
@@ -28,10 +31,23 @@ public final class DatabaseManager {
         return sDatabaseManager;
     }
 
+    /**
+     * With builder.
+     *
+     * @param context the context
+     * @return the builder
+     */
     public static Builder with(@NonNull Context context) {
         return new Builder(context);
     }
 
+    /**
+     * With builder.
+     *
+     * @param context          the context
+     * @param sqLiteOpenHelper the sq lite open helper
+     * @return the builder
+     */
     public static Builder with(@NonNull Context context, @NonNull SQLiteOpenHelper sqLiteOpenHelper) {
         return new Builder(context);
     }

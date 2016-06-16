@@ -56,6 +56,9 @@ public class PinnedSectionListView extends BaseListView {
         /**
          * This method shall return 'true' if views of given type has to be
          * pinned.
+         *
+         * @param viewType the view type
+         * @return the boolean
          */
         boolean isItemViewTypePinned(int viewType);
     }
@@ -64,8 +67,17 @@ public class PinnedSectionListView extends BaseListView {
      * Wrapper class for pinned section view and its position in the list.
      */
     static class PinnedSection {
+        /**
+         * The View.
+         */
         public View view;
+        /**
+         * The Position.
+         */
         public int position;
+        /**
+         * The Id.
+         */
         public long id;
     }
 
@@ -182,11 +194,24 @@ public class PinnedSectionListView extends BaseListView {
 
     // -- constructors
 
+    /**
+     * Instantiates a new Pinned section list view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public PinnedSectionListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
 
+    /**
+     * Instantiates a new Pinned section list view.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public PinnedSectionListView(Context context, AttributeSet attrs,
                                  int defStyle) {
         super(context, attrs, defStyle);
@@ -201,6 +226,11 @@ public class PinnedSectionListView extends BaseListView {
 
     // -- public API methods
 
+    /**
+     * Sets shadow visible.
+     *
+     * @param visible the visible
+     */
     public void setShadowVisible(boolean visible) {
         initShadow(visible);
         if (mPinnedSection != null) {
@@ -212,6 +242,11 @@ public class PinnedSectionListView extends BaseListView {
 
     // -- pinned section drawing methods
 
+    /**
+     * Init shadow.
+     *
+     * @param visible the visible
+     */
     public void initShadow(boolean visible) {
         if (visible) {
             if (mShadowDrawable == null) {
@@ -234,6 +269,8 @@ public class PinnedSectionListView extends BaseListView {
 
     /**
      * Create shadow wrapper with a pinned view for a view at given position
+     *
+     * @param position the position
      */
     void createPinnedShadow(int position) {
 
@@ -299,6 +336,10 @@ public class PinnedSectionListView extends BaseListView {
 
     /**
      * Makes sure we have an actual pinned shadow for given position.
+     *
+     * @param sectionPosition  the section position
+     * @param firstVisibleItem the first visible item
+     * @param visibleItemCount the visible item count
      */
     void ensureShadowForPosition(int sectionPosition, int firstVisibleItem,
                                  int visibleItemCount) {
@@ -348,6 +389,13 @@ public class PinnedSectionListView extends BaseListView {
 
     }
 
+    /**
+     * Find first visible section position int.
+     *
+     * @param firstVisibleItem the first visible item
+     * @param visibleItemCount the visible item count
+     * @return the int
+     */
     int findFirstVisibleSectionPosition(int firstVisibleItem,
                                         int visibleItemCount) {
         ListAdapter adapter = getAdapter();
@@ -375,6 +423,12 @@ public class PinnedSectionListView extends BaseListView {
         return -1;
     }
 
+    /**
+     * Find current section position int.
+     *
+     * @param fromPosition the from position
+     * @return the int
+     */
     int findCurrentSectionPosition(int fromPosition) {
         ListAdapter adapter = getAdapter();
 
@@ -401,6 +455,9 @@ public class PinnedSectionListView extends BaseListView {
         return -1; // no candidate found
     }
 
+    /**
+     * Recreate pinned shadow.
+     */
     void recreatePinnedShadow() {
         destroyPinnedShadow();
         ListAdapter adapter = getAdapter();
@@ -614,6 +671,13 @@ public class PinnedSectionListView extends BaseListView {
         return false;
     }
 
+    /**
+     * Is item view type pinned boolean.
+     *
+     * @param adapter  the adapter
+     * @param viewType the view type
+     * @return the boolean
+     */
     public static boolean isItemViewTypePinned(ListAdapter adapter, int viewType) {
         if (adapter instanceof HeaderViewListAdapter) {
             adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();

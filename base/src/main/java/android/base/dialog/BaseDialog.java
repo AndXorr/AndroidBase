@@ -9,16 +9,26 @@ import android.view.Window;
 /**
  * This class used for the base class of all dialogs in the application.
  *
- * @author amit.singh
- * @implements OnClickListener
+ * @author clickapps
  */
 public class BaseDialog extends Dialog implements View.OnClickListener {
 
+    /**
+     * Instantiates a new Base dialog.
+     *
+     * @param context the context
+     */
     public BaseDialog(Context context) {
         super(context);
         hideTitle();
     }
 
+    /**
+     * Instantiates a new Base dialog.
+     *
+     * @param context the context
+     * @param theme   the theme
+     */
     public BaseDialog(Context context, int theme) {
         super(context, theme);
         hideTitle();

@@ -14,10 +14,21 @@ import android.widget.EditText;
  */
 public class BaseTextInputLayout extends TextInputLayout {
 
+    /**
+     * Instantiates a new Base text input layout.
+     *
+     * @param context the context
+     */
     public BaseTextInputLayout(Context context) {
         super(context);
     }
 
+    /**
+     * Instantiates a new Base text input layout.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseTextInputLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

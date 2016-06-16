@@ -13,16 +13,34 @@ import android.util.AttributeSet;
  * Created by Sahni on 24-11-2015.
  */
 public class BaseCheckBox extends AppCompatCheckBox {
+    /**
+     * Instantiates a new Base check box.
+     *
+     * @param context the context
+     */
     public BaseCheckBox(Context context) {
         super(context);
         setAttributes(null);
     }
 
+    /**
+     * Instantiates a new Base check box.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseCheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
         setAttributes(attrs);
     }
 
+    /**
+     * Instantiates a new Base check box.
+     *
+     * @param context      the context
+     * @param attrs        the attrs
+     * @param defStyleAttr the def style attr
+     */
     public BaseCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setAttributes(attrs);

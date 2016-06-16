@@ -28,6 +28,12 @@ public class BaseImageViewLoading extends FrameLayout {
     private BaseImageView mImageView, mGradientImageView;
     private float minHeight, minWidth;
 
+    /**
+     * Instantiates a new Base image view loading.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseImageViewLoading(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
@@ -50,6 +56,11 @@ public class BaseImageViewLoading extends FrameLayout {
         }
     }
 
+    /**
+     * Instantiates a new Base image view loading.
+     *
+     * @param context the context
+     */
     public BaseImageViewLoading(Context context) {
         super(context);
         initView();
@@ -73,14 +84,29 @@ public class BaseImageViewLoading extends FrameLayout {
         addView(v);
     }
 
+    /**
+     * Gets image view.
+     *
+     * @return the image view
+     */
     public BaseImageView getImageView() {
         return mImageView;
     }
 
+    /**
+     * Gets progress bar.
+     *
+     * @return the progress bar
+     */
     public BaseProgressBar getProgressBar() {
         return mProgressBar;
     }
 
+    /**
+     * Gets gradient image view.
+     *
+     * @return the gradient image view
+     */
     public BaseImageView getGradientImageView() {
         return mGradientImageView;
     }

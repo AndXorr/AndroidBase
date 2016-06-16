@@ -9,14 +9,32 @@ import android.util.AttributeSet;
  */
 public class BaseTabLayout extends TabLayout {
 
+    /**
+     * Instantiates a new Base tab layout.
+     *
+     * @param context the context
+     */
     public BaseTabLayout(Context context) {
         super(context);
     }
 
+    /**
+     * Instantiates a new Base tab layout.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseTabLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * Instantiates a new Base tab layout.
+     *
+     * @param context      the context
+     * @param attrs        the attrs
+     * @param defStyleAttr the def style attr
+     */
     public BaseTabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }

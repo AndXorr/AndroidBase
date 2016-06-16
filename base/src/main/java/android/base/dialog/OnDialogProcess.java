@@ -6,9 +6,21 @@ import android.os.Bundle;
  * This interface is used as a call back for the dialogs
  */
 public interface OnDialogProcess {
+    /**
+     * The constant POSITIVE.
+     */
     int POSITIVE = 1;
+    /**
+     * The constant NEGATIVE.
+     */
     int NEGATIVE = 2;
+    /**
+     * The constant NEUTRAL.
+     */
     int NEUTRAL = 3;
+    /**
+     * The constant VIEW.
+     */
     int VIEW = 4;
 
 

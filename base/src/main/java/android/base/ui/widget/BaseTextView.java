@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 /**
  * This class is used as Widget instead of TextView.This class has also a custom
  * attribute which is used in xml file.
- * <p/>
+ * <p>
  * This attribute is customtypeface support string value pass name of typeface
  * of using in asses folder here. It will automatically set on TextView text.
  * </P>
@@ -24,17 +24,33 @@ import android.util.AttributeSet;
  */
 public class BaseTextView extends AppCompatTextView {
 
+    /**
+     * Instantiates a new Base text view.
+     *
+     * @param context the context
+     */
     public BaseTextView(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     * Instantiates a new Base text view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
         setAttributes(attrs);
     }
 
+    /**
+     * Sets attributes.
+     *
+     * @param attrs the attrs
+     */
     void setAttributes(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray ta = getContext().obtainStyledAttributes(attrs,
@@ -79,10 +95,20 @@ public class BaseTextView extends AppCompatTextView {
     private float letterSpacing = LetterSpacingUtils.BIGGEST;
     private CharSequence originalText = "";
 
+    /**
+     * Sets text spacing.
+     *
+     * @return the text spacing
+     */
     public float setTextSpacing() {
         return letterSpacing;
     }
 
+    /**
+     * Sets text spacing.
+     *
+     * @param letterSpacing the letter spacing
+     */
     public void setTextSpacing(float letterSpacing) {
         this.letterSpacing = letterSpacing;
         originalText = getText();

@@ -3,26 +3,87 @@ package android.base.pubnub;
 import android.app.Activity;
 import android.content.Context;
 
+
 /**
- * Created by clickapps on 5/2/16.
+ * The type Pub nub param.
  */
 public class PubNubParam {
+    /**
+     * The Context.
+     */
     protected Context context;
+    /**
+     * The Activity.
+     */
     protected Activity activity;
-    protected String publish_key, subscribe_key, secret_key, cipher_key;
-    protected boolean ssl_on, enableGCM;
+    /**
+     * The Publish key.
+     */
+    protected String publish_key, /**
+     * The Subscribe key.
+     */
+    subscribe_key, /**
+     * The Secret key.
+     */
+    secret_key, /**
+     * The Cipher key.
+     */
+    cipher_key;
+    /**
+     * The Ssl on.
+     */
+    protected boolean ssl_on, /**
+     * The Enable gcm.
+     */
+    enableGCM;
+    /**
+     * The Event.
+     */
     protected Event event = Event.SUB;
+    /**
+     * The Channels.
+     */
     protected String[] channels;
+    /**
+     * The Listener.
+     */
     protected OnPushMessageListener listener;
 
+    /**
+     * The enum Event.
+     */
     public enum Event {
-        SUB, UNSUB, UNSUBALL
+        /**
+         * Sub event.
+         */
+        SUB, /**
+         * Unsub event.
+         */
+        UNSUB, /**
+         * Unsuball event.
+         */
+        UNSUBALL
     }
 
+    /**
+     * The interface On push message listener.
+     */
     public interface OnPushMessageListener {
+        /**
+         * On success.
+         *
+         * @param channel the channel
+         * @param data    the data
+         */
         void onSuccess(String channel, Object data);
 
-        // If there is an error, don't just keep trying to register.
+        /**
+         * On failure.
+         *
+         * @param channel   the channel
+         * @param exception the exception
+         */
+// If there is an error, don't just keep trying to register.
         void onFailure(String channel, String exception);
     }
 

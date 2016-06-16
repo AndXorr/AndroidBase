@@ -25,8 +25,14 @@ import java.nio.channels.FileChannel;
 
 import static android.os.Environment.MEDIA_MOUNTED;
 
+/**
+ * The type File util.
+ */
 public class FileUtil extends FileUtils{
-    // Amount of bytes on a megabyte
+    /**
+     * The constant BYTES_TO_MB.
+     */
+// Amount of bytes on a megabyte
     public static final int BYTES_TO_MB = 1048576;
     private static final int BUFFER_SIZE = 16384;
 
@@ -104,6 +110,7 @@ public class FileUtil extends FileUtils{
      *
      * @param fromFile - FileInputStream for the file to copy from.
      * @param toFile   - FileOutpubStream for the file to copy to.
+     * @throws IOException the io exception
      */
     public static void copyFile(FileInputStream fromFile, FileOutputStream toFile) throws IOException {
         FileChannel fromChannel = null;
@@ -166,8 +173,7 @@ public class FileUtil extends FileUtils{
     /**
      * Check if file exists on SDCard or not
      *
-     * @param filePath - its the path of the file after SDCardDirectory (no need for
-     *                 getExternalStorageDirectory())
+     * @param filePath - its the path of the file after SDCardDirectory (no need for                 getExternalStorageDirectory())
      * @return boolean - if file exist on SDCard or not
      */
     public static boolean checkIfFileExists(String filePath) {
@@ -178,8 +184,8 @@ public class FileUtil extends FileUtils{
     /**
      * Create folder in the SDCard
      *
-     * @param path
-     * @return
+     * @param path the path
+     * @return boolean
      */
     public static boolean createFolder(String path) {
         File direct = new File(Environment.getExternalStorageDirectory() + "/" + path);
@@ -205,10 +211,9 @@ public class FileUtil extends FileUtils{
     /**
      * Functionality to get directory name file
      *
-     * @param context
+     * @param context the context
      * @return directory file where the all the application's files are stored
      */
-
     public static File getDirectoryApp(Context context) {
         String cacheFilePath = Environment.getExternalStorageDirectory() + "/Android/data/" + context.getPackageName();
         File appCacheDir = null;
@@ -229,10 +234,9 @@ public class FileUtil extends FileUtils{
     /**
      * Functionality to get directory of images cache file
      *
-     * @param context
+     * @param context the context
      * @return directory file where the all the application's images are stored
      */
-
     public static File getDirectoryAppCacheImages(Context context) {
         File dir = new File(getDirectoryApp(context),
                 "/CacheImages");
@@ -248,10 +252,9 @@ public class FileUtil extends FileUtils{
     /**
      * Functionality to get directory of images file
      *
-     * @param context
+     * @param context the context
      * @return directory file where the all the application's images are stored
      */
-
     public static File getDirectoryAppImages(Context context) {
         File dir = new File(getDirectoryApp(context),
                 "/Images");
@@ -267,10 +270,9 @@ public class FileUtil extends FileUtils{
     /**
      * Functionality to get directory of images file
      *
-     * @param context
+     * @param context the context
      * @return directory file where the all the application's images are stored
      */
-
     public static File getDirectoryAppTemp(Context context) {
         File dir = new File(getDirectoryApp(context),
                 "/Temp");
@@ -286,10 +288,9 @@ public class FileUtil extends FileUtils{
     /**
      * Functionality to get directory of images file
      *
-     * @param context
+     * @param context the context
      * @return directory file where the all the application's images are stored
      */
-
     public static File getDirectoryAppVideos(Context context) {
         File dir = new File(getDirectoryApp(context),
                 "/Videos");
@@ -303,6 +304,13 @@ public class FileUtil extends FileUtils{
     }
 
 
+    /**
+     * Gets static file.
+     *
+     * @param context the context
+     * @param name    the name
+     * @return the static file
+     */
     public static File getStaticFile(Context context, String name) {
         if (TextUtils.isEmpty(name)) {
             name = "temp.jpg";
@@ -312,6 +320,12 @@ public class FileUtil extends FileUtils{
 
     }
 
+    /**
+     * Write string to file.
+     *
+     * @param file the file
+     * @param data the data
+     */
     public static void writeStringToFile(File file, String data) {
         try {
             org.apache.commons.io.FileUtils.writeStringToFile(file, data);
@@ -320,6 +334,13 @@ public class FileUtil extends FileUtils{
         }
     }
 
+    /**
+     * Write string to file.
+     *
+     * @param file   the file
+     * @param data   the data
+     * @param append the append
+     */
     public static void writeStringToFile(File file, String data, boolean append) {
         try {
             org.apache.commons.io.FileUtils.writeStringToFile(file, data, append);
@@ -334,12 +355,24 @@ public class FileUtil extends FileUtils{
         return perm == PackageManager.PERMISSION_GRANTED;
     }
 
+    /**
+     * Gets application name.
+     *
+     * @param context the context
+     * @return the application name
+     */
     public static String getApplicationName(Context context) {
         int stringId = context.getApplicationInfo().labelRes;
         return context.getString(stringId);
     }
 
 
+    /**
+     * Define exif orientation int.
+     *
+     * @param imageUri the image uri
+     * @return the int
+     */
     public static int defineExifOrientation(String imageUri) {
         int rotation = 0;
 
@@ -384,6 +417,7 @@ public class FileUtil extends FileUtils{
      *
      * @param context The context.
      * @param uri     The Uri to query.
+     * @return the path
      * @author paulburke
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)

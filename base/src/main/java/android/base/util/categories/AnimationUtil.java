@@ -6,12 +6,16 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+
 /**
- * Created by cesarferreira on 28/05/14.
+ * The type Animation util.
  */
 public class AnimationUtil {
 
 
+    /**
+     * Instantiates a new Animation util.
+     */
     protected AnimationUtil() {
     }
 
@@ -33,6 +37,12 @@ public class AnimationUtil {
         return view;
     }
 
+    /**
+     * Animate.
+     *
+     * @param view the view
+     * @param anim the anim
+     */
     public static void animate(View view, @AnimRes int anim) {
         android.view.animation.Animation animation =
                 AnimationUtils.loadAnimation(view.getContext(), anim);

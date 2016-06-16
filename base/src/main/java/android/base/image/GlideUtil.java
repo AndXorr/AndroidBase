@@ -14,11 +14,17 @@ import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.File;
 
+
 /**
- * Created by clickapps on 15/4/16.
+ * The type Glide util.
  */
 public class GlideUtil {
 
+    /**
+     * Sets image.
+     *
+     * @param imageParam the image param
+     */
     public void setImage(final ImageParam imageParam) {
         if (imageParam.clearCache) {
             Glide.get(imageParam.context).clearDiskCache();
@@ -97,12 +103,22 @@ public class GlideUtil {
             }
         }
 
+        /**
+         * Sets loading thumbnail.
+         *
+         * @param imageParam the image param
+         */
         void setLoadingThumbnail(ImageParam imageParam) {
             if (imageParam.loadingThumbnail != -1) {
                 imageParam.imageView.setImageResource(imageParam.loadingThumbnail);
             }
         }
 
+        /**
+         * Sets error thumbnail.
+         *
+         * @param imageParam the image param
+         */
         void setErrorThumbnail(ImageParam imageParam) {
             if (imageParam.errorThumbnail != 0) {
                 imageParam.imageView.setImageResource(imageParam.errorThumbnail);
@@ -111,6 +127,12 @@ public class GlideUtil {
             }
         }
 
+        /**
+         * Sets bitmap.
+         *
+         * @param imageParam the image param
+         * @param bitmap     the bitmap
+         */
         void setBitmap(ImageParam imageParam, Bitmap bitmap) {
             if (bitmap != null) {
                 imageParam.imageView.setImageBitmap(bitmap);

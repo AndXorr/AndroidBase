@@ -12,17 +12,34 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class BaseCircleImageView extends CircleImageView {
     private boolean isNeedStrech = false;
 
+    /**
+     * Instantiates a new Base circle image view.
+     *
+     * @param context the context
+     */
     public BaseCircleImageView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
         init();
     }
 
+    /**
+     * Instantiates a new Base circle image view.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public BaseCircleImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
+    /**
+     * Instantiates a new Base circle image view.
+     *
+     * @param context  the context
+     * @param attrs    the attrs
+     * @param defStyle the def style
+     */
     public BaseCircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
@@ -38,10 +55,20 @@ public class BaseCircleImageView extends CircleImageView {
         init();
     }
 
+    /**
+     * Is need strech boolean.
+     *
+     * @return the boolean
+     */
     public boolean isNeedStrech() {
         return isNeedStrech;
     }
 
+    /**
+     * Sets is need strech.
+     *
+     * @param isNeedStrech the is need strech
+     */
     public void setIsNeedStrech(boolean isNeedStrech) {
         this.isNeedStrech = isNeedStrech;
     }
