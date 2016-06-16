@@ -20,6 +20,12 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
         //to identify child tasks and perform on activity itself
         View.OnClickListener, WebHandler.OnWebCallback {
 
+    /**
+     * The Tag.
+     */
+    protected String TAG;
+    private OnBackHandler backHandler;
+    private BaseFragment fragment = null;
 
     /**
      * Instantiates a new Base activity app compat.
@@ -33,13 +39,6 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
      */
     protected abstract void initUI();
 
-
-    /**
-     * The Tag.
-     */
-    protected String TAG;
-    private OnBackHandler backHandler;
-    private BaseFragment fragment = null;
 
     /**
      * This method is used to show layout.

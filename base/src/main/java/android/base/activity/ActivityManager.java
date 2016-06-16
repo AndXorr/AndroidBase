@@ -1,13 +1,7 @@
 package android.base.activity;
 
 import android.app.Activity;
-import android.base.R;
-import android.base.util.ApplicationUtils;
-import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.util.Log;
 
 
 /**

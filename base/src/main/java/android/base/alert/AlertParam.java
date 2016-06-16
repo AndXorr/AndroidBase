@@ -26,10 +26,10 @@ public class AlertParam {
     /**
      * The Message res id.
      */
-    protected int messageResId = 0, /**
+    protected int messageResId = 0; /**
      * The Duration.
      */
-    duration = Toast.LENGTH_SHORT;
+    protected int duration = Toast.LENGTH_SHORT;
     /**
      * The constant ITEM.
      */

@@ -21,16 +21,19 @@ public class ActivityParam {
     /**
      * The Enter.
      */
-    protected int enter = 0, /**
+    protected int enter = 0;
+    /**
      * The Exit.
      */
-    exit = 0, /**
+    protected int exit = 0;
+    /**
      * The Request code.
      */
-    requestCode = 0, /**
+    protected int requestCode = 0;
+    /**
      * The Flag.
      */
-    flag = 0;
+    protected int flag = 0;
     /**
      * The Activity type.
      */
@@ -47,10 +50,11 @@ public class ActivityParam {
     /**
      * The Enable animation.
      */
-    protected boolean enableAnimation = false, /**
+    protected boolean enableAnimation = false;
+    /**
      * The Is back stack.
      */
-    isBackStack = false;
+    protected boolean isBackStack = false;
 
     /**
      * The enum Activity type.

@@ -1,13 +1,9 @@
 package android.base.adapter;
 
-import android.base.adapter.BaseRecyclerViewAdapter.OnItemLongClickListener;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
-
-import com.google.common.base.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +41,16 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     private OnItemLongClickListener itemLongClickListener;
     private boolean hideFooter = false;
 
+    /**
+     * Instantiates a new Base header footer recycler view adapter.
+     *
+     * @param context the context
+     */
+    public BaseHeaderFooterRecyclerViewAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
     public void setList(@Nullable List<T> list) {
         if (list != null) {
             this.list = new ArrayList<>(list);
@@ -70,22 +76,16 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
         return hideFooter;
     }
 
+    @Override
     public List<T> getList() {
         return list;
     }
 
+    @Override
     public T getItem(int pos) {
         return this.list.get(pos);
     }
 
-    /**
-     * Instantiates a new Base header footer recycler view adapter.
-     *
-     * @param context the context
-     */
-    public BaseHeaderFooterRecyclerViewAdapter(Context context) {
-        super(context);
-    }
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
