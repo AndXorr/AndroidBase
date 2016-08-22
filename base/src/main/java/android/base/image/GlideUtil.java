@@ -3,6 +3,7 @@ package android.base.image;
 import android.base.log.Log;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Environment;
 import android.view.View;
 
@@ -30,20 +31,31 @@ public class GlideUtil {
             Glide.get(imageParam.context).clearDiskCache();
             Glide.get(imageParam.context).clearMemory();
         }
-        BitmapTypeRequest<String> glideManager = Glide.with(imageParam.context)
-                .load(imageParam.url).asBitmap();
-        if (imageParam.loadingThumbnail != -1)
-            glideManager.placeholder(imageParam.loadingThumbnail);
-        if (imageParam.errorThumbnail != -1)
-            glideManager.error(imageParam.errorThumbnail);
-        if (imageParam.disableCache) {
-            glideManager.skipMemoryCache(true);
-            glideManager.diskCacheStrategy(DiskCacheStrategy.NONE);
+        if (imageParam.imageType == ImageParam.ImageType.URI) {
+            Glide.with(imageParam.context)
+                    .load(Uri.parse(imageParam.url))
+                    .placeholder(imageParam.loadingThumbnail)
+                    .error(imageParam.errorThumbnail)
+                    .into(imageParam.imageView);
+        } else {
+            BitmapTypeRequest<String> glideManager = Glide.with(imageParam.context)
+                    .load(imageParam.url).asBitmap();
+            if (imageParam.loadingThumbnail != -1)
+                glideManager.placeholder(imageParam.loadingThumbnail);
+            if (imageParam.errorThumbnail != -1)
+                glideManager.error(imageParam.errorThumbnail);
+            if (imageParam.disableCache) {
+                glideManager.skipMemoryCache(true);
+                glideManager.diskCacheStrategy(DiskCacheStrategy.NONE);
+            }
+            if (imageParam.height > 0 && imageParam.width > 0) {
+                glideManager.override(imageParam.width, imageParam.height);
+            }
+            glideManager.into(new Target(imageParam));
         }
-        if (imageParam.height > 0 && imageParam.width > 0) {
-            glideManager.override(imageParam.width, imageParam.height);
-        }
-        glideManager.into(new Target(imageParam));
+
+
+
     }
 
 

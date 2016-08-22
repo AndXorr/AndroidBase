@@ -1,7 +1,7 @@
 package android.base.fragment;
 
 import android.app.Fragment;
-import android.base.activity.BaseActivityAppCompat;
+import android.base.activity.BaseAppCompatActivity;
 import android.base.interfaces.OnBackHandler;
 import android.base.http.WebHandler;
 import android.os.Bundle;
@@ -54,9 +54,9 @@ public abstract class BaseFragment extends Fragment implements
         /**
          * Handle BackPress on Fragment.
          */
-        if (getActivity() instanceof BaseActivityAppCompat) {
+        if (getActivity() instanceof BaseAppCompatActivity) {
             if (enableBackHandle)
-                ((BaseActivityAppCompat) getActivity()).setBackHandler(this);
+                ((BaseAppCompatActivity) getActivity()).setBackHandler(this);
         }
         super.onResume();
     }
