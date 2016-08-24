@@ -107,4 +107,85 @@ public class WebParam {
          */
         DELETE
     }
+
+
+    public Activity getActivityContext() {
+        return activityContext;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public String getProgressDialogMessage() {
+        return progressDialogMessage;
+    }
+
+    public HttpType getHttpType() {
+        return httpType;
+    }
+
+    public Map<String, ?> getRequestParam() {
+        return requestParam;
+    }
+
+    public Map<String, String> getHeaderParam() {
+        return headerParam;
+    }
+
+    public WebHandler.OnWebCallback getCallback() {
+        return callback;
+    }
+
+    public Class<?> getModel() {
+        return model;
+    }
+
+    public Class<?> getError() {
+        return error;
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public BaseProgressDialog getProgressDialog() {
+        return progressDialog;
+    }
+
+    public boolean isShowDialog() {
+        return showDialog;
+    }
+
+    public boolean isJson() {
+        return isJson;
+    }
+
+    public boolean isMultipart() {
+        return isMultipart;
+    }
+
+    public boolean isCacheResponse() {
+        return cacheResponse;
+    }
+
+    public int getCacheSize() {
+        return cacheSize;
+    }
+
+    public File getCacheDir() {
+        return cacheDir;
+    }
 }

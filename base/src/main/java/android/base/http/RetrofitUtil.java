@@ -38,10 +38,10 @@ public class RetrofitUtil {
             .create();
     private OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
     private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    private Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(StringConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson));
+//    private Retrofit.Builder builder = new Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .addConverterFactory(StringConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create(gson));
 
 
     /**
@@ -76,10 +76,18 @@ public class RetrofitUtil {
             }
         });
         okHttpClientBuilder.addInterceptor(interceptor);
-        builder.client(okHttpClientBuilder.build());
-        if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
-            builder.baseUrl(webParam.baseUrl);
+        String baseUrl = BASE_URL;
+        if (ApplicationUtils.Validator.isEmptyOrNull(BASE_URL)) {
+            baseUrl = webParam.baseUrl;
         }
+        if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
+            baseUrl = webParam.baseUrl;
+        }
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(StringConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson));
+        builder.client(okHttpClientBuilder.build());
         Retrofit retrofit = builder.build();
         if (webParam.showDialog) {
             webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
