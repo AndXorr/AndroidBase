@@ -50,6 +50,15 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         initUI();
     }
 
+    protected Bundle getBundle() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
+        return bundle;
+
+    }
+
     @Override
     public void onClick(View v) {
 
