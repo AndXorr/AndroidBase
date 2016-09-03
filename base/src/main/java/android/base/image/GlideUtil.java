@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.bumptech.glide.BitmapTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -31,29 +32,27 @@ public class GlideUtil {
             Glide.get(imageParam.context).clearDiskCache();
             Glide.get(imageParam.context).clearMemory();
         }
+        RequestManager manager = Glide.with(imageParam.context);
+        BitmapTypeRequest<?> glideManager;
         if (imageParam.imageType == ImageParam.ImageType.URI) {
-            Glide.with(imageParam.context)
-                    .load(Uri.parse(imageParam.url))
-                    .placeholder(imageParam.loadingThumbnail)
-                    .error(imageParam.errorThumbnail)
-                    .into(imageParam.imageView);
+            glideManager = manager.load(Uri.parse(imageParam.url)).asBitmap();
+        } else if (imageParam.imageType == ImageParam.ImageType.FILE) {
+            glideManager = manager.load(new File(Uri.parse(imageParam.url).getPath())).asBitmap();
         } else {
-            BitmapTypeRequest<String> glideManager = Glide.with(imageParam.context)
-                    .load(imageParam.url).asBitmap();
-            if (imageParam.loadingThumbnail != -1)
-                glideManager.placeholder(imageParam.loadingThumbnail);
-            if (imageParam.errorThumbnail != -1)
-                glideManager.error(imageParam.errorThumbnail);
-            if (imageParam.disableCache) {
-                glideManager.skipMemoryCache(true);
-                glideManager.diskCacheStrategy(DiskCacheStrategy.NONE);
-            }
-            if (imageParam.height > 0 && imageParam.width > 0) {
-                glideManager.override(imageParam.width, imageParam.height);
-            }
-            glideManager.into(new Target(imageParam));
+            glideManager = manager.load(imageParam.url).asBitmap();
         }
-
+        if (imageParam.loadingThumbnail != -1)
+            glideManager.placeholder(imageParam.loadingThumbnail);
+        if (imageParam.errorThumbnail != -1)
+            glideManager.error(imageParam.errorThumbnail);
+        if (imageParam.disableCache) {
+            glideManager.skipMemoryCache(true);
+            glideManager.diskCacheStrategy(DiskCacheStrategy.NONE);
+        }
+        if (imageParam.height > 0 && imageParam.width > 0) {
+            glideManager.override(imageParam.width, imageParam.height);
+        }
+        glideManager.into(new Target(imageParam));
 
 
     }
