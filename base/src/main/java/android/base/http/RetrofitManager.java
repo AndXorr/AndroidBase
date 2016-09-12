@@ -1,6 +1,5 @@
 package android.base.http;
 
-
 import android.base.util.ApplicationUtils;
 
 import com.google.gson.Gson;
@@ -30,15 +29,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * The type Retrofit util.
  */
-public class RetrofitUtil {
-    private String BASE_URL = WebConstant.BASE_URL;
+public class RetrofitManager {
+    private String BASE_URL = WebConstant.getBaseUrl();
     private final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
             .create();
     private OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
     private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//    private Retrofit.Builder builder = new Retrofit.Builder()
+//    private Retrofit.WebBuilder builder = new Retrofit.WebBuilder()
 //            .baseUrl(BASE_URL)
 //            .addConverterFactory(StringConverterFactory.create())
 //            .addConverterFactory(GsonConverterFactory.create(gson));
@@ -47,7 +46,7 @@ public class RetrofitUtil {
     /**
      * Instantiates a new Retrofit util.
      */
-    public RetrofitUtil() {
+    public RetrofitManager() {
 
     }
 
