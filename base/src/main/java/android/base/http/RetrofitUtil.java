@@ -77,9 +77,6 @@ public class RetrofitUtil {
         });
         okHttpClientBuilder.addInterceptor(interceptor);
         String baseUrl = BASE_URL;
-        if (ApplicationUtils.Validator.isEmptyOrNull(BASE_URL)) {
-            baseUrl = webParam.baseUrl;
-        }
         if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
             baseUrl = webParam.baseUrl;
         }
