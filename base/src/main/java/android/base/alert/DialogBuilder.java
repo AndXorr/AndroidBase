@@ -1,12 +1,14 @@
 package android.base.alert;
 
 import android.base.dialog.OnDialogProcess;
+import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.widget.TextView;
 
 
 /**
@@ -171,6 +173,18 @@ public class DialogBuilder {
     }
 
     /**
+     * Set typeface of text snack builder.
+     *
+     * @param typeface string name of assets typeface
+     * @return the snack builder
+     */
+    @SuppressWarnings("Typeface must be defined in assets")
+    public DialogBuilder typeface(String typeface) {
+        alertParam.typeface = typeface;
+        return this;
+    }
+
+    /**
      * Listener dialog builder.
      *
      * @param l the l
@@ -299,7 +313,35 @@ public class DialogBuilder {
         if (alertParam.dialogType == AlertParam.DialogType.DIALOG_LIST) {
             mAlert.setItems(alertParam.list, new OnDialogClick(alertParam, 3));
         }
-        mAlert.create().show();
+
+        //create dialog
+        AlertDialog dialog = mAlert.create();
+
+        //display dialog
+        dialog.show();
+
+        try {
+            //find message text view
+            TextView messageTextView = (TextView) dialog.findViewById(android.R.id.message);
+            TextView button1TextView = (TextView) dialog.findViewById(android.R.id.button1);
+            TextView button2TextView = (TextView) dialog.findViewById(android.R.id.button2);
+            TextView button3TextView = (TextView) dialog.findViewById(android.R.id.button3);
+            //check typeface
+            String typeface = alertParam.getTypeface();
+            if (!TextUtils.isEmpty(typeface)) {
+                //set message typeface
+                Alert.get().setTypeface(alertParam.context, messageTextView, typeface);
+                //set button1 typeface
+                Alert.get().setTypeface(alertParam.context, button1TextView, typeface);
+                //set button2 typeface
+                Alert.get().setTypeface(alertParam.context, button2TextView, typeface);
+                //set button3 typeface
+                Alert.get().setTypeface(alertParam.context, button3TextView, typeface);
+            }
+        }catch(Exception e){
+            ApplicationUtils.Log.e(e.getMessage() + e);
+        }
+
 
     }
 
@@ -332,5 +374,7 @@ public class DialogBuilder {
                     this, buttonType);
         }
     }
+
+
 }
 

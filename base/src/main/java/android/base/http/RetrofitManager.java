@@ -1,5 +1,6 @@
 package android.base.http;
 
+import android.base.R;
 import android.base.util.ApplicationUtils;
 
 import com.google.gson.Gson;
@@ -10,8 +11,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.security.cert.CertificateException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -147,7 +154,19 @@ public class RetrofitManager {
         public void onFailure(Call<T> call, Throwable t) {
             dismissDialog(webParam);
             if (webParam.callback != null) {
-                webParam.callback.onError(t.getMessage(), t.getMessage(), webParam.taskId, 0);
+                String errors;
+                if (t.getClass().getName().contains(UnknownHostException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_internet_connection);
+                } else if (t.getClass().getName().contains(TimeoutException.class.getName())
+                        || t.getClass().getName().contains(SocketTimeoutException.class.getName())
+                        || t.getClass().getName().contains(ConnectException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_server_connection);
+                } else if (t.getClass().getName().contains(CertificateException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_certificate_exception);
+                } else {
+                    errors = webParam.context.getString(R.string.error_server_connection);
+                }
+                webParam.callback.onError(errors, errors, webParam.taskId, HttpURLConnection.HTTP_UNAVAILABLE);
             }
         }
     }

@@ -1,9 +1,12 @@
 package android.base.alert;
 
+import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 /**
@@ -81,6 +84,20 @@ public class ToastBuilder {
         } else if (!TextUtils.isEmpty(alertParam.message)) {
             toast = android.widget.Toast.makeText(alertParam.context.getApplicationContext(), alertParam.message, alertParam.duration);
         }
+
+        try {
+            //find text view
+            TextView textView = (TextView) ((LinearLayout) toast.getView()).getChildAt(0);
+            //check typeface
+            String typeface = alertParam.getTypeface();
+            if (!TextUtils.isEmpty(typeface)) {
+                //set message typeface
+                Alert.get().setTypeface(alertParam.context, textView, typeface);
+            }
+        } catch (Exception e) {
+            ApplicationUtils.Log.e(e.getMessage() + e);
+        }
+
         if (toast != null) {
             toast.show();
         }
