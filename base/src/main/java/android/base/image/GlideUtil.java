@@ -73,7 +73,7 @@ public class GlideUtil {
             } else if (imageParam.imageView != null) {
                 setBitmap(imageParam, bitmap);
             } else {
-                Log.e(getClass().getSimpleName(), "ImageView is null");
+                new RuntimeException("ImageView can't be null");
             }
 
             if (imageParam.needBitmap && imageParam.callback != null) {
@@ -87,7 +87,7 @@ public class GlideUtil {
 
         @Override
         public void onLoadCleared(Drawable placeholder) {
-
+            // TODO
         }
 
         @Override
