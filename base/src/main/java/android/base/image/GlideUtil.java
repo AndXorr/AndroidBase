@@ -3,11 +3,13 @@ package android.base.image;
 import android.base.log.Log;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Environment;
 import android.view.View;
 
 import com.bumptech.glide.BitmapTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -30,8 +32,15 @@ public class GlideUtil {
             Glide.get(imageParam.context).clearDiskCache();
             Glide.get(imageParam.context).clearMemory();
         }
-        BitmapTypeRequest<String> glideManager = Glide.with(imageParam.context)
-                .load(imageParam.url).asBitmap();
+        RequestManager manager = Glide.with(imageParam.context);
+        BitmapTypeRequest<?> glideManager;
+        if (imageParam.imageType == ImageParam.ImageType.URI) {
+            glideManager = manager.load(Uri.parse(imageParam.url)).asBitmap();
+        } else if (imageParam.imageType == ImageParam.ImageType.FILE) {
+            glideManager = manager.load(new File(Uri.parse(imageParam.url).getPath())).asBitmap();
+        } else {
+            glideManager = manager.load(imageParam.url).asBitmap();
+        }
         if (imageParam.loadingThumbnail != -1)
             glideManager.placeholder(imageParam.loadingThumbnail);
         if (imageParam.errorThumbnail != -1)
@@ -44,6 +53,8 @@ public class GlideUtil {
             glideManager.override(imageParam.width, imageParam.height);
         }
         glideManager.into(new Target(imageParam));
+
+
     }
 
 
@@ -62,7 +73,7 @@ public class GlideUtil {
             } else if (imageParam.imageView != null) {
                 setBitmap(imageParam, bitmap);
             } else {
-                Log.e(getClass().getSimpleName(), "ImageView is null");
+                new RuntimeException("ImageView can't be null");
             }
 
             if (imageParam.needBitmap && imageParam.callback != null) {
@@ -76,7 +87,7 @@ public class GlideUtil {
 
         @Override
         public void onLoadCleared(Drawable placeholder) {
-
+            // TODO
         }
 
         @Override

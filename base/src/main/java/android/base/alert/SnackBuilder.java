@@ -2,6 +2,7 @@ package android.base.alert;
 
 import android.app.Activity;
 import android.base.R;
+import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -27,6 +28,7 @@ public class SnackBuilder {
     public SnackBuilder(Activity context, @StringRes int resId) {
         alertParam = new AlertParam();
         alertParam.activityContext = context;
+        alertParam.context = context;
         alertParam.messageResId = resId;
     }
 
@@ -39,7 +41,38 @@ public class SnackBuilder {
     public SnackBuilder(Activity context, String msg) {
         alertParam = new AlertParam();
         alertParam.activityContext = context;
+        alertParam.context = context;
         alertParam.message = msg;
+    }
+
+    /**
+     * Instantiates a new Snack builder.
+     *
+     * @param context         the context
+     * @param resId           the res id
+     * @param backgroundColor background color of snackbar
+     */
+    public SnackBuilder(Activity context, @StringRes int resId, @ColorRes int backgroundColor) {
+        alertParam = new AlertParam();
+        alertParam.activityContext = context;
+        alertParam.context = context;
+        alertParam.messageResId = resId;
+        alertParam.actionBackgroundResId = backgroundColor;
+    }
+
+    /**
+     * Instantiates a new Snack builder.
+     *
+     * @param context         the context
+     * @param msg             the msg
+     * @param backgroundColor background color of snackbar
+     */
+    public SnackBuilder(Activity context, String msg, @ColorRes int backgroundColor) {
+        alertParam = new AlertParam();
+        alertParam.activityContext = context;
+        alertParam.context = context;
+        alertParam.message = msg;
+        alertParam.actionBackgroundResId = backgroundColor;
     }
 
     /**
@@ -160,6 +193,18 @@ public class SnackBuilder {
     }
 
     /**
+     * Set typeface of text snack builder.
+     *
+     * @param typeface string name of assets typeface
+     * @return the snack builder
+     */
+    @SuppressWarnings("Typeface must be defined in assets")
+    public SnackBuilder typeface(String typeface) {
+        alertParam.typeface = typeface;
+        return this;
+    }
+
+    /**
      * Show.
      */
     public void show() {
@@ -210,6 +255,7 @@ public class SnackBuilder {
             snackbar.setActionTextColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionColorResId));
         }
         TextView tv = (TextView) snackbar.getView().findViewById(R.id.snackbar_text);
+        TextView tva = (TextView) snackbar.getView().findViewById(R.id.snackbar_action);
         if (alertParam.actionMessageMaxLine != -1)
             tv.setMaxLines(alertParam.actionMessageMaxLine);
         if (alertParam.textColor != 0) {
@@ -217,7 +263,17 @@ public class SnackBuilder {
         }
         if (alertParam.actionBackgroundResId != 0)
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionBackgroundResId));
+        //check typeface
+        String typeface = alertParam.getTypeface();
+        if (!TextUtils.isEmpty(typeface)) {
+            //set message typeface
+            Alert.get().setTypeface(alertParam.context, tv, typeface);
+            //set action typeface
+            Alert.get().setTypeface(alertParam.context, tva, typeface);
+        }
+
         snackbar.show();
     }
+
 
 }

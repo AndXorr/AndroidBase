@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ public class AlertParam {
     /**
      * The Message res id.
      */
-    protected int messageResId = 0; /**
+    protected int messageResId = 0;
+    /**
      * The Duration.
      */
     protected int duration = Toast.LENGTH_SHORT;
@@ -147,6 +149,13 @@ public class AlertParam {
     protected OnSnackBarActionListener onSnackBarActionListener;
 
     /**
+     * Type face for all the alerts defined for whole the application's alerts
+     */
+    private static String typefaceAllAlerts;
+    /*Typeface for the specific alert*/
+    protected String typeface;
+
+    /**
      * The interface On snack bar action listener.
      */
     public interface OnSnackBarActionListener {
@@ -157,5 +166,21 @@ public class AlertParam {
          * @param view     the view
          */
         void onSnackBarActionClicked(int uniqueId, View view);
+    }
+
+    /**
+     * Text font for the alerts
+     *
+     * @param typeface String typeface
+     */
+    @SuppressWarnings("Typeface must be defined in assets folder")
+    public static void setTextTypeface(String typeface) {
+        typefaceAllAlerts = typeface;
+    }
+
+    public String getTypeface() {
+        return TextUtils.isEmpty(typeface)
+                ? typefaceAllAlerts
+                : typeface;
     }
 }

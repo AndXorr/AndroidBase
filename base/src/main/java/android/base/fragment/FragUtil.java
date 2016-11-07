@@ -3,7 +3,6 @@ package android.base.fragment;
 import android.app.*;
 import android.app.FragmentManager;
 import android.base.util.ApplicationUtils;
-import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +23,16 @@ public class FragUtil {
      * @param replaceId the replace id
      * @Waring This methods runs on UI Thread
      */
-    public static void popFragment(FragmentActivity activity, int replaceId) {
+    public static void popFragment(Activity activity, int replaceId) {
         if (activity == null)
             return;
-        if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+        if (activity.getFragmentManager().getBackStackEntryCount() > 0) {
             FragmentTransaction fragTrans = activity
                     .getFragmentManager().beginTransaction();
             fragTrans.remove(activity.getFragmentManager()
                     .findFragmentById(replaceId));
             fragTrans.commit();
-            activity.getSupportFragmentManager().popBackStackImmediate();
+            activity.getFragmentManager().popBackStackImmediate();
         }
     }
 
@@ -44,16 +43,16 @@ public class FragUtil {
      * @param tag      the tag
      * @Waring This methods runs on UI Thread
      */
-    public static void popFragment(FragmentActivity activity, String tag) {
+    public static void popFragment(Activity activity, String tag) {
         if (activity == null)
             return;
-        if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+        if (activity.getFragmentManager().getBackStackEntryCount() > 0) {
             FragmentTransaction fragTrans = activity
                     .getFragmentManager().beginTransaction();
             fragTrans.remove(activity.getFragmentManager()
                     .findFragmentByTag(tag));
             fragTrans.commit();
-            activity.getSupportFragmentManager().popBackStackImmediate();
+            activity.getFragmentManager().popBackStackImmediate();
         }
     }
 
@@ -62,7 +61,7 @@ public class FragUtil {
      *
      * @param activity the activity
      */
-    public static void clearBackStack(FragmentActivity activity) {
+    public static void clearBackStack(Activity activity) {
         try {
             if (activity == null)
                 return;
@@ -87,7 +86,7 @@ public class FragUtil {
      *
      * @param activity the activity
      */
-    public static void clearAllStack(FragmentActivity activity) {
+    public static void clearAllStack(Activity activity) {
         if (activity == null)
             return;
         FragmentManager fm = activity.getFragmentManager();
@@ -100,7 +99,7 @@ public class FragUtil {
      * @param activity the activity
      * @Waring This methods runs on UI Thread
      */
-    public static void clearAllStackImmediate(FragmentActivity activity) {
+    public static void clearAllStackImmediate(Activity activity) {
         if (activity == null)
             return;
         FragmentManager fm = activity.getFragmentManager();
@@ -113,7 +112,7 @@ public class FragUtil {
      * @param activity the activity
      * @return {@link Fragment}
      */
-    public static Fragment getTopFragment(FragmentActivity activity) {
+    public static Fragment getTopFragment(Activity activity) {
         if (activity == null)
             return null;
         FragmentManager fm = activity.getFragmentManager();
@@ -131,7 +130,7 @@ public class FragUtil {
      * @param activity the activity
      * @return {@link List}
      */
-    public static List<String> getStackList(FragmentActivity activity) {
+    public static List<String> getStackList(Activity activity) {
         List<String> stackList = new ArrayList<>();
         stackList.clear();
         if (activity == null)
@@ -150,7 +149,7 @@ public class FragUtil {
      * @param id       set UniqueId
      * @return {@link Fragment}
      */
-    public static Fragment getFragment(FragmentActivity activity, int id) {
+    public static Fragment getFragment(Activity activity, int id) {
         if (activity == null)
             return null;
         return activity.getFragmentManager().findFragmentById(id);
@@ -163,7 +162,7 @@ public class FragUtil {
      * @param tag      set UniqueTag
      * @return {@link Fragment}
      */
-    public static Fragment getFragment(FragmentActivity activity, String tag) {
+    public static Fragment getFragment(Activity activity, String tag) {
         if (activity == null)
             return null;
         return activity.getFragmentManager().findFragmentByTag(tag);
@@ -175,7 +174,7 @@ public class FragUtil {
      * @param activity   the activity
      * @param fragmentId resource id for fragment
      */
-    public static void restartFragment(FragmentActivity activity, int fragmentId) {
+    public static void restartFragment(Activity activity, int fragmentId) {
         try {
             Fragment fragment = getFragment(activity, fragmentId);
             if (fragment != null) {

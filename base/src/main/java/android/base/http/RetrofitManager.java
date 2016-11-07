@@ -1,6 +1,6 @@
 package android.base.http;
 
-
+import android.base.R;
 import android.base.util.ApplicationUtils;
 
 import com.google.gson.Gson;
@@ -11,8 +11,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.security.cert.CertificateException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -30,24 +36,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * The type Retrofit util.
  */
-public class RetrofitUtil {
-    private String BASE_URL = WebConstant.BASE_URL;
+public class RetrofitManager {
+    private String BASE_URL = WebConstant.getBaseUrl();
     private final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
             .create();
     private OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
     private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    private Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(StringConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson));
+//    private Retrofit.WebBuilder builder = new Retrofit.WebBuilder()
+//            .baseUrl(BASE_URL)
+//            .addConverterFactory(StringConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create(gson));
 
 
     /**
      * Instantiates a new Retrofit util.
      */
-    public RetrofitUtil() {
+    public RetrofitManager() {
 
     }
 
@@ -76,10 +82,15 @@ public class RetrofitUtil {
             }
         });
         okHttpClientBuilder.addInterceptor(interceptor);
-        builder.client(okHttpClientBuilder.build());
+        String baseUrl = BASE_URL;
         if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
-            builder.baseUrl(webParam.baseUrl);
+            baseUrl = webParam.baseUrl;
         }
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(StringConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson));
+        builder.client(okHttpClientBuilder.build());
         Retrofit retrofit = builder.build();
         if (webParam.showDialog) {
             webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
@@ -143,7 +154,19 @@ public class RetrofitUtil {
         public void onFailure(Call<T> call, Throwable t) {
             dismissDialog(webParam);
             if (webParam.callback != null) {
-                webParam.callback.onError(t.getMessage(), t.getMessage(), webParam.taskId, 0);
+                String errors;
+                if (t.getClass().getName().contains(UnknownHostException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_internet_connection);
+                } else if (t.getClass().getName().contains(TimeoutException.class.getName())
+                        || t.getClass().getName().contains(SocketTimeoutException.class.getName())
+                        || t.getClass().getName().contains(ConnectException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_server_connection);
+                } else if (t.getClass().getName().contains(CertificateException.class.getName())) {
+                    errors = webParam.context.getString(R.string.error_certificate_exception);
+                } else {
+                    errors = webParam.context.getString(R.string.error_server_connection);
+                }
+                webParam.callback.onError(errors, errors, webParam.taskId, HttpURLConnection.HTTP_UNAVAILABLE);
             }
         }
     }

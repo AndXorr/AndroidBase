@@ -16,7 +16,7 @@ import android.view.View;
  * @author amit.singh
  * @method initUI() method for initialize User Interface widgets
  */
-public abstract class BaseActivityAppCompat extends AppCompatActivity implements
+public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         //to identify child tasks and perform on activity itself
         View.OnClickListener, WebHandler.OnWebCallback {
 
@@ -30,7 +30,7 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
     /**
      * Instantiates a new Base activity app compat.
      */
-    protected BaseActivityAppCompat() {
+    protected BaseAppCompatActivity() {
         backHandler = null;
     }
 
@@ -48,6 +48,15 @@ public abstract class BaseActivityAppCompat extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         TAG = this.getLocalClassName();
         initUI();
+    }
+
+    protected Bundle getBundle() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
+        return bundle;
+
     }
 
     @Override

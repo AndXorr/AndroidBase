@@ -1,10 +1,11 @@
 package android.base.fragment;
 
 import android.app.Fragment;
-import android.base.activity.BaseActivityAppCompat;
+import android.base.activity.BaseAppCompatActivity;
 import android.base.interfaces.OnBackHandler;
 import android.base.http.WebHandler;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,28 @@ public abstract class BaseFragment extends Fragment implements
     protected View view;
     private boolean enableBackHandle = false;
 
+    public static <T extends Fragment> Fragment init(@NonNull Class<T> fragment, Bundle bundle) {
+        try {
+            T f = fragment.newInstance();
+            f.setArguments(bundle);
+            return f;
+        } catch (java.lang.InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return new Fragment();
+    }
+
+    protected Bundle getBundle() {
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
+        return bundle;
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,9 +77,9 @@ public abstract class BaseFragment extends Fragment implements
         /**
          * Handle BackPress on Fragment.
          */
-        if (getActivity() instanceof BaseActivityAppCompat) {
+        if (getActivity() instanceof BaseAppCompatActivity) {
             if (enableBackHandle)
-                ((BaseActivityAppCompat) getActivity()).setBackHandler(this);
+                ((BaseAppCompatActivity) getActivity()).setBackHandler(this);
         }
         super.onResume();
     }
