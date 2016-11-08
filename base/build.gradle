@@ -1,14 +1,25 @@
 apply plugin: 'com.android.library'
 
+ext {
+    VERSION = project.ANDROID_BUILD_VERSION
+}
+
+def compileSdk = Integer.parseInt(project.ANDROID_BUILD_COMPILE_SDK_VERSION)
+def buildTools = project.ANDROID_BUILD_TOOLS_VERSION
+def minSdk = Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+def targetSdk = Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+def version_code = Integer.parseInt(project.VERSION_CODE)
+def version_name = project.VERSION_NAME
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode version_code
+        versionName version_name
         multiDexEnabled true
     }
     buildTypes {
@@ -26,9 +37,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     /* Support Lib v4,v7,Material,V13 */
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:support-v13:24.2.0'
+    compile "com.android.support:appcompat-v7:[$VERSION]"
+    compile "com.android.support:design:[$VERSION]"
+    compile "com.android.support:support-v13:[$VERSION]"
     compile 'com.android.support:multidex:1.0.1'
     /*  Web Calling Retrofit + Okhttp */
     compile 'com.squareup.retrofit2:retrofit:2.1.0'

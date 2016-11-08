@@ -252,15 +252,15 @@ public class Builder {
             return webParam;
         }
 
-        /**
-         * Connect t.
-         *
-         * @param <T> the type parameter
-         * @param cls the cls
-         * @return the t
-         */
-        public <T> T connect(Class<T> cls) {
-            return new RetrofitUtil().createService(cls, webParam);
-        }
+    }
+    /**
+     * Connect t.
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the t
+     */
+    public <T> T connect(Class<T> cls) {
+        return new RetrofitUtil().createService(cls, webParam);
     }
 }

@@ -92,11 +92,12 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
     }
 
     /**
-     * Sets fragment.
+     * Sets fragment when called another activity or application eg camera or gallery
+     * After completed operation set this to null.
      *
      * @param fragment the fragment
      */
-    public void setFragment(BaseFragment fragment) {
+    public void setOnActivityResultFragment(BaseFragment fragment) {
         this.fragment = fragment;
     }
 
