@@ -33,7 +33,7 @@ public abstract class BaseFragment extends Fragment implements
      * The View.
      */
     protected View view;
-    private boolean enableBackHandle = false;
+    private boolean enableBack = false;
 
     public static <T extends Fragment> Fragment init(@NonNull Class<T> fragment, Bundle bundle) {
         try {
@@ -66,10 +66,10 @@ public abstract class BaseFragment extends Fragment implements
     /**
      * Sets enable back handle.
      *
-     * @param enableBackHandle the enable back handle
+     * @param enableBack the enable back handle
      */
-    public void setEnableBackHandle(boolean enableBackHandle) {
-        this.enableBackHandle = enableBackHandle;
+    public void enableBackPress(boolean enableBack) {
+        this.enableBack = enableBack;
     }
 
     @Override
@@ -78,7 +78,8 @@ public abstract class BaseFragment extends Fragment implements
          * Handle BackPress on Fragment.
          */
         if (getActivity() instanceof BaseAppCompatActivity) {
-            if (enableBackHandle)
+            ((BaseAppCompatActivity) getActivity()).setBackHandler(null);
+            if (enableBack)
                 ((BaseAppCompatActivity) getActivity()).setBackHandler(this);
         }
         super.onResume();

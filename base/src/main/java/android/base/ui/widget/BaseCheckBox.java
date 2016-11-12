@@ -48,16 +48,20 @@ public class BaseCheckBox extends AppCompatCheckBox {
 
     private void setAttributes(AttributeSet attrs) {
         if (attrs != null) {
-            TypedArray ta = getContext().obtainStyledAttributes(attrs,
+            TypedArray a = getContext().obtainStyledAttributes(attrs,
                     R.styleable.BaseTextView);
-            String typeface = ApplicationUtils.System.getFontName(getContext(), ta
-                    .getInt(R.styleable.BaseTextView_typefaces, -1), ta.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
-            ta.recycle();
+            String typeface = ApplicationUtils.System.getFontName(getContext(), a
+                    .getInt(R.styleable.BaseTextView_typefaces, -1), a.getResourceId(R.styleable.BaseTextView_customTypeface, -1));
             if (!TextUtils.isEmpty(typeface)) {
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(),
                         typeface);
                 setTypeface(tf);
             }
+            boolean textAllCaps = a.getBoolean(R.styleable.BaseTextView_android_textAllCaps, false);
+            if (textAllCaps) {
+                setText(ApplicationUtils.Validator.upperCase(getText().toString()));
+            }
+            a.recycle();
         }
     }
 }

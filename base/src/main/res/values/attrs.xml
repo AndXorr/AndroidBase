@@ -11,6 +11,7 @@
         <attr name="customTypeface" format="string" />
         <attr name="android:maxLines" />
         <attr name="android:tint" />
+        <attr name="android:textAllCaps" />
         <attr name="enableHtml" format="boolean" />
     </declare-styleable>
 

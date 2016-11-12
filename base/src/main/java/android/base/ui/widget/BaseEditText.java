@@ -61,6 +61,10 @@ public class BaseEditText extends AppCompatEditText {
             if (!TextUtils.isEmpty(typeface))
                 setTypeface(Typeface.createFromAsset(context.getAssets(),
                         typeface));
+            boolean textAllCaps = a.getBoolean(R.styleable.BaseTextView_android_textAllCaps, false);
+            if (textAllCaps) {
+                setText(ApplicationUtils.Validator.upperCase(getText().toString()));
+            }
             a.recycle();
         }
     }
