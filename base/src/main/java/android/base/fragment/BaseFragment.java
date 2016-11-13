@@ -4,9 +4,11 @@ import android.app.Fragment;
 import android.base.activity.BaseAppCompatActivity;
 import android.base.interfaces.OnBackHandler;
 import android.base.http.WebHandler;
+import android.base.pubnub.PubNub;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +58,9 @@ public abstract class BaseFragment extends Fragment implements
         return bundle;
 
     }
-
+    public FragmentActivity getFragmentActivity(){
+        return (FragmentActivity) getActivity();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

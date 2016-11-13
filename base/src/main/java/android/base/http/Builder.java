@@ -253,6 +253,11 @@ public class Builder {
         }
 
     }
+
+    public WebParam getWebParam() {
+        return webParam;
+    }
+
     /**
      * Connect t.
      *
@@ -261,6 +266,6 @@ public class Builder {
      * @return the t
      */
     public <T> T connect(Class<T> cls) {
-        return new RetrofitUtil().createService(cls, webParam);
+        return new RetrofitManager().createService(cls, webParam);
     }
 }

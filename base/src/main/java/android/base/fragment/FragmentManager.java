@@ -1,8 +1,11 @@
 package android.base.fragment;
 
+import android.app.Activity;
+import android.base.activity.BaseAppCompatActivity;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 
 /**

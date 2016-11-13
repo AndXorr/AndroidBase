@@ -1,11 +1,14 @@
 package android.base.activity;
 
+import android.base.activity.broadcast.LanguageBroadCastReceiver;
 import android.base.fragment.BaseFragment;
 import android.base.interfaces.OnBackHandler;
 import android.base.http.WebHandler;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -26,6 +29,9 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
     protected String TAG;
     private OnBackHandler backHandler;
     private BaseFragment fragment = null;
+
+    private LanguageBroadCastReceiver languageBroadCastReceiver;
+    private IntentFilter filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
 
     /**
      * Instantiates a new Base activity app compat.
@@ -48,9 +54,11 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         TAG = this.getLocalClassName();
         initUI();
+        languageBroadCastReceiver = new LanguageBroadCastReceiver(this);
+        LocalBroadcastManager.getInstance(this).registerReceiver(languageBroadCastReceiver, filter);
     }
 
-    protected Bundle getBundle() {
+    protected final Bundle getBundle() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             bundle = new Bundle();
@@ -103,8 +111,12 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
 
     @Override
     public void recreate() {
-        startActivity(getIntent());
-        finish();
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            super.recreate();
+        } else {
+            startActivity(getIntent());
+        }
+
     }
 
     @Override

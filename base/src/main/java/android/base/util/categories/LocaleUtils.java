@@ -87,7 +87,7 @@ public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
     public static void updateLocale(@Nullable Context context,
                                     @NonNull String languageCode, boolean enableBroadCast) {
         if (context != null
-                && Validator.isEmptyOrNull(languageCode)) {
+                && !Validator.isEmptyOrNull(languageCode)) {
             Locale locale = new Locale(languageCode);
             Resources res = context.getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
@@ -96,7 +96,7 @@ public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
             config.locale = locale;
             res.updateConfiguration(config, dm);
             if (enableBroadCast)
-                LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(Constant.ACTION_BROADCAST_LANGUAGE_CHANGED));
+                LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(Intent.ACTION_LOCALE_CHANGED));
         }
     }
 }
