@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 
 import java.util.Map;
 
+import id.zelory.compressor.Compressor;
+
 
 /**
  * The type Image util.
