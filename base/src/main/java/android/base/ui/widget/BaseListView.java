@@ -27,7 +27,7 @@ public class BaseListView extends ListView {
     private BaseTextView baseTextView;
 
     /**
-     * Instantiates a new Base list view.
+     * Instantiates a new Base list mView.
      *
      * @param context the context
      */
@@ -37,7 +37,7 @@ public class BaseListView extends ListView {
     }
 
     /**
-     * Instantiates a new Base list view.
+     * Instantiates a new Base list mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -48,7 +48,7 @@ public class BaseListView extends ListView {
     }
 
     /**
-     * Instantiates a new Base list view.
+     * Instantiates a new Base list mView.
      *
      * @param context      the context
      * @param attrs        the attrs
@@ -66,7 +66,7 @@ public class BaseListView extends ListView {
     }
 
     /**
-     * Sets empty view.
+     * Sets empty mView.
      *
      * @param resId the res id
      */
@@ -80,7 +80,7 @@ public class BaseListView extends ListView {
     }
 
     /**
-     * Sets empty view.
+     * Sets empty mView.
      *
      * @param message the message
      */
@@ -114,7 +114,7 @@ public class BaseListView extends ListView {
     }
 
     /**
-     * Add footer view.
+     * Add footer mView.
      */
     public void addFooterView() {
         super.addFooterView(mView);

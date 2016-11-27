@@ -2,7 +2,7 @@ package android.base.log;
 
 
 /**
- * The type Log.
+ * The type LogUtil.
  */
 public final class Log {
     private static boolean isLog = true;

@@ -1,12 +1,6 @@
 package android.base.util;
 
-import android.app.Activity;
-import android.base.alert.Alert;
-import android.base.image.ImageUtil;
 import android.base.util.categories.*;
-import android.base.util.categories.System;
-import android.content.Context;
-import android.view.inputmethod.InputMethodManager;
 
 
 /**
@@ -17,47 +11,22 @@ public final class ApplicationUtils {
     }
 
     /**
-     * This method is used to show or hide keyboard.
-     *
-     * @param context      set context of calling class
-     * @param isShowOrHide if pass true then show keyboard else hide keyboard
-     */
-    public static void showHideKeyboard(Activity context, boolean isShowOrHide) {
-        try {
-            InputMethodManager imm = (InputMethodManager) context
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (isShowOrHide) {
-                imm.showSoftInput(context.getCurrentFocus(),
-                        InputMethodManager.SHOW_IMPLICIT);
-            } else {
-                if (imm.isAcceptingText()) {
-                    imm.hideSoftInputFromWindow(context
-                            .getCurrentFocus().getWindowToken(), 0);
-                }
-            }
-        } catch (Exception e) {
-            Log.e(e.getMessage());
-        }
-    }
-
-
-    /**
-     * The type Animation util.
+     * The type Animation
      */
 // Link with other classes
-    public static class AnimationUtil extends android.base.util.categories.AnimationUtil {
+    public static class Animation extends AnimationUtil {
     }
 
     /**
      * The type Color.
      */
-    public static class Color extends android.base.util.categories.Color {
+    public static class Color extends ColorUtil {
     }
 
     /**
      * The type Date.
      */
-    public static class Date extends android.base.util.categories.DateUtil {
+    public static class Date extends DateUtil {
     }
 
     /**
@@ -69,59 +38,66 @@ public final class ApplicationUtils {
     /**
      * The type Location.
      */
-    public static class Location extends android.base.util.categories.LocationUtil {
+    public static class Location extends LocationUtil {
     }
 
     /**
      * The type Log.
      */
-    public static class Log extends android.base.util.categories.Log {
+    public static class Log extends LogUtil {
     }
 
     /**
      * The type Math.
      */
-    public static class Math extends android.base.util.categories.MathUtil {
+    public static class Math extends MathUtil {
     }
 
     /**
      * The type Pref.
      */
-    public static class Pref extends android.base.util.categories.Prefs {
+    public static class Pref extends PrefUtil {
 
     }
 
     /**
      * The type File util.
      */
-    public static class FileUtil extends android.base.util.categories.FileUtil {
+    public static class File extends FileUtil {
 
     }
 
     /**
      * The type Security.
      */
-    public static class Security extends android.base.util.categories.Security {
+    public static class Security extends SecurityUtil {
 
     }
 
     /**
      * The type Validator.
      */
-    public static class Validator extends android.base.util.categories.Validator {
+    public static class Validator extends ValidatorUtil {
     }
 
     /**
      * The type Voice.
      */
-    public static class Voice extends android.base.util.categories.Voice {
+    public static class Voice extends VoiceUtil {
     }
 
 
     /**
      * The type System.
      */
-    public static class System extends android.base.util.categories.System {
+    public static class System extends SystemUtil {
+
+    }
+
+    /**
+     * The type Locale
+     */
+    public static class Locale extends LocaleUtil {
 
     }
 }

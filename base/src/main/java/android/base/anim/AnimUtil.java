@@ -29,6 +29,8 @@ public class AnimUtil {
             case TOP:
                 x = animParam.view.getTop();
                 break;
+            default:
+                break;
         }
         switch (animParam.posY) {
             case BOTTOM:
@@ -45,6 +47,8 @@ public class AnimUtil {
                 break;
             case TOP:
                 y = animParam.view.getTop();
+                break;
+            default:
                 break;
         }
         animParam.setX = x;

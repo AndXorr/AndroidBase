@@ -16,8 +16,8 @@ import android.widget.TextView;
  */
 public class SnackBuilder {
 
-    private AlertParam alertParam;
-    private Snackbar snackbar;
+    private AlertParam mAlertParam;
+    private Snackbar mSnackbar;
 
     /**
      * Instantiates a new Snack builder.
@@ -26,10 +26,10 @@ public class SnackBuilder {
      * @param resId   the res id
      */
     public SnackBuilder(Activity context, @StringRes int resId) {
-        alertParam = new AlertParam();
-        alertParam.activityContext = context;
-        alertParam.context = context;
-        alertParam.messageResId = resId;
+        mAlertParam = new AlertParam();
+        mAlertParam.activityContext = context;
+        mAlertParam.context = context;
+        mAlertParam.messageResId = resId;
     }
 
     /**
@@ -39,10 +39,10 @@ public class SnackBuilder {
      * @param msg     the msg
      */
     public SnackBuilder(Activity context, String msg) {
-        alertParam = new AlertParam();
-        alertParam.activityContext = context;
-        alertParam.context = context;
-        alertParam.message = msg;
+        mAlertParam = new AlertParam();
+        mAlertParam.activityContext = context;
+        mAlertParam.context = context;
+        mAlertParam.message = msg;
     }
 
     /**
@@ -50,14 +50,14 @@ public class SnackBuilder {
      *
      * @param context         the context
      * @param resId           the res id
-     * @param backgroundColor background color of snackbar
+     * @param backgroundColor background color of mSnackbar
      */
     public SnackBuilder(Activity context, @StringRes int resId, @ColorRes int backgroundColor) {
-        alertParam = new AlertParam();
-        alertParam.activityContext = context;
-        alertParam.context = context;
-        alertParam.messageResId = resId;
-        alertParam.actionBackgroundResId = backgroundColor;
+        mAlertParam = new AlertParam();
+        mAlertParam.activityContext = context;
+        mAlertParam.context = context;
+        mAlertParam.messageResId = resId;
+        mAlertParam.actionBackgroundResId = backgroundColor;
     }
 
     /**
@@ -65,14 +65,14 @@ public class SnackBuilder {
      *
      * @param context         the context
      * @param msg             the msg
-     * @param backgroundColor background color of snackbar
+     * @param backgroundColor background color of mSnackbar
      */
     public SnackBuilder(Activity context, String msg, @ColorRes int backgroundColor) {
-        alertParam = new AlertParam();
-        alertParam.activityContext = context;
-        alertParam.context = context;
-        alertParam.message = msg;
-        alertParam.actionBackgroundResId = backgroundColor;
+        mAlertParam = new AlertParam();
+        mAlertParam.activityContext = context;
+        mAlertParam.context = context;
+        mAlertParam.message = msg;
+        mAlertParam.actionBackgroundResId = backgroundColor;
     }
 
     /**
@@ -83,7 +83,7 @@ public class SnackBuilder {
      */
 /*Set ActionMessage for SnackBuilder*/
     public SnackBuilder actionMessage(String actionMessage) {
-        alertParam.actionMessage = actionMessage;
+        mAlertParam.actionMessage = actionMessage;
         return this;
     }
 
@@ -95,20 +95,20 @@ public class SnackBuilder {
      */
 /*Set ActionMessage resId for SnackBuilder*/
     public SnackBuilder actionMessage(int resId) {
-        alertParam.actionMessageResId = resId;
+        mAlertParam.actionMessageResId = resId;
         return this;
     }
 
     /**
      * View snack builder.
      *
-     * @param view the view
+     * @param view the mView
      * @return the snack builder
      */
 /*Set View for SnackBuilder*/
     public SnackBuilder view(View view) {
-        alertParam.snackBarView = view;
-        alertParam.snackBarView.setFocusable(false);
+        mAlertParam.snackBarView = view;
+        mAlertParam.snackBarView.setFocusable(false);
         return this;
     }
 
@@ -120,7 +120,7 @@ public class SnackBuilder {
      */
 /*Set Listener for SnackBuilder*/
     public SnackBuilder listener(AlertParam.OnSnackBarActionListener l) {
-        alertParam.onSnackBarActionListener = l;
+        mAlertParam.onSnackBarActionListener = l;
         return this;
     }
 
@@ -132,7 +132,7 @@ public class SnackBuilder {
      */
 /*Set color for SnackBuilder*/
     public SnackBuilder actionColor(int resId) {
-        alertParam.actionColorResId = resId;
+        mAlertParam.actionColorResId = resId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class SnackBuilder {
      */
 /*Set color for SnackBuilder*/
     public SnackBuilder textColor(int resId) {
-        alertParam.textColor = resId;
+        mAlertParam.textColor = resId;
         return this;
     }
 
@@ -155,7 +155,7 @@ public class SnackBuilder {
      * @return the snack builder
      */
     public SnackBuilder duration(int duration) {
-        alertParam.snackBarDuration = duration;
+        mAlertParam.snackBarDuration = duration;
         return this;
     }
 
@@ -166,7 +166,7 @@ public class SnackBuilder {
      * @return the snack builder
      */
     public SnackBuilder backgroundColor(int color) {
-        alertParam.actionBackgroundResId = color;
+        mAlertParam.actionBackgroundResId = color;
         return this;
     }
 
@@ -177,7 +177,7 @@ public class SnackBuilder {
      * @return the snack builder
      */
     public SnackBuilder uniqueId(int uniqueId) {
-        alertParam.alertTaskId = uniqueId;
+        mAlertParam.alertTaskId = uniqueId;
         return this;
     }
 
@@ -188,7 +188,7 @@ public class SnackBuilder {
      * @return the snack builder
      */
     public SnackBuilder actionMessageMaxLines(int maxLines) {
-        alertParam.actionMessageMaxLine = maxLines;
+        mAlertParam.actionMessageMaxLine = maxLines;
         return this;
     }
 
@@ -200,7 +200,7 @@ public class SnackBuilder {
      */
     @SuppressWarnings("Typeface must be defined in assets")
     public SnackBuilder typeface(String typeface) {
-        alertParam.typeface = typeface;
+        mAlertParam.typeface = typeface;
         return this;
     }
 
@@ -208,71 +208,71 @@ public class SnackBuilder {
      * Show.
      */
     public void show() {
-        if (snackbar != null)
-            snackbar.dismiss();
-        if (alertParam.activityContext == null) {
+        if (mSnackbar != null)
+            mSnackbar.dismiss();
+        if (mAlertParam.activityContext == null) {
             return;
         }
-        if (alertParam.snackBarView == null) {
-            alertParam.snackBarView = alertParam.activityContext.findViewById(android.R.id.content);
+        if (mAlertParam.snackBarView == null) {
+            mAlertParam.snackBarView = mAlertParam.activityContext.findViewById(android.R.id.content);
 
         }
-        snackbar = Snackbar.make(alertParam.snackBarView, "", alertParam.snackBarDuration);
+        mSnackbar = Snackbar.make(mAlertParam.snackBarView, "", mAlertParam.snackBarDuration);
         // Checked for Message
-        if (alertParam.messageResId != 0) {
-            snackbar.setText(alertParam.messageResId);
-        } else if (!TextUtils.isEmpty(alertParam.message)) {
-            snackbar.setText(alertParam.message);
+        if (mAlertParam.messageResId != 0) {
+            mSnackbar.setText(mAlertParam.messageResId);
+        } else if (!TextUtils.isEmpty(mAlertParam.message)) {
+            mSnackbar.setText(mAlertParam.message);
         } else {
-            snackbar.setText("");
+            mSnackbar.setText("");
         }
         // checked for ActionMessage
-        if (alertParam.actionMessageResId != 0) {
-            snackbar.setAction(alertParam.actionMessageResId, new View.OnClickListener() {
+        if (mAlertParam.actionMessageResId != 0) {
+            mSnackbar.setAction(mAlertParam.actionMessageResId, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (alertParam.onSnackBarActionListener == null) {
+                    if (mAlertParam.onSnackBarActionListener == null) {
                         return;
                     }
-                    alertParam.onSnackBarActionListener.onSnackBarActionClicked(alertParam.alertTaskId, v);
+                    mAlertParam.onSnackBarActionListener.onSnackBarActionClicked(mAlertParam.alertTaskId, v);
                 }
             });
-        } else if (!TextUtils.isEmpty(alertParam.actionMessage)) {
-            snackbar.setAction(alertParam.actionMessage, new View.OnClickListener() {
+        } else if (!TextUtils.isEmpty(mAlertParam.actionMessage)) {
+            mSnackbar.setAction(mAlertParam.actionMessage, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (alertParam.onSnackBarActionListener == null) {
+                    if (mAlertParam.onSnackBarActionListener == null) {
                         return;
                     }
-                    alertParam.onSnackBarActionListener.onSnackBarActionClicked(alertParam.alertTaskId, v);
+                    mAlertParam.onSnackBarActionListener.onSnackBarActionClicked(mAlertParam.alertTaskId, v);
                 }
             });
         } else {
-            snackbar.setAction("", null);
+            mSnackbar.setAction("", null);
         }
         // checked for actionMessagecolor
-        if (alertParam.actionColorResId != 0) {
-            snackbar.setActionTextColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionColorResId));
+        if (mAlertParam.actionColorResId != 0) {
+            mSnackbar.setActionTextColor(ContextCompat.getColor(mAlertParam.activityContext, mAlertParam.actionColorResId));
         }
-        TextView tv = (TextView) snackbar.getView().findViewById(R.id.snackbar_text);
-        TextView tva = (TextView) snackbar.getView().findViewById(R.id.snackbar_action);
-        if (alertParam.actionMessageMaxLine != -1)
-            tv.setMaxLines(alertParam.actionMessageMaxLine);
-        if (alertParam.textColor != 0) {
-            tv.setTextColor(ContextCompat.getColorStateList(alertParam.activityContext, alertParam.textColor));
+        TextView tv = (TextView) mSnackbar.getView().findViewById(R.id.snackbar_text);
+        TextView tva = (TextView) mSnackbar.getView().findViewById(R.id.snackbar_action);
+        if (mAlertParam.actionMessageMaxLine != -1)
+            tv.setMaxLines(mAlertParam.actionMessageMaxLine);
+        if (mAlertParam.textColor != 0) {
+            tv.setTextColor(ContextCompat.getColorStateList(mAlertParam.activityContext, mAlertParam.textColor));
         }
-        if (alertParam.actionBackgroundResId != 0)
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(alertParam.activityContext, alertParam.actionBackgroundResId));
+        if (mAlertParam.actionBackgroundResId != 0)
+            mSnackbar.getView().setBackgroundColor(ContextCompat.getColor(mAlertParam.activityContext, mAlertParam.actionBackgroundResId));
         //check typeface
-        String typeface = alertParam.getTypeface();
+        String typeface = mAlertParam.getTypeface();
         if (!TextUtils.isEmpty(typeface)) {
             //set message typeface
-            Alert.get().setTypeface(alertParam.context, tv, typeface);
+            Alert.get().setTypeface(mAlertParam.context, tv, typeface);
             //set action typeface
-            Alert.get().setTypeface(alertParam.context, tva, typeface);
+            Alert.get().setTypeface(mAlertParam.context, tva, typeface);
         }
 
-        snackbar.show();
+        mSnackbar.show();
     }
 
 

@@ -121,7 +121,7 @@ public class Alert {
      * **************/
 
     /**
-     * Functionality to set type face or font for the text view
+     * Functionality to set type face or font for the text mView
      *
      * @param context  Context
      * @param textView TextView on which the text need to be formatted

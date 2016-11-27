@@ -2,9 +2,9 @@ package android.base.util.categories;
 
 
 /**
- * The type Color.
+ * The type ColorUtil.
  */
-public class Color {
+public class ColorUtil {
 
     /**
      * Add alpha string.

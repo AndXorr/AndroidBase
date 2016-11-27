@@ -14,16 +14,16 @@ import java.util.List;
  * for listView, GridView etc..
  * <p class="note">
  * <strong>Note:</strong> If you want to use {@link Context} you should instead
- * use the {@link #getContext()} and to use Activity context use
+ * use the {@link #getContext()} and to use Activity mContext use
  * </p>
  * <ul>
  * <li>
  * <P>
- * {@link #setList(List)} method is used to setList to this adapter
+ * {@link #setList(List)} method is used to setmList to this adapter
  * </p>
  * <li>
  * <P>
- * {@link #getList()} method is used to getList from this adapter.
+ * {@link #getList()} method is used to getmList from this adapter.
  * </p>
  * <p>
  * </ul>
@@ -34,12 +34,12 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     private List<T> mList = new ArrayList<>();
-    private Activity context;
+    private Activity mContext;
 
     /**
      * Instantiates a new Base array adapter.
      *
-     * @param context the context
+     * @param context the mContext
      */
     public BaseArrayAdapter(Context context) {
         super(context, android.R.layout.simple_list_item_1);
@@ -48,15 +48,15 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     /**
      * Instantiates a new Base array adapter.
      *
-     * @param context the context
+     * @param context the mContext
      */
     public BaseArrayAdapter(Activity context) {
         super(context, android.R.layout.simple_list_item_1);
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
-     * This method is used to setList containing ListArray<T>
+     * This method is used to setmList containing ListArray<T>
      *
      * @param items the items
      */
@@ -87,12 +87,12 @@ public abstract class BaseArrayAdapter<T> extends ArrayAdapter {
     }
 
     /**
-     * Gets activity context.
+     * Gets activity mContext.
      *
-     * @return the activity context
+     * @return the activity mContext
      */
     @Nullable
     public Activity getActivityContext() {
-        return context;
+        return mContext;
     }
 }

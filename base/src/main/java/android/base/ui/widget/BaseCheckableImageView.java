@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class BaseCheckableImageView extends ImageView implements Checkable {
 
     /**
-     * Instantiates a new Base checkable image view.
+     * Instantiates a new Base checkable image mView.
      *
      * @param context the context
      */
@@ -23,7 +23,7 @@ public class BaseCheckableImageView extends ImageView implements Checkable {
     }
 
     /**
-     * Instantiates a new Base checkable image view.
+     * Instantiates a new Base checkable image mView.
      *
      * @param context the context
      * @param attrs   the attrs

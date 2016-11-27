@@ -6,17 +6,18 @@ import org.apache.commons.lang3.StringUtils;
 
 
 /**
- * The type Validator.
+ * The type ValidatorUtil.
  */
-public class Validator extends StringUtils {
+public class ValidatorUtil extends StringUtils {
 
     // alphanumeric parttern for password
 //    private static final String PASSWORDPARTTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$";
-    private static final String PASSWORDPARTTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?=\\S+$).{8,20})";
-    private static final String USERNAMEPARTTEN = "(?=\\S+$).{3,}";
+    private static final String PASS_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?=\\S+$).{8,20})";
+    private static final String USERNAME_PATTEN = "(?=\\S+$).{3,}";
 
 
     /**
+     *
      * Is email valid boolean.
      *
      * @param email email address that need to check
@@ -36,7 +37,7 @@ public class Validator extends StringUtils {
      */
     public static boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.matches(PASSWORDPARTTERN);
+        return password.matches(PASS_PATTERN);
     }
 
 
@@ -58,7 +59,7 @@ public class Validator extends StringUtils {
      * @return true if email address is matched with defined pattern. Here pattern is used from api level 22 android
      */
     public static boolean isUsernameValid(String username) {
-        return username.matches(USERNAMEPARTTEN);
+        return username.matches(USERNAME_PATTEN);
     }
 
     /**

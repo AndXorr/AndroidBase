@@ -113,7 +113,7 @@ public class Builder {
     /**
      * Into builder.
      *
-     * @param imageView the image view
+     * @param imageView the image mView
      * @return the builder
      */
     public Builder into(@NonNull ImageView imageView) {
@@ -124,7 +124,7 @@ public class Builder {
     /**
      * Into builder.
      *
-     * @param imageView   the image view
+     * @param imageView   the image mView
      * @param progressBar the progress bar
      * @return the builder
      */

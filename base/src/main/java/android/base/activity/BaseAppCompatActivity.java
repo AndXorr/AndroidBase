@@ -52,7 +52,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TAG = this.getLocalClassName();
+        TAG = getLocalClassName();
         initUI();
         languageBroadCastReceiver = new LanguageBroadCastReceiver(this);
         LocalBroadcastManager.getInstance(this).registerReceiver(languageBroadCastReceiver, filter);

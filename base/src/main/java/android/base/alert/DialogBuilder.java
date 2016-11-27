@@ -16,7 +16,7 @@ import android.widget.TextView;
  */
 public class DialogBuilder {
 
-    private AlertParam alertParam;
+    private AlertParam mAlertParam;
 
     /**
      * Instantiates a new Dialog builder.
@@ -24,8 +24,8 @@ public class DialogBuilder {
      * @param context the context
      */
     public DialogBuilder(Context context) {
-        alertParam = new AlertParam();
-        alertParam.context = context;
+        mAlertParam = new AlertParam();
+        mAlertParam.context = context;
     }
 
     /**
@@ -35,9 +35,9 @@ public class DialogBuilder {
      * @param dialogType the dialog type
      */
     public DialogBuilder(Context context, AlertParam.DialogType dialogType) {
-        alertParam = new AlertParam();
-        alertParam.context = context;
-        alertParam.dialogType = dialogType;
+        mAlertParam = new AlertParam();
+        mAlertParam.context = context;
+        mAlertParam.dialogType = dialogType;
     }
 
     /**
@@ -48,7 +48,7 @@ public class DialogBuilder {
      */
 /*Set Message for AlertDialog*/
     public DialogBuilder message(String message) {
-        alertParam.message = message;
+        mAlertParam.message = message;
         return this;
     }
 
@@ -60,7 +60,7 @@ public class DialogBuilder {
      */
 /*Set Message resId for AlertDialog*/
     public DialogBuilder message(int resId) {
-        alertParam.messageResId = resId;
+        mAlertParam.messageResId = resId;
         return this;
     }
 
@@ -72,7 +72,7 @@ public class DialogBuilder {
      */
 /*Set Title for AlertDialog*/
     public DialogBuilder title(String title) {
-        alertParam.title = title;
+        mAlertParam.title = title;
         return this;
     }
 
@@ -84,7 +84,7 @@ public class DialogBuilder {
      */
 /*Set Title resId for AlertDialog*/
     public DialogBuilder title(int resId) {
-        alertParam.titleResId = resId;
+        mAlertParam.titleResId = resId;
         return this;
     }
 
@@ -96,7 +96,7 @@ public class DialogBuilder {
      */
 /*Set DialogType for AlertDialog*/
     public DialogBuilder dialogType(AlertParam.DialogType dialogType) {
-        alertParam.dialogType = dialogType;
+        mAlertParam.dialogType = dialogType;
         return this;
     }
 
@@ -108,7 +108,7 @@ public class DialogBuilder {
      */
 /*Set icon for AlertDialog*/
     public DialogBuilder icon(int icon) {
-        alertParam.icon = icon;
+        mAlertParam.icon = icon;
         return this;
     }
 
@@ -120,7 +120,7 @@ public class DialogBuilder {
      */
 /*Set Drawable for AlertDialog*/
     public DialogBuilder icon(Drawable drawable) {
-        alertParam.drawable = drawable;
+        mAlertParam.drawable = drawable;
         return this;
     }
 
@@ -132,7 +132,7 @@ public class DialogBuilder {
      */
 /*Set PositiveButton Message for AlertDialog*/
     public DialogBuilder positiveButton(String positiveButton) {
-        alertParam.positiveButton = positiveButton;
+        mAlertParam.positiveButton = positiveButton;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class DialogBuilder {
      */
 /*Set NegativeButton Message for AlertDialog*/
     public DialogBuilder negativeButton(String negativeButton) {
-        alertParam.negativeButton = negativeButton;
+        mAlertParam.negativeButton = negativeButton;
         return this;
     }
 
@@ -156,7 +156,7 @@ public class DialogBuilder {
      */
 /*Set PositiveButton Message resId for AlertDialog*/
     public DialogBuilder positiveButton(int resId) {
-        alertParam.positiveButtonResId = resId;
+        mAlertParam.positiveButtonResId = resId;
         return this;
     }
 
@@ -168,7 +168,7 @@ public class DialogBuilder {
      */
 /*Set NegativeButton Message resId for AlertDialog*/
     public DialogBuilder negativeButton(int resId) {
-        alertParam.negativeButtonResId = resId;
+        mAlertParam.negativeButtonResId = resId;
         return this;
     }
 
@@ -180,7 +180,7 @@ public class DialogBuilder {
      */
     @SuppressWarnings("Typeface must be defined in assets")
     public DialogBuilder typeface(String typeface) {
-        alertParam.typeface = typeface;
+        mAlertParam.typeface = typeface;
         return this;
     }
 
@@ -192,7 +192,7 @@ public class DialogBuilder {
      */
 /*Set Listener for AlertDialog*/
     public DialogBuilder listener(OnDialogProcess l) {
-        alertParam.listener = l;
+        mAlertParam.listener = l;
         return this;
     }
 
@@ -204,7 +204,7 @@ public class DialogBuilder {
      */
 /*Set data bundle for AlertDialog*/
     public DialogBuilder bundle(Bundle bundle) {
-        alertParam.bundle = bundle;
+        mAlertParam.bundle = bundle;
         return this;
     }
 
@@ -215,7 +215,7 @@ public class DialogBuilder {
      */
 /*get data bundle for AlertDialog*/
     public Bundle getBundle() {
-        return alertParam.bundle;
+        return mAlertParam.bundle;
     }
 
     /**
@@ -226,7 +226,7 @@ public class DialogBuilder {
      */
 /* Set alertTask Id for Uniqueness */
     public DialogBuilder taskId(int alertTaskId) {
-        alertParam.alertTaskId = alertTaskId;
+        mAlertParam.alertTaskId = alertTaskId;
         return this;
     }
 
@@ -237,7 +237,7 @@ public class DialogBuilder {
      * @return the dialog builder
      */
     public DialogBuilder cancelable(boolean isCancel) {
-        alertParam.isCancelable = isCancel;
+        mAlertParam.isCancelable = isCancel;
         return this;
     }
 
@@ -248,7 +248,7 @@ public class DialogBuilder {
      * @return the dialog builder
      */
     public DialogBuilder list(String[] list) {
-        alertParam.list = list;
+        mAlertParam.list = list;
         return this;
     }
 
@@ -257,61 +257,61 @@ public class DialogBuilder {
      */
     public void show() {
         // alert dialog functionality
-        AlertDialog.Builder mAlert = new AlertDialog.Builder(alertParam.context);
+        AlertDialog.Builder mAlert = new AlertDialog.Builder(mAlertParam.context);
         // set the message
-        if (alertParam.messageResId != 0) {
-            mAlert.setMessage(alertParam.messageResId);
-        } else if (!TextUtils.isEmpty(alertParam.message)) {
-            mAlert.setMessage(alertParam.message);
+        if (mAlertParam.messageResId != 0) {
+            mAlert.setMessage(mAlertParam.messageResId);
+        } else if (!TextUtils.isEmpty(mAlertParam.message)) {
+            mAlert.setMessage(mAlertParam.message);
         }
         // set title
-        if (alertParam.titleResId != 0) {
-            mAlert.setTitle(alertParam.titleResId);
-        } else if (!TextUtils.isEmpty(alertParam.title)) {
-            mAlert.setTitle(alertParam.title);
+        if (mAlertParam.titleResId != 0) {
+            mAlert.setTitle(mAlertParam.titleResId);
+        } else if (!TextUtils.isEmpty(mAlertParam.title)) {
+            mAlert.setTitle(mAlertParam.title);
         } else {
             mAlert.setTitle("");
         }
-        mAlert.setCancelable(alertParam.isCancelable);
+        mAlert.setCancelable(mAlertParam.isCancelable);
         // set icon
-        if (alertParam.icon != 0) {
-            mAlert.setIcon(alertParam.icon);
-        } else if (alertParam.drawable != null) {
-            mAlert.setIcon(alertParam.drawable);
+        if (mAlertParam.icon != 0) {
+            mAlert.setIcon(mAlertParam.icon);
+        } else if (mAlertParam.drawable != null) {
+            mAlert.setIcon(mAlertParam.drawable);
         } else {
             mAlert.setIcon(0);
         }
         // set Positive button functionality
-        if (alertParam.dialogType == AlertParam.DialogType.DOUBLE_OPTION ||
-                alertParam.dialogType == AlertParam.DialogType.SINGLE_OPTION) {
-            if (alertParam.positiveButtonResId != 0) {
-                mAlert.setPositiveButton(alertParam.positiveButtonResId,
-                        new OnDialogClick(alertParam, 1));
-            } else if (!TextUtils.isEmpty(alertParam.positiveButton)) {
-                mAlert.setPositiveButton(alertParam.positiveButton,
-                        new OnDialogClick(alertParam, 1));
+        if (mAlertParam.dialogType == AlertParam.DialogType.DOUBLE_OPTION ||
+                mAlertParam.dialogType == AlertParam.DialogType.SINGLE_OPTION) {
+            if (mAlertParam.positiveButtonResId != 0) {
+                mAlert.setPositiveButton(mAlertParam.positiveButtonResId,
+                        new OnDialogClick(mAlertParam, 1));
+            } else if (!TextUtils.isEmpty(mAlertParam.positiveButton)) {
+                mAlert.setPositiveButton(mAlertParam.positiveButton,
+                        new OnDialogClick(mAlertParam, 1));
             } else {
                 mAlert.setPositiveButton("",
-                        new OnDialogClick(alertParam, 1));
+                        new OnDialogClick(mAlertParam, 1));
             }
 
         }
         // set Negative button functionality
-        if (alertParam.dialogType == AlertParam.DialogType.DOUBLE_OPTION) {
-            if (alertParam.negativeButtonResId != 0) {
-                mAlert.setNegativeButton(alertParam.negativeButtonResId,
-                        new OnDialogClick(alertParam, 2));
-            } else if (!TextUtils.isEmpty(alertParam.negativeButton)) {
-                mAlert.setNegativeButton(alertParam.negativeButton,
-                        new OnDialogClick(alertParam, 2));
+        if (mAlertParam.dialogType == AlertParam.DialogType.DOUBLE_OPTION) {
+            if (mAlertParam.negativeButtonResId != 0) {
+                mAlert.setNegativeButton(mAlertParam.negativeButtonResId,
+                        new OnDialogClick(mAlertParam, 2));
+            } else if (!TextUtils.isEmpty(mAlertParam.negativeButton)) {
+                mAlert.setNegativeButton(mAlertParam.negativeButton,
+                        new OnDialogClick(mAlertParam, 2));
             } else {
                 mAlert.setNegativeButton("",
-                        new OnDialogClick(alertParam, 2));
+                        new OnDialogClick(mAlertParam, 2));
             }
         }
         // List
-        if (alertParam.dialogType == AlertParam.DialogType.DIALOG_LIST) {
-            mAlert.setItems(alertParam.list, new OnDialogClick(alertParam, 3));
+        if (mAlertParam.dialogType == AlertParam.DialogType.DIALOG_LIST) {
+            mAlert.setItems(mAlertParam.list, new OnDialogClick(mAlertParam, 3));
         }
 
         //create dialog
@@ -321,22 +321,22 @@ public class DialogBuilder {
         dialog.show();
 
         try {
-            //find message text view
+            //find message text mView
             TextView messageTextView = (TextView) dialog.findViewById(android.R.id.message);
             TextView button1TextView = (TextView) dialog.findViewById(android.R.id.button1);
             TextView button2TextView = (TextView) dialog.findViewById(android.R.id.button2);
             TextView button3TextView = (TextView) dialog.findViewById(android.R.id.button3);
             //check typeface
-            String typeface = alertParam.getTypeface();
+            String typeface = mAlertParam.getTypeface();
             if (!TextUtils.isEmpty(typeface)) {
                 //set message typeface
-                Alert.get().setTypeface(alertParam.context, messageTextView, typeface);
+                Alert.get().setTypeface(mAlertParam.context, messageTextView, typeface);
                 //set button1 typeface
-                Alert.get().setTypeface(alertParam.context, button1TextView, typeface);
+                Alert.get().setTypeface(mAlertParam.context, button1TextView, typeface);
                 //set button2 typeface
-                Alert.get().setTypeface(alertParam.context, button2TextView, typeface);
+                Alert.get().setTypeface(mAlertParam.context, button2TextView, typeface);
                 //set button3 typeface
-                Alert.get().setTypeface(alertParam.context, button3TextView, typeface);
+                Alert.get().setTypeface(mAlertParam.context, button3TextView, typeface);
             }
         }catch(Exception e){
             ApplicationUtils.Log.e(e.getMessage() + e);

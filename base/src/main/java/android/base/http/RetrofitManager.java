@@ -6,6 +6,8 @@ import android.base.util.ApplicationUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitManager {
     private String BASE_URL = WebConstant.getBaseUrl();
-    private final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
+    private static final long CONNECT_TIMEOUT_MILLIS = 10 * 1000, READ_TIMEOUT_MILLIS = 20 * 1000;
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
             .create();
@@ -187,14 +189,14 @@ public class RetrofitManager {
     /**
      * The type String converter factory.
      */
-    public static final class StringConverterFactory extends Converter.Factory {
+    private static final class StringConverterFactory extends Converter.Factory {
 
         /**
          * Create string converter factory.
          *
          * @return the string converter factory
          */
-        public static StringConverterFactory create() {
+        private static StringConverterFactory create() {
             return new StringConverterFactory();
         }
 
@@ -206,17 +208,11 @@ public class RetrofitManager {
         /**
          * The type Configuration service converter.
          */
-        final class ConfigurationServiceConverter implements Converter<ResponseBody, String> {
+        class ConfigurationServiceConverter implements Converter<ResponseBody, String> {
 
             @Override
             public String convert(ResponseBody value) throws IOException {
-                BufferedReader r = new BufferedReader(new InputStreamReader(value.byteStream()));
-                StringBuilder total = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    total.append(line);
-                }
-                return total.toString();
+                return IOUtils.toString(new InputStreamReader(value.byteStream()));
             }
         }
     }

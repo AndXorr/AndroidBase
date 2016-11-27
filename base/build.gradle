@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
 
 ext {
-    VERSION = project.ANDROID_BUILD_VERSION
+    VERSION = project.ext.ANDROID_BUILD_VERSION
 }
 
-def compileSdk = Integer.parseInt(project.ANDROID_BUILD_COMPILE_SDK_VERSION)
-def buildTools = project.ANDROID_BUILD_TOOLS_VERSION
-def minSdk = Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-def targetSdk = Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-def version_code = Integer.parseInt(project.VERSION_CODE)
-def version_name = project.VERSION_NAME
+def compileSdk = project.ext.ANDROID_BUILD_COMPILE_SDK_VERSION
+def buildTools = project.ext.ANDROID_BUILD_TOOLS_VERSION
+def minSdk = project.ext.ANDROID_BUILD_MIN_SDK_VERSION
+def targetSdk = project.ext.ANDROID_BUILD_TARGET_SDK_VERSION
+def version_code = project.ext.VERSION_CODE
+def version_name = project.ext.VERSION_NAME
 
 android {
     compileSdkVersion compileSdk
@@ -62,7 +62,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     /* Animations */
     // https://github.com/ToxicBakery/ViewPagerTransforms
-    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    compile 'com.ToxicBakery.viewpager.transforms:mView-pager-transforms:1.2.32@aar'
     // https://github.com/xgc1986/ParallaxPagerTransformer
     compile 'com.xgc1986.android:parallaxpagertransformer:1.0.4'
 

@@ -12,7 +12,7 @@ import android.util.Log;
  * The type Builder.
  */
 public class Builder {
-    private FragParam fragParam;
+    private FragParam mFragParam;
 
     /**
      * Instantiates a new Builder.
@@ -21,9 +21,9 @@ public class Builder {
      * @param replaceId the replace id
      */
     public Builder(@NonNull FragmentActivity context, @IdRes int replaceId) {
-        fragParam = new FragParam();
-        fragParam.context = context;
-        fragParam.replaceId = replaceId;
+        mFragParam = new FragParam();
+        mFragParam.context = context;
+        mFragParam.replaceId = replaceId;
         defaultAnim();
     }
 
@@ -34,7 +34,7 @@ public class Builder {
      * @return the builder
      */
     public Builder fragment(@NonNull Fragment fragment) {
-        fragParam.fragment = fragment;
+        mFragParam.fragment = fragment;
         return this;
     }
 
@@ -45,7 +45,7 @@ public class Builder {
      * @return the builder
      */
     public Builder tag(@NonNull String tag) {
-        fragParam.tag = tag;
+        mFragParam.tag = tag;
         return this;
     }
 
@@ -56,7 +56,7 @@ public class Builder {
      * @return the builder
      */
     public Builder enableAnimation(boolean enableAnimation) {
-        fragParam.enableAnimation = enableAnimation;
+        mFragParam.enableAnimation = enableAnimation;
         return this;
     }
 
@@ -67,7 +67,7 @@ public class Builder {
      * @return the builder
      */
     public Builder type(@NonNull FragParam.FragType fragType) {
-        fragParam.fragType = fragType;
+        mFragParam.fragType = fragType;
         return this;
     }
 
@@ -78,7 +78,7 @@ public class Builder {
      * @return the builder
      */
     public Builder backStack(boolean isBackStack) {
-        fragParam.isBackStack = isBackStack;
+        mFragParam.isBackStack = isBackStack;
         return this;
     }
 
@@ -92,18 +92,18 @@ public class Builder {
      * @return the builder
      */
     public Builder animation(int enter, int exit, int popEnter, int popExit) {
-        fragParam.enter = enter;
-        fragParam.exit = exit;
-        fragParam.popEnter = popEnter;
-        fragParam.popExit = popExit;
+        mFragParam.enter = enter;
+        mFragParam.exit = exit;
+        mFragParam.popEnter = popEnter;
+        mFragParam.popExit = popExit;
         return this;
     }
 
     private Builder defaultAnim() {
-        fragParam.enter = R.anim.slide_in_right;
-        fragParam.exit = R.anim.slide_out_right;
-        fragParam.popEnter = R.anim.slide_in_left;
-        fragParam.popExit = R.anim.slide_out_left;
+        mFragParam.enter = R.anim.slide_in_right;
+        mFragParam.exit = R.anim.slide_out_right;
+        mFragParam.popEnter = R.anim.slide_in_left;
+        mFragParam.popExit = R.anim.slide_out_left;
         return this;
     }
 
@@ -111,10 +111,10 @@ public class Builder {
      * Build.
      */
     public void build() {
-        if (fragParam.context == null) {
+        if (mFragParam.context == null) {
             Log.e(getClass().getSimpleName(), "Context is null");
             return;
         }
-        FragmentManagerUtil.performTask(fragParam);
+        FragmentManagerUtil.performTask(mFragParam);
     }
 }

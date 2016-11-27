@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * The type Share.
+ * The type ShareUtil.
  */
-public class Share {
+public class ShareUtil {
 
     /**
-     * Share via Email
+     * ShareUtil via Email
      *
      * @param context   the context
      * @param email     destination email (e.g. support@company.com)

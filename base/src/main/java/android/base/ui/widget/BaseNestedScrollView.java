@@ -9,7 +9,7 @@ import android.util.AttributeSet;
  */
 public class BaseNestedScrollView extends NestedScrollView {
     /**
-     * Instantiates a new Base nested scroll view.
+     * Instantiates a new Base nested scroll mView.
      *
      * @param context the context
      */
@@ -18,7 +18,7 @@ public class BaseNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * Instantiates a new Base nested scroll view.
+     * Instantiates a new Base nested scroll mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -28,7 +28,7 @@ public class BaseNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * Instantiates a new Base nested scroll view.
+     * Instantiates a new Base nested scroll mView.
      *
      * @param context      the context
      * @param attrs        the attrs

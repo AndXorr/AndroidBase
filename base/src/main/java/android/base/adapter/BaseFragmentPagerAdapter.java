@@ -14,58 +14,58 @@ import java.util.List;
  * @param <T> the type parameter
  */
 public abstract class BaseFragmentPagerAdapter<T extends BaseFragment> extends FragmentPagerAdapter {
-    private List<T> list = new ArrayList<>();
-    private Context context;
-    private int count;
+    private List<T> mList = new ArrayList<>();
+    private Context mContext;
+    private int mCount;
 
     /**
      * Instantiates a new Base fragment pager adapter.
      *
      * @param fm      the fm
-     * @param context the context
+     * @param context the mContext
      */
     public BaseFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.context = context;
-        count = list.size();
+        this.mContext = context;
+        mCount = mList.size();
     }
 
     /**
-     * Sets list.
+     * Sets mList.
      *
      * @param items the items
      */
-    public void setList(List<T> items) {
-        list = new ArrayList<>(items);
-        count = list.size();
+    public void setmList(List<T> items) {
+        mList = new ArrayList<>(items);
+        mCount = mList.size();
         this.notifyDataSetChanged();
     }
 
     /**
-     * Gets list.
+     * Gets mList.
      *
-     * @return ListArray<T> list
+     * @return ListArray<T> mList
      */
-    public List<T> getList() {
-        return list;
+    public List<T> getmList() {
+        return mList;
     }
 
     /**
-     * Gets context.
+     * Gets mContext.
      *
-     * @return the context
+     * @return the mContext
      */
-    public Context getContext() {
-        return context;
+    public Context getmContext() {
+        return mContext;
     }
 
     @Override
     public T getItem(int position) {
-        return list.get(position);
+        return mList.get(position);
     }
 
     @Override
     public int getCount() {
-        return count;
+        return mCount;
     }
 }

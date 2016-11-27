@@ -30,7 +30,7 @@ public class BaseViewPager extends ViewPager {
     private boolean isChildCenterHorizontalAligned = false;
 
     /**
-     * Instantiates a new Base view pager.
+     * Instantiates a new Base mView pager.
      *
      * @param context the context
      */
@@ -39,7 +39,7 @@ public class BaseViewPager extends ViewPager {
     }
 
     /**
-     * Instantiates a new Base view pager.
+     * Instantiates a new Base mView pager.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -153,7 +153,7 @@ public class BaseViewPager extends ViewPager {
     /**
      * Measure fragment int.
      *
-     * @param view the view
+     * @param view the mView
      * @return the int
      */
     public int measureFragment(View view) {

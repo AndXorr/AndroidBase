@@ -107,7 +107,7 @@ public class BaseButton extends AppCompatButton {
 
     /**
      * ***************
-     * Spacing between characters of button view
+     * Spacing between characters of button mView
      * *******************
      * <ahref http://stackoverflow.com/questions/5133548/how-to-change-letter-spacing-in-a-textview></ahref>
      * <ahref http://stackoverflow.com/questions/5133548/how-to-change-letter-spacing-in-a-textview></ahref>

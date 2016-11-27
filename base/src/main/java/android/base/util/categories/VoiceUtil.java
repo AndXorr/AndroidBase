@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Voice.
+ * The type VoiceUtil.
  */
-public class Voice {
+public class VoiceUtil {
 	/**
-	 * Instantiates a new Voice.
+	 * Instantiates a new VoiceUtil.
 	 */
-	protected Voice() {
+	protected VoiceUtil() {
 	}
 
 	/**

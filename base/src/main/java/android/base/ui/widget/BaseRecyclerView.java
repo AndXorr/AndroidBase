@@ -18,7 +18,7 @@ public class BaseRecyclerView extends RecyclerView {
     private OnLoadMoreListener loadMoreListener;
 
     /**
-     * Instantiates a new Base recycler view.
+     * Instantiates a new Base recycler mView.
      *
      * @param context the context
      */
@@ -27,7 +27,7 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
     /**
-     * Instantiates a new Base recycler view.
+     * Instantiates a new Base recycler mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -37,7 +37,7 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
     /**
-     * Instantiates a new Base recycler view.
+     * Instantiates a new Base recycler mView.
      *
      * @param context  the context
      * @param attrs    the attrs
@@ -91,9 +91,9 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
     /**
-     * Sets empty view.
+     * Sets empty mView.
      *
-     * @param emptyView the empty view
+     * @param emptyView the empty mView
      */
     public void setEmptyView(@NonNull View emptyView) {
         this.emptyView = emptyView;

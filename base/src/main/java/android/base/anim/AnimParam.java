@@ -29,7 +29,7 @@ public class AnimParam {
     /**
      * The Duration.
      */
-    protected int duration = AnimConstant.DURATION_DEFAULT, /**
+    protected int duration = AnimConstant.sDURATION_DEFAULT, /**
      * The Set x.
      */
     setX, /**
@@ -46,7 +46,7 @@ public class AnimParam {
     /**
      * The Interpolator.
      */
-    protected TimeInterpolator interpolator = AnimConstant.TIME_INTERPOLATOR;
+    protected TimeInterpolator interpolator = AnimConstant.sTIME_INTERPOLATOR;
     /**
      * The Animator listener adapter.
      */

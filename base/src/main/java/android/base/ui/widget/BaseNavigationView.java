@@ -9,7 +9,7 @@ import android.util.AttributeSet;
  */
 public class BaseNavigationView extends NavigationView {
     /**
-     * Instantiates a new Base navigation view.
+     * Instantiates a new Base navigation mView.
      *
      * @param context the context
      */
@@ -18,7 +18,7 @@ public class BaseNavigationView extends NavigationView {
     }
 
     /**
-     * Instantiates a new Base navigation view.
+     * Instantiates a new Base navigation mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -28,7 +28,7 @@ public class BaseNavigationView extends NavigationView {
     }
 
     /**
-     * Instantiates a new Base navigation view.
+     * Instantiates a new Base navigation mView.
      *
      * @param context      the context
      * @param attrs        the attrs

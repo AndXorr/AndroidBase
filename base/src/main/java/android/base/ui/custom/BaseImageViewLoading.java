@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
  * This class is used as widget instead to using FrameLayout with ProgressBar
  * and ImageView. This is used like a ImageView. This is used when images are
  * fetched from server and show on ImageView. Till the images are loader from
- * server progress bar is visible on image view. After that Images are loaded
+ * server progress bar is visible on image mView. After that Images are loaded
  * and set on imageView. This is also done with the help of Universal Image
  * Loader.
  *
@@ -29,7 +29,7 @@ public class BaseImageViewLoading extends FrameLayout {
     private float minHeight, minWidth;
 
     /**
-     * Instantiates a new Base image view loading.
+     * Instantiates a new Base image mView loading.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -57,7 +57,7 @@ public class BaseImageViewLoading extends FrameLayout {
     }
 
     /**
-     * Instantiates a new Base image view loading.
+     * Instantiates a new Base image mView loading.
      *
      * @param context the context
      */
@@ -85,9 +85,9 @@ public class BaseImageViewLoading extends FrameLayout {
     }
 
     /**
-     * Gets image view.
+     * Gets image mView.
      *
-     * @return the image view
+     * @return the image mView
      */
     public BaseImageView getImageView() {
         return mImageView;
@@ -103,9 +103,9 @@ public class BaseImageViewLoading extends FrameLayout {
     }
 
     /**
-     * Gets gradient image view.
+     * Gets gradient image mView.
      *
-     * @return the gradient image view
+     * @return the gradient image mView
      */
     public BaseImageView getGradientImageView() {
         return mGradientImageView;

@@ -84,13 +84,13 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
     @Override
     public boolean canChildScrollUp() {
         // The swipe refresh layout has 2 children; the circle refresh indicator
-        // and the view container. The container is needed here
+        // and the mView container. The container is needed here
         ViewGroup container = getContainer();
         if (container == null) {
             return false;
         }
 
-        // The container has 2 children; the empty view and the scrollable view.
+        // The container has 2 children; the empty mView and the scrollable mView.
         // Use whichever one is visible and test that it can scroll
         View view = container.getChildAt(0);
         if (view.getVisibility() != View.VISIBLE) {
@@ -101,18 +101,18 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
     }
 
     private ViewGroup getContainer() {
-        // Cache this view
+        // Cache this mView
         if (container != null) {
             return container;
         }
 
-        // The container may not be the first view. Need to iterate to find it
+        // The container may not be the first mView. Need to iterate to find it
         for (int i = 0; i < getChildCount(); i++) {
             if (getChildAt(i) instanceof ViewGroup) {
                 container = (ViewGroup) getChildAt(i);
 
                 if (container.getChildCount() != 2) {
-                    throw new RuntimeException("Container must have an empty view and content view");
+                    throw new RuntimeException("Container must have an empty mView and content mView");
                 }
 
                 break;
@@ -120,7 +120,7 @@ public class BaseSwipeRefreshLayout extends SwipeRefreshLayout implements SwipeR
         }
 
         if (container == null) {
-            throw new RuntimeException("Container view not found");
+            throw new RuntimeException("Container mView not found");
         }
 
         return container;

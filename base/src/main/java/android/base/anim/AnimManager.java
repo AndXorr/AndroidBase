@@ -36,7 +36,7 @@ public class AnimManager {
      * With builder.
      *
      * @param context  the context
-     * @param view     the view
+     * @param view     the mView
      * @param animType the anim type
      * @return the builder
      */
@@ -48,7 +48,7 @@ public class AnimManager {
      * With builder.
      *
      * @param context  the context
-     * @param view     the view
+     * @param view     the mView
      * @param animType the anim type
      * @return the builder
      */

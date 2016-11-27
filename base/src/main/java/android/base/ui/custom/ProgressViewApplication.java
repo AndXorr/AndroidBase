@@ -26,7 +26,7 @@ public class ProgressViewApplication extends RelativeLayout {
     private View view;
 
     /**
-     * Instantiates a new Progress view application.
+     * Instantiates a new Progress mView application.
      *
      * @param context the context
      */
@@ -36,7 +36,7 @@ public class ProgressViewApplication extends RelativeLayout {
     }
 
     /**
-     * Instantiates a new Progress view application.
+     * Instantiates a new Progress mView application.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -47,7 +47,7 @@ public class ProgressViewApplication extends RelativeLayout {
     }
 
     /**
-     * Instantiates a new Progress view application.
+     * Instantiates a new Progress mView application.
      *
      * @param context      the context
      * @param attrs        the attrs
@@ -94,9 +94,9 @@ public class ProgressViewApplication extends RelativeLayout {
 
 
     /**
-     * Gets text view.
+     * Gets text mView.
      *
-     * @return the text view
+     * @return the text mView
      */
     public BaseTextView getTextView() {
         return textView;

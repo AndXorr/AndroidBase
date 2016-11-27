@@ -10,9 +10,9 @@ import java.util.List;
 
 
 /**
- * The type Collection.
+ * The type CollectionUtil.
  */
-public class Collection {
+public class CollectionUtil {
 
     /**
      * New array list array list.

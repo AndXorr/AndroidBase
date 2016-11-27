@@ -14,35 +14,35 @@ import android.view.View;
  */
 public class Builder {
 
-    private AnimParam animParam;
+    private AnimParam mAnimParam;
 
     /**
      * Instantiates a new Builder.
      *
      * @param context  the context
-     * @param view     the view
+     * @param view     the mView
      * @param animType the anim type
      */
     public Builder(@NonNull Context context, @NonNull View view, AnimParam.AnimType animType) {
-        animParam = new AnimParam();
-        animParam.view = view;
-        animParam.context = context;
-        animParam.type = animType;
+        mAnimParam = new AnimParam();
+        mAnimParam.view = view;
+        mAnimParam.context = context;
+        mAnimParam.type = animType;
     }
 
     /**
      * Instantiates a new Builder.
      *
      * @param context  the context
-     * @param view     the view
+     * @param view     the mView
      * @param animType the anim type
      */
     public Builder(@NonNull Activity context, @NonNull View view, AnimParam.AnimType animType) {
-        animParam = new AnimParam();
-        animParam.view = view;
-        animParam.context = context;
-        animParam.activityContext = context;
-        animParam.type = animType;
+        mAnimParam = new AnimParam();
+        mAnimParam.view = view;
+        mAnimParam.context = context;
+        mAnimParam.activityContext = context;
+        mAnimParam.type = animType;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Builder {
      * @return the builder
      */
     public Builder duration(int duration) {
-        animParam.duration = duration;
+        mAnimParam.duration = duration;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class Builder {
      * @return the builder
      */
     public Builder interpolator(TimeInterpolator interpolator) {
-        animParam.interpolator = interpolator;
+        mAnimParam.interpolator = interpolator;
         return this;
     }
 
@@ -74,7 +74,7 @@ public class Builder {
      * @return the builder
      */
     public Builder listener(AnimatorListenerAdapter animatorListenerAdapter) {
-        animParam.animatorListenerAdapter = animatorListenerAdapter;
+        mAnimParam.animatorListenerAdapter = animatorListenerAdapter;
         return this;
     }
 
@@ -86,8 +86,8 @@ public class Builder {
      * @return the builder
      */
     public Builder pos(int x, int y) {
-        animParam.setX = x;
-        animParam.setY = y;
+        mAnimParam.setX = x;
+        mAnimParam.setY = y;
         return this;
     }
 
@@ -99,8 +99,8 @@ public class Builder {
      * @return the builder
      */
     public Builder pos(@NonNull AnimParam.AnimPos x, @NonNull AnimParam.AnimPos y) {
-        animParam.posX = x;
-        animParam.posY = y;
+        mAnimParam.posX = x;
+        mAnimParam.posY = y;
         return this;
     }
 
@@ -112,8 +112,8 @@ public class Builder {
      * @return the builder
      */
     public Builder radius(float startRadius, float endRadius) {
-        animParam.startRadius = startRadius;
-        animParam.endRadius = endRadius;
+        mAnimParam.startRadius = startRadius;
+        mAnimParam.endRadius = endRadius;
         return this;
     }
 
@@ -121,13 +121,13 @@ public class Builder {
      * Start.
      */
     public void start() {
-        if (animParam.type == null) {
+        if (mAnimParam.type == null) {
             Log.e(getClass().getName(), "Please Specify type");
         } else {
-            if (animParam.posX != null && animParam.posY != null) {
-                AnimUtil.getPos(animParam);
+            if (mAnimParam.posX != null && mAnimParam.posY != null) {
+                AnimUtil.getPos(mAnimParam);
             }
-            animParam.type.animate(animParam);
+            mAnimParam.type.animate(mAnimParam);
         }
     }
 }

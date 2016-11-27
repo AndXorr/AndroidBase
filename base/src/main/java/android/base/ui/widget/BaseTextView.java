@@ -25,7 +25,7 @@ import android.util.AttributeSet;
 public class BaseTextView extends AppCompatTextView {
 
     /**
-     * Instantiates a new Base text view.
+     * Instantiates a new Base text mView.
      *
      * @param context the context
      */
@@ -35,7 +35,7 @@ public class BaseTextView extends AppCompatTextView {
     }
 
     /**
-     * Instantiates a new Base text view.
+     * Instantiates a new Base text mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -88,7 +88,7 @@ public class BaseTextView extends AppCompatTextView {
 
     /**
      * ***************
-     * Spacing between characters of text view
+     * Spacing between characters of text mView
      * *******************
      * <ahref http://stackoverflow.com/questions/5133548/how-to-change-letter-spacing-in-a-textview></ahref>
      * <ahref http://stackoverflow.com/questions/5133548/how-to-change-letter-spacing-in-a-textview></ahref>

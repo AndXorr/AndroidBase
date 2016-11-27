@@ -58,7 +58,7 @@ public class GlideUtil {
     }
 
 
-    private class Target extends SimpleTarget<Bitmap> {
+    private static class Target extends SimpleTarget<Bitmap> {
         private ImageParam imageParam;
 
         private Target(ImageParam imageParam) {
@@ -73,15 +73,11 @@ public class GlideUtil {
             } else if (imageParam.imageView != null) {
                 setBitmap(imageParam, bitmap);
             } else {
-                new RuntimeException("ImageView can't be null");
+                throw new RuntimeException("ImageView can't be null");
             }
 
             if (imageParam.needBitmap && imageParam.callback != null) {
-                if (imageParam.context != null) {
-                    imageParam.callback.onBitmapReceived(bitmap, new File(Environment.getExternalStorageDirectory(), "temp"), imageParam.taskId);
-                } else if (imageParam.activityContext != null) {
-                    imageParam.callback.onBitmapReceived(bitmap, new File(Environment.getExternalStorageDirectory(), "temp"), imageParam.taskId);
-                }
+                imageParam.callback.onBitmapReceived(bitmap, new File(Environment.getExternalStorageDirectory(), "temp"), imageParam.taskId);
             }
         }
 

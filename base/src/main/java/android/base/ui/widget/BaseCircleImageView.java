@@ -13,7 +13,7 @@ public class BaseCircleImageView extends CircleImageView {
     private boolean isNeedStrech = false;
 
     /**
-     * Instantiates a new Base circle image view.
+     * Instantiates a new Base circle image mView.
      *
      * @param context the context
      */
@@ -23,7 +23,7 @@ public class BaseCircleImageView extends CircleImageView {
     }
 
     /**
-     * Instantiates a new Base circle image view.
+     * Instantiates a new Base circle image mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -34,7 +34,7 @@ public class BaseCircleImageView extends CircleImageView {
     }
 
     /**
-     * Instantiates a new Base circle image view.
+     * Instantiates a new Base circle image mView.
      *
      * @param context  the context
      * @param attrs    the attrs

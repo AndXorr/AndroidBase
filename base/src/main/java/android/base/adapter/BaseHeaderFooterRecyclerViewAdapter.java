@@ -42,7 +42,7 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     private boolean hideFooter = false;
 
     /**
-     * Instantiates a new Base header footer recycler view adapter.
+     * Instantiates a new Base header footer recycler mView adapter.
      *
      * @param context the context
      */
@@ -144,16 +144,16 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     public abstract boolean useHeader();
 
     /**
-     * On create header view holder vh.
+     * On create header mView holder vh.
      *
      * @param parent   the parent
-     * @param viewType the view type
+     * @param viewType the mView type
      * @return the vh
      */
     public abstract VH onCreateHeaderViewHolder(ViewGroup parent, int viewType);
 
     /**
-     * On bind header view.
+     * On bind header mView.
      *
      * @param holder   the holder
      * @param position the position
@@ -168,16 +168,16 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     public abstract boolean useFooter();
 
     /**
-     * On create footer view holder vh.
+     * On create footer mView holder vh.
      *
      * @param parent   the parent
-     * @param viewType the view type
+     * @param viewType the mView type
      * @return the vh
      */
     public abstract VH onCreateFooterViewHolder(ViewGroup parent, int viewType);
 
     /**
-     * On bind footer view.
+     * On bind footer mView.
      *
      * @param holder   the holder
      * @param position the position
@@ -185,16 +185,16 @@ public abstract class BaseHeaderFooterRecyclerViewAdapter<VH extends RecyclerVie
     public abstract void onBindFooterView(VH holder, int position);
 
     /**
-     * On create basic item view holder vh.
+     * On create basic item mView holder vh.
      *
      * @param parent   the parent
-     * @param viewType the view type
+     * @param viewType the mView type
      * @return the vh
      */
     public abstract VH onCreateBasicItemViewHolder(ViewGroup parent, int viewType);
 
     /**
-     * On bind basic item view.
+     * On bind basic item mView.
      *
      * @param holder   the holder
      * @param position the position

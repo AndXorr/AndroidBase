@@ -11,7 +11,7 @@ import java.util.Map;
  * The type Builder.
  */
 public class Builder {
-    private DatabaseParam param;
+    private DatabaseParam mParam;
 
     /**
      * Instantiates a new Builder.
@@ -19,8 +19,8 @@ public class Builder {
      * @param context the context
      */
     public Builder(@NonNull Context context) {
-        param = new DatabaseParam();
-        param.context = context;
+        mParam = new DatabaseParam();
+        mParam.context = context;
         defaultDB();
     }
 
@@ -31,17 +31,17 @@ public class Builder {
      * @param sqLiteOpenHelper the sq lite open helper
      */
     public Builder(@NonNull Context context, @NonNull SQLiteOpenHelper sqLiteOpenHelper) {
-        param = new DatabaseParam();
-        param.context = context;
-        param.sqLiteOpenHelper = sqLiteOpenHelper;
-        param.dRead = param.sqLiteOpenHelper.getReadableDatabase();
-        param.dWrite = param.sqLiteOpenHelper.getWritableDatabase();
+        mParam = new DatabaseParam();
+        mParam.context = context;
+        mParam.sqLiteOpenHelper = sqLiteOpenHelper;
+        mParam.dRead = mParam.sqLiteOpenHelper.getReadableDatabase();
+        mParam.dWrite = mParam.sqLiteOpenHelper.getWritableDatabase();
     }
 
     private void defaultDB() {
-        DatabaseLocale db = new DatabaseLocale(param.context);
-        param.dRead = db.getReadableDatabase();
-        param.dWrite = db.getWritableDatabase();
+        DatabaseLocale db = new DatabaseLocale(mParam.context);
+        mParam.dRead = db.getReadableDatabase();
+        mParam.dWrite = db.getWritableDatabase();
     }
 
     /**
@@ -55,11 +55,11 @@ public class Builder {
      */
     public Builder query(String table, String[] columns, String where,
                          String[] whereArgs) {
-        param.table = table;
-        param.columns = columns;
-        param.where = where;
-        param.whereArgs = whereArgs;
-        param.crud = DatabaseParam.CRUD.FETCH;
+        mParam.table = table;
+        mParam.columns = columns;
+        mParam.where = where;
+        mParam.whereArgs = whereArgs;
+        mParam.crud = DatabaseParam.CRUD.FETCH;
         return this;
     }
 
@@ -78,15 +78,15 @@ public class Builder {
      */
     public Builder query(String table, String[] columns, String where,
                          String[] whereArgs, String grpBy, String having, String orderBy, String limit) {
-        param.table = table;
-        param.columns = columns;
-        param.where = where;
-        param.whereArgs = whereArgs;
-        param.orderBy = orderBy;
-        param.grpBy = grpBy;
-        param.having = having;
-        param.limit = limit;
-        param.crud = DatabaseParam.CRUD.FETCH;
+        mParam.table = table;
+        mParam.columns = columns;
+        mParam.where = where;
+        mParam.whereArgs = whereArgs;
+        mParam.orderBy = orderBy;
+        mParam.grpBy = grpBy;
+        mParam.having = having;
+        mParam.limit = limit;
+        mParam.crud = DatabaseParam.CRUD.FETCH;
         return this;
     }
 
@@ -98,9 +98,9 @@ public class Builder {
      * @return the builder
      */
     public Builder rawQuery(String sql, String[] whereArgs) {
-        param.sql = sql;
-        param.whereArgs = whereArgs;
-        param.crud = DatabaseParam.CRUD.FETCH_RAW;
+        mParam.sql = sql;
+        mParam.whereArgs = whereArgs;
+        mParam.crud = DatabaseParam.CRUD.FETCH_RAW;
         return this;
     }
 
@@ -112,9 +112,9 @@ public class Builder {
      * @return the builder
      */
     public Builder insert(String table, Map<String, String> map) {
-        param.table = table;
-        param.map = map;
-        param.crud = DatabaseParam.CRUD.INSERT;
+        mParam.table = table;
+        mParam.map = map;
+        mParam.crud = DatabaseParam.CRUD.INSERT;
         return this;
     }
 
@@ -125,8 +125,8 @@ public class Builder {
      * @return the builder
      */
     public Builder insertBulk(boolean isBulk) {
-        param.isBulk = isBulk;
-        param.crud = DatabaseParam.CRUD.INSERT;
+        mParam.isBulk = isBulk;
+        mParam.crud = DatabaseParam.CRUD.INSERT;
         return this;
     }
 
@@ -137,8 +137,8 @@ public class Builder {
      * @return the builder
      */
     public Builder delete(String table) {
-        param.table = table;
-        param.crud = DatabaseParam.CRUD.DELETE;
+        mParam.table = table;
+        mParam.crud = DatabaseParam.CRUD.DELETE;
         return this;
     }
 
@@ -151,10 +151,10 @@ public class Builder {
      * @return the builder
      */
     public Builder delete(String table, String where, String[] whereArgs) {
-        param.table = table;
-        param.where = where;
-        param.whereArgs = whereArgs;
-        param.crud = DatabaseParam.CRUD.DELETE;
+        mParam.table = table;
+        mParam.where = where;
+        mParam.whereArgs = whereArgs;
+        mParam.crud = DatabaseParam.CRUD.DELETE;
         return this;
     }
 
@@ -166,9 +166,9 @@ public class Builder {
      * @return the builder
      */
     public Builder update(String table, Map<String, String> map) {
-        param.table = table;
-        param.map = map;
-        param.crud = DatabaseParam.CRUD.UPDATE;
+        mParam.table = table;
+        mParam.map = map;
+        mParam.crud = DatabaseParam.CRUD.UPDATE;
         return this;
     }
 
@@ -182,11 +182,11 @@ public class Builder {
      * @return the builder
      */
     public Builder update(String table, String where, String[] whereArgs, Map<String, String> map) {
-        param.table = table;
-        param.where = where;
-        param.map = map;
-        param.whereArgs = whereArgs;
-        param.crud = DatabaseParam.CRUD.UPDATE;
+        mParam.table = table;
+        mParam.where = where;
+        mParam.map = map;
+        mParam.whereArgs = whereArgs;
+        mParam.crud = DatabaseParam.CRUD.UPDATE;
         return this;
     }
 
@@ -197,8 +197,8 @@ public class Builder {
      * @return the builder
      */
     public Builder updateBulk(boolean isBulk) {
-        param.isBulk = isBulk;
-        param.crud = DatabaseParam.CRUD.UPDATE;
+        mParam.isBulk = isBulk;
+        mParam.crud = DatabaseParam.CRUD.UPDATE;
         return this;
 
     }
@@ -210,7 +210,7 @@ public class Builder {
      */
     public Object build() {
         Object object;
-        object = param.crud.execute(param);
+        object = mParam.crud.execute(mParam);
         return object;
     }
 

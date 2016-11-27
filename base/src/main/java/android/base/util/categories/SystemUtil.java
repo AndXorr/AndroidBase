@@ -51,14 +51,14 @@ import java.util.zip.ZipOutputStream;
 import javax.security.auth.x500.X500Principal;
 
 /**
- * The type System.
+ * The type SystemUtil.
  */
-public class System {
+public class SystemUtil {
 
     /**
      * private constructor
      */
-    protected System() {
+    protected SystemUtil() {
     }
 
     /**
@@ -230,10 +230,10 @@ public class System {
     }
 
     /**
-     * Hides the SoftKeyboard input careful as if you pass a view that didn't open the
+     * Hides the SoftKeyboard input careful as if you pass a mView that didn't open the
      * soft-keyboard it will ignore this call and not close
      *
-     * @param v the view that opened the soft-keyboard
+     * @param v the mView that opened the soft-keyboard
      */
     public static void requestHideKeyboard(View v) {
         InputMethodManager imm = ((InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE));
@@ -465,7 +465,7 @@ public class System {
     /**
      * Hide soft input.
      *
-     * @param view the view
+     * @param view the mView
      */
     public static void hideSoftInput(View view) {
         ((InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
@@ -628,9 +628,9 @@ public class System {
         String manufacturer = getDeviceManufacturer();
         String model = getDeviceModel();
         if ((model != null) && model.startsWith(manufacturer)) {
-            return Validator.capitalize(model);
+            return ValidatorUtil.capitalize(model);
         } else if (manufacturer != null) {
-            return Validator.capitalize(manufacturer) + " " + model;
+            return ValidatorUtil.capitalize(manufacturer) + " " + model;
         } else {
             return "Unknown";
         }
@@ -700,7 +700,7 @@ public class System {
         Intent intent = new Intent(
                 android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         if (imagePath == null)
-            imagePath = ApplicationUtils.FileUtil.getStaticFile(context, "");
+            imagePath = ApplicationUtils.File.getStaticFile(context, "");
         Uri mUri = Uri.fromFile(imagePath);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
         intent.putExtra("return-data", true);

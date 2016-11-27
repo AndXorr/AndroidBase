@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
- * The type Log.
+ * The type LogUtil.
  */
-public class Log {
+public class LogUtil {
     /**
      * The constant VERBOSE.
      */
@@ -150,7 +150,7 @@ public class Log {
     }
 
     /**
-     * Private Logger function to handle Log calls
+     * Private Logger function to handle LogUtil calls
      *
      * @param level     level of the log message
      * @param message   log output
@@ -180,7 +180,7 @@ public class Log {
     }
 
     /**
-     * Private Logger function to handle Log calls
+     * Private Logger function to handle LogUtil calls
      *
      * @param level   level of the log message
      * @param message log output
@@ -218,7 +218,7 @@ public class Log {
             if (Modifier.isStatic(f.getModifiers())) {
                 boolean wasAccessible = f.isAccessible();
                 f.setAccessible(true);
-                Log.i(f.getName() + ": " + f.get(null));
+                LogUtil.i(f.getName() + ": " + f.get(null));
                 f.setAccessible(wasAccessible);
             }
         }
@@ -235,7 +235,7 @@ public class Log {
             if (Modifier.isPrivate(f.getModifiers())) {
                 boolean wasAccessible = f.isAccessible();
                 f.setAccessible(true);
-                Log.i(f.getName() + ": " + f.get(null));
+                LogUtil.i(f.getName() + ": " + f.get(null));
                 f.setAccessible(wasAccessible);
             }
         }

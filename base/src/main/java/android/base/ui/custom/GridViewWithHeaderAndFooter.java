@@ -54,12 +54,12 @@ public class GridViewWithHeaderAndFooter extends GridView {
     private OnItemLongClickListener mOnItemLongClickListener;
 
     /**
-     * A class that represents a fixed view in a list, for example a header at the top
+     * A class that represents a fixed mView in a list, for example a header at the top
      * or a footer at the bottom.
      */
     private static class FixedViewInfo {
         /**
-         * The view to add to the grid
+         * The mView to add to the grid
          */
         public View view;
         /**
@@ -67,11 +67,11 @@ public class GridViewWithHeaderAndFooter extends GridView {
          */
         public ViewGroup viewContainer;
         /**
-         * The data backing the view. This is returned from {@link ListAdapter#getItem(int)}.
+         * The data backing the mView. This is returned from {@link ListAdapter#getItem(int)}.
          */
         public Object data;
         /**
-         * <code>true</code> if the fixed view should be selectable in the grid
+         * <code>true</code> if the fixed mView should be selectable in the grid
          */
         public boolean isSelectable;
     }
@@ -91,7 +91,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Instantiates a new Grid view with header and footer.
+     * Instantiates a new Grid mView with header and footer.
      *
      * @param context the context
      */
@@ -101,7 +101,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Instantiates a new Grid view with header and footer.
+     * Instantiates a new Grid mView with header and footer.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -112,7 +112,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Instantiates a new Grid view with header and footer.
+     * Instantiates a new Grid mView with header and footer.
      *
      * @param context  the context
      * @param attrs    the attrs
@@ -148,36 +148,36 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Add a fixed view to appear at the top of the grid. If addHeaderView is
+     * Add a fixed mView to appear at the top of the grid. If addHeaderView is
      * called more than once, the views will appear in the order they were
      * added. Views added using this call can take focus if they want.
      * <p>
      * NOTE: Call this before calling setAdapter. This is so HeaderGridView can wrap
      * the supplied cursor with one that will also account for header views.
      *
-     * @param v The view to add.
+     * @param v The mView to add.
      */
     public void addHeaderView(View v) {
         addHeaderView(v, null, true);
     }
 
     /**
-     * Add a fixed view to appear at the top of the grid. If addHeaderView is
+     * Add a fixed mView to appear at the top of the grid. If addHeaderView is
      * called more than once, the views will appear in the order they were
      * added. Views added using this call can take focus if they want.
      * <p>
      * NOTE: Call this before calling setAdapter. This is so HeaderGridView can wrap
      * the supplied cursor with one that will also account for header views.
      *
-     * @param v            The view to add.
-     * @param data         Data to associate with this view
+     * @param v            The mView to add.
+     * @param data         Data to associate with this mView
      * @param isSelectable whether the item is selectable
      */
     public void addHeaderView(View v, Object data, boolean isSelectable) {
         ListAdapter adapter = getAdapter();
         if (adapter != null && !(adapter instanceof HeaderViewGridAdapter)) {
             throw new IllegalStateException(
-                    "Cannot add header view to grid -- setAdapter has already been called.");
+                    "Cannot add header mView to grid -- setAdapter has already been called.");
         }
 
         ViewGroup.LayoutParams lyp = v.getLayoutParams();
@@ -195,7 +195,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
         info.data = data;
         info.isSelectable = isSelectable;
         mHeaderViewInfos.add(info);
-        // in the case of re-adding a header view, or adding one later on,
+        // in the case of re-adding a header mView, or adding one later on,
         // we need to notify the observer
         if (adapter != null) {
             ((HeaderViewGridAdapter) adapter).notifyDataSetChanged();
@@ -203,7 +203,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Add footer view.
+     * Add footer mView.
      *
      * @param v the v
      */
@@ -212,7 +212,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Add footer view.
+     * Add footer mView.
      *
      * @param v            the v
      * @param data         the data
@@ -222,7 +222,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
         ListAdapter mAdapter = getAdapter();
         if (mAdapter != null && !(mAdapter instanceof HeaderViewGridAdapter)) {
             throw new IllegalStateException(
-                    "Cannot add header view to grid -- setAdapter has already been called.");
+                    "Cannot add header mView to grid -- setAdapter has already been called.");
         }
 
         ViewGroup.LayoutParams lyp = v.getLayoutParams();
@@ -247,28 +247,28 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Gets header view count.
+     * Gets header mView count.
      *
-     * @return the header view count
+     * @return the header mView count
      */
     public int getHeaderViewCount() {
         return mHeaderViewInfos.size();
     }
 
     /**
-     * Gets footer view count.
+     * Gets footer mView count.
      *
-     * @return the footer view count
+     * @return the footer mView count
      */
     public int getFooterViewCount() {
         return mFooterViewInfos.size();
     }
 
     /**
-     * Removes a previously-added header view.
+     * Removes a previously-added header mView.
      *
-     * @param v The view to remove
-     * @return true if the view was removed, false if the view was not a header view
+     * @param v The mView to remove
+     * @return true if the mView was removed, false if the mView was not a header mView
      */
     public boolean removeHeaderView(View v) {
         if (mHeaderViewInfos.size() > 0) {
@@ -284,10 +284,10 @@ public class GridViewWithHeaderAndFooter extends GridView {
     }
 
     /**
-     * Removes a previously-added footer view.
+     * Removes a previously-added footer mView.
      *
-     * @param v The view to remove
-     * @return true if the view was removed, false if the view was not a header view
+     * @param v The mView to remove
+     * @return true if the mView was removed, false if the mView was not a header mView
      */
     public boolean removeFooterView(View v) {
         if (mFooterViewInfos.size() > 0) {
@@ -505,7 +505,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
     private class FullWidthFixedViewLayout extends FrameLayout {
 
         /**
-         * Instantiates a new Full width fixed view layout.
+         * Instantiates a new Full width fixed mView layout.
          *
          * @param context the context
          */
@@ -563,12 +563,12 @@ public class GridViewWithHeaderAndFooter extends GridView {
                 new ArrayList<>();
 
         /**
-         * The M header view infos.
+         * The M header mView infos.
          */
 // This ArrayList is assumed to NOT be null.
         ArrayList<FixedViewInfo> mHeaderViewInfos;
         /**
-         * The M footer view infos.
+         * The M footer mView infos.
          */
         ArrayList<FixedViewInfo> mFooterViewInfos;
         private int mNumColumns = 1;
@@ -583,10 +583,10 @@ public class GridViewWithHeaderAndFooter extends GridView {
         private boolean mCacheFirstHeaderView = false;
 
         /**
-         * Instantiates a new Header view grid adapter.
+         * Instantiates a new Header mView grid adapter.
          *
-         * @param headerViewInfos the header view infos
-         * @param footViewInfos   the foot view infos
+         * @param headerViewInfos the header mView infos
+         * @param footViewInfos   the foot mView infos
          * @param adapter         the adapter
          */
         public HeaderViewGridAdapter(ArrayList<FixedViewInfo> headerViewInfos, ArrayList<FixedViewInfo> footViewInfos, ListAdapter adapter) {
@@ -651,7 +651,7 @@ public class GridViewWithHeaderAndFooter extends GridView {
 
         /**
          * @return true if this adapter doesn't contain any data.  This is used to determine
-         * whether the empty view should be displayed.  A typical implementation will return
+         * whether the empty mView should be displayed.  A typical implementation will return
          * getCount() == 0 but since getCount() includes the headers and footers, specialized
          * adapters might want a different behavior.
          */
@@ -912,13 +912,13 @@ public class GridViewWithHeaderAndFooter extends GridView {
                 }
             }
             if (DEBUG) {
-                Log.d(LOG_TAG, String.format("getItemViewType: pos: %s, result: %s", position, type, mCachePlaceHoldView, mCacheFirstHeaderView));
+                Log.d(LOG_TAG, String.format("getItemViewType: pos: %s, result: %s", position, type));
             }
             return type;
         }
 
         /**
-         * content view, content view holder, header[0], header and footer placeholder(s)
+         * content mView, content mView holder, header[0], header and footer placeholder(s)
          *
          * @return
          */

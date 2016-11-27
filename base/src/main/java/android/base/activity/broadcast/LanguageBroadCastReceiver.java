@@ -3,6 +3,7 @@ package android.base.activity.broadcast;
 import android.app.Activity;
 import android.base.activity.BaseAppCompatActivity;
 import android.base.interfaces.OnRequestHandleListener;
+import android.base.util.ApplicationUtils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +41,8 @@ public class LanguageBroadCastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        ApplicationUtils.Log.i(context.getPackageName());
+        ApplicationUtils.Log.i(mActivity.getPackageName());
         if (mCallBack != null) {
             mCallBack.onRequest(null, null, 0, android.base.constant.Constant.ACTION_BROADCAST_LANGUAGE_CHANGED);
         }

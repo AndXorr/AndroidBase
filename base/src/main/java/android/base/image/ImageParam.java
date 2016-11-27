@@ -67,7 +67,7 @@ public class ImageParam {
      */
     protected Map<?, ?> header = new LinkedHashMap<>();
     /**
-     * The Image view.
+     * The Image mView.
      */
     protected ImageView imageView;
     /**

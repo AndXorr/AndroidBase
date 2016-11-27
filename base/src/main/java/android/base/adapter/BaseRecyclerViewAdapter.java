@@ -21,17 +21,17 @@ import java.util.List;
  */
 public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {
 
-    private OnItemClickListener itemClickListener;
-    private OnItemLongClickListener itemLongClickListener;
-    private Context context;
+    private OnItemClickListener mItemClickListener;
+    private OnItemLongClickListener mItemLongClickListener;
+    private Context mContext;
 
     /**
-     * Instantiates a new Base recycler view adapter.
+     * Instantiates a new Base recycler mView adapter.
      *
-     * @param context the context
+     * @param context the mContext
      */
     public BaseRecyclerViewAdapter(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
@@ -43,8 +43,8 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
         /**
          * On item click.
          *
-         * @param recyclerView the recycler view
-         * @param view         the view
+         * @param recyclerView the recycler mView
+         * @param view         the mView
          * @param position     the position
          * @param model        the model
          */
@@ -60,8 +60,8 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
         /**
          * On item long click boolean.
          *
-         * @param recyclerView the recycler view
-         * @param view         the view
+         * @param recyclerView the recycler mView
+         * @param view         the mView
          * @param position     the position
          * @param model        the model
          * @return the boolean
@@ -98,7 +98,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
      * @param l the l
      */
     public void setOnItemClickListener(@NonNull OnItemClickListener l) {
-        itemClickListener = l;
+        mItemClickListener = l;
     }
 
     /**
@@ -107,7 +107,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
      * @param l the l
      */
     public void setOnItemLongClickListener(@NonNull OnItemLongClickListener l) {
-        itemLongClickListener = l;
+        mItemLongClickListener = l;
     }
 
     /**
@@ -115,9 +115,9 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
      *
      * @return the item click listener
      */
-    public Optional<OnItemClickListener> getItemClickListener() {
+    public Optional<OnItemClickListener> getmItemClickListener() {
         Optional<OnItemClickListener> onItemClick = Optional.absent();
-        onItemClick = Optional.fromNullable(itemClickListener).or(onItemClick);
+        onItemClick = Optional.fromNullable(mItemClickListener).or(onItemClick);
         return onItemClick;
     }
 
@@ -126,19 +126,19 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
      *
      * @return the item long click listener
      */
-    public Optional<OnItemLongClickListener> getItemLongClickListener() {
+    public Optional<OnItemLongClickListener> getmItemLongClickListener() {
         Optional<OnItemLongClickListener> onItemLongClick = Optional.absent();
-        onItemLongClick = Optional.fromNullable(itemLongClickListener).or(onItemLongClick);
+        onItemLongClick = Optional.fromNullable(mItemLongClickListener).or(onItemLongClick);
         return onItemLongClick;
     }
 
     /**
-     * Gets context.
+     * Gets mContext.
      *
-     * @return the context
+     * @return the mContext
      */
-    public Context getContext() {
-        return context;
+    public Context getmContext() {
+        return mContext;
     }
 
     @Override

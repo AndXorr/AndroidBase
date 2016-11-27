@@ -28,7 +28,7 @@ import static android.os.Environment.MEDIA_MOUNTED;
 /**
  * The type File util.
  */
-public class FileUtil extends FileUtils{
+public class FileUtil extends FileUtils {
     /**
      * The constant BYTES_TO_MB.
      */
@@ -401,6 +401,9 @@ public class FileUtil extends FileUtils{
                 case ExifInterface.ORIENTATION_ROTATE_270:
                     rotation = 270;
 
+                    break;
+                default:
+                    // Nothing
                     break;
             }
         } catch (IOException e) {

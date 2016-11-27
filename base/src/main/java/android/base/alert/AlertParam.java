@@ -125,7 +125,7 @@ public class AlertParam {
      */
     actionMessageMaxLine = -1;
     /**
-     * The Snack bar view.
+     * The Snack bar mView.
      */
     protected View snackBarView;
     /**
@@ -163,7 +163,7 @@ public class AlertParam {
          * On snack bar action clicked.
          *
          * @param uniqueId the unique id
-         * @param view     the view
+         * @param view     the mView
          */
         void onSnackBarActionClicked(int uniqueId, View view);
     }

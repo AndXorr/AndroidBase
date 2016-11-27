@@ -14,17 +14,17 @@ import java.util.List;
  * for listView, GridView etc..
  * <p class="note">
  * <strong>Note:</strong> If you want to use {@link Context} you should instead
- * use the {@link #getContext()} and to use Activity context use
- * {@link #getActivityContext()}
+ * use the {@link #getmContext()} and to use Activity mContext use
+ * {@link #getmActivityContext()}
  * </p>
  * <ul>
  * <li>
  * <P>
- * {@link #setList(List)} method is used to setList to this adapter
+ * {@link #setList(List)} method is used to setmList to this adapter
  * </p>
  * <li>
  * <P>
- * {@link #getList()} method is used to getList from this adapter.
+ * {@link #getList()} method is used to getmList from this adapter.
  * </p>
  * <p>
  * </ul>
@@ -33,8 +33,8 @@ import java.util.List;
  * @author amit.singh
  */
 public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
-    private Context context;
-    private Activity activityContext;
+    private Context mContext;
+    private Activity mActivityContext;
     /**
      * The M list.
      */
@@ -47,23 +47,23 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     /**
      * Instantiates a new Base adapter.
      *
-     * @param context the context
+     * @param context the mContext
      */
     public BaseAdapter(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
      * Instantiates a new Base adapter.
      *
-     * @param context the context
+     * @param context the mContext
      */
     public BaseAdapter(Activity context) {
-        this.activityContext = context;
+        this.mActivityContext = context;
     }
 
     /**
-     * This method is used to setList containing ListArray<T>
+     * This method is used to setmList containing ListArray<T>
      *
      * @param items the items
      */
@@ -104,21 +104,21 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     }
 
     /**
-     * This method is used to get the context
+     * This method is used to get the mContext
      *
      * @return {@link Context}
      */
-    public Context getContext() {
-        return context;
+    public Context getmContext() {
+        return mContext;
     }
 
     /**
-     * Gets activity context.
+     * Gets activity mContext.
      *
-     * @return the activity context
+     * @return the activity mContext
      */
-    public Activity getActivityContext() {
-        return activityContext;
+    public Activity getmActivityContext() {
+        return mActivityContext;
     }
 
 }

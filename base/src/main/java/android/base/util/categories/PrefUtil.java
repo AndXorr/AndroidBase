@@ -9,15 +9,15 @@ import java.util.Map;
 /**
  * Created by cesarferreira on 9/26/14.
  */
-public class Prefs {
+public class PrefUtil {
 
     private static SharedPreferenceApp sharedPreferenceApp;
 
 
     /**
-     * Instantiates a new Prefs.
+     * Instantiates a new PrefUtil.
      */
-    public Prefs() {
+    public PrefUtil() {
         if (sharedPreferenceApp == null) {
             ApplicationUtils.Log.e("Context can't be null. Use with(Context context)");
         }
@@ -29,9 +29,9 @@ public class Prefs {
      * @param context the context
      * @return the prefs
      */
-    public static Prefs with(Context context) {
+    public static PrefUtil with(Context context) {
         sharedPreferenceApp = new SharedPreferenceApp(context);
-        return new Prefs();
+        return new PrefUtil();
     }
 
     /**

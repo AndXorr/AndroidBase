@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
-def compileSdk = Integer.parseInt(project.ANDROID_BUILD_COMPILE_SDK_VERSION)
-def buildTools = project.ANDROID_BUILD_TOOLS_VERSION
-def minSdk = Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-def targetSdk = Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-def version_code = Integer.parseInt(project.VERSION_CODE)
-def version_name = project.VERSION_NAME
+def compileSdk = project.ext.ANDROID_BUILD_COMPILE_SDK_VERSION
+def buildTools = project.ext.ANDROID_BUILD_TOOLS_VERSION
+def minSdk = project.ext.ANDROID_BUILD_MIN_SDK_VERSION
+def targetSdk = project.ext.ANDROID_BUILD_TARGET_SDK_VERSION
+def version_code = project.ext.VERSION_CODE
+def version_name = project.ext.VERSION_NAME
 
 android {
     compileSdkVersion compileSdk

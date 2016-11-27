@@ -85,7 +85,7 @@ public class BaseDrawerLayout extends DrawerLayout {
     /**
      * Toggle.
      *
-     * @param view the view
+     * @param view the mView
      */
     public void toggle(View view) {
         if (isDrawerOpen(view)) {

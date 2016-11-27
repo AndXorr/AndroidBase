@@ -22,10 +22,10 @@ public class AnimationUtil {
     /**
      * Make a View Blink for a desired duration
      *
-     * @param view     view that will be animated
+     * @param view     mView that will be animated
      * @param duration for how long in ms will it blink
      * @param offset   start offset of the animation
-     * @return returns the same view with animation properties
+     * @return returns the same mView with animation properties
      */
     public static View blink(View view, int duration, int offset) {
         android.view.animation.Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -40,7 +40,7 @@ public class AnimationUtil {
     /**
      * Animate.
      *
-     * @param view the view
+     * @param view the mView
      * @param anim the anim
      */
     public static void animate(View view, @AnimRes int anim) {

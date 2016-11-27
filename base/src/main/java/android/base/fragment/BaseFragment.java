@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.base.activity.BaseAppCompatActivity;
 import android.base.interfaces.OnBackHandler;
 import android.base.http.WebHandler;
-import android.base.pubnub.PubNub;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,8 +33,8 @@ public abstract class BaseFragment extends Fragment implements
     /**
      * The View.
      */
-    protected View view;
-    private boolean enableBack = false;
+    protected View mView;
+    private boolean mEnableBack = false;
 
     public static <T extends Fragment> Fragment init(@NonNull Class<T> fragment, Bundle bundle) {
         try {
@@ -73,7 +72,7 @@ public abstract class BaseFragment extends Fragment implements
      * @param enableBack the enable back handle
      */
     public void enableBackPress(boolean enableBack) {
-        this.enableBack = enableBack;
+        this.mEnableBack = enableBack;
     }
 
     @Override
@@ -83,7 +82,7 @@ public abstract class BaseFragment extends Fragment implements
          */
         if (getActivity() instanceof BaseAppCompatActivity) {
             ((BaseAppCompatActivity) getActivity()).setBackHandler(null);
-            if (enableBack)
+            if (mEnableBack)
                 ((BaseAppCompatActivity) getActivity()).setBackHandler(this);
         }
         super.onResume();
@@ -115,7 +114,7 @@ public abstract class BaseFragment extends Fragment implements
      *
      * @param inflater  the inflater
      * @param container the container
-     * @return the view
+     * @return the mView
      */
     protected abstract View initUI(LayoutInflater inflater, ViewGroup container);
 

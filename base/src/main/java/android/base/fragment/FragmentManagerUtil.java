@@ -15,7 +15,7 @@ public class FragmentManagerUtil {
      *
      * @param fragParam the frag param
      */
-    public static void performTask(FragParam fragParam) {
+    static void performTask(FragParam fragParam) {
         FragmentTransaction ft = fragParam.context.getFragmentManager()
                 .beginTransaction();
         if (fragParam.enableAnimation) {
@@ -30,7 +30,7 @@ public class FragmentManagerUtil {
      * @param fragParam the frag param
      * @param ft        the ft
      */
-    protected static void replace(FragParam fragParam, FragmentTransaction ft) {
+    static void replace(FragParam fragParam, FragmentTransaction ft) {
         if (!TextUtils.isEmpty(fragParam.tag)) {
             ft.replace(fragParam.replaceId, fragParam.fragment, fragParam.tag);
         } else {
@@ -48,7 +48,7 @@ public class FragmentManagerUtil {
      * @param fragParam the frag param
      * @param ft        the ft
      */
-    protected static void pop(FragParam fragParam, FragmentTransaction ft) {
+    static void pop(FragParam fragParam, FragmentTransaction ft) {
         if (fragParam.context.getSupportFragmentManager().getBackStackEntryCount() > 0) {
             ft.remove(fragParam.context.getFragmentManager()
                     .findFragmentById(fragParam.replaceId));
@@ -63,7 +63,7 @@ public class FragmentManagerUtil {
      * @param fragParam the frag param
      * @param ft        the ft
      */
-    protected static void popTag(FragParam fragParam, FragmentTransaction ft) {
+    static void popTag(FragParam fragParam, FragmentTransaction ft) {
         if (fragParam.context.getSupportFragmentManager().getBackStackEntryCount() > 0) {
             ft.remove(fragParam.context.getFragmentManager()
                     .findFragmentByTag(fragParam.tag));
@@ -78,7 +78,7 @@ public class FragmentManagerUtil {
      * @param fragParam the frag param
      * @param ft        the ft
      */
-    protected static void restart(FragParam fragParam, FragmentTransaction ft) {
+    static void restart(FragParam fragParam, FragmentTransaction ft) {
         try {
             Fragment fragment = FragUtil.getFragment(fragParam.context, fragParam.replaceId);
             if (fragment != null) {
@@ -96,7 +96,7 @@ public class FragmentManagerUtil {
      *
      * @param fragParam the frag param
      */
-    protected static void clear(FragParam fragParam) {
+    static void clear(FragParam fragParam) {
         fragParam.context.getSupportFragmentManager()
                 .popBackStackImmediate(null, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }

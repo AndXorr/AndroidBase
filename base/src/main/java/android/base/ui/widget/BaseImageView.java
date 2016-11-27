@@ -15,7 +15,7 @@ import android.util.AttributeSet;
  * This class is used as widget instead to using FrameLayout with ProgressBar
  * and ImageView. This is used like a ImageView. This is used when images are
  * fetched from server and show on ImageView. Till the images are loader from
- * server progress bar is visible on image view. After that Images are loaded
+ * server progress bar is visible on image mView. After that Images are loaded
  * and set on imageView. This is also done with the help of Universal Image
  * Loader.
  *
@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 public class BaseImageView extends AppCompatImageView {
 
     /**
-     * Instantiates a new Base image view.
+     * Instantiates a new Base image mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -35,7 +35,7 @@ public class BaseImageView extends AppCompatImageView {
     }
 
     /**
-     * Instantiates a new Base image view.
+     * Instantiates a new Base image mView.
      *
      * @param context the context
      */
@@ -44,7 +44,7 @@ public class BaseImageView extends AppCompatImageView {
     }
 
     /**
-     * Instantiates a new Base image view.
+     * Instantiates a new Base image mView.
      *
      * @param context  the context
      * @param attrs    the attrs

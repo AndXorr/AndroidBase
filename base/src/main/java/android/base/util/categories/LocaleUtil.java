@@ -1,8 +1,6 @@
 package android.base.util.categories;
 
 import android.base.R;
-import android.base.constant.Constant;
-import android.base.util.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -11,8 +9,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
+
+import org.apache.commons.lang3.LocaleUtils;
 
 import java.util.Locale;
 
@@ -20,7 +19,7 @@ import java.util.Locale;
 /**
  * The type Locale utils.
  */
-public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
+public class LocaleUtil extends LocaleUtils {
 
     /**
      * Gets locale application.
@@ -51,7 +50,7 @@ public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
     public static String getPhoneNumber(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCodeValue = tm.getSimCountryIso();
-        if (!Validator.isEmptyOrNull(countryCodeValue)) {
+        if (!ValidatorUtil.isEmptyOrNull(countryCodeValue)) {
             countryCodeValue = countryCodeValue.toUpperCase();
             String[] rl = context.getResources().getStringArray(R.array.CountryCodes);
             for (int i = 0; i < rl.length; i++) {
@@ -87,7 +86,7 @@ public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
     public static void updateLocale(@Nullable Context context,
                                     @NonNull String languageCode, boolean enableBroadCast) {
         if (context != null
-                && !Validator.isEmptyOrNull(languageCode)) {
+                && !ValidatorUtil.isEmptyOrNull(languageCode)) {
             Locale locale = new Locale(languageCode);
             Resources res = context.getResources();
             DisplayMetrics dm = res.getDisplayMetrics();

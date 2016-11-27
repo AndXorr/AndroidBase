@@ -57,14 +57,14 @@ public class PinnedSectionListView extends BaseListView {
          * This method shall return 'true' if views of given type has to be
          * pinned.
          *
-         * @param viewType the view type
+         * @param viewType the mView type
          * @return the boolean
          */
         boolean isItemViewTypePinned(int viewType);
     }
 
     /**
-     * Wrapper class for pinned section view and its position in the list.
+     * Wrapper class for pinned section mView and its position in the list.
      */
     static class PinnedSection {
         /**
@@ -106,12 +106,12 @@ public class PinnedSectionListView extends BaseListView {
     PinnedSection mRecycleSection;
 
     /**
-     * shadow instance with a pinned view, can be null.
+     * shadow instance with a pinned mView, can be null.
      */
     PinnedSection mPinnedSection;
 
     /**
-     * Pinned view Y-translation. We use it to stick pinned view to the next
+     * Pinned mView Y-translation. We use it to stick pinned mView to the next
      * section.
      */
     int mTranslateY;
@@ -148,7 +148,7 @@ public class PinnedSectionListView extends BaseListView {
 
             if (isFirstVisibleItemSection) {
                 View sectionView = getChildAt(0);
-                if (sectionView.getTop() == getPaddingTop()) { // view sticks to
+                if (sectionView.getTop() == getPaddingTop()) { // mView sticks to
                     // the top, no
                     // need for
                     // pinned shadow
@@ -195,7 +195,7 @@ public class PinnedSectionListView extends BaseListView {
     // -- constructors
 
     /**
-     * Instantiates a new Pinned section list view.
+     * Instantiates a new Pinned section list mView.
      *
      * @param context the context
      * @param attrs   the attrs
@@ -206,7 +206,7 @@ public class PinnedSectionListView extends BaseListView {
     }
 
     /**
-     * Instantiates a new Pinned section list view.
+     * Instantiates a new Pinned section list mView.
      *
      * @param context  the context
      * @param attrs    the attrs
@@ -254,8 +254,8 @@ public class PinnedSectionListView extends BaseListView {
                         new int[]{Color.parseColor("#ffa0a0a0"),
                                 Color.parseColor("#50a0a0a0"),
                                 Color.parseColor("#00a0a0a0")}
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.header_background_color),
-//                                ContextCompat.getColor(getContext(), R.color.app_theme)}
+//                        new int[]{ContextCompat.getColor(getmContext(), R.color.header_background_color),
+//                                ContextCompat.getColor(getmContext(), R.color.app_theme)}
                 );
                 mShadowHeight = (int) (8 * getResources().getDisplayMetrics().density);
             }
@@ -268,7 +268,7 @@ public class PinnedSectionListView extends BaseListView {
     }
 
     /**
-     * Create shadow wrapper with a pinned view for a view at given position
+     * Create shadow wrapper with a pinned mView for a mView at given position
      *
      * @param position the position
      */
@@ -281,7 +281,7 @@ public class PinnedSectionListView extends BaseListView {
         // create new shadow, if needed
         if (pinnedShadow == null)
             pinnedShadow = new PinnedSection();
-        // request new view using recycled view, if such
+        // request new mView using recycled mView, if such
         View pinnedView = getAdapter().getView(position, pinnedShadow.view,
                 PinnedSectionListView.this);
 
@@ -324,7 +324,7 @@ public class PinnedSectionListView extends BaseListView {
     }
 
     /**
-     * Destroy shadow wrapper for currently pinned view
+     * Destroy shadow wrapper for currently pinned mView
      */
     void destroyPinnedShadow() {
         if (mPinnedSection != null) {
@@ -485,7 +485,7 @@ public class PinnedSectionListView extends BaseListView {
         super.onRestoreInstanceState(state);
         post(new Runnable() {
             @Override
-            public void run() { // restore pinned view after configuration
+            public void run() { // restore pinned mView after configuration
                 // change
                 recreatePinnedShadow();
             }
@@ -582,7 +582,7 @@ public class PinnedSectionListView extends BaseListView {
             // touch
             // target
 
-            // user touched pinned view
+            // user touched pinned mView
             mTouchTarget = mPinnedSection.view;
             mTouchPoint.x = x;
             mTouchPoint.y = y;
@@ -593,12 +593,12 @@ public class PinnedSectionListView extends BaseListView {
 
         if (mTouchTarget != null) {
             if (isPinnedViewTouched(mTouchTarget, x, y)) { // forward event to
-                // pinned view
+                // pinned mView
                 mTouchTarget.dispatchTouchEvent(ev);
             }
 
             if (action == MotionEvent.ACTION_UP) { // perform onClick on pinned
-                // view
+                // mView
                 super.dispatchTouchEvent(ev);
                 performPinnedItemClick();
                 clearTouchTarget();
@@ -627,7 +627,7 @@ public class PinnedSectionListView extends BaseListView {
             return true;
         }
 
-        // call super if this was not our pinned view
+        // call super if this was not our pinned mView
         return super.dispatchTouchEvent(ev);
     }
 
@@ -672,10 +672,10 @@ public class PinnedSectionListView extends BaseListView {
     }
 
     /**
-     * Is item view type pinned boolean.
+     * Is item mView type pinned boolean.
      *
      * @param adapter  the adapter
-     * @param viewType the view type
+     * @param viewType the mView type
      * @return the boolean
      */
     public static boolean isItemViewTypePinned(ListAdapter adapter, int viewType) {

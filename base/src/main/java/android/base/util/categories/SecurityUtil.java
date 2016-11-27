@@ -3,20 +3,22 @@ package android.base.util.categories;
 import android.base.util.ApplicationUtils;
 import android.util.Base64;
 
+import com.google.common.hash.Hashing;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * The type Security.
+ * The type SecurityUtil.
  */
-public class Security {
+public class SecurityUtil {
 
     /**
      * private constructor
      */
-    // private security() {
-    // }
+    protected SecurityUtil() {
+    }
 
     /**
      * Encode in base64
@@ -86,8 +88,8 @@ public class Security {
     /**
      * Private decoder in base64
      *
-     * @param toDecode String to be encoded
-     * @param flags    flags to decode the String
+     * @param decode String to be encoded
+     * @param flags  flags to decode the String
      * @return decoded String in base64
      */
     private static String privateBase64Decoder(String decode, int flags) {
@@ -113,26 +115,7 @@ public class Security {
      * @return MD5 'ed String
      */
     public static String calculateMD5(String string) {
-        byte[] hash;
-
-        try {
-            hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Huh, MD5 should be supported?", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("Huh, UTF-8 should be supported?", e);
-        }
-
-        StringBuilder hex = new StringBuilder(hash.length * 2);
-
-        for (byte b : hash) {
-            int i = (b & 0xFF);
-            if (i < 0x10)
-                hex.append('0');
-            hex.append(Integer.toHexString(i));
-        }
-
-        return hex.toString();
+        return Hashing.md5().hashBytes(string.getBytes()).toString();
     }
 
     /**
@@ -142,32 +125,16 @@ public class Security {
      * @return SHA1 'ed String
      */
     public static String calculateSHA1(String string) {
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-1");
-        } catch (NoSuchAlgorithmException e) {
-            ApplicationUtils.Log.e("NoSuchAlgorithmException", e);
-        }
-        try {
-            md.update(string.getBytes("iso-8859-1"), 0, string.length());
-        } catch (UnsupportedEncodingException e) {
-            ApplicationUtils.Log.e("UnsupportedEncodingException", e);
-
-        }
-        byte[] sha1hash = md.digest();
-        return convertToHex(sha1hash);
+        return Hashing.sha1().hashBytes(string.getBytes()).toString();
     }
 
-    private static String convertToHex(byte[] data) {
-        StringBuilder buf = new StringBuilder();
-        for (byte b : data) {
-            int halfbyte = (b >>> 4) & 0x0F;
-            int two_halfs = 0;
-            do {
-                buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char) ('0' + halfbyte) : (char) ('a' + (halfbyte - 10)));
-                halfbyte = b & 0x0F;
-            } while (two_halfs++ < 1);
-        }
-        return buf.toString();
+    /**
+     * Calculate the SHA256 of a given String
+     *
+     * @param string String to be SHA256 'ed
+     * @return SHA256 'ed String
+     */
+    public static String calculateSHA256(String string) {
+        return Hashing.sha256().hashBytes(string.getBytes()).toString();
     }
 }

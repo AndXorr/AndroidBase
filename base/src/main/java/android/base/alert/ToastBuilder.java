@@ -14,8 +14,8 @@ import android.widget.TextView;
  */
 public class ToastBuilder {
 
-    private AlertParam alertParam;
-    private android.widget.Toast toast;
+    private AlertParam mAlertParam;
+    private android.widget.Toast mToast;
 
     /**
      * Instantiates a new Toast builder.
@@ -23,8 +23,8 @@ public class ToastBuilder {
      * @param context the context
      */
     public ToastBuilder(@NonNull Context context) {
-        alertParam = new AlertParam();
-        alertParam.context = context;
+        mAlertParam = new AlertParam();
+        mAlertParam.context = context;
     }
 
     /**
@@ -34,41 +34,41 @@ public class ToastBuilder {
      * @param resId   the res id
      */
     public ToastBuilder(@NonNull Context context, @StringRes int resId) {
-        alertParam = new AlertParam();
-        alertParam.context = context;
-        alertParam.messageResId = resId;
+        mAlertParam = new AlertParam();
+        mAlertParam.context = context;
+        mAlertParam.messageResId = resId;
     }
 
     /**
-     * Message toast builder.
+     * Message mToast builder.
      *
      * @param message the message
-     * @return the toast builder
+     * @return the mToast builder
      */
     public ToastBuilder message(String message) {
-        alertParam.message = message;
+        mAlertParam.message = message;
         return this;
     }
 
     /**
-     * Message toast builder.
+     * Message mToast builder.
      *
      * @param resId the res id
-     * @return the toast builder
+     * @return the mToast builder
      */
     public ToastBuilder message(int resId) {
-        alertParam.messageResId = resId;
+        mAlertParam.messageResId = resId;
         return this;
     }
 
     /**
-     * Duration toast builder.
+     * Duration mToast builder.
      *
      * @param duration the duration
-     * @return the toast builder
+     * @return the mToast builder
      */
     public ToastBuilder duration(int duration) {
-        alertParam.duration = duration;
+        mAlertParam.duration = duration;
         return this;
     }
 
@@ -76,30 +76,30 @@ public class ToastBuilder {
      * Show.
      */
     public void show() {
-        if (null != toast) {
-            toast.cancel();
+        if (null != mToast) {
+            mToast.cancel();
         }
-        if (alertParam.messageResId != 0) {
-            toast = android.widget.Toast.makeText(alertParam.context.getApplicationContext(), alertParam.messageResId, alertParam.duration);
-        } else if (!TextUtils.isEmpty(alertParam.message)) {
-            toast = android.widget.Toast.makeText(alertParam.context.getApplicationContext(), alertParam.message, alertParam.duration);
+        if (mAlertParam.messageResId != 0) {
+            mToast = android.widget.Toast.makeText(mAlertParam.context.getApplicationContext(), mAlertParam.messageResId, mAlertParam.duration);
+        } else if (!TextUtils.isEmpty(mAlertParam.message)) {
+            mToast = android.widget.Toast.makeText(mAlertParam.context.getApplicationContext(), mAlertParam.message, mAlertParam.duration);
         }
 
         try {
-            //find text view
-            TextView textView = (TextView) ((LinearLayout) toast.getView()).getChildAt(0);
+            //find text mView
+            TextView textView = (TextView) ((LinearLayout) mToast.getView()).getChildAt(0);
             //check typeface
-            String typeface = alertParam.getTypeface();
+            String typeface = mAlertParam.getTypeface();
             if (!TextUtils.isEmpty(typeface)) {
                 //set message typeface
-                Alert.get().setTypeface(alertParam.context, textView, typeface);
+                Alert.get().setTypeface(mAlertParam.context, textView, typeface);
             }
         } catch (Exception e) {
             ApplicationUtils.Log.e(e.getMessage() + e);
         }
 
-        if (toast != null) {
-            toast.show();
+        if (mToast != null) {
+            mToast.show();
         }
     }
 }

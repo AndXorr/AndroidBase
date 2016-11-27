@@ -25,7 +25,7 @@ public interface OnDialogProcess {
 
 
     /**
-     * callback for the view that is clicked/selected to perform other tasks
+     * callback for the mView that is clicked/selected to perform other tasks
      *
      * @param dialogId      to identify dialog
      * @param bundle        data that can required by activity/fragment

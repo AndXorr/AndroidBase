@@ -130,10 +130,10 @@
 
     <!--Theme for material edit text-->
     <style name="Widget.MaterialTextInputLayout" parent="TextAppearance.AppCompat">
-        <!--//hint color And Label Color in False State-->
+        <!--//hint color And Label ColorUtil in False State-->
         <item name="android:textColorHint">@color/textColor_hint_default_base</item>
         <item name="android:textSize">@dimen/material_text_size</item>
-        <!--//Label color in True State And Bar Color False And True State-->
+        <!--//Label color in True State And Bar ColorUtil False And True State-->
         <item name="colorAccent">@color/textColor_default_base</item>
         <item name="colorControlNormal">@color/textColor_default_base</item>
         <item name="colorControlActivated">@color/textColor_default_base</item>
@@ -145,7 +145,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:singleLine">true</item>
     </style>
-    <!--drop down list view style such as autocomplete text view-->
+    <!--drop down list mView style such as autocomplete text mView-->
     <style name="Widget.DropDownListView" parent="@android:style/Widget.ListView">
         <item name="android:divider">@color/listview_divider_color_base</item>
         <item name="android:dividerHeight">1dp</item>

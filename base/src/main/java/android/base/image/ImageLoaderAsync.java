@@ -74,7 +74,7 @@ public class ImageLoaderAsync {
     public static synchronized ImageLoaderAsync getInstance(Context context) {
         if (instance == null) {
             instance = new ImageLoaderAsync();
-            File cacheDir = ApplicationUtils.FileUtil.getDirectoryAppImages(context);
+            File cacheDir = ApplicationUtils.File.getDirectoryAppImages(context);
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int width = displayMetrics.widthPixels;
             int height = displayMetrics.heightPixels;

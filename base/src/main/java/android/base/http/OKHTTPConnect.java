@@ -70,10 +70,10 @@ public class OKHTTPConnect {
         String json = new JSONObject(webParam.requestParam).toString();
         RequestBody body = RequestBody.create(JSON, json);
         Request request = null;
-        Request.Builder builder = new Request.Builder();
+        Request.Builder builder = new Request.Builder().url(webParam.url);
         switch (webParam.httpType) {
             case POST:
-                builder.url(webParam.url).post(body);
+                builder.post(body);
                 if (webParam.headerParam.size() > 0) {
                     Headers headers = Headers.of(webParam.headerParam);
                     builder.headers(headers);
@@ -81,7 +81,7 @@ public class OKHTTPConnect {
                 request = builder.build();
                 break;
             case PUT:
-                builder.url(webParam.url).put(body);
+                builder.put(body);
                 if (webParam.headerParam.size() > 0) {
                     Headers headers = Headers.of(webParam.headerParam);
                     builder.headers(headers);
@@ -89,12 +89,15 @@ public class OKHTTPConnect {
                 request = builder.build();
                 break;
             case DELETE:
-                builder.url(webParam.url).delete(body);
+                builder.delete(body);
                 if (webParam.headerParam.size() > 0) {
                     Headers headers = Headers.of(webParam.headerParam);
                     builder.headers(headers);
                 }
                 request = builder.build();
+                break;
+            default:
+                // Nothing
                 break;
         }
         if (request == null)
