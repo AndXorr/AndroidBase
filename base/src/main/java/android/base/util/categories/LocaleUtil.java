@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.LayoutDirection;
 
 import org.apache.commons.lang3.LocaleUtils;
 
@@ -89,11 +90,12 @@ public class LocaleUtil extends LocaleUtils {
                 && !ValidatorUtil.isEmptyOrNull(languageCode)) {
             Locale locale = new Locale(languageCode);
             Resources res = context.getResources();
-            DisplayMetrics dm = res.getDisplayMetrics();
             Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            res.updateConfiguration(config, dm);
+            Resources resources = context.getResources();
+            Configuration config = resources.getConfiguration();
+            config.setLocale(locale);
+            config.setLayoutDirection(locale);
+            res.updateConfiguration(config, resources.getDisplayMetrics());
             if (enableBroadCast)
                 LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(Intent.ACTION_LOCALE_CHANGED));
         }

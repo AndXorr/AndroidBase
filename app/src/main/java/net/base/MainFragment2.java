@@ -21,6 +21,7 @@ public class MainFragment2 extends BaseFragment {
         if (mView == null) {
             mView = inflater.inflate(R.layout.activity_main, null);
             mView.findViewById(android.R.id.button1).setOnClickListener(this);
+            mView.findViewById(android.R.id.button2).setOnClickListener(this);
             mView.findViewById(android.R.id.background).setOnClickListener(this);
         }
         return mView;
@@ -35,6 +36,13 @@ public class MainFragment2 extends BaseFragment {
                 break;
             case android.R.id.button1:
                 ApplicationUtils.Locale.updateLocale(getActivity(), "ar", true);
+                //getFragmentActivity().getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+                break;
+            case android.R.id.button2:
+                ApplicationUtils.Locale.updateLocale(getActivity(), "en", true);
+                //getFragmentActivity().getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+                break;
+            default:
                 break;
         }
     }

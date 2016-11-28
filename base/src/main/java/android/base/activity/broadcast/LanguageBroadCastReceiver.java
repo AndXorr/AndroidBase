@@ -7,6 +7,9 @@ import android.base.util.ApplicationUtils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
+
+import java.util.Locale;
 
 /**
  * Created by clickapps on 24/2/16.
@@ -48,7 +51,13 @@ public class LanguageBroadCastReceiver extends BroadcastReceiver {
         }
         if (mActivity instanceof BaseAppCompatActivity) {
             BaseAppCompatActivity activity = (BaseAppCompatActivity) mActivity;
-            activity.recreate();
+            //activity.recreate();
+            Locale locale = ApplicationUtils.Locale.getLocaleCurrentApp(mActivity);
+            if (ApplicationUtils.Validator.isMatches(locale.getLanguage(), "ar")) {
+                mActivity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            } else {
+                mActivity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+            }
         }
     }
 }

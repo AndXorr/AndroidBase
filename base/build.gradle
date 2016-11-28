@@ -62,7 +62,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     /* Animations */
     // https://github.com/ToxicBakery/ViewPagerTransforms
-    compile 'com.ToxicBakery.viewpager.transforms:mView-pager-transforms:1.2.32@aar'
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     // https://github.com/xgc1986/ParallaxPagerTransformer
     compile 'com.xgc1986.android:parallaxpagertransformer:1.0.4'
 
