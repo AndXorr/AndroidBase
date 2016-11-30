@@ -57,9 +57,11 @@ public abstract class BaseFragment extends Fragment implements
         return bundle;
 
     }
-    public FragmentActivity getFragmentActivity(){
+
+    public FragmentActivity getFragmentActivity() {
         return (FragmentActivity) getActivity();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,5 +119,4 @@ public abstract class BaseFragment extends Fragment implements
      * @return the mView
      */
     protected abstract View initUI(LayoutInflater inflater, ViewGroup container);
-
 }
