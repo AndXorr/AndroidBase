@@ -3,6 +3,10 @@ package android.base.http;
 import android.base.R;
 import android.base.ui.custom.ProgressViewApplication;
 import android.base.dialog.BaseProgressDialog;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 
@@ -30,7 +34,19 @@ public class WebConnectUtils {
             webParam.progressDialog.setCanceledOnTouchOutside(false);
             webParam.progressDialog.setCancelable(true);
         }
+        if (webParam.progressDialogColor != -1) {
+            ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(webParam.context, webParam.progressDialogColor));
+            webParam.progressDialog.setIndeterminateDrawable(colorDrawable);
+        }
         return webParam.progressDialog;
     }
+
+    public static BaseProgressDialog defaultProgressDialog(@NonNull Context context) {
+        BaseProgressDialog dialog = new BaseProgressDialog(context, R.style.Widget_ProgressDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+        return dialog;
+    }
+
 
 }

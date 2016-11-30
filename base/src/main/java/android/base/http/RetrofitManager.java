@@ -8,7 +8,6 @@ import com.google.gson.GsonBuilder;
 
 import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
@@ -44,19 +43,15 @@ public class RetrofitManager {
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
             .create();
-    private OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-    private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//    private Retrofit.WebBuilder builder = new Retrofit.WebBuilder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(StringConverterFactory.create())
-//            .addConverterFactory(GsonConverterFactory.create(gson));
+    private OkHttpClient.Builder mOkHttpClientBuilder = new OkHttpClient.Builder();
+    private HttpLoggingInterceptor mInterceptor = new HttpLoggingInterceptor();
 
 
     /**
      * Instantiates a new Retrofit util.
      */
-    public RetrofitManager() {
-
+    protected RetrofitManager() {
+        // Private Constructor
     }
 
     /**
@@ -68,10 +63,10 @@ public class RetrofitManager {
      * @return the t
      */
     public <T> T createService(Class<T> interfaceFile, final WebParam webParam) {
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        okHttpClientBuilder.connectTimeout(CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
-        okHttpClientBuilder.readTimeout(READ_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
-        okHttpClientBuilder.addInterceptor(new Interceptor() {
+        mInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        mOkHttpClientBuilder.connectTimeout(CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        mOkHttpClientBuilder.readTimeout(READ_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        mOkHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
@@ -83,7 +78,7 @@ public class RetrofitManager {
                 return chain.proceed(request);
             }
         });
-        okHttpClientBuilder.addInterceptor(interceptor);
+        mOkHttpClientBuilder.addInterceptor(mInterceptor);
         String baseUrl = BASE_URL;
         if (!ApplicationUtils.Validator.isEmptyOrNull(webParam.baseUrl)) {
             baseUrl = webParam.baseUrl;
@@ -92,7 +87,7 @@ public class RetrofitManager {
                 .baseUrl(baseUrl)
                 .addConverterFactory(StringConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson));
-        builder.client(okHttpClientBuilder.build());
+        builder.client(mOkHttpClientBuilder.build());
         Retrofit retrofit = builder.build();
         if (webParam.showDialog) {
             webParam.progressDialog = WebConnectUtils.resolveProgressDialog(webParam);
@@ -125,27 +120,26 @@ public class RetrofitManager {
             dismissDialog(webParam);
             Object object;
             String res;
+            if (webParam.callback == null) {
+                return;
+            }
             if (response.isSuccessful()) {
                 res = response.body().toString();
-                if (webParam.callback != null) {
-                    if (webParam.model != null) {
-                        object = gson.fromJson(res, webParam.model);
-                    } else {
-                        object = gson.fromJson(res, Object.class);
-                    }
-                    webParam.callback.onSuccess(object, res, webParam.taskId, response.code());
+                if (webParam.model != null) {
+                    object = gson.fromJson(res, webParam.model);
+                } else {
+                    object = gson.fromJson(res, Object.class);
                 }
+                webParam.callback.onSuccess(object, res, webParam.taskId, response.code());
             } else {
                 try {
                     res = response.errorBody().string();
-                    if (webParam.callback != null) {
-                        if (webParam.error != null) {
-                            object = gson.fromJson(res, webParam.error);
-                        } else {
-                            object = gson.fromJson(res, Object.class);
-                        }
-                        webParam.callback.onError(object, res, webParam.taskId, response.code());
+                    if (webParam.error != null) {
+                        object = gson.fromJson(res, webParam.error);
+                    } else {
+                        object = gson.fromJson(res, Object.class);
                     }
+                    webParam.callback.onError(object, res, webParam.taskId, response.code());
                 } catch (IOException e) {
                     ApplicationUtils.Log.e(e.getMessage());
                 }

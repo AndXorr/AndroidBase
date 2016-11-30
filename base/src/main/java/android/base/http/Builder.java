@@ -3,6 +3,7 @@ package android.base.http;
 import android.app.Activity;
 import android.base.dialog.BaseProgressDialog;
 import android.content.Context;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 public class Builder {
 
 
-    private WebParam webParam;
+    private WebParam mWebParam;
 
     /**
      * Instantiates a new Builder.
@@ -25,10 +26,10 @@ public class Builder {
      * @param url     the url
      */
     public Builder(@NonNull Activity context, @NonNull String url) {
-        webParam = new WebParam();
-        webParam.activityContext = context;
-        webParam.context = context;
-        webParam.url = url;
+        mWebParam = new WebParam();
+        mWebParam.activityContext = context;
+        mWebParam.context = context;
+        mWebParam.url = url;
     }
 
     /**
@@ -38,9 +39,9 @@ public class Builder {
      * @param url     the url
      */
     public Builder(@NonNull Context context, @NonNull String url) {
-        webParam = new WebParam();
-        webParam.context = context;
-        webParam.url = url;
+        mWebParam = new WebParam();
+        mWebParam.context = context;
+        mWebParam.url = url;
     }
 
 
@@ -51,7 +52,7 @@ public class Builder {
      * @return the builder
      */
     public Builder baseUrl(@NonNull String url) {
-        webParam.baseUrl = url;
+        mWebParam.baseUrl = url;
         return this;
     }
 
@@ -62,7 +63,7 @@ public class Builder {
      * @return the builder
      */
     public Builder httpType(@NonNull WebParam.HttpType httpType) {
-        webParam.httpType = httpType;
+        mWebParam.httpType = httpType;
         return this;
     }
 
@@ -73,7 +74,7 @@ public class Builder {
      * @return the builder
      */
     public Builder requestParam(@NonNull Map<String, ?> requestParam) {
-        webParam.requestParam = requestParam;
+        mWebParam.requestParam = requestParam;
         return this;
     }
 
@@ -84,7 +85,7 @@ public class Builder {
      * @return the builder
      */
     public Builder headerParam(@NonNull Map<String, String> headerParam) {
-        webParam.headerParam = headerParam;
+        mWebParam.headerParam = headerParam;
         return this;
     }
 
@@ -96,10 +97,11 @@ public class Builder {
      * @param error    the error
      * @return the builder
      */
-    public Builder callback(@NonNull WebHandler.OnWebCallback callback, @NonNull Class<?> success, @NonNull Class<?> error) {
-        webParam.callback = callback;
-        webParam.model = success;
-        webParam.error = error;
+    public Builder callback(@NonNull WebHandler.OnWebCallback callback,
+                            @NonNull Class<?> success, @NonNull Class<?> error) {
+        mWebParam.callback = callback;
+        mWebParam.model = success;
+        mWebParam.error = error;
         return this;
     }
 
@@ -110,7 +112,7 @@ public class Builder {
      * @return the builder
      */
     public Builder successModel(@NonNull Class<?> success) {
-        webParam.model = success;
+        mWebParam.model = success;
         return this;
     }
 
@@ -121,7 +123,7 @@ public class Builder {
      * @return the builder
      */
     public Builder errorModel(@NonNull Class<?> error) {
-        webParam.error = error;
+        mWebParam.error = error;
         return this;
     }
 
@@ -132,7 +134,7 @@ public class Builder {
      * @return the builder
      */
     public Builder taskId(int taskId) {
-        webParam.taskId = taskId;
+        mWebParam.taskId = taskId;
         return this;
     }
 
@@ -143,7 +145,7 @@ public class Builder {
      * @return the builder
      */
     public Builder retryCount(int retry) {
-        webParam.retryCount = retry;
+        mWebParam.retryCount = retry;
         return this;
     }
 
@@ -155,8 +157,30 @@ public class Builder {
      * @return the builder
      */
     public Builder progressDialog(@Nullable BaseProgressDialog progressDialog, @Nullable String message) {
-        webParam.progressDialog = progressDialog;
-        webParam.progressDialogMessage = message;
+        mWebParam.progressDialog = progressDialog;
+        mWebParam.progressDialogMessage = message;
+        return this;
+    }
+
+    /**
+     * Progress dialog builder.
+     *
+     * @param progressDialog the progress dialog
+     * @return the builder
+     */
+    public Builder progressDialog(@Nullable BaseProgressDialog progressDialog) {
+        mWebParam.progressDialog = progressDialog;
+        return this;
+    }
+
+    /**
+     * Progress dialog color builder.
+     *
+     * @param progressDialogColor the progress dialog color
+     * @return the builder
+     */
+    public Builder progressDialogColor(@ColorRes int progressDialogColor) {
+        mWebParam.progressDialogColor = progressDialogColor;
         return this;
     }
 
@@ -167,7 +191,7 @@ public class Builder {
      * @return the builder
      */
     public Builder showDialog(boolean showDialog) {
-        webParam.showDialog = showDialog;
+        mWebParam.showDialog = showDialog;
         return this;
     }
 
@@ -178,7 +202,7 @@ public class Builder {
      * @return the builder
      */
     public Builder isJson(boolean isJson) {
-        webParam.isJson = isJson;
+        mWebParam.isJson = isJson;
         return this;
     }
 
@@ -189,7 +213,7 @@ public class Builder {
      * @return the builder
      */
     public Builder isMultipart(boolean isMultipart) {
-        webParam.isMultipart = isMultipart;
+        mWebParam.isMultipart = isMultipart;
         return this;
     }
 
@@ -200,7 +224,7 @@ public class Builder {
      * @return the builder
      */
     public Builder cache(File cache) {
-        webParam.cacheDir = cache;
+        mWebParam.cacheDir = cache;
         return this;
     }
 
@@ -212,8 +236,8 @@ public class Builder {
      * @return the builder
      */
     public Builder cache(File cache, int cacheSize) {
-        webParam.cacheDir = cache;
-        webParam.cacheSize = cacheSize;
+        mWebParam.cacheDir = cache;
+        mWebParam.cacheSize = cacheSize;
         return this;
     }
 
@@ -227,7 +251,7 @@ public class Builder {
      * @return the api client
      */
     public ApiClient getApiClient() {
-        return new ApiClient(webParam);
+        return new ApiClient(mWebParam);
     }
 
     /**
@@ -254,8 +278,8 @@ public class Builder {
 
     }
 
-    public WebParam getWebParam() {
-        return webParam;
+    public WebParam getmWebParam() {
+        return mWebParam;
     }
 
     /**
@@ -266,6 +290,6 @@ public class Builder {
      * @return the t
      */
     public <T> T connect(Class<T> cls) {
-        return new RetrofitManager().createService(cls, webParam);
+        return new RetrofitManager().createService(cls, mWebParam);
     }
 }

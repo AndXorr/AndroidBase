@@ -51,13 +51,8 @@ public class LanguageBroadCastReceiver extends BroadcastReceiver {
         }
         if (mActivity instanceof BaseAppCompatActivity) {
             BaseAppCompatActivity activity = (BaseAppCompatActivity) mActivity;
-            //activity.recreate();
-            Locale locale = ApplicationUtils.Locale.getLocaleCurrentApp(mActivity);
-            if (ApplicationUtils.Validator.isMatches(locale.getLanguage(), "ar")) {
-                mActivity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-            } else {
-                mActivity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
-            }
+            activity.recreate();
         }
     }
+
 }

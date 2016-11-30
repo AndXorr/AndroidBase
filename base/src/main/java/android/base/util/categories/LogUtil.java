@@ -32,15 +32,17 @@ public class LogUtil {
      */
     public static final String TAG = "log";
 
+    private static boolean isLogEnabled = false;
+
     /**
      * private constructor
      *
-     * @param value the value
+     * @param isEnabled the value
      */
 //	private log() {
 //	}
-    public static void logEnable(boolean value) {
-        android.base.log.Log.setLogEnabled(value);
+    public static void logEnable(boolean isEnabled) {
+        isLogEnabled = isEnabled;
     }
 
     /**
@@ -158,7 +160,7 @@ public class LogUtil {
      */
     private static int logger(int level, String message, Throwable throwable) {
 
-        if (android.base.log.Log.isLogEnabled()) {
+        if (isLogEnabled) {
             switch (level) {
 
                 case DEBUG:
@@ -187,7 +189,7 @@ public class LogUtil {
      */
     private static int logger(int level, String message) {
 
-        if (android.base.log.Log.isLogEnabled()) {
+        if (isLogEnabled) {
             switch (level) {
 
                 case DEBUG:

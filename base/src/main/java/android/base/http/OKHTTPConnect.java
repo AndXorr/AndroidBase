@@ -35,7 +35,7 @@ public class OKHTTPConnect {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static final MediaType MEDIA_TYPE_IMAGE = MediaType.parse("image/*");
-    private OkHttpClient client = new OkHttpClient();
+    private OkHttpClient mClient = new OkHttpClient();
 
     /**
      * Instantiates a new Okhttp connect.
@@ -43,7 +43,7 @@ public class OKHTTPConnect {
      * @param param the param
      */
     public OKHTTPConnect(WebParam param) {
-        OkHttpClient.Builder builder = client.newBuilder();
+        OkHttpClient.Builder builder = mClient.newBuilder();
         builder.connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS);
@@ -51,7 +51,7 @@ public class OKHTTPConnect {
             Cache cache = new Cache(param.cacheDir, param.cacheSize);
             builder.cache(cache);
         }
-        client = builder.build();
+        mClient = builder.build();
         if (param.isJson) {
             json(param);
         } else if (param.isMultipart) {
@@ -102,7 +102,7 @@ public class OKHTTPConnect {
         }
         if (request == null)
             return;
-        client.newCall(request).enqueue(new Callback(webParam));
+        mClient.newCall(request).enqueue(new Callback(webParam));
     }
 
     /**
@@ -160,7 +160,7 @@ public class OKHTTPConnect {
                 break;
         }
         if (request == null) return;
-        client.newCall(request).enqueue(new Callback(webParam));
+        mClient.newCall(request).enqueue(new Callback(webParam));
     }
 
     /**
@@ -231,7 +231,7 @@ public class OKHTTPConnect {
             Log.e(getClass().getName(), "Request is null");
             return;
         }
-        client.newCall(request).enqueue(new Callback(webParam));
+        mClient.newCall(request).enqueue(new Callback(webParam));
     }
 
     /**

@@ -1,6 +1,8 @@
 package android.base.util.categories;
 
+import android.app.Activity;
 import android.base.R;
+import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -11,6 +13,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.LayoutDirection;
+import android.view.View;
 
 import org.apache.commons.lang3.LocaleUtils;
 
@@ -98,6 +101,14 @@ public class LocaleUtil extends LocaleUtils {
             res.updateConfiguration(config, resources.getDisplayMetrics());
             if (enableBroadCast)
                 LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(Intent.ACTION_LOCALE_CHANGED));
+        }
+    }
+
+    public static void changeForceView(@NonNull Activity activity, @NonNull Locale locale) {
+        if (ApplicationUtils.Validator.isMatches(locale.getLanguage(), "ar")) {
+            activity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        } else {
+            activity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
     }
 }

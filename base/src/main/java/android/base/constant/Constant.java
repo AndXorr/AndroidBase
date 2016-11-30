@@ -6,6 +6,8 @@ package android.base.constant;
  */
 public class Constant {
 
+    public static String PACKAGE_NAME = "";
+
     /**
      * External storage permission string
      */
@@ -13,7 +15,7 @@ public class Constant {
     /**
      * The constant ACTION_BROADCAST_LANGUAGE_CHANGED.
      */
-    public static final String ACTION_BROADCAST_LANGUAGE_CHANGED = "android.base.util.LanguageChanged";
+    public static final String ACTION_BROADCAST_LANGUAGE_CHANGED = PACKAGE_NAME + ".android.base.util.LanguageChanged";
     /**
      * The constant BUILD_VERSION_LOLLIPOP.
      */

@@ -1,6 +1,7 @@
 package android.base.http;
 
 import android.app.Activity;
+import android.base.R;
 import android.base.dialog.BaseProgressDialog;
 import android.content.Context;
 import android.os.Environment;
@@ -62,7 +63,11 @@ public class WebParam {
     protected int taskId, /**
      * The Retry count.
      */
-    retryCount;
+    retryCount,
+    /**
+     * The Retry count.
+     */
+    progressDialogColor = -1;
     /**
      * The Progress dialog.
      */

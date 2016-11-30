@@ -81,9 +81,9 @@ public abstract class BaseFragment extends Fragment implements
          * Handle BackPress on Fragment.
          */
         if (getActivity() instanceof BaseAppCompatActivity) {
-            ((BaseAppCompatActivity) getActivity()).setBackHandler(null);
+            ((BaseAppCompatActivity) getActivity()).setmBackHandler(null);
             if (mEnableBack)
-                ((BaseAppCompatActivity) getActivity()).setBackHandler(this);
+                ((BaseAppCompatActivity) getActivity()).setmBackHandler(this);
         }
         super.onResume();
     }

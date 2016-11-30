@@ -3,8 +3,11 @@ package android.base.application;
 import android.app.Activity;
 import android.app.Application;
 import android.base.activity.ActivityManagerUtil;
+import android.base.constant.Constant;
+import android.base.http.WebConstant;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 
@@ -52,5 +55,17 @@ public class BaseApplication extends Application implements Application.Activity
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    public void setPackageName(@NonNull String packageName) {
+        Constant.PACKAGE_NAME = packageName;
+    }
+
+    public void setEndPointBaseUrl(@NonNull String baseUrl) {
+        WebConstant.setBaseUrl(baseUrl);
+    }
+
+    public void setEndPointVersion(@NonNull String endPointVersion) {
+        WebConstant.setApiVersion(endPointVersion);
     }
 }
