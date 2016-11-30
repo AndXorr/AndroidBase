@@ -3,7 +3,7 @@ package android.base.anim;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.app.Activity;
-import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -122,7 +122,7 @@ public class Builder {
      */
     public void start() {
         if (mAnimParam.type == null) {
-            Log.e(getClass().getName(), "Please Specify type");
+            ApplicationUtils.Log.e("Please Specify type");
         } else {
             if (mAnimParam.posX != null && mAnimParam.posY != null) {
                 AnimUtil.getPos(mAnimParam);

@@ -1,9 +1,7 @@
 package android.base.pubnub;
 
-import android.base.log.Log;
 import android.base.util.ApplicationUtils;
 
-import com.google.common.base.Optional;
 import com.pubnub.api.Callback;
 import com.pubnub.api.Pubnub;
 import com.pubnub.api.PubnubError;

@@ -2,7 +2,7 @@ package android.base.util.categories;
 
 import android.annotation.TargetApi;
 import android.base.constant.Constant;
-import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -225,7 +225,7 @@ public class FileUtil extends FileUtils {
                 || (!appCacheDir.exists() && !appCacheDir.mkdirs())) {
             appCacheDir = context.getCacheDir();
         }
-        Log.d(TAG, "directory path = "
+        ApplicationUtils.Log.d("directory path = "
                 + appCacheDir);
 
         return appCacheDir;
@@ -243,7 +243,7 @@ public class FileUtil extends FileUtils {
         if (!dir.exists() && !dir.mkdirs()) {
             dir = context.getCacheDir();
         }
-        Log.d(TAG, "image directory path = "
+        ApplicationUtils.Log.d("image directory path = "
                 + dir);
 
         return dir;
@@ -261,7 +261,7 @@ public class FileUtil extends FileUtils {
         if (!dir.exists() && !dir.mkdirs()) {
             dir = context.getCacheDir();
         }
-        Log.d(TAG, "image directory path = "
+        ApplicationUtils.Log.d("image directory path = "
                 + dir);
 
         return dir;
@@ -279,7 +279,7 @@ public class FileUtil extends FileUtils {
         if (!dir.exists() && !dir.mkdirs()) {
             dir = context.getCacheDir();
         }
-        Log.d(TAG, "image directory path = "
+        ApplicationUtils.Log.d("image directory path = "
                 + dir);
 
         return dir;
@@ -297,7 +297,7 @@ public class FileUtil extends FileUtils {
         if (!dir.exists() && !dir.mkdirs()) {
             dir = context.getCacheDir();
         }
-        Log.d(TAG, "video directory path = "
+        ApplicationUtils.Log.d("video directory path = "
                 + dir);
 
         return dir;
@@ -407,7 +407,7 @@ public class FileUtil extends FileUtils {
                     break;
             }
         } catch (IOException e) {
-            Log.e("Can't read EXIF tags from file [%s]", imageUri);
+            ApplicationUtils.Log.e("Can't read EXIF tags from file [%s]" + imageUri);
         }
 
         return rotation;

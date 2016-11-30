@@ -2,7 +2,6 @@ package android.base.ui.widget;
 
 import android.base.adapter.BaseHeaderFooterRecyclerViewAdapter;
 import android.base.interfaces.OnLoadMoreListener;
-import android.base.log.Log;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;

@@ -1,6 +1,5 @@
 package android.base.image;
 
-import android.base.log.Log;
 import android.base.util.ApplicationUtils;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -218,7 +217,7 @@ public class ImageLoaderAsync {
                         } else if (imageParam.imageView != null) {
                             setLoadingThumbnail(imageParam);
                         } else {
-                            Log.e(getClass().getSimpleName(), "ImageView is null");
+                            ApplicationUtils.Log.e("ImageView is null");
                         }
                     }
 
@@ -231,7 +230,7 @@ public class ImageLoaderAsync {
                         } else if (imageParam.imageView != null) {
                             setErrorThumbnail(imageParam);
                         } else {
-                            Log.e(getClass().getSimpleName(), "ImageView is null");
+                            ApplicationUtils.Log.e("ImageView is null");
                         }
                     }
 
@@ -245,7 +244,7 @@ public class ImageLoaderAsync {
                         } else if (imageParam.imageView != null) {
                             setBitmap(imageParam, bitmap);
                         } else {
-                            Log.e(getClass().getSimpleName(), "ImageView is null");
+                            ApplicationUtils.Log.e("ImageView is null");
                         }
                         if (imageParam.needBitmap && imageParam.callback != null) {
                             if (imageParam.context != null) {

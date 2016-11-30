@@ -1,6 +1,6 @@
 package android.base.image;
 
-import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -94,7 +94,7 @@ public class GlideUtil {
             } else if (imageParam.imageView != null) {
                 setLoadingThumbnail(imageParam);
             } else {
-                Log.e(getClass().getSimpleName(), "ImageView is null");
+                ApplicationUtils.Log.e("ImageView is null");
             }
         }
 
@@ -106,7 +106,7 @@ public class GlideUtil {
             } else if (imageParam.imageView != null) {
                 setErrorThumbnail(imageParam);
             } else {
-                Log.e(getClass().getSimpleName(), "ImageView is null");
+                ApplicationUtils.Log.e("ImageView is null");
             }
         }
 

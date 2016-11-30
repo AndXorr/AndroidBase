@@ -1,7 +1,7 @@
 package android.base.http;
 
 
-import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 
 import com.google.common.base.Optional;
 import com.google.gson.Gson;
@@ -228,7 +228,7 @@ public class OKHTTPConnect {
                 break;
         }
         if (request == null) {
-            Log.e(getClass().getName(), "Request is null");
+            ApplicationUtils.Log.e("Request is null");
             return;
         }
         mClient.newCall(request).enqueue(new Callback(webParam));

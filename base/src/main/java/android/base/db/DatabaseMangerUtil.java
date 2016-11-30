@@ -1,6 +1,6 @@
 package android.base.db;
 
-import android.base.log.Log;
+import android.base.util.ApplicationUtils;
 import android.content.ContentValues;
 import android.database.Cursor;
 
@@ -35,12 +35,12 @@ public final class DatabaseMangerUtil {
                 param.dWrite.setTransactionSuccessful();
             }
             message = "Insert Successfully";
-            Log.d(TAG, message);
+            ApplicationUtils.Log.d(message);
 
         } catch (Exception e) {
             i = 0;
             message = e.getMessage();
-            Log.e(TAG, message);
+            ApplicationUtils.Log.e(message);
         } finally {
             if (param.isBulk) {
                 param.dWrite.endTransaction();
@@ -71,11 +71,11 @@ public final class DatabaseMangerUtil {
                 param.dWrite.setTransactionSuccessful();
             }
             message = "Update Successfully";
-            Log.d(TAG, message);
+            ApplicationUtils.Log.d(message);
         } catch (Exception e) {
             i = 0;
             message = e.getMessage();
-            Log.e(TAG, message);
+            ApplicationUtils.Log.e(message);
         } finally {
             if (param.isBulk) {
                 param.dWrite.endTransaction();
@@ -96,11 +96,11 @@ public final class DatabaseMangerUtil {
         try {
             i = param.dWrite.delete(param.table, param.where, param.whereArgs);
             message = "Delete Successfully";
-            Log.d(TAG, message);
+            ApplicationUtils.Log.d(message);
         } catch (Exception e) {
             i = 0;
             message = e.getMessage();
-            Log.e(TAG, message);
+            ApplicationUtils.Log.e(message);
         }
         return i;
     }
@@ -117,11 +117,11 @@ public final class DatabaseMangerUtil {
             Cursor cursor = param.dRead.query(param.table, param.columns, param.where,
                     param.whereArgs, param.grpBy, param.having, param.orderBy, param.limit);
             message = "Query";
-            Log.d(TAG, message);
+            ApplicationUtils.Log.d(message);
             return cursor;
         } catch (Exception e) {
             message = e.getMessage();
-            Log.e(TAG, message);
+            ApplicationUtils.Log.e(message);
             return null;
         }
     }
@@ -137,11 +137,11 @@ public final class DatabaseMangerUtil {
         try {
             Cursor cursor = param.dRead.rawQuery(param.sql, param.whereArgs);
             message = "Query";
-            Log.d(TAG, message);
+            ApplicationUtils.Log.d(message);
             return cursor;
         } catch (Exception e) {
             message = e.getMessage();
-            Log.e(TAG, message);
+            ApplicationUtils.Log.e(message);
             return null;
         }
     }
