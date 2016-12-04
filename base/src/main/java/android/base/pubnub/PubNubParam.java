@@ -62,7 +62,11 @@ public class PubNubParam {
         UNSUB, /**
          * Unsuball event.
          */
-        UNSUBALL
+        UNSUBALL,
+        /**
+         * Get SubList
+         */
+        SUB_LIST
     }
 
     /**

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.google.common.base.Optional;
+import com.pubnub.api.PubNub;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -197,7 +198,13 @@ public class Builder {
      * Build.
      */
     public void build() {
-        PubNub pubNub = new PubNub(pubNubParam);
+        Pubnub pubNub = new Pubnub(pubNubParam);
         pubNub.handleEvent(pubNubParam);
+    }
+
+    public List<String> getSubscribedList() {
+        pubNubParam.event = PubNubParam.Event.SUB_LIST;
+        Pubnub pubNub = new Pubnub(pubNubParam);
+        return (List<String>) pubNub.handleEvent(pubNubParam);
     }
 }

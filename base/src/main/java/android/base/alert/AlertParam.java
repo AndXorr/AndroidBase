@@ -16,6 +16,11 @@ import android.widget.Toast;
  * The type Alert param.
  */
 public class AlertParam {
+
+    protected static final int red = 0xfff44336;
+    protected static final int green = 0xff4caf50;
+    protected static final int blue = 0xff2195f3;
+    protected static final int orange = 0xffffc107;
     /**
      * The Message.
      */

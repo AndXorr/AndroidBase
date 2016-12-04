@@ -171,6 +171,46 @@ public class SnackBuilder {
     }
 
     /**
+     * Background color snack builder during information
+     *
+     * @return the snack builder
+     */
+    public SnackBuilder info() {
+        mAlertParam.actionBackgroundResId = AlertParam.blue;
+        return this;
+    }
+
+    /**
+     * Background color snack builder during confirmation
+     *
+     * @return the snack builder
+     */
+    public SnackBuilder confirm() {
+        mAlertParam.actionBackgroundResId = AlertParam.green;
+        return this;
+    }
+
+    /**
+     * Background color snack builder during warning
+     *
+     * @return the snack builder
+     */
+    public SnackBuilder warning() {
+        mAlertParam.actionBackgroundResId = AlertParam.orange;
+        return this;
+    }
+
+    /**
+     * Background color snack builder during warning
+     *
+     * @return the snack builder
+     */
+    public SnackBuilder alert() {
+        mAlertParam.actionBackgroundResId = AlertParam.red;
+        return this;
+    }
+
+    /**
      * Unique id snack builder.
      *
      * @param uniqueId the unique id

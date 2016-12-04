@@ -1,5 +1,8 @@
 package android.base.pubnub;
 
+import android.base.application.BaseApplication;
+import android.base.constant.Constant;
+
 /**
  * The type Pub nub constant.
  */
@@ -25,6 +28,15 @@ public class PubNubConstant {
      * The constant ORIGIN.
      */
     public static final String ORIGIN = "origin";
+    /**
+     * The Broadcast
+     */
+    public static String BROADCAST = Constant.PACKAGE_NAME + ".pubnub";
+    /**
+     * The Broadcast Bundle Keys
+     */
+    public static final String BUNDLE_MESSAGE = "message";
+    public static final String BUNDLE_CHANNEL = "channel";
 
     private PubNubConstant() {
 
